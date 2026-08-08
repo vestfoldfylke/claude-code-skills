@@ -1,0 +1,30 @@
+{
+  "name": "claude-code-skills",
+  "owner": {
+    "name": "Vestfold fylkeskommune"
+  },
+  "description": "Interne Claude Code-skills for Vestfold fylkeskommune: faseinndelt arbeidsflyt, web-prototyping og FINT GraphQL.",
+  "plugins": [
+    {
+      "name": "faseflyt",
+      "source": "./plugins/faseflyt",
+      "displayName": "Faseflyt",
+      "description": "Faseinndelt arbeidsflyt: nytt-prosjekt, fase-start, fase-slutt og grill-me. Plan først, én verifisert fase om gangen, prosjektet husker alt mellom øktene.",
+      "version": "0.1.0"
+    },
+    {
+      "name": "web-prototype",
+      "source": "./plugins/web-prototype",
+      "displayName": "Web-prototype",
+      "description": "SvelteKit + Designsystemet (digdir) for brukertestingsklare prototyper. Kun for webapp-prosjekter.",
+      "version": "0.1.0"
+    },
+    {
+      "name": "fint-graphql",
+      "source": "./plugins/fint-graphql",
+      "displayName": "FINT GraphQL",
+      "description": "FINT informasjonsmodell og GraphQL-API: entiteter, relasjoner og spørremønstre. Kun for prosjekter som bruker FINT.",
+      "version": "0.1.0"
+    }
+  ]
+}

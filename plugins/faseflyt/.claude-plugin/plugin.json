@@ -1,0 +1,11 @@
+{
+  "name": "faseflyt",
+  "displayName": "Faseflyt",
+  "version": "0.1.0",
+  "description": "Faseinndelt arbeidsflyt for Claude Code: plan først, én verifisert fase om gangen, og et prosjekt som husker alt mellom øktene. Inneholder nytt-prosjekt, fase-start, fase-slutt og grill-me.",
+  "author": {
+    "name": "Vestfold fylkeskommune"
+  },
+  "repository": "https://github.com/vestfoldfylke/claude-code-skills",
+  "keywords": ["arbeidsflyt", "faser", "planlegging", "workflow"]
+}

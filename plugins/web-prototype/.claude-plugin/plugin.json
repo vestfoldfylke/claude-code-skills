@@ -1,0 +1,11 @@
+{
+  "name": "web-prototype",
+  "displayName": "Web-prototype",
+  "version": "0.1.0",
+  "description": "Brukertestingsklare web-prototyper med SvelteKit og Designsystemet (digdir). For webapp-prosjekter i Vestfold fylkeskommune.",
+  "author": {
+    "name": "Vestfold fylkeskommune"
+  },
+  "repository": "https://github.com/vestfoldfylke/claude-code-skills",
+  "keywords": ["sveltekit", "designsystemet", "prototype", "webapp"]
+}

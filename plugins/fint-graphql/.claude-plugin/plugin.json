@@ -1,0 +1,11 @@
+{
+  "name": "fint-graphql",
+  "displayName": "FINT GraphQL",
+  "version": "0.1.0",
+  "description": "FINT informasjonsmodell og GraphQL-API: entiteter, relasjoner og spørremønstre for prosjekter som integrerer mot FINT.",
+  "author": {
+    "name": "Vestfold fylkeskommune"
+  },
+  "repository": "https://github.com/vestfoldfylke/claude-code-skills",
+  "keywords": ["fint", "graphql", "felleskomponent", "integrasjon"]
+}

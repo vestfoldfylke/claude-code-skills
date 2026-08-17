@@ -21,8 +21,12 @@ mindre lovende enn før, fordi det er den som var feil.
 - **Nettverksdeny differensieres per prosjekttype** — bredt for script/dokumentasjon,
   målbasert for webapp/API, som ellers mister evnen til å verifisere eget endepunkt.
 - **Fase-slutt-vakten:** «foreslå … med én gang» ble lest som en ordre om å utføre
-  (fase-slutt kjørte og committet uten klarsignal). Omformulert, og `fase-slutt`
-  har fått en eksplisitt port: skillen kjøres bare når brukeren har bedt om den.
+  (fase-slutt kjørte og committet uten klarsignal — reprodusert to ganger).
+  Omformulert, og porten er gjort eksplisitt **både** i `fase-slutt/SKILL.md` og i
+  CLAUDE.md-avsnittet — sistnevnte fordi en skill bare lastes når den kalles, så en
+  port som bare står der fanger ikke det å utføre rutinen for hånd. Porten har nå
+  en observerbar test (finn meldingen der brukeren ba om det) framfor skjønn, og
+  dekker eksplisitt begge veier: kalle skillen og gjøre stegene selv.
 - **`.ps1`-kildekode med æøå må lagres MED BOM** i Windows PowerShell 5.1 —
   motsatt regel av BOM-forbudet i output-filer; de to står nå sammen i `windows.md`.
 - **Beslutningsmønsteret:** `Beslutning (<navn>)` → `Beslutning

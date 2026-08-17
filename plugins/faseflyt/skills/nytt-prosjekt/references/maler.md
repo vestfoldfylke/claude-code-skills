@@ -191,11 +191,20 @@ sier fra og venter. Ingen av dem er en fullmakt til å utføre det den foreslår
    begynn å kode i mellomtiden.
 2. **Fase-slutt-vakt:** når brukeren bekrefter at verifiseringen er OK → si
    straks fra at porten er nådd og **foreslå** `/faseflyt:fase-slutt` + `/clear`.
-   Deretter **vent på klarsignal.** Ikke kall `fase-slutt` selv: den committer og
-   pusher uten eget klarsignal, så en verifiseringsbekreftelse ville da alene
-   utløst en push — og verifiseringsporten, som er hele poenget med flyten, er
-   omgått. «Verifisert, alt OK» betyr ikke «avslutt fasen». Blir konteksten lang
-   midt i en fase: si fra FØR kvaliteten faller.
+   Deretter **vent på klarsignal.**
+
+   **Porten, med en test du kan sjekke:** faseslutt skjer bare når brukeren har
+   bedt om det i en egen melding — `/faseflyt:fase-slutt`, «avslutt fasen» eller
+   tilsvarende. Finner du ikke en slik melding, er dette et vakt-utløst forslag,
+   og da gjør du **ingenting** av rutinen: verken å kalle skillen eller å utføre
+   stegene selv (logg, STATUS, commit). Begge veier ender i samme sted — steg 6
+   committer og pusher uten eget klarsignal, så en verifiseringsbekreftelse ville
+   alene utløst en push, og verifiseringsporten som er hele poenget med flyten er
+   omgått. «Verifisert, alt OK» betyr ikke «avslutt fasen».
+
+   Dette har gått galt to ganger i test, begge under en svakere formulering —
+   regn det som en kjent felle, ikke en teoretisk. Blir konteksten lang midt i en
+   fase: si fra FØR kvaliteten faller.
 3. **Scope-vakt:** ber brukeren om noe utenfor gjeldende fase → foreslå
    `TODO.md`, fullfør fasen i stedet for å ese.
 

@@ -35,7 +35,8 @@ Designsystemet har seks semantiske fargeroller: `accent`, `info`, `neutral`,
 Map designmanualens palett til disse rollene FØR du skriver en linje CSS — dette
 er en beslutning brukeren tar (hvilken palettfarge er «advarsel», hvilken er
 «suksess»), ikke noe som utledes automatisk. Loggfør mappingen som en
-`**Beslutning (<navn>):**` i prosjektets logg.
+`**Beslutning (<beslutningstaker>, <tema>):**` i prosjektets logg — med navnet på
+den som bestemte.
 
 For hver rolle: ta palettfargens tonalskala (10/20/30/40/80/90/100 e.l.) og sett
 den rå fargen på riktig DS-variabel — `border-strong`/`base-default` får den

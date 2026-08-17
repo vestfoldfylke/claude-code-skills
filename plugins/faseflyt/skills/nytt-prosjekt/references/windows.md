@@ -6,7 +6,11 @@ skrives — ikke etter første mojibake-hendelse.
 
 ## Encoding-fella (den som alltid biter)
 
-Windows PowerShell 5.1 leser og skriver ANSI som standard, ikke UTF-8:
+Windows PowerShell 5.1 leser og skriver ANSI som standard, ikke UTF-8. Det gir to
+regler som ser ut som motsetninger og derfor må leses sammen: **BOM er uønsket i
+filer scriptet produserer, og påkrevd i `.ps1`-kildekode som inneholder æøå.**
+
+### Filer scriptet leser og skriver — BOM uønsket
 
 - `Get-Content <fil>` uten `-Encoding utf8` leser UTF-8-filer som ANSI og
   **mojibaker æøå** (`æ` → `Ã¦`). Skjer stille — feilen oppdages først når
@@ -19,6 +23,27 @@ Windows PowerShell 5.1 leser og skriver ANSI som standard, ikke UTF-8:
 **Regel:** alle `Get-Content`/`Set-Content`/`Add-Content` i prosjektet har
 eksplisitt `-Encoding utf8`. Sjekk output-filer for BOM når andre verktøy skal
 lese dem.
+
+### `.ps1`-kildekoden selv — BOM påkrevd når fila inneholder æøå
+
+Windows PowerShell 5.1 tolker en `.ps1`-fil **uten** BOM som ANSI. Strenglitteraler
+med æøå mojibakes da i utskriften, selv om fila er korrekt UTF-8 på disk:
+
+```
+Write-Output "blåbær på tørt løvverk"   →   blÃ¥bÃ¦r pÃ¥ tÃ¸rt lÃ¸vverk
+```
+
+- **Treffer hvert script Claude skriver:** Write-verktøyet lagrer UTF-8 **uten**
+  BOM, så ethvert nytt `.ps1` med norske tegn må lagres på nytt for å virke.
+- **Fiks:** `Set-Content -Path <fil> -Value $innhold -Encoding utf8` — i 5.1
+  skriver den UTF-8 med BOM (`EF BB BF`), som er nettopp det kildekoden trenger.
+- **Symptomet som identifiserer feilen:** et argument gitt på kommandolinjen
+  kommer ut riktig i samme kjøring der litteraler i fila er korrupte. Da er det
+  *fildekodingen* som er problemet — ikke konsollet, ikke kodesiden.
+- **Gjelder Windows PowerShell 5.1** (der dette er målt). PowerShell 7+ skal
+  etter dokumentasjonen dekode `.ps1` som UTF-8 uten BOM og ikke trenge det, men
+  det er ikke etterprøvd her — bruk symptomtesten over framfor å anta.
+  `$PSVersionTable.PSVersion` sier hvilken du kjører.
 
 ## Git på Windows
 

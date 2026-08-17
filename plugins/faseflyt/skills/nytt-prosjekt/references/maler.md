@@ -314,6 +314,8 @@ Om de to fil-reglene:
   fixtures Claude trygt kan lese, blir hele regelen slått av.
 - `Read(.env)` beholdes hardt — behovet finnes ikke: nøkkelNAVN uten verdier,
   `.env.example` og `$env:NAVN`/`process.env.NAVN` dekker alle reelle tilfeller.
+  Men det er **glob-formen `Read(**/.env)` som bærer vernet** (se grense 9): den
+  bare formen kan dekke `.claude/.env` og ingenting annet. Behold begge.
 
 ### Verifiser at blokken er koblet til — hver gang filen endres
 
@@ -335,35 +337,79 @@ oppførsel maskerer om deny-regelen i det hele tatt er koblet til. Port 9 (disca
 har ingen lytter, så «kjørte» skiller seg tydelig fra «blokkert»: et kall som når
 nettverksstakken feiler på manglende tilkobling.
 
+**Rydd riggen eksplisitt.** Dummy-filene du lager for å probe fil-reglene
+(`.env`, `data/dummy.csv`) er som regel nettopp de stiene `.gitignore` dekker — så
+`git status` viser dem ikke, og de blir liggende usett. Skriv dem ned mens du
+lager dem, og slett dem etterpå. En glemt `data/`-katalog med en dummy i ser ekte
+ut for neste person som åpner prosjektet.
+
 ### Deny-settets grenser (målt 2026-08-17)
 
-1. **Matcherne er verktøy-scopet.** Samme URL, samme økt: `curl` i **Bash** ble
+**Målt å virke:**
+
+1. **En bar tool-navn-oppføring slår ut hele verktøyet.** `"PowerShell"` alene i
+   `deny` gjorde PowerShell-verktøyet utilgjengelig; å fjerne den ene linja, med
+   resten av blokken intakt, ga det tilbake. På Windows er dette det ene
+   deklarative grepet som faktisk lukker cmdlet-hullet — men det er
+   alt-eller-ingenting: brukbart for dokumentasjons-, Node- og tsx-prosjekter,
+   ubrukelig for et PowerShell-script-prosjekt som må kunne kjøre sine egne
+   scripts.
+2. **`Read(...)`-deny dekker mer enn Read.** Et **Write** til en dekket sti
+   avvises («covered by a Read deny rule … cannot be written»), og en
+   **Bash**-kommando som nevner stien avvises også. Sperren er regelspesifikk —
+   ikke en generell skrivesperre på katalogen.
+3. **Deny-sjekken går foran eksistenssjekken.** En dekket sti som ikke finnes gir
+   «denied», ikke «does not exist». Nyttig når du prober: «blokkert» kan ikke
+   forveksles med «feil filnavn».
+4. **En `ask`-nøkkel forkaster ikke blokken.** Målt med en `ask`-liste i samme
+   `permissions`-objekt: deny virket fortsatt.
+
+**Målt å ikke virke, eller å dekke mindre enn navnet antyder:**
+
+5. **Matcherne er verktøy-scopet.** Samme URL, samme økt: `curl` i **Bash** ble
    blokkert av `Bash(curl:*)`, mens `Invoke-RestMethod` i **PowerShell**-verktøyet
-   kjørte — `Bash(...)` dekket det ikke. Praktisk følge: på Windows dekker
-   deny-settet Bash-verktøyet, ikke PowerShell-verktøyet.
-2. **`PowerShell(...)`-formen stoppet ingenting** i samme test, mens blokken
-   beviselig var aktiv. Årsaken er ikke avklart (ukjent scope, eller
-   prefiksmønster som ikke treffer fordi verktøyet pakker kommandoen i en
-   preamble). Ikke bygg vern på den formen før den er verifisert med proben over.
-3. **Navnebaserte mønstre kan prinsipielt ikke bli komplette.** Aliaser er bare
+   kjørte — `Bash(...)` dekket det ikke. Cmdlet-navn i `Bash(...)` er derfor
+   dødvekt.
+6. **`PowerShell(<kommando>:*)`-formen stoppet ingenting**, selv om scopet nå er
+   bekreftet gjenkjent (punkt 1). Gjenstående forklaring: verktøyet pakker
+   kommandoen i en preamble på et par hundre tegn, så kommandonavnet står ikke
+   først og prefiksmønsteret treffer ikke. Praktisk — mønsterformen er ubrukelig;
+   bare tool-navn-formen virker.
+7. **Bash-dekningen er tekstmatching, ikke filsystemvern.** Samme økt:
+   `ls -la <dekket fil>` ble avvist, mens `ls -la` på katalogen kjørte og
+   eksponerte filnavn og størrelser. Alt som når fila uten å nevne den —
+   kataloglisting, globbing, et script som leser den — er ikke dekket. Dette er
+   den viktigste enkeltgrensen: reglene hindrer at Claude *nevner* stien, ikke at
+   innholdet nås.
+8. **Navnebaserte mønstre kan prinsipielt ikke bli komplette.** Aliaser er bare
    toppen (`irm`, `iwr`, `curl.exe`, `gc`, `type`, `Select-String`, `Import-Csv`).
    Verre er omveiene uten kommandonavn i det hele tatt — `[Net.WebClient]`,
    `Start-BitsTransfer`, `[IO.File]::ReadAllText()` — og indirekte kall
    (`$c='irm'; & $c`), der navnet først finnes ved kjøring. Listen blir aldri
    uttømmende; ikke lat som den er det.
-4. **Stiformen i `Read(...)` er uavklart.** Bare filnavn (`Read(fil.txt)`)
-   blokkerte ikke et Read på absolutt sti i test. Verifiser din egen form med
-   proben over, på en fil UTEN særstatus — `.env` egner seg ikke, siden den kan ha
-   innebygd behandling i Claude Code uavhengig av settings.
+9. **Stiformen avgjør hva `Read(...)` treffer, og de to formene er ULIKE.** Målt:
+   `Read(**/fil.txt)` blokkerte fila i prosjektroten, mens `Read(fil.txt)` ikke
+   gjorde det — og en bar regel traff en fil med samme navn som lå i `.claude/`.
+   Det peker på at bare filnavn resolveres relativt til `settings.json`s katalog.
+   Holder det, dekker `Read(.env)` bare `.claude/.env` — ikke prosjektets `.env`.
+   **Bruk derfor alltid glob-formen** (`Read(**/.env)`). Modellen er utledet av
+   fire målinger, ikke målt direkte; til den er det, er glob-formen den trygge.
 
 **Hva dette betyr for løftet i CLAUDE.md:** deny-settet er ETT lag
-risikoreduksjon, tynnere på Windows enn på Mac, og ikke en sandkasse. Regelen i
-CLAUDE.md («Claude forbereder kommandoen, brukeren kjører den») bærer mesteparten
-av vekten. En verktøy-agnostisk PreToolUse-hook — den ser `tool_name` og hele
-kommandostrengen, og er testbar fordi den kan logge — er laget som lukker
-verktøy-hullet, men den er ikke i pakken ennå og skal ikke loves i
-CLAUDE.md-teksten før den er. Også den fanger tekst, ikke kjøretidsnavn: absolutt
-isolasjon krever sandbox eller container.
+risikoreduksjon, ikke en sandkasse. Regelen i CLAUDE.md («Claude forbereder
+kommandoen, brukeren kjører den») bærer mesteparten av vekten.
+
+Grensene har ulik karakter, og det bør leses samlet: **filsiden er sterkere enn
+navnene antyder** (grense 2 og 3 — deny treffer også Write og Bash), men
+**mekanismen er tekstlig** (grense 7), så den stopper det Claude *skriver*, ikke
+det som faktisk kan nås. **Nettsiden på Windows har bare det grove grepet**
+(grense 1) eller ingenting (grense 6).
+
+En verktøy-agnostisk PreToolUse-hook — den ser `tool_name` og hele
+kommandostrengen, og er testbar fordi den kan logge — er laget som gir *selektivt*
+vern der bar tool-navn-deny bare gir alt-eller-ingenting. Den er ikke i pakken
+ennå og skal ikke loves i CLAUDE.md-teksten før den er. Også den fanger tekst, ikke
+kjøretidsnavn: absolutt isolasjon krever sandbox eller container.
 
 ## `.claude/skills/README.md`
 

@@ -15,6 +15,17 @@ mindre lovende enn før, fordi det er den som var feil.
   (dødvekt), og «Deny-settets grenser» lagt til: verktøy-scoping, uavklart
   `PowerShell(...)`-form, alias- og omveisflaten, uavklart stiform i `Read(...)`.
   Personvern-avsnittet sier nå at CLAUDE.md-regelen er hovedvernet.
+- **«Deny-settets grenser» skrevet om til målte funn**, delt i det som virker og
+  det som ikke gjør det. Nytt og målt: bar tool-navn-oppføring (`"PowerShell"`)
+  slår ut hele verktøyet — det ene deklarative grepet på Windows, men
+  alt-eller-ingenting; `Read(...)`-deny dekker også Write og Bash-kommandoer som
+  nevner stien; deny-sjekk går foran eksistenssjekk; `ask`-nøkkel forkaster ikke
+  blokken. Og den viktigste grensen: Bash-dekningen er **tekstmatching**, ikke
+  filsystemvern — `ls -la` på katalogen kjørte og eksponerte navn og størrelser,
+  mens `ls -la <dekket fil>` ble avvist.
+- **Stiformen i `Read(...)`:** glob og bart filnavn oppfører seg ulikt. Malen
+  krever nå glob-formen (`Read(**/.env)`), siden den bare formen kan dekke
+  `.claude/.env` og ingenting annet.
 - **Integritetsprobe påkrevd** ved endring av `permissions`: en uverifisert nøkkel
   kan gjøre hele blokken stille inaktiv. Ukonfundert oppskrift i `maler.md`;
   `nytt-prosjekt` steg 6 skal levere den i samme endring som deny-settet.

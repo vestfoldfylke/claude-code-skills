@@ -38,7 +38,12 @@ Utvikles scriptet på Windows, er encoding-reglene i `windows.md` kritiske her �
 inn i STATUS før første filskript. Skrives det på Mac eller Linux, gjelder de
 ikke; velg språk etter hvor scriptet skal KJØRE, ikke etter hvor det skrives.
 Behandler prosjektet persondata, er bredt nettverksdeny gratis her: Claude har
-ingen legitim grunn til å gjøre nettkall selv.
+ingen legitim grunn til å gjøre nettkall selv. Men merk grensen på Windows: det
+eneste som faktisk sperrer nett-cmdlets er å deny hele PowerShell-verktøyet, og
+det kan et PowerShell-script-prosjekt ikke leve med — Claude må kunne kjøre
+scriptene. Her bærer derfor CLAUDE.md-regelen vernet nesten alene (se
+«Deny-settets grenser» i maler.md). For dokumentasjons- og Node/tsx-prosjekter er
+grepet gratis.
 Smal sikkerhetssjekkliste:
 
 ```markdown

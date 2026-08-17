@@ -46,6 +46,17 @@ Ingenting sendes til noen ekstern tjeneste — «marketplace add» kloner bare
 dette (private) repoet til din maskin. Oppdatere senere:
 `/plugin marketplace update claude-code-skills`.
 
+**Bruker du VS Code-utvidelsen: kjør installasjonen i terminalen, ikke i chatten.**
+`/plugin` finnes ikke som slash-kommando i utvidelsen («/plugin isn't available in
+this environment»). Åpne en terminal, start `claude` interaktivt (eller bruk
+`claude plugin ...`-subkommandoene), og gjør installasjonen der — utvidelsen
+plukker opp pluginene etterpå, siden begge leser samme `~/.claude`-konfigurasjon.
+
+Det er et generelt mønster, ikke noe `/plugin`-spesielt: utvidelsen eksponerer
+enkelte CLI-kommandoer som menyvalg framfor slash-kommandoer (`/permissions` ligger
+f.eks. under «Customize → Permissions»). Finner du ikke en kommando i chatten, se
+i kommandomenyen — og bruk terminal-CLI-en som fallback.
+
 **Bruker du claude.ai eller Claude Desktop-chat (ikke Claude Code)?**
 `grill-me`, `fint-graphql` og `web-prototype` finnes også i organisasjonens
 skill-katalog der. Selve faseflyt-en (`nytt-prosjekt`/`fase-start`/`fase-slutt`)

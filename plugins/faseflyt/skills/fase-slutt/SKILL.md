@@ -11,14 +11,27 @@ description: >-
 
 # Fase-slutt
 
+**Porten: denne skillen kjøres BARE når brukeren har bedt om den.** At brukeren
+bekrefter en verifisering («verifisert, alt OK») er ikke en bestilling — da
+foreslår du fase-slutt og venter (fase-slutt-vakten i prosjektets `CLAUDE.md`).
+Grunnen er steg 6: det committer og pusher uten eget klarsignal, og det er bare
+forsvarlig når det var brukeren som kalte skillen. Er du usikker på hvem som
+utløste kallet: spør før du gjør noe utoverrettet.
+
 Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
 
 1. **Logg:** Legg et datert innslag øverst i `kunnskap/logg.md`: hva som ble
    implementert/verifisert, beslutninger med hvorfor
-   (`**Beslutning (<navn>):**` + begrunnelse), overraskelser og funn.
+   (`**Beslutning (<beslutningstaker>, <tema>):**` + begrunnelse — personen som
+   bestemte, ikke bare temaet), overraskelser og funn.
    Kortfattet — dette er arkivet. Er fasen skrevet men ikke verifisert av
    brukeren ennå, føres den som «skrevet (verifisering hos bruker)» — ✅ først
    når brukeren har bekreftet.
+   **Funn krever belegg:** «observert» betyr at et kall faktisk ble forsøkt og
+   utfallet sett — skriv hva som ble kjørt og hva som skjedde. Alt annet føres som
+   hypotese, med hvilken probe som ville avgjort den. En overskrift skal ikke
+   påstå mer enn forbeholdene under den tillater. (Samme belegg-krav som
+   `laering.md` har.)
 
 2. **Selvvurdering** (læringssløyfen — skrives til fil, ikke bare chat):
    a. **Evaluer forrige økts punkter** i STATUS `## Arbeidsmåte neste økt`:
@@ -68,7 +81,8 @@ Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
 
 6. **Commit og push** med beskrivende melding. Flerlinjet melding → skriv
    meldingsfil og bruk `git commit -F <fil>`. (Ikke-git-prosjekter: hopp over,
-   men si det.)
+   men si det.) Dette steget forutsetter porten øverst: at brukeren kalte
+   skillen. Kom du hit uten det, stopp og spør.
 
 7. **Avslutt** med: «FERDIG — klar for /clear. Start neste økt med
    /faseflyt:fase-start.» Er planens faser ferdige: foreslå å flytte

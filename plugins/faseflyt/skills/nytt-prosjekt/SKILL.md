@@ -33,7 +33,8 @@ sikkerhetskritiske valg; lettere modell holder til mekanisk implementering.
 
 3. **Tilby `/faseflyt:grill-me` før planen.** Grillingen låser beslutningene som
    ellers dukker opp midt i implementeringen. Beslutningene skrives inn i planens
-   `## Avklarte beslutninger` med `**Beslutning (<navn>):**` + begrunnelse.
+   `## Avklarte beslutninger` med `**Beslutning (<beslutningstaker>, <tema>):**`
+   + begrunnelse — `<beslutningstaker>` er personen som bestemte, ikke temaet.
 
 4. **Planen skrives i planmodus og kopieres til `kunnskap/plan.md`.** Planmodus
    lagrer sin fil under `~/.claude/plans/` med autogenerert navn — den kopien er
@@ -57,11 +58,15 @@ sikkerhetskritiske valg; lettere modell holder til mekanisk implementering.
    kopieres; kun prosjektets egen domenekunnskap bor i `.claude/skills/`).
    Deklarer `web-prototype` kun for webapp-typen og `fint-graphql` kun når
    prosjektet bruker FINT. Behandler prosjektet persondata: tilby deny-settet
-   for prosjekttypen (se maler.md) — Claude sperres fra å hente produksjonsdata
-   og lese `.env`/datamapper. Vær ærlig om grensen: deny-regler er
-   risikoreduksjon, ikke sandkasse, og hører alltid sammen med den tilhørende
-   regelen i CLAUDE.md («Claude forbereder kommandoen, brukeren kjører den og
-   limer inn resultatet»).
+   for prosjekttypen (se maler.md) — men **skriv aldri en `permissions`-blokk uten
+   å levere integritetsproben i samme endring** (`Bash(curl:*)` mot
+   `http://127.0.0.1:9/`): en uverifisert nøkkel kan gjøre hele blokken stille
+   inaktiv, og et ubekreftet vern er verre enn ingen. Vær ærlig om grensene i
+   samme åndedrag: matcherne er verktøy-scopet (på Windows dekkes ikke
+   PowerShell-verktøyet), navnebaserte mønstre kan ikke bli komplette, og settet
+   er risikoreduksjon — ikke sandkasse. Hovedvernet er regelen i CLAUDE.md
+   («Claude forbereder kommandoen, brukeren kjører den og limer inn resultatet»);
+   deny-settet støtter den, og de to hører alltid sammen.
 
 7. **Tilby privat git-repo** (med mindre repo finnes): `git init -b main` +
    `.gitignore` (node_modules, `.env` unntatt `.env.example`, build-artefakter)

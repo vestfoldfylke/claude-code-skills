@@ -15,8 +15,15 @@ description: >-
 bekrefter en verifisering («verifisert, alt OK») er ikke en bestilling — da
 foreslår du fase-slutt og venter (fase-slutt-vakten i prosjektets `CLAUDE.md`).
 Grunnen er steg 6: det committer og pusher uten eget klarsignal, og det er bare
-forsvarlig når det var brukeren som kalte skillen. Er du usikker på hvem som
-utløste kallet: spør før du gjør noe utoverrettet.
+forsvarlig når det var brukeren som kalte skillen.
+
+**Sjekk porten før du begynner, den er observerbar:** finn meldingen der brukeren
+ba om dette — `/faseflyt:fase-slutt`, «avslutt fasen» eller tilsvarende. Finner du
+den ikke, ble du utløst av en vakt eller av eget initiativ. Stopp da her, si at
+porten er nådd, foreslå kommandoen og vent. Ikke utfør stegene «for hånd» i stedet
+— det er samme handling uten porten. Dette har gått galt to ganger i test (rutinen
+kjørte helt gjennom og committet uten å spørre), så behandle det som en kjent
+felle: er du i tvil, spør før du gjør noe.
 
 Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
 

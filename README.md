@@ -151,7 +151,7 @@ blir altså målbart bedre å jobbe i for hver fase — ikke bare større.
 | Type | Kjennetegn |
 |---|---|
 | Webapp/prototype | SvelteKit + Designsystemet, `web-prototype` deklareres automatisk |
-| Script/automatisering | PowerShell/tsx, Windows-encoding-regler inn fra dag 1, ingen designdel |
+| Script/automatisering | PowerShell/bash/tsx, ingen designdel. Utvikler du på Windows: encoding-reglene inn fra dag 1 |
 | Dokumentasjon/utredning | Ingen kode, ingen arkitektur-fil, sikkerhetssjekk = datahåndtering |
 | API/backend | Full sikkerhetssjekkliste, arkitektur-dokumentasjon påkrevd |
 

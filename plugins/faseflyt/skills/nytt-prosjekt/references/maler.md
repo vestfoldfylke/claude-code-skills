@@ -94,7 +94,9 @@ i samme økt, er ETT ✅-innslag riktig.
 «verifisert ✅» betyr noe; føres antakelser som oppdagelser, eroderer den
 troverdigheten (og regler endres på feil grunnlag). Derfor:
 
-- **Observert:** <hva ble kjørt> → <hva skjedde>. Bare dette er et funn.
+- **Observert:** <hva ble kjørt> → <hva skjedde>. Bare dette er et funn. Et TOMT
+  resultat er ikke et funn før verktøyet er bekreftet å ha kjørt — sjekk
+  exit-koden, eller kontroller med et søk som skal gi treff.
 - **Hypotese:** <påstanden> — ikke testet. Avgjøres av: <konkret probe, og
   hvilket utfall som betyr hva>
 

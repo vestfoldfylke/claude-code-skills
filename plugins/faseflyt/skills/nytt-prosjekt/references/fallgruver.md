@@ -76,6 +76,13 @@ måler ingenting. Del den i to FØR den kjøres.
 - **`[hypotese-vs-funn]`** En overskrift skal ikke påstå mer enn forbeholdene
   under den tillater. Hører sammen med belegg-kravet i logg-malen: observert
   betyr «kall forsøkt, utfall sett» — alt annet er hypotese med en navngitt probe.
+- **`[tom-output-to-betydninger]`** Et tomt søkeresultat betyr «ingen treff» ELLER
+  «målingen kjørte ikke» — og de to ser helt identiske ut. Belegg: et `grep`
+  krasjet (etterlot en stack dump i katalogen) og ga tom output, som ble ført som
+  et bekreftet nullresultat i en kontroll et helt argument hvilte på. Feilen ble
+  oppdaget først da noen kjørte samme søk med et annet verktøy og fikk tre treff.
+  Før du kaller et null for målt: sjekk exit-koden, eller kjør et kontrollsøk som
+  SKAL gi treff. Gjelder like fullt når du selv er den som «bare sjekket raskt».
 - **Et ubekreftet vern er verre enn ingen vern.** Det gir falsk trygghet, og
   modellens egen gode oppførsel kan maskere at regelen aldri var koblet til:
   avslår Claude et kall av eget skjønn, ble harness-en aldri testet. Enhver

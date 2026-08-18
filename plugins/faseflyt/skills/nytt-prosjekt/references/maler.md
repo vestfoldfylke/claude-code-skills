@@ -237,9 +237,9 @@ brukeren kjører den manuelt og limer inn resultatet (uten persondata).
 
 **Denne regelen er hovedvernet, ikke et supplement.** Deny-reglene i
 `.claude/settings.json` støtter den, men de er verktøy-scopet og dekker mindre
-enn navnene antyder — på Windows ikke PowerShell-verktøyet (se
-«Deny-settets grenser» i maler.md). Regel og deny-sett hører sammen som par, og
-ingen av dem er en sandkasse.
+enn navnene antyder — på Windows ikke PowerShell-verktøyet, og de hindrer ikke
+at en dekket fil slettes (se «Deny-settets grenser» i maler.md). Regel og
+deny-sett hører sammen som par, og ingen av dem er en sandkasse.
 ```
 
 ## `.claude/settings.json`
@@ -361,10 +361,16 @@ ut for neste person som åpner prosjektet.
    alt-eller-ingenting: brukbart for dokumentasjons-, Node- og tsx-prosjekter,
    ubrukelig for et PowerShell-script-prosjekt som må kunne kjøre sine egne
    scripts.
-2. **`Read(...)`-deny dekker mer enn Read.** Et **Write** til en dekket sti
-   avvises («covered by a Read deny rule … cannot be written»), og en
-   **Bash**-kommando som nevner stien avvises også. Sperren er regelspesifikk —
-   ikke en generell skrivesperre på katalogen.
+2. **`Read(...)`-deny dekker mer enn Read — men ikke sletting.** Et **Write** til
+   en dekket sti avvises («covered by a Read deny rule … cannot be written»), og
+   en **Bash**-kommando som *leser* stien avvises også (`ls -la <dekket fil>`).
+   Men `rm -f <dekket fil>` **kjørte** — samme økt, samme aktive regel, stien
+   nevnt ordrett i kommandoen. Sperren avhenger altså av hvordan kommandoen
+   klassifiseres, ikke av at stien forekommer i strengen. Om mekanismen er en
+   generell klassifisering eller at slettekommandoer rett og slett faller utenfor
+   Read-scopet, er ikke skilt — utfallet er det samme: **`Read(...)`-regler gir
+   delvis konfidensialitet og INGEN integritetsbeskyttelse.** Claude kan slette
+   en fil den ikke får lov til å lese.
 3. **Deny-sjekken går foran eksistenssjekken.** En dekket sti som ikke finnes gir
    «denied», ikke «does not exist». Nyttig når du prober: «blokkert» kan ikke
    forveksles med «feil filnavn».
@@ -396,12 +402,13 @@ ut for neste person som åpner prosjektet.
    kommandoen i en preamble på et par hundre tegn, så kommandonavnet står ikke
    først og prefiksmønsteret treffer ikke. Praktisk — mønsterformen er ubrukelig;
    bare tool-navn-formen virker.
-8. **Bash-dekningen er tekstmatching, ikke filsystemvern.** Samme økt:
-   `ls -la <dekket fil>` ble avvist, mens `ls -la` på katalogen kjørte og
-   eksponerte filnavn og størrelser. Alt som når fila uten å nevne den —
-   kataloglisting, globbing, et script som leser den — er ikke dekket. Dette er
-   den viktigste enkeltgrensen: reglene hindrer at Claude *nevner* stien, ikke at
-   innholdet nås.
+8. **Bash-dekningen er ikke filsystemvern.** Samme økt: `ls -la <dekket fil>` ble
+   avvist, mens `ls -la` på en udekket katalog kjørte og eksponerte filnavn og
+   størrelser. Alt som når fila uten å nevne den — kataloglisting, globbing, et
+   script som leser den — er ikke dekket. Og som grense 2 viser, er heller ikke
+   alt som *nevner* den dekket. Dette er den viktigste enkeltgrensen: reglene
+   fanger noen av måtene Claude kan nå stien på, ikke at innholdet faktisk nås
+   eller fjernes.
 9. **Navnebaserte mønstre kan prinsipielt ikke bli komplette.** Aliaser er bare
    toppen (`irm`, `iwr`, `curl.exe`, `gc`, `type`, `Select-String`, `Import-Csv`).
    Verre er omveiene uten kommandonavn i det hele tatt — `[Net.WebClient]`,
@@ -414,10 +421,11 @@ risikoreduksjon, ikke en sandkasse. Regelen i CLAUDE.md («Claude forbereder
 kommandoen, brukeren kjører den») bærer mesteparten av vekten.
 
 Grensene har ulik karakter, og det bør leses samlet: **filsiden er sterkere enn
-navnene antyder** (grense 2 og 3 — deny treffer også Write og Bash), men
-**mekanismen er tekstlig** (grense 8), så den stopper det Claude *skriver*, ikke
-det som faktisk kan nås. **Nettsiden på Windows har bare det grove grepet**
-(grense 1) eller ingenting (grense 7).
+navnene antyder på lesesiden** (grense 2 og 3 — deny treffer også Write og
+lesende Bash-kommandoer), men **den verner ikke integritet** (grense 2 — `rm`
+mot en dekket sti kjørte) og **stopper ikke det som når fila uten å nevne den**
+(grense 8). **Nettsiden på Windows har bare det grove grepet** (grense 1) eller
+ingenting (grense 7).
 
 En verktøy-agnostisk PreToolUse-hook — den ser `tool_name` og hele
 kommandostrengen, og er testbar fordi den kan logge — er laget som gir *selektivt*

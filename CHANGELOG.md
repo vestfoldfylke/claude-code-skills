@@ -31,6 +31,13 @@ mindre lovende enn før, fordi det er den som var feil.
   observasjon som ikke lot seg reprodusere, gjort under en konfigurasjon som
   aldri ble verifisert ordrett. Umålt: dekning av vilkårlige undermapper —
   derfor står glob-formen (`Read(**/.env)`) fortsatt ved siden av.
+- **`Read(...)`-deny hindrer ikke sletting.** Målt: `rm -f <dekket fil>` kjørte i
+  Bash med regelen aktiv og stien nevnt ordrett, mens `ls -la <dekket fil>` ble
+  avvist i samme økt. Sperren avhenger av hvordan kommandoen klassifiseres, ikke
+  av at stien står i strengen. Grense 2 sa tidligere at «en Bash-kommando som
+  nevner stien avvises også» — det var for sterkt. Praktisk konsekvens skrevet
+  inn: deny-regler gir delvis konfidensialitet og **ingen
+  integritetsbeskyttelse**, og CLAUDE.md-malen sier det nå eksplisitt.
 - **`Bash(npx tsx scripts/*)` merket som utestet mønsterform** i deny-eksempelet.
   Den bruker sti med `/*` der de målte reglene bruker kolon-prefiks
   (`Bash(curl:*)`), og lånte troverdighet fra målingene rundt seg.

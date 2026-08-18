@@ -11,13 +11,17 @@ skjedd og er loggført.
   en uverifisert forutsetning. Loggfør hver fase to ganger: «skrevet
   (verifisering hos bruker)» og «verifisert ✅».
 - **Beslutninger loggføres med navngitt beslutningstaker OG begrunnelse**
-  (`**Beslutning (<navn>):** <valg> — <hvorfor>`). Det er den enkeltvanen som
-  sparer mest tid ved tilbakelesing uker senere — «hvorfor gjorde vi det slik?»
-  får svar uten å spørre noen.
+  (`**Beslutning (<beslutningstaker>, <tema>):** <valg> — <hvorfor>`). Det er den
+  enkeltvanen som sparer mest tid ved tilbakelesing uker senere — «hvorfor gjorde
+  vi det slik?» og «hvem bestemte?» får svar uten å spørre noen. Temaordet er for
+  skanning; personen er poenget, og faller ut hvis plassholderen leses som tema.
 - **Håndhevede regler slår skrevne regler.** En personvernpolicy som bare står
   i CLAUDE.md kan glemmes; den samme policyen som deny-regler i
   `.claude/settings.json` holdt gjennom et helt prosjekt. Regel + håndheving
-  hører sammen som par.
+  hører sammen som par. **Med ett forbehold, lært siden:** håndhevingen teller
+  bare der den beviselig er koblet til og faktisk dekker verktøyet som brukes —
+  ellers er den skrevne regelen alt du har, og da må teksten si det (se
+  «Et ubekreftet vern …» under).
 - **Generaliser UX-funn til mønstre, ikke lapper.** Da en lagring uten
   bekreftelse ga en feiltasting rett i databasen, ble ikke det ene tilfellet
   fikset — en generell bekreftelsesdialog-regel ble innført for ALL lagring i
@@ -26,6 +30,11 @@ skjedd og er loggført.
   oppfører seg annerledes enn dokumentasjonen/skillen sier, dokumenteres det
   observerte i `kunnskap/` med eksplisitt forrang-regel over skillen. Ikke anta
   at dokumentasjonen vinner.
+- **En regel omgås ikke i én melding — den endres skriftlig.** Ber brukeren om
+  noe en stående regel (deny-sett, personvernregel, CLAUDE.md-punkt) forbyr, er
+  riktig svar å foreslå at regelen endres i filen den bor i — ikke å gjøre et
+  unntak «bare denne gangen». Regelen er verdt like mye som antallet unntak den
+  ikke har.
 
 ## Fallgruver — ikke gjenta dem
 
@@ -34,8 +43,10 @@ skjedd og er loggført.
   ikke nå» et hjem gjennom hele prosjektet. (Derfor oppretter skillen den i
   steg 5.)
 - **Windows-encoding-fella oppdages alltid for sent.** `Get-Content` uten
-  `-Encoding utf8` mojibaker æøå — stille. Regelen skal inn i STATUS FØR første
-  filskript, ikke etter første hendelse. (Se `windows.md`.)
+  `-Encoding utf8` mojibaker æøå — stille. Og motsatt vei: en `.ps1` med æøå
+  lagret UTEN BOM mojibaker sine egne litteraler i 5.1. De to reglene ser ut som
+  motsetninger og må derfor leses sammen. Inn i STATUS FØR første filskript, ikke
+  etter første hendelse. (Se `windows.md`.)
 - **Kopierte skills råtner.** En skill som kopieres inn i et prosjektrepo «så
   andre kan overta» drifter fra originalen i stillhet. Deklarér org-skills i
   `.claude/settings.json`; kopier aldri. (Derfor steg 6.)
@@ -50,3 +61,38 @@ skjedd og er loggført.
 - **Designverktøy-oppslag overrasker første gang.** `list_projects` i
   DesignSync viser kun design-system-prosjekter, ikke wireframe-prosjekter —
   de må leses via projectId. Ikke anta at listen er komplett.
+
+## Testdisiplin — «én observasjon, ett utfall, én forklaring»
+
+Gjelder all verifisering, ikke bare kode: en probe som kan feile av flere grunner
+måler ingenting. Del den i to FØR den kjøres.
+
+- **`[flere-forklaringer]`** Tre varianter fra én eneste økt: en hypotese ført som
+  funn uten at noe kall ble forsøkt; ett kall som konflaterte tre spørsmål
+  (var konfigurasjonen lastet? traff stiformen? dekket regelen verktøyet?) i ett
+  utfall; og en blokkering tilskrevet konfigurasjonen der innebygd
+  spesialbehandling av filtypen var like sannsynlig forklaring. Ingen av de tre
+  ga et svar som holdt.
+- **`[hypotese-vs-funn]`** En overskrift skal ikke påstå mer enn forbeholdene
+  under den tillater. Hører sammen med belegg-kravet i logg-malen: observert
+  betyr «kall forsøkt, utfall sett» — alt annet er hypotese med en navngitt probe.
+- **`[tom-output-to-betydninger]`** Et tomt søkeresultat betyr «ingen treff» ELLER
+  «målingen kjørte ikke» — og de to ser helt identiske ut. Belegg: et `grep`
+  krasjet (etterlot en stack dump i katalogen) og ga tom output, som ble ført som
+  et bekreftet nullresultat i en kontroll et helt argument hvilte på. Feilen ble
+  oppdaget først da noen kjørte samme søk med et annet verktøy og fikk tre treff.
+- **`[uverifisert-konfigurasjon]`** En observasjon gjort under en konfigurasjon
+  som ikke ble skrevet ned ORDRETT før kjøring, kan ikke gjenbrukes senere.
+  Belegg: én avvikende måling ble bærebjelken i en hypotese som styrte tre økter
+  — helt til noen replikerte den og den ikke lot seg reprodusere. Konfigurasjonen
+  den var målt under var da overskrevet flere ganger, så avviket kunne ikke
+  forklares, bare lukkes som ikke-reproduserbart. Skriv oppsettet ordrett i
+  loggen FØR proben, ikke etter: det koster fire linjer og er forskjellen på en
+  måling som kan gjenbrukes og en som må kastes.
+  Før du kaller et null for målt: sjekk exit-koden, eller kjør et kontrollsøk som
+  SKAL gi treff. Gjelder like fullt når du selv er den som «bare sjekket raskt».
+- **Et ubekreftet vern er verre enn ingen vern.** Det gir falsk trygghet, og
+  modellens egen gode oppførsel kan maskere at regelen aldri var koblet til:
+  avslår Claude et kall av eget skjønn, ble harness-en aldri testet. Enhver
+  håndhevet regel trenger derfor en **ukonfundert** probe — én som ikke også
+  dekkes av en skreven regel. (Oppskrift i `maler.md`.)

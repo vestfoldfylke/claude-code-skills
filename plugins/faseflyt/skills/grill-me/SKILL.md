@@ -33,8 +33,10 @@ Når felles forståelse er nådd, tilby å skrive beslutningene inn i
 si at de tas med når planen skrives). Én linje per valg:
 
 ```markdown
-- **Beslutning (<navn>):** <valget> — <begrunnelsen>
+- **Beslutning (<beslutningstaker>, <tema>):** <valget> — <begrunnelsen>
 ```
 
-Begrunnelsen er obligatorisk — det er den som gjør linjen verdt noe ved
-tilbakelesing uker senere.
+`<beslutningstaker>` er personen som bestemte (navn eller initialer), `<tema>` er
+stikkordet linjen skannes etter — ikke bare temaet, som gjør «hvem bestemte
+dette?» ubesvart. Begrunnelsen er obligatorisk; det er den som gjør linjen verdt
+noe ved tilbakelesing uker senere.

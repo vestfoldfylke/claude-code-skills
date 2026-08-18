@@ -19,6 +19,32 @@ kodebasen på nytt. Utforskning underveis delegeres til Explore-subagenter — b
 konklusjonen inn i hovedtråden. Tyngste modell brukes til plan/arkitektur/
 sikkerhetskritiske valg; lettere modell holder til mekanisk implementering.
 
+## Malteksten kopieres ORDRETT — den skal ikke gjenfortelles
+
+Alt som står i en **kodeblokk** i `references/maler.md` og `references/windows.md`
+er maltekst som skal kopieres **tegn for tegn** inn i prosjektets filer. Den skal
+ikke oppsummeres, forkortes, «skrives med egne ord» eller slås sammen — heller
+ikke når du mener din formulering er klarere.
+
+**Hvorfor regelen er så hard:** ordlyden er målt, ikke smakssak. Samme prosjekt er
+kjørt med parafrasert og ordrett maltekst som eneste variabel: med parafrase kjørte
+faseslutt-rutinen (inkludert commit) uten klarsignal fra brukeren; med ordrett
+tekst holdt porten. Rytmevaktene og deny-avsnittene er skjerpet gjennom flere
+runder nettopp fordi svakere formuleringer beviselig ga feil oppførsel — en
+parafrase kaster de rettingene bort uten at noen ser det.
+
+**Prosjektspesifikt innhold legges til som EGNE seksjoner eller punkter.** Malens
+egne seksjoner endres aldri. Det eneste som fylles inn er `<...>`-plassholderne,
+og for lister der malen selv sier at innholdet er prosjektavhengig (f.eks.
+deny-settets mappe- og filnavn), er det bare verdiene som byttes — ikke teksten
+rundt.
+
+**Etterkontroll før du melder et malsteg ferdig:** les malfilen og fila du skrev
+på nytt, og sammenlign seksjon for seksjon. Mangler en seksjon eller et punkt, er
+en setning omformulert, eller er en plassholder stående uendret der den skulle
+fylles ut — rett det FØR du går videre. Meld steget ferdig ved å navngi hvilke
+seksjoner som er kopiert, ikke bare at fila er opprettet.
+
 ## Når du blir kalt — gjør i rekkefølge
 
 1. **Nytt eller eksisterende prosjekt?** I et eksisterende prosjekt: opprett kun
@@ -45,14 +71,22 @@ sikkerhetskritiske valg; lettere modell holder til mekanisk implementering.
    enhet brukeren kan verifisere, som får plass i én økt uten `/compact`;
    fase 0 er alltid scaffold + røyktest; 3–10 faser er normalområdet.
 
-5. **Opprett filene** fra malene i `references/maler.md`:
-   `kunnskap/STATUS.md`, `kunnskap/logg.md`, `kunnskap/laering.md` og
-   `kunnskap/sikkerhet.md` for alle typer; `kunnskap/arkitektur.md` kun for
-   kode-typene. `TODO.md` i rotkatalogen fra dag 1 — også tom.
-   På Windows: legg encoding-reglene fra `references/windows.md` inn i STATUS
-   FØR første filskript skrives.
+5. **Opprett filene** ved å kopiere malene i `references/maler.md` **ORDRETT**
+   (se regelen over, inkludert etterkontrollen): `kunnskap/STATUS.md`,
+   `kunnskap/logg.md`, `kunnskap/laering.md` og `kunnskap/sikkerhet.md` for alle
+   typer; `kunnskap/arkitektur.md` kun for kode-typene. `TODO.md` i rotkatalogen
+   fra dag 1 — også tom. Malenes forklarende topptekster og krav (belegg-kravet i
+   logg-malen, etikett- og handlingsbarhetskravet i læringsmalen) er en del av
+   malen og følger med — de er det som gjør at filene brukes riktig senere.
+   På Windows: kopier **STATUS-snutten** fra `references/windows.md` inn i STATUS
+   under «Det en ny økt må vite», ordrett og i sin helhet, FØR første filskript
+   skrives. **Begge halvdelene av encoding-regelen må følge med** — BOM uønsket i
+   filer scriptet produserer, BOM påkrevd i `.ps1`-kildekode med æøå: den ene lest
+   alene leses som en motsigelse av den andre, og et script som mangler den andre
+   halvdelen mojibaker ved første kjøring.
 
-6. **Skriv `.claude/settings.json` og `.claude/skills/README.md`** fra malene:
+6. **Skriv `.claude/settings.json` og `.claude/skills/README.md`** fra malene —
+   også her ordrett, med bare mappe- og filnavn tilpasset prosjektet:
    marketplace-deklarasjonen gjør at den som kloner prosjektet får
    arbeidsflyt-skillene automatisk (regelen er: org-skills deklareres, aldri
    kopieres; kun prosjektets egen domenekunnskap bor i `.claude/skills/`).
@@ -73,10 +107,21 @@ sikkerhetskritiske valg; lettere modell holder til mekanisk implementering.
    + første commit + `gh repo create <navn> --private --source . --push`.
    Commit-og-push hører deretter til hvert `/faseflyt:fase-slutt`.
 
-8. **Tilby CLAUDE.md-avsnittet** fra maler.md — det inneholder kunnskapsfangst-
-   regelen, de tre rytmevaktene (plan-vakt, fase-slutt-vakt, scope-vakt) og
-   regelen om deklarerte vs. prosjekteide skills. Finnes CLAUDE.md fra før:
-   legg avsnittet til, ikke overskriv.
+8. **Tilby CLAUDE.md-avsnittet** fra maler.md, og kopier det **ORDRETT** når
+   brukeren sier ja — dette steget er det viktigste stedet regelen over gjelder.
+   Avsnittet inneholder kunnskapsfangst-regelen, de tre rytmevaktene (plan-vakt,
+   fase-slutt-vakt, scope-vakt) og regelen om deklarerte vs. prosjekteide skills,
+   og det er den eneste teksten i prosjektet som er aktiv i HVER økt — skills
+   lastes bare når de kalles. En parafrase her slår ut vaktene for all framtid i
+   prosjektet, og det er nettopp det som er målt: fase-slutt-vakten utførte
+   rutinen i stedet for å foreslå den. Behandler prosjektet persondata, følger
+   personvern-avsnittet med — også det ordrett, inkludert setningene om hva
+   deny-settet IKKE dekker.
+   **Etterkontroll (obligatorisk her):** sammenlign den skrevne CLAUDE.md mot
+   malblokken punkt for punkt — alle tre vaktene til stede, «foreslå … og vent på
+   klarsignal» og porttesten i vakt 2 ordrett, ingen setning slått sammen med en
+   annen. Finnes CLAUDE.md fra før: legg avsnittet til, ikke overskriv — og la
+   prosjektets egne avsnitt stå urørt ved siden av.
 
 9. **Forklar fase-rytmen kort**, slik at den er avtalt fra dag 1:
    `/faseflyt:fase-start` som første handling i hver økt → implementer fasen →

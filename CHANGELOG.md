@@ -4,6 +4,31 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.2.1 — 2026-08-18
+
+`faseflyt` 0.2.1. En retting av leveransen, ikke av innholdet: malteksten i 0.2.0
+var riktig, men `nytt-prosjekt` ba bare om filer «fra malene» — og i praksis ble
+det parafrase, som kastet bort ordlydsrettingene fra 0.2.0 uten at noen så det.
+
+- **Maltekst skal kopieres ORDRETT.** Målt med parafrase kontra ordrett som eneste
+  variabel i samme prosjekt: parafrase ⇒ faseslutt-rutinen kjørte uten klarsignal
+  fra brukeren, ordrett ⇒ porten holdt med korrekt begrunnelse. Ordlyden er altså
+  ikke smakssak. Ny seksjon i `nytt-prosjekt/SKILL.md`, kodeblokk-kontrakt øverst
+  i `maler.md`, og krav gjentatt i steg 5, 6 og 8. Prosjektspesifikt innhold
+  legges til som egne seksjoner; malens seksjoner omskrives aldri.
+- **Etterkontroll før et malsteg meldes ferdig:** sammenlign malen og den skrevne
+  fila seksjon for seksjon. Obligatorisk for CLAUDE.md-avsnittet, som er den
+  eneste teksten i prosjektet som er aktiv i hver økt — skills lastes bare når de
+  kalles, så en parafrase der slår ut rytmevaktene permanent.
+- **`windows.md` har nå en kopieringsklar STATUS-snutt** med begge BOM-halvdelene
+  (BOM uønsket i output-filer, påkrevd i `.ps1`-kildekode med æøå). Tidligere fant
+  steget bare en instruks om å legge inn «de viktigste reglene», og halvdelen falt
+  ut i sammendraget — den ene lest alene leses som en motsigelse av den andre.
+
+Ikke brytende: ingen endring i `kunnskap/`-strukturen. Prosjekter scaffoldet med
+0.2.0 kan hente inn de manglende malavsnittene ved behov — særlig
+CLAUDE.md-avsnittets rytmevakter og STATUS-snutten på Windows.
+
 ## 0.2.0 — 2026-08-18
 
 `faseflyt` 0.2.0. Rettinger fra testplanens test 1–3 — flere av dem gjør malteksten

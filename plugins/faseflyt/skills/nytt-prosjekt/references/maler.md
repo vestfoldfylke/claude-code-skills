@@ -1,6 +1,26 @@
 # Maler for fase-arbeidsflyten
 
-Alle maler `nytt-prosjekt` scaffolder fra. `<...>` fylles inn konkret.
+Alle maler `nytt-prosjekt` scaffolder fra.
+
+**Kodeblokkene er maltekst og kopieres ORDRETT — tegn for tegn.** Ikke
+oppsummer, forkort, slå sammen setninger eller skriv om «med egne ord». Ordlyden
+er målt: parafrasert maltekst er beviselig kjørt med feil oppførsel som følge
+(rytmevakten utførte faseslutt i stedet for å foreslå den), og flere av
+formuleringene er skjerpet gjennom egne runder nettopp for å hindre det.
+
+Det eneste som endres er:
+
+- `<...>`-plassholderne, som fylles inn konkret.
+- verdier malen selv sier er prosjektavhengige (mappe- og filnavn i deny-settet,
+  datakilde i personvern-avsnittet) — verdiene byttes, teksten rundt består.
+
+Prosjektspesifikt innhold legges til som **egne, nye seksjoner eller punkter**.
+Malens egne seksjoner omskrives aldri. Teksten UTENFOR kodeblokkene er
+instruksjon til den som scaffolder — den kopieres ikke, men styrer hvilke blokker
+som gjelder for prosjekttypen.
+
+Før et malsteg meldes ferdig: les malen og den skrevne fila på nytt og sammenlign
+seksjon for seksjon.
 
 ## `kunnskap/plan.md`
 

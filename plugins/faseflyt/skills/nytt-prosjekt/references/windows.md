@@ -88,3 +88,9 @@ Write-Output "blåbær på tørt løvverk"   →   blÃ¥bÃ¦r pÃ¥ tÃ¸rt l�
 - Unix-kommandoer som `head`, `tail`, `touch`, `which`, `wc` finnes ikke —
   bruk `Select-Object -First/-Last`, `New-Item`, `Get-Command`, `Measure-Object`.
 - Stier med mellomrom: kall exe-er med `& "C:\Program Files\..."`.
+- **`-like` er ikke literal — bruk `.Contains()` når du sammenligner tekst.** I et
+  wildcard-mønster er backtick escape-tegn og `*?[]` er metategn, så hver linje
+  med `kodeformat` i backticks mismatcher **stille**: `$tekst -like "*$linje*"`
+  gir `False` selv når linja står der ordrett (målt — den siste backticken spiste
+  tegnet etter seg). Feilmoden er farlig fordi den ser ut som «fant ikke», ikke
+  som «mønsteret var feil». `$tekst.Contains($linje)` er literal og ordinal.

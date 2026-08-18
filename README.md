@@ -46,6 +46,17 @@ Ingenting sendes til noen ekstern tjeneste — «marketplace add» kloner bare
 dette (private) repoet til din maskin. Oppdatere senere:
 `/plugin marketplace update claude-code-skills`.
 
+**Bruker du VS Code-utvidelsen: kjør installasjonen i terminalen, ikke i chatten.**
+`/plugin` finnes ikke som slash-kommando i utvidelsen («/plugin isn't available in
+this environment»). Åpne en terminal, start `claude` interaktivt (eller bruk
+`claude plugin ...`-subkommandoene), og gjør installasjonen der — utvidelsen
+plukker opp pluginene etterpå, siden begge leser samme `~/.claude`-konfigurasjon.
+
+Det er et generelt mønster, ikke noe `/plugin`-spesielt: utvidelsen eksponerer
+enkelte CLI-kommandoer som menyvalg framfor slash-kommandoer (`/permissions` ligger
+f.eks. under «Customize → Permissions»). Finner du ikke en kommando i chatten, se
+i kommandomenyen — og bruk terminal-CLI-en som fallback.
+
 **Bruker du claude.ai eller Claude Desktop-chat (ikke Claude Code)?**
 `grill-me`, `fint-graphql` og `web-prototype` finnes også i organisasjonens
 skill-katalog der. Selve faseflyt-en (`nytt-prosjekt`/`fase-start`/`fase-slutt`)
@@ -140,7 +151,7 @@ blir altså målbart bedre å jobbe i for hver fase — ikke bare større.
 | Type | Kjennetegn |
 |---|---|
 | Webapp/prototype | SvelteKit + Designsystemet, `web-prototype` deklareres automatisk |
-| Script/automatisering | PowerShell/tsx, Windows-encoding-regler inn fra dag 1, ingen designdel |
+| Script/automatisering | PowerShell/bash/tsx, ingen designdel. Utvikler du på Windows: encoding-reglene inn fra dag 1 |
 | Dokumentasjon/utredning | Ingen kode, ingen arkitektur-fil, sikkerhetssjekk = datahåndtering |
 | API/backend | Full sikkerhetssjekkliste, arkitektur-dokumentasjon påkrevd |
 

@@ -70,7 +70,11 @@ GitHub-tilgang til dette repoet.
 3. Én linje i `CHANGELOG.md`.
 4. Endret `web-prototype`, `grill-me` eller `fint-graphql`: oppdater også
    org-katalogen (last opp på nytt).
-5. Kollegaer henter med `/plugin marketplace update claude-code-skills`.
+5. Kollegaer henter med `/plugin marketplace update claude-code-skills` — kjørt i
+   **terminal-CLI-en**. `/plugin` finnes ikke som slash-kommando i
+   VS Code-utvidelsen; den eksponerer enkelte CLI-kommandoer som menyvalg i
+   stedet (`/permissions` under «Customize → Permissions»). Si dette i
+   utrullingsmeldingen — ellers strander de som bare bruker utvidelsen.
 
 ## Renhetskrav (håndheves før hver push)
 

@@ -25,6 +25,12 @@ det parafrase, som kastet bort ordlydsrettingene fra 0.2.0 uten at noen så det.
   steget bare en instruks om å legge inn «de viktigste reglene», og halvdelen falt
   ut i sammendraget — den ene lest alene leses som en motsigelse av den andre.
 
+- **Ny syntaksfelle i `windows.md`: `-like` er ikke literal.** Backtick er
+  escape-tegn i wildcard-mønstre, så tekstsammenligning av linjer med
+  `kodeformat` mismatcher stille. Målt under bygging av etterkontrollen over —
+  12 av 54 linjer ble rapportert manglende i en fil der de sto ordrett.
+  `.Contains()` er svaret.
+
 Ikke brytende: ingen endring i `kunnskap/`-strukturen. Prosjekter scaffoldet med
 0.2.0 kan hente inn de manglende malavsnittene ved behov — særlig
 CLAUDE.md-avsnittets rytmevakter og STATUS-snutten på Windows.

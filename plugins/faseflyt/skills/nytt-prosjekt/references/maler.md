@@ -287,10 +287,15 @@ Grunnsett (tilpass mappe- og filnavn):
 }
 ```
 
-`Read(**/.env)` står sammen med `Read(.env)` med vilje: stiformen som faktisk
-matcher er ikke avklart (se grensene under), og to former koster ingenting.
+`Read(**/.env)` står sammen med `Read(.env)` med vilje: bar form er målt å treffe
+i prosjektroten og i `.claude/`, men dekningen av vilkårlige undermapper er umålt
+(se grense 5), og to former koster ingenting.
 Cmdlet-navn (`Invoke-RestMethod`, `Get-Content`) hører IKKE i `Bash(...)` — de
 finnes ikke i et POSIX-shell, og der de finnes, dekker ikke `Bash(...)` dem.
+`Bash(npx tsx scripts/*)` står som eksempel på å sperre et konkret script-kall,
+men **stiformen med `/*` er utestet** — alle de målte Bash-reglene bruker
+kolon-prefiksformen (`Bash(curl:*)`), og grense 5 viste nettopp at stiformer
+overrasker. Verifiser den med integritetsproben under før du stoler på den.
 
 **Nettverksdeny må differensieres per prosjekttype.** Mønstrene treffer
 *kommandonavn*, mens risikoen ligger i *målet*: et kall mot `http://localhost:5173`
@@ -314,8 +319,10 @@ Om de to fil-reglene:
   fixtures Claude trygt kan lese, blir hele regelen slått av.
 - `Read(.env)` beholdes hardt — behovet finnes ikke: nøkkelNAVN uten verdier,
   `.env.example` og `$env:NAVN`/`process.env.NAVN` dekker alle reelle tilfeller.
-  Men det er **glob-formen `Read(**/.env)` som bærer vernet** (se grense 9): den
-  bare formen kan dekke `.claude/.env` og ingenting annet. Behold begge.
+  Bar form er målt å dekke prosjektets egen `.env` (se grense 5), så regelen er
+  reell. Glob-formen `Read(**/.env)` beholdes ved siden av fordi undermapper er
+  umålt — ligger det en `.env` i en underkatalog, er det glob-formen som fanger
+  den. Behold begge.
 
 ### Verifiser at blokken er koblet til — hver gang filen endres
 
@@ -343,7 +350,7 @@ nettverksstakken feiler på manglende tilkobling.
 lager dem, og slett dem etterpå. En glemt `data/`-katalog med en dummy i ser ekte
 ut for neste person som åpner prosjektet.
 
-### Deny-settets grenser (målt 2026-08-17)
+### Deny-settets grenser (målt 2026-08-17/18)
 
 **Målt å virke:**
 
@@ -363,37 +370,44 @@ ut for neste person som åpner prosjektet.
    forveksles med «feil filnavn».
 4. **En `ask`-nøkkel forkaster ikke blokken.** Målt med en `ask`-liste i samme
    `permissions`-objekt: deny virket fortsatt.
+5. **Bar filnavn-form virker, og er ikke ankret til `.claude/`.** En bar regel
+   `Read(fil.txt)` blokkerte fila både i prosjektroten og i `.claude/` — målt på
+   to ulike filnavn, i to økter, med en kontroll i samme økt som bekreftet at
+   konfigurasjonen var stabil mellom dem. `Read(.env)` er altså ikke dødvekt.
+   **Umålt:** om bar form dekker vilkårlige undermapper — bare rot og `.claude/`
+   er testet. Skal en fil dekkes uansett hvor den ligger, bruk glob-formen
+   `Read(**/fil.txt)`.
+
+   *En tidligere hypotese om at bare filnavn resolveres relativt til
+   `settings.json`s katalog er avkreftet av denne målingen. Den hvilte på én
+   avvikende observasjon som ikke lot seg reprodusere — og som var gjort under en
+   konfigurasjon som aldri ble verifisert ordrett før kjøring. Lærdommen er verdt
+   mer enn funnet: en observasjon fra en uverifisert konfigurasjon kan ikke
+   gjenbrukes senere, uansett hvor godt den passer en modell du bygger etterpå.*
 
 **Målt å ikke virke, eller å dekke mindre enn navnet antyder:**
 
-5. **Matcherne er verktøy-scopet.** Samme URL, samme økt: `curl` i **Bash** ble
+6. **Matcherne er verktøy-scopet.** Samme URL, samme økt: `curl` i **Bash** ble
    blokkert av `Bash(curl:*)`, mens `Invoke-RestMethod` i **PowerShell**-verktøyet
    kjørte — `Bash(...)` dekket det ikke. Cmdlet-navn i `Bash(...)` er derfor
    dødvekt.
-6. **`PowerShell(<kommando>:*)`-formen stoppet ingenting**, selv om scopet nå er
+7. **`PowerShell(<kommando>:*)`-formen stoppet ingenting**, selv om scopet nå er
    bekreftet gjenkjent (punkt 1). Gjenstående forklaring: verktøyet pakker
    kommandoen i en preamble på et par hundre tegn, så kommandonavnet står ikke
    først og prefiksmønsteret treffer ikke. Praktisk — mønsterformen er ubrukelig;
    bare tool-navn-formen virker.
-7. **Bash-dekningen er tekstmatching, ikke filsystemvern.** Samme økt:
+8. **Bash-dekningen er tekstmatching, ikke filsystemvern.** Samme økt:
    `ls -la <dekket fil>` ble avvist, mens `ls -la` på katalogen kjørte og
    eksponerte filnavn og størrelser. Alt som når fila uten å nevne den —
    kataloglisting, globbing, et script som leser den — er ikke dekket. Dette er
    den viktigste enkeltgrensen: reglene hindrer at Claude *nevner* stien, ikke at
    innholdet nås.
-8. **Navnebaserte mønstre kan prinsipielt ikke bli komplette.** Aliaser er bare
+9. **Navnebaserte mønstre kan prinsipielt ikke bli komplette.** Aliaser er bare
    toppen (`irm`, `iwr`, `curl.exe`, `gc`, `type`, `Select-String`, `Import-Csv`).
    Verre er omveiene uten kommandonavn i det hele tatt — `[Net.WebClient]`,
    `Start-BitsTransfer`, `[IO.File]::ReadAllText()` — og indirekte kall
    (`$c='irm'; & $c`), der navnet først finnes ved kjøring. Listen blir aldri
    uttømmende; ikke lat som den er det.
-9. **Stiformen avgjør hva `Read(...)` treffer, og de to formene er ULIKE.** Målt:
-   `Read(**/fil.txt)` blokkerte fila i prosjektroten, mens `Read(fil.txt)` ikke
-   gjorde det — og en bar regel traff en fil med samme navn som lå i `.claude/`.
-   Det peker på at bare filnavn resolveres relativt til `settings.json`s katalog.
-   Holder det, dekker `Read(.env)` bare `.claude/.env` — ikke prosjektets `.env`.
-   **Bruk derfor alltid glob-formen** (`Read(**/.env)`). Modellen er utledet av
-   fire målinger, ikke målt direkte; til den er det, er glob-formen den trygge.
 
 **Hva dette betyr for løftet i CLAUDE.md:** deny-settet er ETT lag
 risikoreduksjon, ikke en sandkasse. Regelen i CLAUDE.md («Claude forbereder
@@ -401,9 +415,9 @@ kommandoen, brukeren kjører den») bærer mesteparten av vekten.
 
 Grensene har ulik karakter, og det bør leses samlet: **filsiden er sterkere enn
 navnene antyder** (grense 2 og 3 — deny treffer også Write og Bash), men
-**mekanismen er tekstlig** (grense 7), så den stopper det Claude *skriver*, ikke
+**mekanismen er tekstlig** (grense 8), så den stopper det Claude *skriver*, ikke
 det som faktisk kan nås. **Nettsiden på Windows har bare det grove grepet**
-(grense 1) eller ingenting (grense 6).
+(grense 1) eller ingenting (grense 7).
 
 En verktøy-agnostisk PreToolUse-hook — den ser `tool_name` og hele
 kommandostrengen, og er testbar fordi den kan logge — er laget som gir *selektivt*

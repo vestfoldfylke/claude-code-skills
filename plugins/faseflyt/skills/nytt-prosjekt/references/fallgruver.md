@@ -81,6 +81,14 @@ måler ingenting. Del den i to FØR den kjøres.
   krasjet (etterlot en stack dump i katalogen) og ga tom output, som ble ført som
   et bekreftet nullresultat i en kontroll et helt argument hvilte på. Feilen ble
   oppdaget først da noen kjørte samme søk med et annet verktøy og fikk tre treff.
+- **`[uverifisert-konfigurasjon]`** En observasjon gjort under en konfigurasjon
+  som ikke ble skrevet ned ORDRETT før kjøring, kan ikke gjenbrukes senere.
+  Belegg: én avvikende måling ble bærebjelken i en hypotese som styrte tre økter
+  — helt til noen replikerte den og den ikke lot seg reprodusere. Konfigurasjonen
+  den var målt under var da overskrevet flere ganger, så avviket kunne ikke
+  forklares, bare lukkes som ikke-reproduserbart. Skriv oppsettet ordrett i
+  loggen FØR proben, ikke etter: det koster fire linjer og er forskjellen på en
+  måling som kan gjenbrukes og en som må kastes.
   Før du kaller et null for målt: sjekk exit-koden, eller kjør et kontrollsøk som
   SKAL gi treff. Gjelder like fullt når du selv er den som «bare sjekket raskt».
 - **Et ubekreftet vern er verre enn ingen vern.** Det gir falsk trygghet, og

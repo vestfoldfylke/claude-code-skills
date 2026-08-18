@@ -25,6 +25,12 @@ det parafrase, som kastet bort ordlydsrettingene fra 0.2.0 uten at noen så det.
   steget bare en instruks om å legge inn «de viktigste reglene», og halvdelen falt
   ut i sammendraget — den ene lest alene leses som en motsigelse av den andre.
 
+- **Norsk til brukeren.** `nytt-prosjekt` omtalte seg selv som å «scaffolde», og
+  en måleøkt svarte brukeren i samme ordelag. Plan-malens fase het «Fase 0 —
+  Scaffold og røyktest», så ordet fulgte med inn i hvert prosjekts egen
+  `plan.md`. Ordbyttet er gjort, og en stående regel sier nå at brukervendt tekst
+  er vanlig norsk — literale navn (`deny`-nøkler, `commit`, filnavn) oversettes
+  aldri. Engelske triggerfraser i `description` beholdes.
 - **Ny syntaksfelle i `windows.md`: `-like` er ikke literal.** Backtick er
   escape-tegn i wildcard-mønstre, så tekstsammenligning av linjer med
   `kodeformat` mismatcher stille. Målt under bygging av etterkontrollen over —

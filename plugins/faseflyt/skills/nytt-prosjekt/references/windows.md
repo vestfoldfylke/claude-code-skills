@@ -3,7 +3,7 @@
 Gjelder ALLE prosjekter som utvikles på Windows. Snutten under legges inn i
 `kunnskap/STATUS.md` under «Det en ny økt må vite» FØR første filskript skrives —
 ikke etter første mojibake-hendelse. Resten av fila er referanse for den som
-scaffolder og kopieres ikke.
+setter opp prosjektet, og kopieres ikke.
 
 ## STATUS-snutt — kopieres ORDRETT og i sin helhet
 

@@ -45,6 +45,19 @@ en setning omformulert, eller er en plassholder stående uendret der den skulle
 fylles ut — rett det FØR du går videre. Meld steget ferdig ved å navngi hvilke
 seksjoner som er kopiert, ikke bare at fila er opprettet.
 
+## Snakk norsk til brukeren
+
+Alt brukeren ser — spørsmålene dine, fasenavnene i planen, STATUS og CLAUDE.md —
+skrives på vanlig norsk. Si «sette opp prosjektet», ikke «scaffolde»; «slår
+inn»/«utløser», ikke «trigge»; «Claude Code selv», ikke «harness-en». Literale
+navn oversettes aldri: `deny`-nøkler i `settings.json`, `commit`, filnavn og
+kommandoer står som de er.
+
+**Grunn (målt):** teksten i denne fila speiles rett ut i chatten. Da skillen
+omtalte seg selv som å «scaffolde», svarte økten brukeren «jeg trenger tre
+avklaringer før jeg scaffolder» — og fasenavn som «Fase 0 — Scaffold og røyktest»
+fulgte med inn i prosjektets egen `plan.md`, der de blir stående i månedsvis.
+
 ## Når du blir kalt — gjør i rekkefølge
 
 1. **Nytt eller eksisterende prosjekt?** I et eksisterende prosjekt: opprett kun
@@ -69,7 +82,7 @@ seksjoner som er kopiert, ikke bare at fila er opprettet.
    Endres planen senere, endres `kunnskap/plan.md`. Planstruktur og
    fasedimensjonering: se plan-malen i `references/maler.md` — én fase = én
    enhet brukeren kan verifisere, som får plass i én økt uten `/compact`;
-   fase 0 er alltid scaffold + røyktest; 3–10 faser er normalområdet.
+   fase 0 er alltid oppsett + røyktest; 3–10 faser er normalområdet.
 
 5. **Opprett filene** ved å kopiere malene i `references/maler.md` **ORDRETT**
    (se regelen over, inkludert etterkontrollen): `kunnskap/STATUS.md`,

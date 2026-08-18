@@ -1,6 +1,6 @@
 # Maler for fase-arbeidsflyten
 
-Alle maler `nytt-prosjekt` scaffolder fra.
+Malene `nytt-prosjekt` oppretter prosjektfilene fra.
 
 **Kodeblokkene er maltekst og kopieres ORDRETT — tegn for tegn.** Ikke
 oppsummer, forkort, slå sammen setninger eller skriv om «med egne ord». Ordlyden
@@ -16,7 +16,7 @@ Det eneste som endres er:
 
 Prosjektspesifikt innhold legges til som **egne, nye seksjoner eller punkter**.
 Malens egne seksjoner omskrives aldri. Teksten UTENFOR kodeblokkene er
-instruksjon til den som scaffolder — den kopieres ikke, men styrer hvilke blokker
+instruksjon til den som setter opp prosjektet — den kopieres ikke, men styrer hvilke blokker
 som gjelder for prosjekttypen.
 
 Før et malsteg meldes ferdig: les malen og den skrevne fila på nytt og sammenlign
@@ -49,11 +49,11 @@ stikkordet du skanner etter. Begge kreves: temaordet gjør listen lesbar, men
 ## Faseplan
 
 <Dimensjonering: én fase = én enhet brukeren kan VERIFISERE (kjøre, se, teste),
-som får plass i én økt uten /compact. Fase 0 er alltid scaffold + røyktest, så
+som får plass i én økt uten /compact. Fase 0 er alltid oppsett + røyktest, så
 hele pipelinen er bevist før noe bygges oppå. 3–10 faser er normalområdet. En
 fase som ikke kan verifiseres selvstendig er feil snitt.>
 
-### Fase 0 — Scaffold og røyktest
+### Fase 0 — Oppsett og røyktest
 <hva som settes opp>
 **Verifisering:** <hva brukeren gjør for å si ✅>
 

@@ -24,7 +24,7 @@ du skriver noe plattformspesifikt i STATUS.
 ## Webapp / prototype
 
 SvelteKit + Designsystemet, ofte for brukertesting. `web-prototype`-skillen
-(deklarert, ikke kopiert) dekker scaffolding og DS-regler og trigger automatisk.
+(deklarert, ikke kopiert) dekker oppsettet og DS-reglene, og slår inn av seg selv.
 Har prototypen eget visuelt tema: følg `claude-design-oppskrift.md`.
 Full sikkerhetssjekkliste fra maler.md — BFF-endepunkter regnes som API-flate.
 Behandler prototypen persondata: **ikke** bredt nettverksdeny — Claude må kunne

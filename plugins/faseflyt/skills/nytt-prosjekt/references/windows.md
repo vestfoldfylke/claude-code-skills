@@ -1,8 +1,37 @@
 # Windows- og PowerShell-feller
 
-Gjelder ALLE prosjekter som utvikles på Windows. De viktigste reglene legges inn
-i `kunnskap/STATUS.md` under «Det en ny økt må vite» FØR første filskript
-skrives — ikke etter første mojibake-hendelse.
+Gjelder ALLE prosjekter som utvikles på Windows. Snutten under legges inn i
+`kunnskap/STATUS.md` under «Det en ny økt må vite» FØR første filskript skrives —
+ikke etter første mojibake-hendelse. Resten av fila er referanse for den som
+setter opp prosjektet, og kopieres ikke.
+
+## STATUS-snutt — kopieres ORDRETT og i sin helhet
+
+Begge kulepunktene i encoding-regelen må følge med. Den ene lest alene leses som
+en motsigelse av den andre, og et script som mangler den andre halvdelen mojibaker
+ved første kjøring:
+
+```markdown
+- **Encoding på Windows PowerShell 5.1 — to halvdeler som hører sammen:** BOM er
+  uønsket i filer scriptet PRODUSERER, og påkrevd i `.ps1`-KILDEKODE som
+  inneholder æøå.
+  - *Output:* alle `Get-Content`/`Set-Content`/`Add-Content` skal ha eksplisitt
+    `-Encoding utf8`. Uten den leses/skrives ANSI og æøå mojibakes stille
+    (`æ` → `Ã¦`). `Out-File` og `>`/`>>` skriver ofte UTF-8 MED BOM, som knekker
+    shebang-linjer og JSON-parsere — sjekk output-filer for BOM når andre verktøy
+    skal lese dem.
+  - *Kildekode:* 5.1 tolker en `.ps1` UTEN BOM som ANSI, så strenglitteraler med
+    æøå mojibakes i utskriften selv om fila er korrekt UTF-8 på disk.
+    Write-verktøyet lagrer uten BOM, så HVERT nytt script med norske tegn må
+    lagres på nytt med `Set-Content -Encoding utf8` (skriver BOM i 5.1).
+    Symptomet som identifiserer feilen: et kommandolinje-argument kommer ut
+    riktig i samme kjøring der litteraler i fila er korrupte ⇒ det er
+    fildekodingen, ikke konsollet.
+- **Flerlinjede commit-meldinger:** skriv meldingen til fil og bruk
+  `git commit -F <fil>` — here-strings avvises av enkelte harness-oppsett.
+- **PowerShell 5.1 mangler `&&`/`||` (bruk `A; if ($?) { B }`), ternary/`??`/`?.`,
+  og Unix-kommandoene `head`/`tail`/`touch`/`which`/`wc`.**
+```
 
 ## Encoding-fella (den som alltid biter)
 
@@ -59,3 +88,9 @@ Write-Output "blåbær på tørt løvverk"   →   blÃ¥bÃ¦r pÃ¥ tÃ¸rt l�
 - Unix-kommandoer som `head`, `tail`, `touch`, `which`, `wc` finnes ikke —
   bruk `Select-Object -First/-Last`, `New-Item`, `Get-Command`, `Measure-Object`.
 - Stier med mellomrom: kall exe-er med `& "C:\Program Files\..."`.
+- **`-like` er ikke literal — bruk `.Contains()` når du sammenligner tekst.** I et
+  wildcard-mønster er backtick escape-tegn og `*?[]` er metategn, så hver linje
+  med `kodeformat` i backticks mismatcher **stille**: `$tekst -like "*$linje*"`
+  gir `False` selv når linja står der ordrett (målt — den siste backticken spiste
+  tegnet etter seg). Feilmoden er farlig fordi den ser ut som «fant ikke», ikke
+  som «mønsteret var feil». `$tekst.Contains($linje)` er literal og ordinal.

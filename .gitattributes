@@ -1,0 +1,5 @@
+# Shell-scripts må ha LF i repoet. Pakken vedlikeholdes fra Windows, der Git
+# ellers kan legge CRLF i indeksen — og «bash script.sh» på Linux-runneren
+# feiler på CR. Bevisst avgrenset til *.sh: en repo-vid «* text=auto» ville
+# renormalisert eksisterende filer i samme slengen.
+*.sh text eol=lf

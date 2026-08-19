@@ -87,6 +87,20 @@ Kravene har to nivåer. De første gjelder **pakken** — `plugins/`, `docs/` og
 `README.md`, altså alt en kollega faktisk får installert. De siste gjelder
 `kunnskap/`, som er internt arbeidsarkiv og har løsere krav med hensikt.
 
+**Kravene er automatisert.** Denne teksten er begrunnelsene; den maskinlesbare
+utgaven er [`.github/renhet/sjekk.sh`](../.github/renhet/sjekk.sh), som kjøres av
+GitHub Actions ved hver push til `main` og hver PR — og av deg lokalt før push:
+
+```
+git add -A && bash .github/renhet/sjekk.sh
+```
+
+CI og lokal kjøring er *samme* script, nettopp for at prosa og port ikke skal
+drive fra hverandre. Endrer du et krav her, endres scriptet i samme commit.
+Kjøringen er den eneste porten som finnes så lenge branch-hardening er av og
+review er droppet — se `kunnskap/plan.md` for beslutningen og hva som skal tas
+opp ved 1.0.
+
 ### Pakken (`plugins/`, `docs/`, `README.md`)
 
 - Den gamle forkortelsen for fylkeskommunen (v-t-f-k) — null treff i **hele
@@ -126,6 +140,14 @@ Kravene har to nivåer. De første gjelder **pakken** — `plugins/`, `docs/` og
 - **Et tomt søkeresultat er ingen måling** før verktøyet er bekreftet å ha kjørt.
   Kjør én kontroll som SKAL gi treff (f.eks. `faseflyt`) i samme runde — ellers
   kan «null treff» like gjerne bety at søket aldri traff filene.
+  **Kontrollen må avgrenses til `plugins/`.** Målt 2026-08-19: en kontroll over
+  hele repoet ga 8 treff i et repo som *bare* inneholdt selve sjekkescriptet —
+  altså beviste den at `git grep` kjørte, men ikke at søkene nådde pakken. En
+  positiv kontroll som kan tilfredsstilles av sjekkens egen tekst er falsk
+  trygghet.
+- **En port som aldri har slått ut er ikke bevist å slå ut.** Endrer du et
+  mønster, plant en kanarifugl som SKAL gi treff og bekreft at sjekken feiler med
+  exit 1 — deretter fjern den. Målt 2026-08-19 for alle sju harde krav.
 - Kjør søkene **etter `git add`**. `git grep` ser ikke filer som ikke er i
   indeksen, så et søk før staging måler ikke det du er i ferd med å pushe.
 - **Skriv mønstre som ikke treffer seg selv.** En regel som staver ut det den

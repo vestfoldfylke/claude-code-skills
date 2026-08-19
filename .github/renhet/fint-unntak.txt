@@ -1,0 +1,20 @@
+# Tillatt FINT-omtale i plugins/ utenfor plugins/fint-graphql/.
+#
+# Bakgrunn: docs/installasjon.md unntar deklarasjonslogikken fra fint-regelen —
+# `nytt-prosjekt` må kunne spørre om prosjektet bruker FINT for å avgjøre om
+# `fint-graphql` deklareres. Det er FINT-*innhold* (entiteter, spørringer,
+# miljø-URLer) som ikke hører hjemme i faseflyt, ikke ordet i seg selv.
+#
+# Format: «sti|trimmet linjeinnhold», én per linje. Linjenummer er bevisst
+# utelatt, så oppføringene ikke råtner når filene endres andre steder.
+# Linjer som inneholder «fint-graphql» filtreres bort automatisk og skal
+# ikke føres her.
+#
+# Legger du til en oppføring: den skal være deklarasjonslogikk. Er det reelt
+# FINT-innhold, hører det i plugins/fint-graphql/ i stedet.
+#
+# Sist verifisert 2026-08-19: begge oppføringene under er spørsmålet i steg 1 og
+# deklarasjonsteksten i steg 6 av nytt-prosjekt.
+
+plugins/faseflyt/skills/nytt-prosjekt/SKILL.md|(styrer deny-regler i steg 6)? Bruker det **FINT** (styrer skill-deklarasjon)?
+plugins/faseflyt/skills/nytt-prosjekt/SKILL.md|prosjektet bruker FINT. Behandler prosjektet persondata: tilby deny-settet

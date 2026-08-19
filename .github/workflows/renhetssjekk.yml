@@ -1,0 +1,29 @@
+name: Renhetssjekk
+
+# Porten mellom en commit og kollegaenes «/plugin marketplace update».
+# Repoet er en instruksjonskanal inn i andres Claude-økter: alt som havner på
+# main blir arbeidsinstrukser hos alle som har installert pakken. Branch-hardening
+# er av og review er droppet fram til 1.0, så denne kjøringen er den eneste
+# porten som finnes — en måling framfor en person.
+#
+# Reglene med begrunnelser: docs/installasjon.md, «Renhetskrav».
+# Samme script kjøres lokalt før push: git add -A && bash .github/renhet/sjekk.sh
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  renhet:
+    name: Renhetskrav
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Kjør renhetssjekken
+        run: bash .github/renhet/sjekk.sh

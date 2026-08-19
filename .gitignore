@@ -1,7 +1,6 @@
 # Ingenting hemmelig skal noensinne inn her — pakken er ren arbeidsflyt.
-# Interne arbeidsnotater for vedlikeholdet (inneholder lokale prosjektreferanser
-# som ikke skal deles):
-/kunnskap/
+# Maskinlokale tillatelser — gjelder bare denne maskinen, aldri delt:
+.claude/settings.local.json
 # Standard støy:
 Thumbs.db
 .DS_Store

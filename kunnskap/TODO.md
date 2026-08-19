@@ -20,7 +20,7 @@
 - Test 1 + rydding + test 2 er gjennomført på **hjemmekontor-PC-en** — det er
   DEN som nå har plugin-oppsettet (3 plugins user scope) og renset `~/.claude`.
 - **Hvitliste-commit + slettinger: GJORT 2026-08-18 kveld** (`6cda506`, pushet til
-  `<privat-konto>/claude-global-config`, branch `master`). Ni filer slettet,
+  `bkaarstein/claude-global-config`, branch `master`). Ni filer slettet,
   whitelist-linjene for `commands/` og `skills/` fjernet med begrunnelse som
   kommentar, README peker nå på pakkens README som kanonisk framfor å duplisere
   installasjonsoppskriften. Verifisert før commit at alle ni har en ekvivalent i

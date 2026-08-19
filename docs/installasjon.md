@@ -67,10 +67,15 @@ GitHub-tilgang til dette repoet.
 2. Bump `version` i berørt `plugins/*/.claude-plugin/plugin.json` og
    `marketplace.json` (semver — brytende endringer i `kunnskap/`-strukturen
    markeres i CHANGELOG med migreringsnotat).
-3. Én linje i `CHANGELOG.md`.
-4. Endret `web-prototype`, `grill-me` eller `fint-graphql`: oppdater også
+3. **Verifiser at de to versjonene stemmer overens:** `claude plugin validate .`
+   fra repo-roten. Ved avvik vinner `plugin.json` ved installasjon, og
+   `marketplace.json` ignoreres stille — kollegaer ser da feil versjon i
+   `/plugin`-listen uten at noe feiler. Steget finnes fordi nettopp dette slapp
+   gjennom i 0.2.1.
+4. Én linje i `CHANGELOG.md`.
+5. Endret `web-prototype`, `grill-me` eller `fint-graphql`: oppdater også
    org-katalogen (last opp på nytt).
-5. Kollegaer henter med `/plugin marketplace update claude-code-skills` — kjørt i
+6. Kollegaer henter med `/plugin marketplace update claude-code-skills` — kjørt i
    **terminal-CLI-en**. `/plugin` finnes ikke som slash-kommando i
    VS Code-utvidelsen; den eksponerer enkelte CLI-kommandoer som menyvalg i
    stedet (`/permissions` under «Customize → Permissions»). Si dette i
@@ -81,9 +86,16 @@ GitHub-tilgang til dette repoet.
 - Den gamle forkortelsen for fylkeskommunen (v-t-f-k) — null treff i hele
   repoet; vi heter Vestfold fylkeskommune.
 - Personnavn og private repo-referanser — null treff.
-- `fint` — kun i `plugins/fint-graphql/`.
+- `fint` — kun i `plugins/fint-graphql/`, med ett unntak: `nytt-prosjekt` må
+  kunne spørre om prosjektet bruker FINT for å avgjøre om `fint-graphql`
+  deklareres. Slik deklarasjonslogikk i `plugins/faseflyt/` er legitim. Det er
+  FINT-*innhold* — entiteter, spørringer, miljø-URL-er — som ikke hører hjemme
+  der. Uten unntaket slår regelen ut ved hver eneste kjøring.
 - Aldri persondata, fødselsnummer, secrets eller interne miljø-URL-er,
   heller ikke i eksempler.
+- **Et tomt søkeresultat er ingen måling** før verktøyet er bekreftet å ha kjørt.
+  Kjør én kontroll som SKAL gi treff (f.eks. `faseflyt`) i samme runde — ellers
+  kan «null treff» like gjerne bety at søket aldri traff filene.
 
 ## Valgfritt: reglene alltid aktive i egen `~/.claude/CLAUDE.md`
 

@@ -10,7 +10,7 @@ bruker på to maskiner, men kan ikke deles med organisasjonen slik de står:
   FINT-eksempler («Claude henter ALDRI FINT-data selv») midt i det som ellers er
   generiske kommandoer. `nytt-prosjekt` sin `description` nevner `fint-samtykke`.
 - **Personlige avhengigheter.** `nytt-prosjekt` beskriver synk via det private
-  repoet `<privat-konto>/claude-global-config`, og `references/retrospektiv-fint-samtykke.md`
+  repoet `bkaarstein/claude-global-config`, og `references/retrospektiv-fint-samtykke.md`
   er et internt retrospektiv med prosjekt- og personnavn.
 - **Skjult forutsetning som ikke følger med.** Halve arbeidsflyten (faser,
   verifiseringsport, Explore-delegering, modellmiks) ligger i den globale
@@ -75,22 +75,29 @@ hvem som helst som kjenner URL-en installere det. Derfor, som harde krav:
 
 - Repoet er **`vestfoldfylke/claude-code-skills`**, `private`, med `main` som
   standardbranch — aldri under vedlikeholderens personlige GitHub-konto, aldri `public`.
-  Ditt private `<privat-konto>/claude-global-config` blir liggende som det er; det er
+  Ditt private `bkaarstein/claude-global-config` blir liggende som det er; det er
   din `~/.claude`-synk og skal ikke deles.
-- Branch-hardening er **på, og kan ikke slås av på repoet** (målt 2026-08-18):
-  regelsettet `Hardening` er arvet fra `vestfoldfylke`-organisasjonen,
-  `enforcement: active`, med tomme bypass-aktører. Det krever 1 godkjenning på
-  `main` og `require_last_push_approval` — den som pushet sist kan ikke godkjenne
-  selv. **Praktisk konsekvens for arbeidsmåten: push alt FØR du ber om review**,
-  ellers foreldes godkjenningen og må hentes på nytt. (Erfart i PR #2: en push
-  etter godkjenning kostet en ekstra review-runde.)
-  Org-regelsett kan målrettes med repo-unntak, så veien finnes — men den bor i
-  org-policyen, ikke på repoet. **Unntak er bevisst ikke tatt i bruk her:** repoet
-  er en instruksjonskanal inn i kollegaers Claude-økter — alt som pushes til
-  `main` blir arbeidsinstrukser hos alle som har installert pakken (særlig med
-  sentral utrulling/`autoUpdate`) — og repoet har ingen automatisk sjekk (ingen
-  `package.json`), så reviewen er den eneste porten som finnes. Skrivetilgang bør
-  uansett begrenses til deg og de som vedlikeholder pakken.
+- **Branch-hardening: SLÅTT AV for repoet 2026-08-19.** Målt samme dag:
+  `repos/…/rules/branches/main` og `repos/…/rulesets` gir begge `[]`, og
+  `branches/main` gir `protected: false`. Det opphever den tidligere målingen
+  (2026-08-18: org-regelsettet `Hardening`, `enforcement: active`, tomme
+  bypass-aktører, 1 godkjenning + `require_last_push_approval`) og notatet om at
+  unntak «bevisst ikke er tatt i bruk».
+  **Beslutning (BK):** vi opererer alene fram til 1.0. Reviewen var i praksis et
+  stempel uten leser, og en port ingen går gjennom er ingen port.
+  - **Konsekvensen er reell og skal tas opp igjen ved 1.0:** repoet er en
+    instruksjonskanal inn i kollegaers Claude-økter — alt som pushes til `main`
+    blir arbeidsinstrukser hos alle som har installert pakken, særlig med sentral
+    utrulling/`autoUpdate` — og repoet har ingen automatisk sjekk (ingen
+    `package.json`). Uten hardening og uten review finnes det nå **ingen** port.
+    Det er akseptabelt så lenge vedlikeholderen er én person som leser sin egen
+    diff; det er det ikke når pakken har brukere som ikke gjør det.
+  - **Naturlig erstatning før 1.0:** en CI-sjekk eller pre-commit-hook som kjører
+    renhetssøkene *med* den positive kontrollen. Da er porten en måling framfor en
+    person, og den virker også når review er av. Jf. hook-skissen i `TODO.md`.
+  - Historisk, ikke gjeldende nå: `require_last_push_approval` gjorde at en push
+    etter godkjenning kostet en ekstra review-runde (erfart i PR #2).
+  - Skrivetilgang bør uansett begrenses til de som vedlikeholder pakken.
 - Kollegaer må være autentisert mot GitHub (`gh auth login`) for at `add` skal
   virke mot et privat repo — og de må være medlem av `vestfoldfylke` på GitHub
   (claude.ai-org-tilgang er ikke det samme). Begge forutsetninger dokumenteres
@@ -199,7 +206,7 @@ Skrives om fra `~/.claude/skills/nytt-prosjekt/SKILL.md`.
 SKILL.md holdes kort (~70 linjer); maler og detaljer flyttes til `references/`.
 
 **Fjernes:** `fint-samtykke` i description, hele synk-avsnittet om
-`<privat-konto>/claude-global-config`, «Skrevet av oss selv»-metanotatet,
+`bkaarstein/claude-global-config`, «Skrevet av oss selv»-metanotatet,
 `references/retrospektiv-fint-samtykke.md` (internt — destilleres til anonymiserte
 fallgruver i `references/fallgruver.md`).
 
@@ -561,20 +568,26 @@ begge erstattes av den installerte pluginen, og whitelist-oppføringene i
    gjelder ellers alltid, så det finnes ingen annen måte å simulere en kollegas
    maskin på), kjør punkt 2–4 på nytt, og legg fila tilbake — flyten skal fungere
    uten den.
-7. **Renhetssjekk før publisering** (kjøres FØR første push). Mønstrene under er
-   skrevet hyphenert, slik `docs/installasjon.md` alt gjør — ellers ville regelen
-   treffe seg selv og sjekken aldri kunne gi null. Fjern bindestrekene når du søker:
-   - `v-t-f-k` skal gi **null treff i hele repoet** — organisasjonen heter Vestfold
-     fylkeskommune, og den gamle forkortelsen skal ikke finnes noe sted, heller
-     ikke i repo-navn, marketplace-navn, forfatterfelt eller eksempel-JSON.
-     Treff på `vestfold` skal kun være i eierskapsfeltene.
-   - Den personlige GitHub-kontoen (`b-kaarstein`) og vedlikeholderens fornavn
-     (`B-jørn`) skal ikke treffe noe sted. Personnavn skrives med initialer;
-     referanser til det private synk-repoet skrives `<privat-konto>/…`.
+7. **Renhetssjekk før publisering** (kjøres FØR hver push, ETTER `git add`).
+   Kanonisk liste med begrunnelser står i `docs/installasjon.md` under
+   «Renhetskrav» — kortversjonen:
+   - `v-t-f-k` (hyphenert her, ellers treffer regelen seg selv) skal gi **null
+     treff i hele repoet** — organisasjonen heter Vestfold fylkeskommune, og den
+     gamle forkortelsen skal ikke finnes noe sted, heller ikke i repo-navn,
+     marketplace-navn, forfatterfelt eller eksempel-JSON. Treff på `vestfold`
+     skal kun være i eierskapsfeltene.
+   - Absolutte brukerstier i pakken — søk **generisk**, aldri etter et bestemt
+     brukernavn. Et navngitt brukernavn måler én maskin og går ren for alle andre.
    - `fint` og `fint-samtykke` skal gi null treff i `plugins/faseflyt/` — men er
-     legitimt i `plugins/fint-graphql/`.
+     legitimt i `plugins/fint-graphql/`, og i `kunnskap/` som referanse til
+     prosjektet arbeidsflyten ble utviklet for.
    - Ingen fødselsnummer, testbrukere, miljø-URL-er eller secrets i eksempler
-     — gjelder særlig `fint-graphql`.
+     — gjelder særlig `fint-graphql`, og gjelder også `kunnskap/`.
+   - Personnavn, maskinnavn og referanser til private repo er **tillatt i
+     `kunnskap/`** — loggen skal kunne navngi beslutningstaker, maskin og faktisk
+     push-mål. I pakken er det bare *avhengigheter* til utilgjengelige repo som er
+     forbudt, ikke det å nevne dem.
+   - Alltid én positiv kontroll i samme runde.
 8. **Synlighet og branch:** etter `gh repo create` — verifiser med
    `gh repo view vestfoldfylke/claude-code-skills --json visibility,owner,defaultBranchRef`
    at repoet er `PRIVATE`, eid av `vestfoldfylke` (ikke en personlig konto), og at

@@ -54,10 +54,12 @@ Snapdragon/ARM** (både innhold og installasjon); punkt 5, 9, 10.
 - **Installert plugin er 0.1.0** (`cfc4558`, pre-PR#2) — marketplace-klonen er aldri
   oppdatert. Skal noe måles mot gjeldende skill, må den legges **prosjekt-scopet**;
   ellers måler du gammel tekst. Gjelder også `fase-start`/`fase-slutt` du selv kjører.
-- **Renhetsregler før hver push:** gammel forkortelse, `b-kaarstein` (hyphenert her
-  for at regelen ikke skal treffe seg selv) og personnavn 0 treff; `fint` kun i
-  `plugins/fint-graphql/` + deklarasjonslogikk. **Alltid positiv kontroll i samme
-  kjøring** — «0 treff» fra en død probe måler ingenting.
+- **Renhetsregler før hver push** (kanonisk liste: `docs/installasjon.md`): gammel
+  forkortelse `v-t-f-k` 0 treff i hele repoet; ingen absolutte brukerstier i pakken
+  — søk **generisk**, aldri etter et bestemt brukernavn; `fint` kun i
+  `plugins/fint-graphql/` + deklarasjonslogikk. **Personnavn, maskinnavn og private
+  repo-referanser er tillatt i `kunnskap/`.** Kjør ETTER `git add`, og **alltid
+  positiv kontroll i samme kjøring** — «0 treff» fra en død probe måler ingenting.
 - **Ingen kvalitetsport** (ingen `package.json`) — si det eksplisitt ved faseslutt.
 - **Malen skal ikke love mer enn den har målt.** Hypoteser med forbehold og
   navngitt probe, aldri som funn.

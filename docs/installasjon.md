@@ -55,7 +55,7 @@ pakken, og endringer fra andre skal inn via PR.
 
 ## Per-prosjekt-deklarasjon (det `nytt-prosjekt` skriver)
 
-Prosjekter scaffoldet med `nytt-prosjekt` får en `.claude/settings.json` som
+Prosjekter satt opp med `nytt-prosjekt` får en `.claude/settings.json` som
 deklarerer marketplacet og pluginene prosjektet trenger. Når en kollega kloner
 prosjektet og godtar workspace-trust-dialogen, tilbyr Claude Code å installere
 dem (dokumentert oppførsel: prompten kommer etter trust-aksept). Krever
@@ -140,14 +140,13 @@ opp ved 1.0.
 - **Et tomt søkeresultat er ingen måling** før verktøyet er bekreftet å ha kjørt.
   Kjør én kontroll som SKAL gi treff (f.eks. `faseflyt`) i samme runde — ellers
   kan «null treff» like gjerne bety at søket aldri traff filene.
-  **Kontrollen må avgrenses til `plugins/`.** Målt 2026-08-19: en kontroll over
-  hele repoet ga 8 treff i et repo som *bare* inneholdt selve sjekkescriptet —
-  altså beviste den at `git grep` kjørte, men ikke at søkene nådde pakken. En
-  positiv kontroll som kan tilfredsstilles av sjekkens egen tekst er falsk
-  trygghet.
-- **En port som aldri har slått ut er ikke bevist å slå ut.** Endrer du et
-  mønster, plant en kanarifugl som SKAL gi treff og bekreft at sjekken feiler med
-  exit 1 — deretter fjern den. Målt 2026-08-19 for alle sju harde krav.
+  **Kontrollsøket må avgrenses til `plugins/`.** Målt 2026-08-19: et kontrollsøk
+  over hele repoet ga 8 treff i et repo som *bare* inneholdt selve sjekkescriptet
+  — altså beviste det at `git grep` kjørte, men ikke at søkene nådde pakken. Et
+  kontrollsøk som kan tilfredsstilles av sjekkens egen tekst er falsk trygghet.
+- **En sjekk som aldri har slått ut, er ikke bevist å kunne slå ut.** Endrer du et
+  mønster: legg inn en linje som SKAL gi treff, bekreft at sjekken faktisk feiler
+  (exit 1), og fjern linja igjen. Målt 2026-08-19 for alle sju harde krav.
 - Kjør søkene **etter `git add`**. `git grep` ser ikke filer som ikke er i
   indeksen, så et søk før staging måler ikke det du er i ferd med å pushe.
 - **Skriv mønstre som ikke treffer seg selv.** En regel som staver ut det den

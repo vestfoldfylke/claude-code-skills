@@ -2,8 +2,9 @@
 name: fase-slutt
 description: >-
   Avslutter en fase eller økt i et faseinndelt prosjekt: oppdaterer logg og
-  STATUS, skriver selvvurdering til læringsloggen, kjører kvalitetsport og
-  sikkerhetsrøyktest, committer og klargjør for /clear. Brukes når en fase er
+  STATUS, skriver selvvurdering til læringsloggen, sjekker at prosjektet fortsatt
+  virker, kjører en rask sikkerhetssjekk, committer og klargjør for /clear.
+  Brukes når en fase er
   ferdig og verifisert av brukeren, eller når en økt avsluttes midt i en fase.
   Triggere: «fase-slutt», «avslutt fasen», «avslutt økten», «end the phase»,
   «wrap up this session».
@@ -36,7 +37,7 @@ Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
    når brukeren har bekreftet.
    **Funn krever belegg:** «observert» betyr at et kall faktisk ble forsøkt og
    utfallet sett — skriv hva som ble kjørt og hva som skjedde. Alt annet føres som
-   hypotese, med hvilken probe som ville avgjort den. En overskrift skal ikke
+   hypotese, med hvilken test som ville avgjort den. En overskrift skal ikke
    påstå mer enn forbeholdene under den tillater. (Samme belegg-krav som
    `laering.md` har.)
 
@@ -72,14 +73,26 @@ Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
    godkjent plan som bare finnes under `~/.claude/plans/` kopieres inn som
    `kunnskap/plan.md` NÅ — den originale er en engangsartikkel.)
 
-4. **Kvalitetsport:** Kjør prosjektets egen sjekk — bygg/typecheck/tester slik
-   de er definert i prosjektets `CLAUDE.md` eller `package.json`. Finnes ingen:
-   hopp over og si det eksplisitt. Feiler den: IKKE commit stille — rapporter
-   resultatet og la brukeren avgjøre. Før resultatet i loggen, slik at
-   «fase X ✅» faktisk betyr noe.
+4. **Virker prosjektet fortsatt?** Kjør sjekken prosjektet selv har, og skriv i
+   loggen hva du kjørte og hva som skjedde — det er det som gjør at «fase X ✅»
+   betyr noe.
 
-5. **Sikkerhetsrøyktest** (røyktest, ikke review — full gjennomgang gjøres med
-   `/security-review` som egen jobb). I git-prosjekter:
+   **Let bredt før du melder at ingen sjekk finnes.** En sjekk er alt som kan
+   svare ja/nei på om prosjektet henger sammen, ikke bare et byggverktøy: tester
+   og typesjekk (`npm test`, `npm run build`, `pytest`), men også validering av
+   manifester eller skjemaer (`claude plugin validate .`), at et script kjører
+   uten feil, eller at en Markdown-lenke ikke er død. Sjekker prosjektets
+   `CLAUDE.md`, `package.json` og eventuelle byggefiler — og spør deg hva slags
+   prosjekt dette er før du konkluderer.
+
+   Finnes det virkelig ingen, si det i vanlig språk («jeg finner ingen sjekk å
+   kjøre i dette prosjektet») og gå videre. Ikke meld fravær av sjekk ut fra én
+   manglende fil: et prosjekt uten `package.json` kan godt ha en. Feiler sjekken:
+   IKKE commit stille — rapporter og la brukeren avgjøre.
+
+5. **Rask sikkerhetssjekk.** Rask er nøkkelordet: dette fanger de grove tabbene,
+   det er ikke en gjennomgang. Full gjennomgang er `/security-review`, en egen
+   jobb. I git-prosjekter:
    - `git ls-files` skal ikke vise andre env-filer enn `.env.example`
    - `git grep` etter 11-sifrede tall (fødselsnummer) og `client_secret` i
      tracked filer — kjente eksempelverdier i dokumentasjon er OK

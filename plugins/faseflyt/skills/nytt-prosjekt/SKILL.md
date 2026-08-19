@@ -48,15 +48,34 @@ seksjoner som er kopiert, ikke bare at fila er opprettet.
 ## Snakk norsk til brukeren
 
 Alt brukeren ser — spørsmålene dine, fasenavnene i planen, STATUS og CLAUDE.md —
-skrives på vanlig norsk. Si «sette opp prosjektet», ikke «scaffolde»; «slår
-inn»/«utløser», ikke «trigge»; «Claude Code selv», ikke «harness-en». Literale
-navn oversettes aldri: `deny`-nøkler i `settings.json`, `commit`, filnavn og
-kommandoer står som de er.
+skrives på vanlig norsk. Pakken brukes av både utviklere og folk som ikke koder,
+og et ord ingen av dem trenger å slå opp koster ingenting å bytte:
 
-**Grunn (målt):** teksten i denne fila speiles rett ut i chatten. Da skillen
-omtalte seg selv som å «scaffolde», svarte økten brukeren «jeg trenger tre
+| Si dette | Ikke dette |
+|---|---|
+| sette opp prosjektet | scaffolde |
+| slår inn / utløser | trigge |
+| Claude Code selv | harness-en |
+| sjekk at prosjektet virker | kvalitetsport |
+| rask sjekk / rask sikkerhetssjekk | røyktest, smoke test |
+| test / kontrollkall | probe |
+| en test som bare kan feile av én grunn | ukonfundert probe |
+| kontrollsøk som skal gi treff | positiv kontroll |
+
+Literale navn oversettes aldri: `deny`-nøkler i `settings.json`, `commit`,
+filnavn og kommandoer står som de er. Møter du et fagord som ikke står i
+tabellen, gjelder regelen bak den: bruk det bare hvis du forklarer det i samme
+setning.
+
+**Grunn (målt to ganger):** teksten i denne fila speiles rett ut i chatten. Da
+skillen omtalte seg selv som å «scaffolde», svarte økten brukeren «jeg trenger tre
 avklaringer før jeg scaffolder» — og fasenavn som «Fase 0 — Scaffold og røyktest»
 fulgte med inn i prosjektets egen `plan.md`, der de blir stående i månedsvis.
+Andre gang (2026-08-19) kom «røyktesten er ren og proben bevist levende» og
+«ingen `package.json` — ingen kvalitetsport i dette repoet» ut i chatten til en
+bruker som måtte spørre hva tre av ordene betød. Ingen av setningene sto i noen
+fil: de ble satt sammen av ordene i *disse* skillene. Derfor er tabellen over en
+regel om hva du skriver her, ikke bare om hva du sier.
 
 ## Når du blir kalt — gjør i rekkefølge
 
@@ -82,7 +101,8 @@ fulgte med inn i prosjektets egen `plan.md`, der de blir stående i månedsvis.
    Endres planen senere, endres `kunnskap/plan.md`. Planstruktur og
    fasedimensjonering: se plan-malen i `references/maler.md` — én fase = én
    enhet brukeren kan verifisere, som får plass i én økt uten `/compact`;
-   fase 0 er alltid oppsett + røyktest; 3–10 faser er normalområdet.
+   fase 0 er alltid oppsett, med noe som kjører til slutt; 3–10 faser er
+   normalområdet.
 
 5. **Opprett filene** ved å kopiere malene i `references/maler.md` **ORDRETT**
    (se regelen over, inkludert etterkontrollen): `kunnskap/STATUS.md`,
@@ -106,7 +126,7 @@ fulgte med inn i prosjektets egen `plan.md`, der de blir stående i månedsvis.
    Deklarer `web-prototype` kun for webapp-typen og `fint-graphql` kun når
    prosjektet bruker FINT. Behandler prosjektet persondata: tilby deny-settet
    for prosjekttypen (se maler.md) — men **skriv aldri en `permissions`-blokk uten
-   å levere integritetsproben i samme endring** (`Bash(curl:*)` mot
+   å levere kontrollkallet i samme endring** (`Bash(curl:*)` mot
    `http://127.0.0.1:9/`): en uverifisert nøkkel kan gjøre hele blokken stille
    inaktiv, og et ubekreftet vern er verre enn ingen. Vær ærlig om grensene i
    samme åndedrag: matcherne er verktøy-scopet (på Windows dekkes ikke

@@ -28,7 +28,7 @@ ved første kjøring:
     riktig i samme kjøring der litteraler i fila er korrupte ⇒ det er
     fildekodingen, ikke konsollet.
 - **Flerlinjede commit-meldinger:** skriv meldingen til fil og bruk
-  `git commit -F <fil>` — here-strings avvises av enkelte harness-oppsett.
+  `git commit -F <fil>` — here-strings avvises i enkelte oppsett av Claude Code.
 - **PowerShell 5.1 mangler `&&`/`||` (bruk `A; if ($?) { B }`), ternary/`??`/`?.`,
   og Unix-kommandoene `head`/`tail`/`touch`/`which`/`wc`.**
 ```
@@ -76,10 +76,10 @@ Write-Output "blåbær på tørt løvverk"   →   blÃ¥bÃ¦r pÃ¥ tÃ¸rt l�
 
 ## Git på Windows
 
-- **Flerlinjede commit-meldinger:** here-strings avvises av enkelte
-  harness-oppsett — skriv meldingen til en fil og bruk `git commit -F <fil>`.
-- `git grep`/`git ls-files` fungerer likt som på Unix og er trygge i
-  sikkerhetsrøyktesten.
+- **Flerlinjede commit-meldinger:** here-strings avvises i enkelte oppsett av
+  Claude Code — skriv meldingen til en fil og bruk `git commit -F <fil>`.
+- `git grep`/`git ls-files` fungerer likt som på Unix og er trygge å bruke i den
+  raske sikkerhetssjekken.
 
 ## PowerShell 5.1-syntaksfeller (for genererte kommandoer)
 

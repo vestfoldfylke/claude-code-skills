@@ -49,11 +49,11 @@ stikkordet du skanner etter. Begge kreves: temaordet gjør listen lesbar, men
 ## Faseplan
 
 <Dimensjonering: én fase = én enhet brukeren kan VERIFISERE (kjøre, se, teste),
-som får plass i én økt uten /compact. Fase 0 er alltid oppsett + røyktest, så
-hele pipelinen er bevist før noe bygges oppå. 3–10 faser er normalområdet. En
-fase som ikke kan verifiseres selvstendig er feil snitt.>
+som får plass i én økt uten /compact. Fase 0 er alltid oppsett som ender i noe
+som kjører — da er hele kjeden bevist før noe bygges oppå. 3–10 faser er
+normalområdet. En fase som ikke kan verifiseres selvstendig er feil snitt.>
 
-### Fase 0 — Oppsett og røyktest
+### Fase 0 — Oppsett, og bevis at det kjører
 <hva som settes opp>
 **Verifisering:** <hva brukeren gjør for å si ✅>
 
@@ -117,10 +117,10 @@ troverdigheten (og regler endres på feil grunnlag). Derfor:
 - **Observert:** <hva ble kjørt> → <hva skjedde>. Bare dette er et funn. Et TOMT
   resultat er ikke et funn før verktøyet er bekreftet å ha kjørt — sjekk
   exit-koden, eller kontroller med et søk som skal gi treff.
-- **Hypotese:** <påstanden> — ikke testet. Avgjøres av: <konkret probe, og
+- **Hypotese:** <påstanden> — ikke testet. Avgjøres av: <konkret test, og
   hvilket utfall som betyr hva>
 
-En overskrift skal ikke påstå mer enn forbeholdene under den tillater. Og en probe
+En overskrift skal ikke påstå mer enn forbeholdene under den tillater. Og en test
 som kan feile av flere grunner måler ingenting — del den i to FØR den kjøres
 (se `fallgruver.md`).
 
@@ -285,7 +285,7 @@ Grunnform (alle prosjekter). `enabledPlugins` utvides med
 ```
 
 Behandler prosjektet persondata, legg til deny-settet. **Les «Deny-settets
-grenser» og kjør integritetsproben under før du stoler på noe av det** — settet
+grenser» og kjør kontrollkallet under før du stoler på noe av det** — settet
 dekker mindre enn navnene antyder, og et vern man tror er tettere enn det er, er
 verre enn ingen vern.
 
@@ -315,12 +315,12 @@ finnes ikke i et POSIX-shell, og der de finnes, dekker ikke `Bash(...)` dem.
 `Bash(npx tsx scripts/*)` står som eksempel på å sperre et konkret script-kall,
 men **stiformen med `/*` er utestet** — alle de målte Bash-reglene bruker
 kolon-prefiksformen (`Bash(curl:*)`), og grense 5 viste nettopp at stiformer
-overrasker. Verifiser den med integritetsproben under før du stoler på den.
+overrasker. Verifiser den med kontrollkallet under før du stoler på den.
 
 **Nettverksdeny må differensieres per prosjekttype.** Mønstrene treffer
 *kommandonavn*, mens risikoen ligger i *målet*: et kall mot `http://localhost:5173`
-(Claude røyktester sitt eget endepunkt — kjernen i fase 0) og et kall mot et
-produksjons-API er samme kommando og helt ulike handlinger.
+(Claude sjekker at prosjektets eget endepunkt svarer — kjernen i fase 0) og et
+kall mot et produksjons-API er samme kommando og helt ulike handlinger.
 
 | Type | Nettverk | Hvorfor |
 |---|---|---|
@@ -357,14 +357,15 @@ gratis å utelukke:
    filen eller nøkkelen er avvist — fiks det FØR du konkluderer på noen annen
    regel.
 
-Proben må være **ukonfundert**: bruk en regel som IKKE har en tilsvarende regel i
-CLAUDE.md. Fil-prober på `.env` duger ikke — Claude avslår dem av eget skjønn uten
-å forsøke noe verktøykall, og da er harness-en aldri testet; modellens gode
-oppførsel maskerer om deny-regelen i det hele tatt er koblet til. Port 9 (discard)
+Kontrollkallet må bare kunne feile av **én** grunn: bruk en regel som IKKE har en
+tilsvarende regel i CLAUDE.md. Å prøve å lese `.env` duger ikke — Claude avslår det
+av eget skjønn uten å forsøke noe verktøykall, og da er Claude Code selv aldri
+testet; modellens gode oppførsel maskerer om deny-regelen i det hele tatt er
+koblet til. Port 9 (discard)
 har ingen lytter, så «kjørte» skiller seg tydelig fra «blokkert»: et kall som når
 nettverksstakken feiler på manglende tilkobling.
 
-**Rydd riggen eksplisitt.** Dummy-filene du lager for å probe fil-reglene
+**Rydd opp etter deg eksplisitt.** Dummy-filene du lager for å teste fil-reglene
 (`.env`, `data/dummy.csv`) er som regel nettopp de stiene `.gitignore` dekker — så
 `git status` viser dem ikke, og de blir liggende usett. Skriv dem ned mens du
 lager dem, og slett dem etterpå. En glemt `data/`-katalog med en dummy i ser ekte
@@ -392,7 +393,7 @@ ut for neste person som åpner prosjektet.
    delvis konfidensialitet og INGEN integritetsbeskyttelse.** Claude kan slette
    en fil den ikke får lov til å lese.
 3. **Deny-sjekken går foran eksistenssjekken.** En dekket sti som ikke finnes gir
-   «denied», ikke «does not exist». Nyttig når du prober: «blokkert» kan ikke
+   «denied», ikke «does not exist». Nyttig når du tester: «blokkert» kan ikke
    forveksles med «feil filnavn».
 4. **En `ask`-nøkkel forkaster ikke blokken.** Målt med en `ask`-liste i samme
    `permissions`-objekt: deny virket fortsatt.

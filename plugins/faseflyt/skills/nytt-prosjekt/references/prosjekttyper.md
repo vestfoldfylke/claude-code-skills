@@ -28,7 +28,8 @@ SvelteKit + Designsystemet, ofte for brukertesting. `web-prototype`-skillen
 Har prototypen eget visuelt tema: følg `claude-design-oppskrift.md`.
 Full sikkerhetssjekkliste fra maler.md — BFF-endepunkter regnes som API-flate.
 Behandler prototypen persondata: **ikke** bredt nettverksdeny — Claude må kunne
-kalle sitt eget `localhost`-endepunkt for røyktesten i fase 0. Bruk mønstre som
+kalle sitt eget `localhost`-endepunkt for å sjekke at det svarer i fase 0. Bruk
+mønstre som
 treffer produksjonsvertene i stedet (se «Deny-settets grenser» i maler.md).
 
 ## Script / automatisering

@@ -11,7 +11,8 @@
 # Kjør ETTER `git add`: `git grep` ser ikke filer som ikke er i indeksen, så et
 # søk før staging måler ikke det du er i ferd med å pushe.
 #
-# Måleregelen er innebygd: den positive kontrollen kjører FØRST, og et søk som
+# Måleregelen er innebygd: kontrollsøket — det som SKAL gi treff — kjører FØRST,
+# og et søk som
 # feiler (ikke «null treff», men faktisk feil — f.eks. ugyldig pathspec)
 # rapporteres som feil, ikke som renhet. Et tomt søkeresultat fra et søk som
 # aldri kjørte er ikke en måling.
@@ -85,21 +86,21 @@ bor_unngaas() {
   printf '✓ %s\n' "$navn"
 }
 
-echo "== Positiv kontroll (måleregelen: bekreft at verktøyet kjørte) =="
-# Kontrollen er avgrenset til plugins/ med hensikt. Et søk over hele repoet
-# ville treffe dette scriptets egen tekst, og da beviser kontrollen bare at
-# «git grep» kjørte — ikke at søkene nådde PAKKEN, som er det de skal måle.
-# Målt 2026-08-19: kontrollen ga 8 treff i et repo som bare inneholdt dette
-# scriptet, altså falsk trygghet. Avgrenset til plugins/ kan den ikke det.
+echo "== Kontrollsøk: skal gi treff, ellers måler ingenting under noe =="
+# Kontrollsøket er avgrenset til plugins/ med hensikt. Et søk over hele repoet
+# ville treffe dette scriptets egen tekst, og da beviser det bare at «git grep»
+# kjørte — ikke at søkene nådde PAKKEN, som er det de skal måle.
+# Målt 2026-08-19: søket ga 8 treff i et repo som bare inneholdt dette
+# scriptet, altså falsk trygghet. Avgrenset til plugins/ kan det ikke det.
 kontroll=$(sok 'faseflyt' plugins/); rc=$?
 kjorte=$((kjorte + 1))
 if [ "$rc" -ne 0 ]; then
-  echo "✗ Positiv kontroll ga INGEN treff på «faseflyt» i plugins/."
+  echo "✗ Kontrollsøket ga INGEN treff på «faseflyt» i plugins/."
   echo "  Da måler ingen av søkene under noe som helst — de kjøres ikke."
   echo "  Sjekk at du står i repo-roten, at filene er tracket, og at du kjørte etter «git add»."
   exit 1
 fi
-printf '✓ Positiv kontroll: %s treff på «faseflyt» i plugins/ — søkene treffer pakken\n\n' \
+printf '✓ Kontrollsøk: %s treff på «faseflyt» i plugins/ — søkene treffer pakken\n\n' \
   "$(printf '%s\n' "$kontroll" | wc -l | tr -d ' ')"
 
 echo "== Hele repoet (gjelder også kunnskap/) =="

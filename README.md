@@ -99,7 +99,8 @@ i rekkefølge:
    ingen ny fase før du har sagt at denne virker.
 
 6. **`/faseflyt:fase-slutt`** — Claude oppdaterer logg og STATUS, vurderer sin
-   egen arbeidsmåte, kjører sikkerhetsrøyktest, committer og pusher.
+   egen arbeidsmåte, sjekker at prosjektet fortsatt virker, kjører en rask
+   sikkerhetssjekk, committer og pusher.
 
 7. **`/clear`** — tøm samtalen. Alt som er verdt å huske ligger nå i filer.
 
@@ -116,7 +117,7 @@ Gjenta 4–8 til planen er levert.
 | `/faseflyt:nytt-prosjekt` | Setter opp fase-strukturen i et nytt eller eksisterende prosjekt | Én gang per prosjekt |
 | `/faseflyt:grill-me` | Nådeløst intervju som låser beslutningene før koding | Før planen skrives |
 | `/faseflyt:fase-start` | Leser STATUS + plan, oppsummerer, foreslår neste steg | Første handling i hver økt |
-| `/faseflyt:fase-slutt` | Logg, STATUS, selvvurdering, røyktest, commit | Når du har verifisert en fase |
+| `/faseflyt:fase-slutt` | Logg, STATUS, selvvurdering, sikkerhetssjekk, commit | Når du har verifisert en fase |
 
 | Plugin | For hvem |
 |---|---|

@@ -84,6 +84,25 @@ dette er en instruks og ikke en håndhevet regel.
   si OK.
 - **Målt på nytt (opphever påstand fra samme dag):** hardening er av — `rulesets`
   `[]`, `rules/branches/main` `[]`, `branches/main.protected` `false`.
+- **Observert, ETTER at faseslutt-commiten var pushet: en 130 KB `.docx` ble
+  committet uten å ha blitt lest av noe søk.** `git add -A` stagede en fil jeg ikke
+  hadde sett på, og alle ni søk hoppet over den fordi `git grep -I` ignorerer
+  binærfiler. Porten meldte «9 søk / 0 feil» på en fil den ikke kunne lese. Steg
+  5-globben min traff `csv|xlsx|json` og aldri `.docx` — utsagnet «ingen
+  uttrekksfiler tracket» var sant som skrevet, men lød bredere enn mønsteret det
+  hvilte på. Samme klasse som `[tom-output-to-betydninger]`.
+  - **Hvorfor det veier mer i dette repoet:** `/plugin marketplace add` er en
+    `git clone`, så alt tracket havner på disken til hver kollega som installerer
+    pakken.
+  - **Rettet i denne commiten:** tiende søk i `sjekk.sh` som lister tracked
+    binærfiler og feiler på dem (unntaksliste `binaer-unntak.txt`, tomme filer
+    filtreres siden de matcher ingenting). Kanarifugl-testet begge veier: slo ut på
+    `.docx`-en med exit 1, ren etter untracking. `kunnskap/*.docx|xlsx|pptx|pdf` inn
+    i `.gitignore`, og kravet dokumentert i `docs/installasjon.md`.
+  - **Beslutning (BK, docx-en):** fila ble lagt inn med hensikt som
+    vurderingsunderlag for samlingen. Den untrackes og blir liggende lokalt; nytt
+    TODO-punkt om å teste én av casene. **Historikken skrives IKKE om** — fila
+    finnes i `cd50841` for de med repo-tilgang, og det er akseptert.
 
 ## 2026-08-19 — To maskiner, tre PR-er merget, `kunnskap/` inn i git ✅
 

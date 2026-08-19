@@ -8,6 +8,25 @@ blokkerer ikke testen — `TODO.md` (535 linjer) + `plan.md` (605) er utredning,
 mens pakken alt er testbar. «Helhetsvurdering»-spørsmålet lenger ned besvares
 av to reelle brukere, ikke av mer analyse.
 
+## Velg case til samlingen (BK, lagt inn 2026-08-19)
+
+**Underlaget ligger lokalt, ikke i git:** `kunnskap/KI-Samling for DT september
+2026 vibe-coding-oppgavelapper.docx` på BKs maskin. Bevisst untracket — repoet er
+et plugin-marketplace, og `/plugin marketplace add` er en `git clone`, så alt
+tracket havner hos hver kollega som installerer pakken. Dekket av `.gitignore`
+(`kunnskap/*.docx`). *(Fila ligger i historikken fram til `cd50841`; ikke fjernet
+derfra, se loggen.)*
+
+**Jobben:** BK tester én av casene i dokumentet, og vurderer hvilke av dem som
+egner seg for en samling der `faseflyt` prøves i **gruppearbeid**. Dette henger
+sammen med «Forcing function: samling med 30 deltakere» lenger ned — særlig at
+formen er gruppearbeid med én som skriver, og at `/grill-me` antakelig er den mest
+gruppevennlige delen av pakken.
+
+Kriterier verdt å vurdere casene mot, fra det som alt er kjent: kan en gruppe
+**verifisere** resultatet selv (verifiseringsporten er hele flyten), får den plass
+i én økt uten `/compact`, og holder den seg til syntetiske data.
+
 ## Actions — venter på utviklerne (BK tar samtalen)
 
 Målt 2026-08-19: `actions/permissions` → `enabled: false`, `gh run list` tom

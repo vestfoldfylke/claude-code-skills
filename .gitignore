@@ -1,6 +1,15 @@
 # Ingenting hemmelig skal noensinne inn her — pakken er ren arbeidsflyt.
 # Maskinlokale tillatelser — gjelder bare denne maskinen, aldri delt:
 .claude/settings.local.json
+# Arbeidsdokumenter i kunnskap/ holdes lokale. Grunn: repoet er et
+# plugin-marketplace, og «/plugin marketplace add» er en git clone — alt som er
+# tracket havner på disken til hver kollega som installerer pakken. Notater og
+# vurderingsunderlag hører ikke der. Renhetssjekken kan dessuten ikke lese
+# binærfiler, så de ville passert porten uinspisert.
+kunnskap/*.docx
+kunnskap/*.xlsx
+kunnskap/*.pptx
+kunnskap/*.pdf
 # Standard støy:
 Thumbs.db
 .DS_Store

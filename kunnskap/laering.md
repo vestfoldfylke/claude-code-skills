@@ -61,6 +61,17 @@ fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
   dekker begge de målte oppstartsfellene). Kontrast i samme økt: språkvasken kom fra
   en ekte bruker som ikke forsto tre ord, og traff kollegatesten direkte. Skillet
   mellom de to er hvem som etterspurte det.
+- **[git-add-alt-er-å-publisere-usett]** `git add -A` er en publiseringshandling.
+  Se hva som stages før du committer — særlig i et repo som klones av andre. Og en
+  sjekk du melder som «ren» må navngi hva den *ikke* dekker. Belegg: jeg pushet en
+  130 KB `.docx` jeg aldri hadde åpnet; alle ni renhetssøk hoppet over den fordi
+  `git grep -I` ignorerer binærfiler, og porten meldte «0 feil» på en fil den ikke
+  kunne lese. Min egen steg 5-glob traff `csv|xlsx|json` og aldri `.docx` — utsagnet
+  «ingen uttrekksfiler tracket» var sant som skrevet, men lød bredere enn mønsteret
+  det hvilte på. Rettet med et tiende søk som feiler på tracked binærfiler, men
+  feilen var én `git status` unna å bli oppdaget før pushen. To lærdommer i én:
+  `-I` er en stille avgrensning i ethvert `git grep`, og en glob i en sikkerhetssjekk
+  må leses som «dette er alt jeg ser etter».
 - **[les-pakkens-egne-regler-før-du-skriver-i-den]** Før du skriver brukerrettet
   tekst i et prosjekt som har stilregler, les reglene prosjektet selv håndhever.
   Belegg: klarspråk-regelen sto i `nytt-prosjekt/SKILL.md` og pakken brøt den to

@@ -182,6 +182,50 @@ else
 fi
 
 echo
+echo "== Tracked binærfiler (søkene over kan ikke lese dem) =="
+# Hvorfor dette er et hardt krav: alle søkene over bruker «git grep -I», som
+# hopper over binærfiler. En tracked .docx/.xlsx/.pdf går derfor gjennom hele
+# sjekken uinspisert, og «RENHETSSJEKK OK» kommer til å bety «jeg så ikke etter».
+# Målt 2026-08-19: en 130 KB .docx ble committet og pushet mens sjekken meldte
+# 9 søk / 0 feil — fila var usynlig for hvert enkelt av dem.
+# Det gjelder dobbelt her fordi repoet er et plugin-marketplace: «/plugin
+# marketplace add» er en git clone, så alt tracket havner på disken til hver
+# kollega som installerer pakken.
+# Metode: «git grep -Il ''» lister filene git regner som tekst; differansen mot
+# «git ls-files» er binærfilene. Tomme filer matcher ingenting og filtreres bort
+# eksplisitt, ellers ville de gitt falske treff.
+kjorte=$((kjorte + 1))
+UNNTAK_BINAER=".github/renhet/binaer-unntak.txt"
+tekstfiler=$(git grep -Il '' -- . 2>/dev/null | sort)
+if [ -z "$tekstfiler" ]; then
+  echo "✗ Fant ingen tekstfiler i det hele tatt — søket kunne ikke kjøres."
+  feil=$((feil + 1))
+else
+  binaere=$(comm -23 <(git ls-files | sort) <(printf '%s\n' "$tekstfiler"))
+  ukjente=""
+  while IFS= read -r f; do
+    [ -z "$f" ] && continue
+    # Tom fil er ikke binær — den matcher bare ingenting.
+    if [ -f "$f" ] && [ ! -s "$f" ]; then continue; fi
+    if [ -f "$UNNTAK_BINAER" ] && grep -qxF "$f" "$UNNTAK_BINAER"; then continue; fi
+    ukjente="${ukjente}${f}
+"
+  done <<EOF
+$binaere
+EOF
+  if [ -z "$ukjente" ]; then
+    echo "✓ Ingen tracked binærfiler utenfor unntakslisten"
+  else
+    echo "✗ Tracked binærfiler som ingen av søkene over har lest:"
+    printf '%s' "$ukjente" | sed 's/^/    /'
+    echo "  Enten hører fila ikke i repoet (untrack den: git rm --cached <fil>,"
+    echo "  og legg mønsteret i .gitignore), eller den skal være der og føres i"
+    echo "  $UNNTAK_BINAER — med en linje om hvorfor innholdet er greit å dele."
+    feil=$((feil + 1))
+  fi
+fi
+
+echo
 echo "== kunnskap/ (internt arbeidsarkiv — «bør», ikke «skal») =="
 
 # docs/installasjon.md: absolutte brukerstier BØR generaliseres til ~/-form her.

@@ -29,6 +29,12 @@ droppet.**
 
 ## Arbeidsmåte neste økt
 
+- **[git-add-alt-er-å-publisere-usett]** `git add -A` er en publiseringshandling —
+  se hva som stages før commit, i et repo andre kloner. Og en sjekk du melder som
+  «ren» må navngi hva den *ikke* dekker. Belegg: jeg pushet en 130 KB `.docx` jeg
+  aldri åpnet; alle ni søk hoppet over den (`git grep -I` ignorerer binærfiler), og
+  min egen glob traff `csv|xlsx|json`, aldri `.docx`. Én `git status` unna å bli
+  oppdaget i tid.
 - **[grønn-sjekk-er-ikke-grønn-port]** Er leveransen en mekanisme, mål at den er
   *koblet til* før du bygger på den — den billige målingen først. Belegg: 276
   linjer renhetsport skrevet, testet og pushet før jeg oppdaget at Actions er
@@ -36,9 +42,6 @@ droppet.**
 - **[mvp-drift]** Sjekk STATUS-rangeringen mot brukerens nærmeste mål før du
   bygger. Belegg: CI-porten sto som punkt 1 og ble bygget; BK bestemte samme økt at
   den holdes internt, og måtte selv si at prosjektet hadde vokst forbi MVP.
-- **[hent-bare-det-du-trenger]** *(omformulert fra `[explore-delegering]`, som var
-  bundet til et verktøy som ikke alltid finnes)* Les linjeintervaller, tell før du
-  leser innhold, hent én seksjon framfor hele fila. Explore når den er tilgjengelig.
 
 ## Det en ny økt må vite
 
@@ -50,6 +53,13 @@ droppet.**
   Pakkeendring går da rett på `main`; branch + PR gjelder når hardening er på.
 - **Porten er `bash .github/renhet/sjekk.sh` + `claude plugin validate .`** — kjør
   sjekken ETTER `git add`. Ingen `package.json`, men ikke meld «ingen sjekk finnes».
+  Ti søk. Det tiende feiler på **tracked binærfiler**, fordi `git grep -I` ikke kan
+  lese dem og de ellers passerer porten usett. Arbeidsdokumenter i `kunnskap/`
+  (`.docx`/`.xlsx`/`.pptx`/`.pdf`) er gitignorert og skal holdes lokale — `/plugin
+  marketplace add` er en `git clone`, så alt tracket havner hos hver kollega.
+- **Hent bare det du trenger** *(vane, ikke korrigering)*: les linjeintervaller,
+  tell før du leser innhold, hent én seksjon framfor hele fila. Explore-subagent
+  når den er tilgjengelig.
 - **Klarspråk-regelen er en tabell** i `nytt-prosjekt/SKILL.md` — pakken leses av
   folk som ikke koder. Ikke «kvalitetsport», «røyktest», «probe», «harness», ikke
   «scaffolde». Bruker du et fagord som ikke står i tabellen, forklar det i samme

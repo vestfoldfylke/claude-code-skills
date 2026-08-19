@@ -135,6 +135,21 @@ opp ved 1.0.
   leser — også for deg selv på neste maskin.
 - Kravet om secrets, persondata og miljø-URL-er gjelder fullt ut også her.
 
+### Binærfiler kan ikke søkes — de skal ikke være tracket
+
+Alle søkene bruker `git grep -I`, som hopper over binærfiler. En tracked
+`.docx`/`.xlsx`/`.pdf` går derfor gjennom hele sjekken uinspisert, og «RENHETSSJEKK
+OK» kommer til å bety «jeg så ikke etter». Målt 2026-08-19: en 130 KB `.docx` ble
+committet og pushet mens sjekken meldte 0 feil — fila var usynlig for hvert enkelt
+søk.
+
+Det veier ekstra her fordi repoet er et plugin-marketplace: `/plugin marketplace
+add` er en `git clone`, så alt som er tracket havner på disken til hver kollega som
+installerer pakken. Arbeidsdokumenter og vurderingsunderlag i `kunnskap/` holdes
+derfor lokale — `.gitignore` dekker de vanlige kontorformatene. Skal en binærfil
+likevel være med, føres den i `.github/renhet/binaer-unntak.txt` med en linje om
+hvorfor innholdet er greit å dele.
+
 ### Måleregelen (gjelder alle søkene over)
 
 - **Et tomt søkeresultat er ingen måling** før verktøyet er bekreftet å ha kjørt.

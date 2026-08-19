@@ -86,11 +86,14 @@ GitHub-tilgang til dette repoet.
 - Den gamle forkortelsen for fylkeskommunen (v-t-f-k) — null treff i hele
   repoet; vi heter Vestfold fylkeskommune.
 - Personnavn og private repo-referanser — null treff.
-- `fint` — kun i `plugins/fint-graphql/`, med ett unntak: `nytt-prosjekt` må
-  kunne spørre om prosjektet bruker FINT for å avgjøre om `fint-graphql`
-  deklareres. Slik deklarasjonslogikk i `plugins/faseflyt/` er legitim. Det er
-  FINT-*innhold* — entiteter, spørringer, miljø-URL-er — som ikke hører hjemme
-  der. Uten unntaket slår regelen ut ved hver eneste kjøring.
+- `fint` — regelen gjelder **`plugins/`, ikke hele repoet**: kun i
+  `plugins/fint-graphql/`, med ett unntak: `nytt-prosjekt` må kunne spørre om
+  prosjektet bruker FINT for å avgjøre om `fint-graphql` deklareres. Slik
+  deklarasjonslogikk i `plugins/faseflyt/` er legitim. Det er FINT-*innhold* —
+  entiteter, spørringer, miljø-URL-er — som ikke hører hjemme der. Uten unntaket
+  slår regelen ut ved hver eneste kjøring. I `kunnskap/` er `fint-samtykke` en
+  legitim referanse til prosjektet arbeidsflyten ble utviklet for — plan og TODO
+  viser til det som *prosjekt*, ikke som FINT-innhold.
 - Aldri persondata, fødselsnummer, secrets eller interne miljø-URL-er,
   heller ikke i eksempler.
 - **Et tomt søkeresultat er ingen måling** før verktøyet er bekreftet å ha kjørt.

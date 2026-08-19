@@ -9,6 +9,82 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-19 — Synkeøkten: `kunnskap/` inn i git, og regelsettet som målte én maskin
+
+**Evaluering av forrige økts punkter:**
+
+- **[riggen-fryses-under-måling]** *(1. gang)* — **fulgt, men svakt prøvd. Strykes.**
+  Ingen måleøkt kjørte i dag, så regelen ble ikke satt på prøve slik den var tenkt.
+  Det som fantes: renhetssjekken ble kjørt, deretter ble både reglene og filene
+  endret, og sjekken ble kjørt om mot det nye treet framfor at det første
+  resultatet ble gjentatt som fortsatt gyldig. Riktig oppførsel, men billig — jeg
+  krediterer den ikke som mer enn det.
+- **[egne-verktøy-treffes-av-pakkens-egne-feller]** *(1. gang)* — **fulgt, og den
+  fyrte. Strykes.** Belegg: sti-mønsteret som skulle inn i det kanoniske
+  regelsettet fikk egen positiv kontroll, og kontrollen avslørte en **falsk
+  positiv i min egen test**. `printf` tolket `\U` og `\x` som egne escapes, så
+  backslashen foran brukernavnet forsvant fra teststrengen — mønsteret traff, men
+  fordi wildcarden `.` slukte første bokstav i navnet, ikke fordi Windows-armen
+  virket. Nøyaktig
+  klassen `-like`-fella tilhører. Hadde jeg stoppet ved «3 treff, mønsteret
+  virker», ville en uverifisert sjekk gått inn i `docs/installasjon.md` som
+  kanonisk krav. Kjørt om med korrekt streng: alle tre armer treffer, ingen
+  selvtreff.
+- **[todo-er-datert-observasjon-ikke-tilstand]** *(1. gang)* — **fulgt tre ganger,
+  men VIDEREFØRES SKJERPET (2. gang)**, fordi regelen viste seg å gjelde bredere
+  enn den ble skrevet. Belegg for etterlevelsen: (1) instruksen oppgav `main =
+  e11f857` som faktum, og jeg fetchet før jeg bekreftet — før fetch viste lokal
+  `main` «behind 9» mot en ref fra forrige økt. (2) Jeg nektet å kjøre
+  `fase-start` på en `STATUS.md` fra 18.08. (3) `plan.md` påsto, **eksplisitt som
+  målt 2026-08-18**, at hardening var på og ikke kunne slås av på repoet; målt
+  19.08 ga `rules/branches/main` og `rulesets` begge `[]`.
+  **Skjerpingen:** punkt 3 er ikke et TODO-punkt. Det er en måling, med dato og
+  metode, i prosjektets egen plan — og den var like foreldet. Regelen ble skrevet
+  om TODO-innslag; den gjelder alt datert, «målt» inkludert. En måling er et
+  faktum om et tidspunkt, ikke om nå. Videreføres til skjerpingen faktisk er
+  prøvd, ikke bare oppdaget.
+
+**Nye punkter:**
+
+- **[arvet-regel-prøves-før-den-etterleves]** En nedskrevet regel er en beslutning
+  noen tok med informasjon jeg ikke har — men den er ikke immun. Før jeg
+  gjennomfører et mekanisk sveip fra en arvet regel: sjekk at den generaliserer
+  til dem den påstår å tjene, og at omgåelsene den bærer med seg fortsatt binder.
+  Belegg (1): jeg utførte hele ryddetabellen, oppdaget at kontonavnet manglet i
+  den, og løste hullet ved å **utvide** regelen — hyphenerte den inn i to filer til
+  — framfor å spørre om en regel som navngir én person i det hele tatt er riktig i
+  et repo som distribueres til andre. Den er ikke: `<brukernavn> = 0 treff` går ren
+  for alle andre enn den ene personen. Commit 2 reverserte deler av commit 1.
+  Belegg (2): jeg kopierte hyphenerings-omgåelsen fra `(v-t-f-k)` fordi den var
+  presedens. Da samme problem dukket opp for stier, fant jeg en konstruksjon som
+  er selvsikker uten å skjemme teksten — den fantes hele tiden. Presedens forklarer
+  hvorfor noe ble gjort, ikke at det er den beste måten.
+- **[explore-delegering]** Søk på tvers av flere filer der jeg trenger
+  konklusjonen, ikke treffene, skal til Explore-subagenten — det står i den globale
+  arbeidsflyten og jeg brukte den ikke i dag. Belegg: søket etter hvor
+  `.claude/`-beslutningen sto trakk **60 linjer fra 7 filer** inn i hovedtråden.
+  Jeg trengte to av dem (`STATUS.md:65` og `plan.md:171`). Resten var
+  `~/.claude`-treff fra fem andre sammenhenger. Et delegert søk ville gitt de to
+  linjene og latt konteksten være i bruk til arbeidet.
+
+**Etikett-telling:** `[riggen-fryses-under-måling]` og
+`[egne-verktøy-treffes-av-pakkens-egne-feller]` er strøket etter 1 gang og
+nullstilles. `[todo-er-datert-observasjon-ikke-tilstand]` står nå på **2**
+påfølgende faseslutt. `[arvet-regel-prøves-før-den-etterleves]` og
+`[explore-delegering]` er første gang. **Ingen etikett har stått tre påfølgende
+ganger ⇒ ingen promotering til `CLAUDE.md`.** Merk for neste faseslutt: står
+`[todo-er-datert-observasjon-ikke-tilstand]` igjen, er den en manglende regel og
+hører permanent i `CLAUDE.md`.
+
+**Gjelder noe av dette arbeidsflyten selv?** Ett punkt, og som 18.08: dette *er*
+repoet som eier skillene, så mekanismen er TODO/PR, ikke `gh issue create`.
+Observasjonen: `fase-slutt` steg 4 definerer kvalitetsporten som «bygg/typecheck/
+tester slik de er definert i `CLAUDE.md` eller `package.json`. Finnes ingen: hopp
+over og si det». Dette repoet har ingen `package.json`, men har siden PR #13 en
+reell port i `claude plugin validate` — ordlyden peker altså mot å hoppe over en
+port som finnes. Ført i `TODO.md`. Ingen persondata eller interne detaljer i den
+formuleringen, så den kan gjenbrukes ordrett hvis den skal bli et issue senere.
+
 ## 2026-08-18 (kveld) — O8-fiksen og målingen av den
 
 **Evaluering av forrige økts punkter — alle tre fulgt, alle tre strykes:**

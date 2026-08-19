@@ -2,6 +2,163 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-19 — To maskiner, tre PR-er merget, `kunnskap/` inn i git ✅
+
+**Maskiner:** kontor-PC-en `VPC-8WD9VC4` (Dell, ARM64/Snapdragon X Elite, Win 11
+Ent 10.0.26200, PS 5.1, ingen `pwsh`) formiddag; hjemme-PC-en `VPC-5CG3433WMH`
+ettermiddag/kveld. `main` = `578dc95`. faseflyt **0.2.1**, konsistent.
+
+**Merget i dag:** PR #12 (ordrett maltekst, merge `057a3fc`), PR #13
+(manifest-konsistens), PR #14 (`kunnskap/` inn i git + omskrevne renhetskrav).
+
+### Levert
+
+**PR #13 — manifestene var ikke enige.** `plugin.json` sa 0.2.1,
+`marketplace.json` sto på 0.2.0. Feilmodusen er den ubehagelige sorten: ved
+installasjon vinner `plugin.json`, så pakken som installeres er riktig og
+ingenting feiler — det eneste symptomet er at `/plugin`-listen viser feil versjon
+til kollegaer, altså at det ene tallet de har å gå etter ikke er til å stole på.
+`claude plugin validate` er lagt inn som eget steg i release-rutinen; den fanger
+nettopp dette med presis feilmelding.
+
+**Kontor-PC-en er ferdig og verifisert etter restart.** `~/.claude` flyttet fra
+`master` til `main` (`c12b881`), de ni gamle duplikatfilene borte fra disk,
+marketplace + tre plugins installert user scope (faseflyt 0.2.1, web-prototype
+0.1.0, fint-graphql 0.1.0, alle enabled). Skillene eksponeres med
+`faseflyt:`-prefiks; `fase-start`/`fase-slutt` er nå skills, ikke
+slash-kommandoer. **Hele installasjonsstien er dermed målt på en maskin uten noe
+av oppsettet fra før, på ARM.**
+
+**PR #14 — `kunnskap/` inn i git.** Mappa har vært gitignored siden #1. Med to
+maskiner gjorde det `STATUS.md` til en fil som ikke kunne synkes, og dermed til en
+mulig konkurrent til seg selv. `.claude/settings.json` inneholdt maskinlokale
+`Read`-tillatelser; innholdet er flyttet til `.claude/settings.local.json` og det
+navnet er gitignorert.
+
+### Beslutninger
+
+**Beslutning (BK, test 4):** bakoverkompatibilitetstesten droppes helt —
+retter det som ble skrevet i overleveringen samme dag om at den «kan kjøres fra
+kontor-PC-en». Begrunnelse: den verner prosjekter med gammel `kunnskap/`-form, og
+den eneste som har slike prosjekter er den som har brukt skillen til nå. Kollegaer
+har ingen gamle prosjekter, så testen kan ikke avdekke noe som rammer dem. Det er
+en regresjonstest for egne filer, ikke en utrullingstest for pakken.
+Verifiseringsplanens punkt 5 utgår. Kravet i CHANGELOG om at `fase-start` skal
+tåle eldre struktur står ved lag — det er bare den eksplisitte testen som droppes.
+
+**Beslutning (BK, `.claude/`-plassering):** maskinlokale tillatelser flyttes til
+`settings.local.json` framfor å gitignorere hele `.claude/`. Å gitignorere mappa
+ville permanent stengt repoet fra å deklarere sine egne plugins — mekanismen
+pakken finnes for. Regelen «lokale tillatelser committes ikke» sto tidligere bare
+i en gitignorert note, uten noe som håndhevet den, samtidig som prosedyren sier
+`git add -A`.
+
+**Beslutning (BK, hardening og review):** branch-hardening slått av for repoet;
+vi opererer alene fram til 1.0. Begrunnelse: reviewen var i praksis et stempel
+uten leser, og en port ingen går gjennom er ingen port. Målt etter avslaget:
+`rules/branches/main` og `rulesets` gir begge `[]`, `branches/main` gir
+`protected: false`. **Konsekvensen står i `plan.md` og skal tas opp igjen ved
+1.0:** repoet er en instruksjonskanal inn i kollegaers Claude-økter, det har ingen
+automatisk sjekk utover `claude plugin validate`, og uten hardening og uten review
+finnes det nå ingen port. Naturlig erstatning er en CI-sjekk som kjører
+renhetssøkene med den positive kontrollen — en port som er en måling framfor en
+person virker også når review er av.
+
+### Funn
+
+**En ufetchet remote-ref er ingen måling av remoten.** `git status -sb` viste
+`## master...origin/master` uten ahead/behind, og det ble lest som «i synk med
+origin». `origin/master` var en lokal ref som ikke var hentet siden juli —
+maskinen lå tre commits bak, og en hel planleggingsrunde gikk med til å forberede
+en sletting som allerede var gjort (`6cda506`, gjort hjemmefra 18.08). Ført i
+`laering.md`. Gjentok seg i miniatyr samme kveld: lokal `main` viste «behind 9»
+mot en ref fra før forrige økt, og `e11f857` kunne først bekreftes etter `fetch`.
+
+**Diskriminatoren for installasjonen var innholdsbasert, ikke et versjonsnummer.**
+Ved øktstart lød skill-beskrivelsen «**Scaffolder** fase-arbeidsflyten…»; etter
+restart «**Setter opp** …». Ordbyttet er `85a02af`, som bare finnes i 0.2.1 — så
+teksten som faktisk er lastet er 0.2.1 uavhengig av hva `claude plugin list`
+rapporterer. Verdt å gjenta som metode: versjonsstrengen kan lyve (jf.
+manifest-avviket i PR #13), ordlyden kan ikke.
+
+**En renhetsregel som leter etter én persons brukernavn måler én maskin.**
+Regelsettet krevde `<brukernavn>` og `<kontonavn>` = 0 treff. En kollega som
+committer sin egen absolutte sti passerer alle søkene, og sjekken rapporterer
+«ren» — den ser ut som en personverngaranti og er hygiene for én maskin. Verre
+enn ingen regel, fordi den gir falsk trygghet. `docs/installasjon.md` er delt i
+pakke / `kunnskap/` / måleregel, og sti-søket er nå generisk. Privat repo er ikke
+lenger forbudt ved strengmatch — det er *funksjonen* som er problemet: en
+installasjonsinstruks mot et utilgjengelig repo gir en død peker, mens det å nevne
+et privat repo i historikk er greit. Prototyping under egen konto før flytting til
+`vestfoldfylke` er en normal arbeidsmåte, ikke et regelbrudd.
+
+**Selvrefererende regel har en bedre løsning enn hyphenering.** Et mønster som
+krever et alfanumerisk tegn etter skilletegnet
+(`C:.Users.[A-Za-z0-9]|/home/[A-Za-z0-9]|/Users/[A-Za-z0-9]`) treffer verken
+regelteksten eller sin egen regex-literal, og slipper å skjemme teksten. `v-t-f-k`
+beholder hyphenering, siden den er nulltoleranse på hele repoet.
+
+**Hjemme-PC-ens plugin: innholdet er 0.2.1, alle versjonsetiketter sier 0.1.0.**
+Målt ved faseslutt, med samme innholdsdiskriminator som PR #13 etablerte.
+`claude plugin list` sier 0.1.0 (user scope), cache-katalogen heter `0.1.0`, og
+`plugin.json` i cachen sier `"version": "0.1.0"` — men
+`skills/nytt-prosjekt/SKILL.md` har `description: Setter opp fase-arbeidsflyten…`,
+og `Scaffolder` finnes **0 ganger** i fila. Ordbyttet er `85a02af`, som bare finnes
+i 0.2.1. De to gjenværende `scaffold`-treffene er den engelske triggerfrasen PR #12
+beholdt med vilje.
+
+Dette er samme defektklasse som PR #13 rettet, speilvendt: der løy
+`marketplace.json` lavt mens installasjonen var riktig; her lyver hele
+etikettsettet lavt mens innholdet er riktig. **Mekanismen er ikke målt** —
+sannsynligheten er at `marketplace update` friskner opp filinnholdet i en katalog
+som er navngitt etter versjonen ved installasjonstidspunktet, uten å skrive om
+`plugin.json`. Står som hypotese med navngitt probe: sammenlign cachens filer mot
+`main` byte for byte, og se om katalognavnet endrer seg etter en ny
+`marketplace update`.
+
+**Praktisk konsekvens er motsatt av det forrige STATUS advarte om.** Den sa
+«installert plugin er 0.1.0 (`cfc4558`), marketplace-klonen er aldri oppdatert —
+skal noe måles mot gjeldende skill må det legges prosjekt-scopet». Målt nå er den
+lastede teksten gjeldende, så det ekstraarbeidet er ikke nødvendig for
+`nytt-prosjekt`. Advarselen var selv en foreldet datert observasjon — tredje
+instans av `[todo-er-datert-observasjon-ikke-tilstand]` samme dag, og den som
+sitter i prosjektets egne notater framfor i en instruks utenfra. Merk at målingen
+dekker `nytt-prosjekt`s `description`; at *alle* skillene i cachen er gjeldende er
+ikke vist.
+
+**Uforklart, tas neste økt:** `claude plugin list` viser **tre**
+`faseflyt@claude-code-skills`-oppføringer — én user scope og to project scope, alle
+enabled. De to prosjekt-scopede er sannsynligvis rester fra testriggene
+(`test-faseflyt`, `prosjekt-a`), men det er ikke verifisert, og duplikater var
+nettopp det ryddejobben 18.08 skulle fjerne.
+
+**Sidefunn:** `web-prototype` er identisk mellom `~/.claude`-kopien og
+repo-versjonen, byte for byte etter linjeskift-normalisering — ett ledd mindre i
+issue #9; det gjenstående er repo mot konsollversjonen. Claude Code-sesjonen
+overlevde både full PC-omstart og VS Code-restart med konteksten intakt; det er en
+annen mekanisme enn `/clear`, så faseflyt-disiplinen er fortsatt nødvendig der og
+ved maskinbytte.
+
+**Observasjon om fase-slutt-skillen selv:** steg 4 formulerer kvalitetsporten som
+«bygg/typecheck/tester slik de er definert i `CLAUDE.md` eller `package.json`.
+Finnes ingen: hopp over». Dette repoet har ingen `package.json`, men har siden
+PR #13 en reell port i `claude plugin validate`. Ordlyden peker altså mot å hoppe
+over en port som finnes. Ført i `TODO.md`.
+
+### Kvalitetsport og røyktest
+
+`claude plugin validate .` — **✔ Validation passed**, exit 0. (Repoet har fortsatt
+ingen `package.json`; dette er porten som finnes.)
+
+Sikkerhetsrøyktest ren: ingen `.env`-filer sporet (29 sporede filer totalt), ingen
+11-sifrede tall — proben bekreftet levende med 4-siffer-kontroll som ga treff i
+fire filer — og alle fire `client_secret`-treff er instruksjonstekst, inkludert
+skillens egen definisjon av sjekken.
+
+Renhetssjekk kjørt etter `git add`, med positiv kontroll i samme runde: gammel
+forkortelse 0, generiske brukerstier 0 i hele repoet, `claude-global-config` 0 i
+pakken og 7 treff i `kunnskap/` som forventet, `faseflyt` treff i 16 filer.
+
 ## 2026-08-18 (kveld) — O8-fiksen: ordrett maltekst, PR #12 (skrevet, review hos bruker)
 
 **Maskin:** `VPC-5CG3433WMH`. Branch `ordrett-maltekst`, seks commits, pushet.

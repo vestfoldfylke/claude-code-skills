@@ -1,85 +1,66 @@
 # STATUS — les denne først i ny økt
 
-*Overskrives ved hver faseslutt. Historikk: `logg.md`. Selvvurdering:
-`laering.md`. `kunnskap/` er gitignored — finnes bare på maskinen under.*
+*Overskrives ved faseslutt. Historikk: `logg.md`. Selvvurdering: `laering.md`.*
+**Plan:** `kunnskap/plan.md` **TODO:** `kunnskap/TODO.md` (les «Nytt 2026-08-19»)
 
-**Maskin denne STATUS ble skrevet på:** `VPC-5CG3433WMH` (hjemmekontor-PC, AMD64,
-PowerShell 5.1, ingen `pwsh`). **Er du et annet sted, sjekk hostname først** —
-kontor-PC-en (`VPC-8WD9VC4`) er ARM og har fortsatt gammelt oppsett.
-CLI-binæren: `~\.local\bin\claude.exe`, ikke alltid på PATH.
+**`kunnskap/` er nå i git (PR #14)** — felles for alle maskiner. Ikke lag lokale
+varianter, ikke gjenopprett gitignoren.
 
-**Plan:** `kunnskap/plan.md` **TODO:** `kunnskap/TODO.md` (les «Helhetsvurdering»
-og «Forcing function» der — de styrer retningen nå)
+**Fase:** synkingen fra issue #8 er **ferdig, begge steg**. faseflyt **0.2.1**
+konsistent i begge manifester, `claude plugin validate .` ✔ exit 0. **Ingen kjente
+åpne defekter.** PR #12, #13 og #14 merget; `main` = `578dc95` + denne commiten.
 
-**Fase:** O8-fiksen er levert og målt. **PR #12 er OPEN og venter review** —
-branch `ordrett-maltekst`, seks commits, alt pushet, `MERGEABLE`. faseflyt 0.2.1.
+**Maskiner:** hjemme `VPC-5CG3433WMH` (AMD64), kontor `VPC-8WD9VC4` (ARM64).
+**Begge ferdig satt opp og verifisert**, ingen duplikater på disk. PS 5.1, ingen
+`pwsh`. CLI: `~\.local\bin\claude.exe`, ikke alltid på PATH. Sjekk hostname først.
 
-**Verifisert (observert):** verifiseringsplanens **punkt 2 er grønt** — fersk
-scaffold, script-type på Windows med persondata = ja, kjørt av egen økt som ikke
-visste hva som ble målt. Fire malseksjoner diffet mot malkopien økten leste:
-CLAUDE.md-avsnittet (54 linjer), STATUS-snutten (18), logg-malen (20),
-laering-malen (18) — **alle ORDRETT, null avvik.** Punkt 6 (selvbærende) fra før.
-
-**Umålt, skal stå som umålt:** webapp-, dokumentasjons- og API-typene; **Mac og
-Snapdragon/ARM** (både innhold og installasjon); punkt 5, 9, 10.
+**Umålt, skal stå som umålt:** webapp-, dokumentasjons- og API-typene; Mac;
+punkt 9 og 10. **Punkt 5 er droppet** — se loggen, ikke gjenoppliv den.
 
 ## Neste — start her
 
-1. **Få PR #12 gjennom review og merget.** Push ALT før du ber om godkjenning.
-2. **Punkt 9 (overtakelsestest)** — riggen står klar: `prosjekt-a` (sti under).
-   Klon den; rigg-artefakten `.claude/skills/nytt-prosjekt/` ble aldri committet,
-   så klonen er scenariet rent. NB: `.claude/settings.json` peker på GitHub, der
-   0.1.0 fortsatt ligger ⇒ testen måler **mekanismen**, ikke innholdsversjonen.
-3. **O8-issue: vurder om det fortsatt trengs** — PR #12 dokumenterer funn og fiks.
-   BK avgjør; ikke opprett uten å spørre.
-4. **Punkt 5 (bakoverkompatibilitet)** mot `ElevPC-fakturagrunnlag` og `fint-samtykke`.
-5. **Pre-flight for samlingen** (30 deltakere, gruppearbeid, forhåndsinstallerte
-   skrivemaskiner): kontor-PC-en/ARM er kritisk vei, Mac trenger en frivillig.
+1. **CI-sjekk for renhetskravene** (`TODO.md`). Høyest verdi: hardening er av og
+   review droppet fram til 1.0, så det finnes ingen port mellom en commit og
+   kollegaers `/plugin marketplace update`.
+2. **Punkt 9 (overtakelsestest)** — riggen `prosjekt-a` lå i forrige økts
+   scratchpad, som er øktspesifikk og borte. Må rigges på nytt.
+3. **Tre `faseflyt`-oppføringer** i `claude plugin list` (1 user + 2 project, alle
+   enabled) — uforklart, se loggen. Duplikater var det ryddejobben skulle fjerne.
+
+Resten (slett `master` i synk-repoet, Mac-frivillig, issue #9) ligger i `TODO.md`.
 
 ## Arbeidsmåte neste økt
 
-- **[riggen-fryses-under-måling]** Ikke rediger det som måles mens målingen løper.
-  Frys, eller noter snapshot-stien i samme melding som endringen gjøres. Belegg:
-  språkfiksen endret malen midt i målingen; fasit måtte byttes til kopien.
-- **[todo-er-datert-observasjon-ikke-tilstand]** Verifiser et TODO-punkt mot kode
-  og CHANGELOG FØR du lover arbeidet. Belegg: Mac-skjevheten var alt rettet i PR #2.
-- **[egne-verktøy-treffes-av-pakkens-egne-feller]** Kastescripter og sjekkere er
-  kode: møt dem med prosjektets egne feller før de brukes som målestokk. Belegg:
-  `-like` ga 12 falske avvik; en ubekreftet sjekker er verre enn ingen.
+- **[todo-er-datert-observasjon-ikke-tilstand]** *(2. gang — står den igjen ved
+  neste faseslutt, hører den permanent i `CLAUDE.md`)* Gjelder alt datert, «målt»
+  inkludert. Belegg: `plan.md` påsto som målt 18.08 at hardening ikke kunne slås
+  av; 19.08 ga `rulesets` `[]`. Forrige STATUS påsto plugin var 0.1.0; innholdet
+  er 0.2.1. En måling er et faktum om et tidspunkt, ikke om nå.
+- **[arvet-regel-prøves-før-den-etterleves]** Sjekk at en arvet regel
+  generaliserer til dem den skal tjene før du sveiper mekanisk. Belegg:
+  renhetsregelen lette etter én persons brukernavn og gikk ren for alle andre; jeg
+  utvidet den før jeg spurte om den var riktig, og commit 2 reverserte commit 1.
+- **[explore-delegering]** Kryssfilsøk der konklusjonen er poenget skal til
+  Explore. Belegg: `.claude`-søket trakk 60 linjer fra 7 filer; jeg trengte 2.
 
 ## Det en ny økt må vite
 
-- **Org-regler krever PR** — aldri direkte til `main`. `Hardening` er arvet, aktivt,
-  null bypass: 1 godkjenning + `require_last_push_approval`.
-- **Installert plugin er 0.1.0** (`cfc4558`, pre-PR#2) — marketplace-klonen er aldri
-  oppdatert. Skal noe måles mot gjeldende skill, må den legges **prosjekt-scopet**;
-  ellers måler du gammel tekst. Gjelder også `fase-start`/`fase-slutt` du selv kjører.
-- **Renhetsregler før hver push** (kanonisk liste: `docs/installasjon.md`): gammel
-  forkortelse `v-t-f-k` 0 treff i hele repoet; ingen absolutte brukerstier i pakken
-  — søk **generisk**, aldri etter et bestemt brukernavn; `fint` kun i
-  `plugins/fint-graphql/` + deklarasjonslogikk. **Personnavn, maskinnavn og private
-  repo-referanser er tillatt i `kunnskap/`.** Kjør ETTER `git add`, og **alltid
-  positiv kontroll i samme kjøring** — «0 treff» fra en død probe måler ingenting.
-- **Ingen kvalitetsport** (ingen `package.json`) — si det eksplisitt ved faseslutt.
-- **Malen skal ikke love mer enn den har målt.** Hypoteser med forbehold og
-  navngitt probe, aldri som funn.
-- `/plugin` og `/permissions` finnes ikke i VS Code-utvidelsens chat — bruk
-  terminalen. Regler lastes ved **oppstart**, ikke ved `/clear`.
-- Utracket `.claude/` i repo-roten er lokale tillatelser — committes IKKE.
-- **Riggen fra i kveld** (scratchpad er økt-spesifikk, så absolutt sti):
-  `~/AppData/Local/Temp/claude/c--dev-claude-code-skills/<økt-id>/scratchpad/`
-  — inneholder `prosjekt-a` (scaffoldet testprosjekt) og `sammenlign-mal.ps1`
-  (ordrett-sjekker, verifisert i begge retninger — gjenbrukbar).
-- **Synk-repoet er ryddet (gjort 2026-08-18 kveld, `6cda506`, pushet):** de gamle
-  skillene og kommandoene er slettet fra `~/.claude`, whitelist-linjene fjernet, og
-  README peker på pakkens README som kanonisk. **Kontor-PC-en:** kjør
-  `git -C ~/.claude pull` FØRST — ellers skygger de gamle kopiene for
-  plugin-versjonen — deretter `/plugin marketplace add` + installer de tre.
-  Noter underveis: det er samtidig ARM-pre-flighten, som står som umålt.
-- **Synk-repoet er lagt om til `main`** (`c12b881`, default branch endret).
-  `master` finnes som MIDLERTIDIG speil av samme commit, kun fordi kontor-PC-en
-  sporer den. Etter at den maskinen har byttet:
-  `git -C $HOME\.claude checkout -B main origin/main; git -C $HOME\.claude branch -D master`
-  — og deretter slett remote-branchen. **Halvferdig omlegging til den er gjort.**
-- Løse ender: remote-branchen `funn-testplan-1-3` i pakkerepoet kan slettes, og
-  `master` i synk-repoet når kontor-PC-en er over på `main`.
+- **Hardening er AV, review droppet fram til 1.0** (beslutning BK 19.08, målt `[]`).
+  Direkte commit til `main` er greit for `kunnskap/`. Konsekvensen står i `plan.md`
+  og skal tas opp ved 1.0: repoet er en instruksjonskanal inn i kollegaers økter,
+  og nå finnes ingen port.
+- **Versjonsetiketter lyver, ordlyd gjør det ikke.** `plugin list`, cache-katalogen
+  og `plugin.json` sier alle 0.1.0 på hjemme-PC-en, mens innholdet er 0.2.1
+  (`description: Setter opp …`, `Scaffolder` 0 treff). Mål på innhold. Mekanismen
+  er hypotese med navngitt probe — se loggen.
+- **Renhetsregler** — kanonisk med begrunnelser i `docs/installasjon.md`, tre
+  nivåer: pakken / `kunnskap/` / måleregelen. Personnavn, maskinnavn og private
+  repo-referanser er **tillatt i `kunnskap/`**. Søk brukerstier **generisk**, aldri
+  etter et bestemt brukernavn. Kjør ETTER `git add`, alltid med positiv kontroll.
+- **Porten er `claude plugin validate .`** — ingen `package.json`, men ikke meld
+  «ingen kvalitetsport».
+- **Maskinlokale tillatelser hører i `.claude/settings.local.json`** (gitignorert).
+  `.claude/settings.json` er den delbare fila, reservert for plugin-deklarasjon.
+- **Malen skal ikke love mer enn den har målt** — hypoteser med navngitt probe.
+- `/plugin` og `/permissions` finnes ikke i VS Code-chatten; bruk terminalen.
+  Regler lastes ved **oppstart**, ikke ved `/clear`.

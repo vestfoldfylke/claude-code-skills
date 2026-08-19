@@ -1,5 +1,25 @@
 # TODO — utenfor gjeldende fase
 
+## Nytt 2026-08-19
+
+- **`fase-slutt` steg 4 peker mot å hoppe over en port som finnes.** Ordlyden er
+  «bygg/typecheck/tester slik de er definert i `CLAUDE.md` eller `package.json`.
+  Finnes ingen: hopp over og si det». Et plugin-marketplace har ingen
+  `package.json`, men `claude plugin validate` er en reell kvalitetsport — den
+  fanget manifest-avviket i PR #13. Forslag: la steget nevne manifest-/
+  skjemavalidering som gyldig port, ikke bare byggverktøy. Formuleringen er fri for
+  prosjektdata og kan gjenbrukes ordrett som issue-tekst.
+- **CI-sjekk for renhetskravene, før 1.0.** Hardening er av og review er droppet
+  fram til 1.0, så det finnes ingen port mellom en commit og kollegaers
+  `/plugin marketplace update`. En workflow som kjører søkene i
+  `docs/installasjon.md` **med** den positive kontrollen erstatter reviewen med en
+  måling. Se hook-skissen lenger ned i denne fila; en GitHub Action er sannsynligvis
+  enklere enn en PreToolUse-hook, siden den også virker for andre bidragsytere.
+- **Slett `master` i `claude-global-config`**, lokalt og på remote. Den ble beholdt
+  eksplisitt «for usynket maskin» = kontor-PC-en, som nå er over på `main`.
+- **Issue #9:** `web-prototype` er bekreftet identisk mellom `~/.claude` og repoet.
+  Det gjenstående er repo mot konsollversjonen.
+
 > **STATUS 2026-08-17: alle sju funn under «Funn fra testplanen» er RETTET** i
 > PR #2 (branch `funn-testplan-1-3`, fem commits, ikke merget). Ikke gjenta dem.
 > Punktene står som historikk og belegg — de forklarer *hvorfor* malteksten er som

@@ -4,13 +4,17 @@
 **Plan:** `kunnskap/plan.md` **TODO:** `kunnskap/TODO.md`
 
 **Fase:** pakken er **fryst for MVP-test** (beslutning BK). Neste jobb er ikke
-kode, men å teste på et par kollegaer. faseflyt 0.2.1, `claude plugin validate .`
-✔ exit 0, renhetssjekken 9 søk / 0 feil. Ingen kjente åpne defekter.
-`main` = `a33a11e` + denne commiten.
+kode, men å tørrkjøre én case i en blank økt. faseflyt 0.2.1 uendret siden
+`a33a11e` — de to siste commitene rører bare `kunnskap/` og `.gitignore`.
+Renhetssjekken 10 søk / 0 feil, `claude plugin validate .` ✔. Ingen kjente åpne
+defekter i pakken.
 
 **Maskiner:** hjemme `VPC-5CG3433WMH` (AMD64), kontor `VPC-8WD9VC4` (ARM64).
-Begge ferdig satt opp. PS 5.1, ingen `pwsh`. CLI: `~\.local\bin\claude.exe`, ikke
-alltid på PATH. Sjekk hostname først.
+PS 5.1, ingen `pwsh`. CLI: `~\.local\bin\claude.exe`, ikke alltid på PATH. Sjekk
+hostname først. **Uavklart:** STATUS har sagt «begge ferdig satt opp», mens
+`TODO.md`s Maskinstatus-seksjon (17.–18.08) sier kontor-PC-en har gammelt oppsett.
+Det kan bare avgjøres PÅ den maskinen — `claude plugin list` + ordlydssjekk mot
+repoet.
 
 **Umålt, skal stå som umålt:** Mac (helt urørt), webapp-/dokumentasjons-/API-
 typene, verifiseringspunkt 9 og 10, `pull_request`-triggeren i CI. **Punkt 5 er
@@ -18,58 +22,58 @@ droppet.**
 
 ## Neste — start her
 
-1. **Kollegatest på et par personer.** Pakken er testbar nå: README dekker begge
-   de målte oppstartsfellene (installer i terminalen, ikke i utvidelsen;
-   `gh auth login` + org-medlemskap). Ikke bygg mer før dette er gjort — det er
-   testen som avgjør «helhetsvurdering»-spørsmålet i `plan.md`.
+1. **Tørrkjør Oppgave 6, Utstyrsskapet** — blank økt, tom mappe utenfor dette
+   repoet. Bestillingen står ordrett i `TODO.md` (arket selv er untracket og
+   synker ikke mellom maskiner). Kjøres den på kontor-PC-en, er den samtidig
+   **ARM-pre-flighten** for samlingen. Verifiser FØRST at installert pakke er
+   identisk med repoet — gammel cache eller gamle kopier i `~/.claude/skills/`
+   måler feil versjon. Tre påstander å se etter står i arkets fasilitatorseksjon;
+   den viktigste er om «nytt prosjekt» trigger av seg selv.
 2. **Actions:** BK snakker med utviklerne før bryteren slås på. Målt:
    `actions/permissions` → `enabled: false`, så workflowen er inert. Org-nivået er
-   **uavklart** (403 med to mulige forklaringer). Spørsmålene ligger i `TODO.md`.
+   uavklart (403 med to mulige forklaringer). Spørsmålene ligger i `TODO.md`.
 3. **Tre `faseflyt`-oppføringer** i `claude plugin list` — uforklart, se loggen.
 
 ## Arbeidsmåte neste økt
 
-- **[git-add-alt-er-å-publisere-usett]** `git add -A` er en publiseringshandling —
-  se hva som stages før commit, i et repo andre kloner. Og en sjekk du melder som
-  «ren» må navngi hva den *ikke* dekker. Belegg: jeg pushet en 130 KB `.docx` jeg
-  aldri åpnet; alle ni søk hoppet over den (`git grep -I` ignorerer binærfiler), og
-  min egen glob traff `csv|xlsx|json`, aldri `.docx`. Én `git status` unna å bli
-  oppdaget i tid.
-- **[grønn-sjekk-er-ikke-grønn-port]** Er leveransen en mekanisme, mål at den er
-  *koblet til* før du bygger på den — den billige målingen først. Belegg: 276
-  linjer renhetsport skrevet, testet og pushet før jeg oppdaget at Actions er
-  avslått. Ett `gh api`-kall ville avdekket det på minutt én.
-- **[mvp-drift]** Sjekk STATUS-rangeringen mot brukerens nærmeste mål før du
-  bygger. Belegg: CI-porten sto som punkt 1 og ble bygget; BK bestemte samme økt at
-  den holdes internt, og måtte selv si at prosjektet hadde vokst forbi MVP.
+- **[beskrevet-omfang-er-avtalt-omfang]** Sier tilbudet «seksjonen» og målingen
+  sier «fire seksjoner», er neste handling en setning til brukeren — ikke en større
+  Edit. Belegg: jeg tilbød å rette én foreldet TODO-seksjon og fjernet fire, 293
+  linjer, med diffstat vist etterpå framfor omfang beskrevet først.
+- **[mønsteret-koder-eksempelet-ikke-hensikten]** Prøv alltid en filter-, deny-
+  eller ignore-regel mot et tilfelle den ikke ble skrevet for. Belegg:
+  `.gitignore`-kommentaren sa «arbeidsdokumenter holdes lokale», mønstrene dekket
+  bare `.docx/xlsx/pptx/pdf` — en `.md` ville gått rett i git og videre til hver
+  kollega som installerer pakken.
+- **[ingen-lukker-todo]** Retter du noe i pakken, søk på filnavnet i `TODO.md` i
+  samme økt og lukk posten. Belegg: 293 av 598 linjer var rettede funn, og det
+  alvorligste pekte på maltekst som ikke finnes lenger.
 
 ## Det en ny økt må vite
 
-- **Målinger er datert, også de som står i `plan.md` og STATUS.** En måling er et
-  faktum om et tidspunkt, ikke om nå — mål om før du bygger på den. *(Fulgt i tre
-  påfølgende faseslutt; foreslått promotert til en `CLAUDE.md` som ikke finnes ennå
-  — se chatten ved faseslutt 19.08 kveld.)*
-- **Hardening er AV, review droppet fram til 1.0** (BK 19.08, målt `[]` samme dag).
-  Pakkeendring går da rett på `main`; branch + PR gjelder når hardening er på.
+- **Målinger er datert, også de i `plan.md`, `TODO.md` og STATUS.** En måling er et
+  faktum om et tidspunkt, ikke om nå. *(Fulgt i fire påfølgende faseslutt;
+  foreslått promotert til en `CLAUDE.md` som ikke finnes ennå.)*
+- **Hardening er AV, review droppet fram til 1.0** (BK 19.08). Pakkeendring går
+  rett på `main`; branch + PR gjelder når hardening er på.
 - **Porten er `bash .github/renhet/sjekk.sh` + `claude plugin validate .`** — kjør
   sjekken ETTER `git add`. Ingen `package.json`, men ikke meld «ingen sjekk finnes».
-  Ti søk. Det tiende feiler på **tracked binærfiler**, fordi `git grep -I` ikke kan
-  lese dem og de ellers passerer porten usett. Arbeidsdokumenter i `kunnskap/`
-  (`.docx`/`.xlsx`/`.pptx`/`.pdf`) er gitignorert og skal holdes lokale — `/plugin
-  marketplace add` er en `git clone`, så alt tracket havner hos hver kollega.
-- **Hent bare det du trenger** *(vane, ikke korrigering)*: les linjeintervaller,
-  tell før du leser innhold, hent én seksjon framfor hele fila. Explore-subagent
-  når den er tilgjengelig.
+  Ti søk, og de leser **bare trackede filer** — untracket innhold må leses manuelt.
+  Det tiende søket dekker tracked binærfiler, som ellers passerer usett.
+- **Arbeidsdokumenter holdes lokale:** `kunnskap/lokalt/` og
+  `kunnskap/*.docx|xlsx|pptx|pdf` er gitignorert. `/plugin marketplace add` er en
+  `git clone`, så alt tracket havner hos hver kollega.
 - **Klarspråk-regelen er en tabell** i `nytt-prosjekt/SKILL.md` — pakken leses av
-  folk som ikke koder. Ikke «kvalitetsport», «røyktest», «probe», «harness», ikke
-  «scaffolde». Bruker du et fagord som ikke står i tabellen, forklar det i samme
-  setning. Pakken brøt denne regelen selv; les den før du skriver brukerrettet tekst.
+  folk som ikke koder. Bruker du et fagord som ikke står der, forklar det i samme
+  setning.
 - **Renhetsregler:** personnavn, maskinnavn og private repo-referanser er tillatt i
   `kunnskap/`. Søk brukerstier **generisk**. `fint` = null treff i
-  `plugins/faseflyt/` (unntaksliste for deklarasjonslogikk), tillatt i
-  `plugins/fint-graphql/`.
+  `plugins/faseflyt/`, tillatt i `plugins/fint-graphql/`.
+- **Deny-runden er lukket** — grense-listen 1–9 i `maler.md` er kanonisk. Eneste
+  åpne punkt er PreToolUse-hooken, som ikke er på kritisk vei for samlingen
+  (persondata = nei på alle seks oppgavene).
 - **Versjonsetiketter lyver, ordlyd gjør det ikke** — mål på innhold. Plugin-cachen
   kan være foreldet mot repoet; repoet er kanonisk.
 - **Maskinlokale tillatelser i `.claude/settings.local.json`** (gitignorert).
-- `/plugin` og `/permissions` finnes ikke i VS Code-chatten; bruk terminalen.
-- Flerlinjede commit-meldinger: skriv meldingsfil og bruk `git commit -F`.
+  `/plugin` og `/permissions` finnes ikke i VS Code-chatten; bruk terminalen.
+  Flerlinjede commit-meldinger: skriv meldingsfil og bruk `git commit -F`.

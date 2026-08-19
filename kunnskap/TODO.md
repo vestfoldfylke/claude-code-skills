@@ -27,6 +27,57 @@ Kriterier verdt å vurdere casene mot, fra det som alt er kjent: kan en gruppe
 **verifisere** resultatet selv (verifiseringsporten er hele flyten), får den plass
 i én økt uten `/compact`, og holder den seg til syntetiske data.
 
+**Lest og strammet 2026-08-19 (kveld).** Arbeidsversjon i
+`kunnskap/lokalt/oppgavelapper.md` — også untracket, og `kunnskap/lokalt/` er nå
+lagt til `.gitignore` fordi mønstrene bare dekket Office-formater; en `.md` ville
+blitt tracket. Alle seks casene er webapp/prototype, persondata = nei, mock i
+filer, ingen backend. Suksesskriteriet på arket er **minst to faseslutt**, ikke
+ferdig app.
+
+- **Struktur:** 13 av ~22 linjer per lapp var ordrett like på alle seks. Flyttet
+  til ett felles ark; lappen er nå bestilling + to uavklarte spørsmål + notatfelt.
+- **Case til tørrkjøringen: 6, Utstyrsskapet.** Den er unionen av 1 (liste, detalj,
+  utlån til navngitte), 3 (datoberegnet status) og 4 (markering) — går den gjennom
+  på 3–4 faser, går resten. Reserve hvis tiden er kort: **1, Donald Pocket**
+  (enklest verifisering, men den ene uten datologikk).
+- **Ikke start med 5, Vaffelvakta.** Rotasjon + bytte + ferier er der en gruppe
+  lettest bruker opp økta på domenelogikk framfor på arbeidsflyten. Vurder å kutte
+  «ferier og fridager» fra bestillingen.
+- **Tre påstander arket hviler på, som pakken ikke har målt** — står som egen
+  seksjon på fasilitatorarket: at «nytt prosjekt» trigger av seg selv (høyest
+  risiko: slår den ikke inn, står gruppa fast på minutt null), at `web-prototype`
+  trigger av seg selv for webapp-typen (den typen er umålt i STATUS), og at
+  designsporets mekanikk (`list_projects`, `projectId`, token-overstyring i
+  `app.css`) finnes i `claude-design-oppskrift.md` og ikke bare i fasilitatorens
+  hode.
+- **Før tørrkjøringen:** verifiser at installert pakke er identisk med repoet.
+  Cachen kan være foreldet, og da måles en annen pakke enn du tror.
+- **Tørrkjøringen skal skje i en blank økt i en tom mappe utenfor dette repoet.**
+  En økt som har lest `plan.md`/`TODO.md` kjenner pakkens svake punkter og måler
+  derfor seg selv med fasit i hånda.
+
+**Arket synker IKKE mellom maskiner.** Både `.docx`-en og
+`kunnskap/lokalt/oppgavelapper.md` er untracket med vilje, så ingen av dem følger
+med en `git pull` på kontor-PC-en. Derfor står bestillingen til tørrkjøringscasen
+ordrett her, i en fil som ER tracket — det er det eneste som må være tilgjengelig
+for å kjøre testen:
+
+> **Oppgave 6 — Utstyrsskapet.** Lag en web-løsning for utstyret på huset:
+> projektorer, kameraer, ladere og høyttalere. Oversikt over hva som finnes, hva
+> som er ute og hva som er ledig. Det skal være mulig å registrere utlån til
+> Mikkel Rev, Sattosk Rev eller Lita Tavle, med forventet retur. Utstyr som er
+> over tiden skal vises tydelig. Vi mocker alt som ligner på database i enkle
+> filer.
+>
+> *Uavklart, som gruppa svarer på selv:* Hva betyr «over tiden», og hvem er det
+> som skal se det? Kan samme gjenstand lånes ut to ganger samtidig — og hva
+> hindrer i så fall det?
+>
+> *Rammer:* mock i enkle filer, ingen backend, ingen ekte bilder (fargede kort,
+> SVG eller emoji), norsk tekst, prototype. Ingen fase er ferdig før noen har sett
+> den virke i nettleseren. Svar i oppsettet: type = webapp/prototype,
+> persondata = nei, FINT = nei. Sikt på 3–4 faser.
+
 ## Actions — venter på utviklerne (BK tar samtalen)
 
 Målt 2026-08-19: `actions/permissions` → `enabled: false`, `gh run list` tom
@@ -83,21 +134,6 @@ issue-mekanismen finnes for kollegaer som ikke kan redigere pakken selv.
 - **Issue #9:** `web-prototype` er bekreftet identisk mellom `~/.claude` og repoet.
   Det gjenstående er repo mot konsollversjonen.
 
-> **STATUS 2026-08-17: alle sju funn under «Funn fra testplanen» er RETTET** i
-> PR #2 (branch `funn-testplan-1-3`, fem commits, ikke merget). Ikke gjenta dem.
-> Punktene står som historikk og belegg — de forklarer *hvorfor* malteksten er som
-> den er, og hvilke prober som ligger bak.
->
-> **Avklart siden de ble skrevet:** `PowerShell(...)` er et gjenkjent scope, men
-> mønsterformen virker ikke — bar tool-navn-oppføring slår ut hele verktøyet.
-> `Read(...)`-deny dekker også Write og Bash-kommandoer som nevner stien, men
-> mekanismen er tekstmatching (`ls -la` på katalogen kjørte). `ask`-nøkkelen
-> forkaster ikke blokken. `Read(...)`-stiformen er den siste uavklarte —
-> **probe 7** avgjør den.
->
-> **Gjenstår før merge:** probe 7, og én ren trial på fase-slutt-porten.
-> Se `STATUS.md` for rekkefølge.
-
 ## Maskinstatus (test 1–2 kjørt 2026-08-17)
 
 - Test 1 + rydding + test 2 er gjennomført på **hjemmekontor-PC-en** — det er
@@ -114,299 +150,72 @@ issue-mekanismen finnes for kollegaer som ikke kan redigere pakken selv.
   plugin-versjonen), deretter `/plugin marketplace add` + installer de tre user
   scope. **Noter underveis — dette ER ARM-pre-flighten** for samlingen.
 
-## Funn fra testplanen (rettes via branch + PR)
+## Deny-runden — LUKKET 2026-08-19 (kveld). Ikke gjenåpne.
 
-- **ALVORLIGST — BEKREFTET 2026-08-17: `Bash(...)`-deny er verktøy-scopet og
-  dekker ikke PowerShell-verktøyet.** Kontrollkall i testprosjektet, samme økt,
-  samme URL (`http://127.0.0.1:9/`):
+Alle funnene fra testplan 1–3 (17.–18.08) er målt ferdig og **innarbeidet i
+malene**. Kanonisk sted er grense-listen 1–9 i
+[maler.md](../plugins/faseflyt/skills/nytt-prosjekt/references/maler.md) — den har
+både målingene og ærlighetsklausulen. Belegget ligger i `logg.md` (17.08 og 18.08)
+og i git-historikken.
 
-  | Kall | Verktøy | Deny-regel | Utfall |
-  |---|---|---|---|
-  | `curl http://127.0.0.1:9/` | Bash | `Bash(curl:*)` | **Blokkert** |
-  | `Invoke-RestMethod http://127.0.0.1:9/` | PowerShell | `Bash(Invoke-RestMethod:*)` | **Kjørte** (feilet kun på manglende lytter) |
+*Denne seksjonen var 290 linjer funn som alt var rettet. Fjernet med vilje: en
+åpen TODO-post leses som en åpen defekt, og en ny økt brukte tid på å lete etter
+maltekst som ikke finnes lenger (`maler.md:235-236`).*
 
-  - **Konsekvens:** `Bash(Invoke-WebRequest:*)` og `Bash(Invoke-RestMethod:*)` i
-    [maler.md:235-236](../plugins/faseflyt/skills/nytt-prosjekt/references/maler.md#L235-L236)
-    er døde regler på Windows. De står i deny-settet som skal hindre Claude fra å
-    hente produksjonsdata i **persondata-prosjekter** — altså er det den
-    sikkerhetskritiske delen av malen som ikke er koblet til. Bash-siden virker;
-    det er krysningen mellom verktøy som er hullet.
-  - **Skjevheten er speilvendt Mac-funnet nedenfor:** på Mac finnes bare Bash, så
-    settet virker der. På Windows finnes to verktøy og malen navngir ett. Malen er
-    altså *bash*-skjev her og *windows*-skjev i `prosjekttyper.md`. Begge må
-    plattformbetinges, ikke bare den ene.
-  - **TESTET 2026-08-17 (økt 3) — `PowerShell(...)`-matchere virket IKKE.**
-    `PowerShell(Invoke-RestMethod:*)` i deny stoppet ingenting; kallet nådde
-    nettverksstakken (`WebException` fra `HttpWebRequest`). Probe 0 (`curl` i Bash
-    blokkert) beviste samtidig at `permissions`-blokken var aktiv, så «forkastet
-    konfigurasjon» er utelukket.
-  - **Men to forklaringer står igjen — ikke konkluder ennå.** Feilmeldingen viste
-    `At line:1 char:302`: PowerShell-verktøyet pakker kommandoen i en preamble, så
-    strengen matcheren ser starter IKKE med cmdlet-navnet. (A) `PowerShell(...)` er
-    ikke gjenkjent scope, eller (B) scopet er gyldig men prefiks-mønsteret treffer
-    innpakningen. Diskriminator: bar `"PowerShell"`-oppføring i deny + `echo hi`
-    som kontroll. Blokkert ⇒ B, kjører ⇒ A.
-  - **Konsekvensen skiller lag:** ved A finnes ingen deklarativ fiks. Ved B finnes
-    bare alt-eller-ingenting per verktøy — ubrukelig i praksis, siden ingen kan
-    jobbe med PowerShell-verktøyet blokkert. Begge veier peker på hooken, men
-    malteksten må si det riktige.
-  - **Avgjør hook-saken:** en PreToolUse-hook får `tool_name` og er dermed
-    verktøy-agnostisk — det er det eneste laget som lukker hullet uten å måtte
-    liste hver shell. Flyttes fra «kjekt å ha» til del av denne rettingen.
-  - **Rekkefølge:** dette bør rettes FØR kollegatesting starter, ikke etter. Et
-    persondata-prosjekt scaffoldet i mellomtiden får et halvt vern og en
-    CLAUDE.md-tekst som lover to lag.
-  - **Alias-flaten kan ikke listes ferdig.** Et navnebasert deny-sett må dekke
-    hvert navn som faktisk brukes: `irm`/`iwr` (innebygde aliaser for
-    `Invoke-RestMethod`/`Invoke-WebRequest`), `curl.exe` (bart `curl` er alias for
-    `Invoke-WebRequest` i PS 5.1, men `.exe` treffer binæren og går utenom), og på
-    filsiden `gc`, `cat`, `type`, `Select-String`, `Import-Csv`. Konklusjon: listen
-    blir aldri komplett — det er hovedargumentet for PreToolUse-hooken, som ser
-    hele kommandostrengen framfor å gjette navn. Malen skal si dette åpent
-    framfor å late som settet er uttømmende.
-  - **Verre enn aliaser: omveier uten kommandonavn.** `[Net.WebClient]`,
-    `Start-BitsTransfer`, `[IO.File]::ReadAllText()` og indirekte kall
-    (`$c='irm'; & $c`) har ingen kommandonavn en matcher kan treffe. Dette gjør
-    navnebaserte mønstre prinsipielt utilstrekkelige, ikke bare ufullstendige.
-  - **Ærlighet også om hooken:** en PreToolUse-hook ser kommandostrengen og
-    fanger derfor `[Net.WebClient]` som tekst — men ikke `& $c`, der navnet først
-    finnes ved kjøring. Hooken er et sterkere lag, ikke et tett. Malen skal ikke
-    selge den som løsningen; absolutt isolasjon krever sandbox/container. Samme
-    ærlighetsklausul som deny-settet har i dag.
-  - **Sideobservasjon å verifisere:** `Read(.env.*)` blokkerte også et **Write**
-    mot samme sti. Enten dekker `Read(...)`-matchere mer enn navnet antyder, eller
-    `.env` har innebygd særstatus i Claude Code uavhengig av settings. Avklares
-    med kanarifugl-filen, som ikke har særstatus. Betyr noe for malen: lover vi
-    skrivebeskyttelse vi ikke har, er det samme feil som nettverksdelen.
+| Funn | Hvor det bor nå |
+|---|---|
+| Matchere er verktøy-scopet — cmdlet-navn i `Bash(...)` er dødvekt | grense 6 + eksplisitt regel over deny-eksempelet |
+| `PowerShell(<kommando>:*)`-formen stopper ingenting; bare bart tool-navn virker | grense 7 |
+| Navnebaserte mønstre kan ikke bli komplette (aliaser, `[Net.WebClient]`, `& $c`) | grense 9 |
+| Bash-dekning er ikke filsystemvern (`ls -la` på udekket katalog eksponerte navn) | grense 8 |
+| Bar filnavn-form VIRKER — `Read(.env)` er ikke dødvekt | grense 5 |
+| `ask`-nøkkel forkaster ikke `permissions`-blokken | grense 4 |
+| Deny-settet var ikke verifiserbart for brukeren | kontrollkall mot `http://127.0.0.1:9/` i `nytt-prosjekt/SKILL.md` + `maler.md` |
+| Deny må differensieres per prosjekttype | tabell i `maler.md`: script/dokumentasjon vs. webapp/API |
+| `<navn>` ble lest som tema, ikke person | `<beslutningstaker>, <tema>` i alle seks kildene |
+| Logg-malen krevde ikke belegg for funn | «observert» vs. «antatt» i `fase-slutt/SKILL.md` + `maler.md` |
+| BOM-nyansen for `.ps1`-kildekode manglet | `windows.md`, som to halvdeler som må leses sammen |
+| Fase-slutt-vakten utførte i stedet for å foreslå | `maler.md`: «Deretter **vent på klarsignal.**» + regel i `fase-slutt/SKILL.md` |
+| Testdisiplin `[hypotese-vs-funn]` | `fallgruver.md` |
+| `/plugin` og `/permissions` finnes ikke i VS Code-utvidelsen | README + `docs/installasjon.md` |
+| Mac-skjevhet i `prosjekttyper.md` | rettet — se egen seksjon under |
 
-- **Test 1 (2026-08-17): `/plugin` finnes ikke i VS Code-utvidelsens chat**
-  («/plugin isn't available in this environment») — kun i terminal-CLI-en.
-  README/installasjonsseksjonen må si eksplisitt: installasjon skjer i
-  terminalen (`claude` interaktivt, eller `claude plugin ...`-subkommandoer);
-  utvidelsen plukker opp pluginene etterpå (delt ~/.claude-konfig). Rammer
-  alle kollegaer som kun bruker utvidelsen — profil B i kollegatesten.
-  - **Generaliseres (2026-08-17): `/permissions` finnes heller ikke** som
-    slash-kommando i utvidelsen — den ligger under «Customize → Permissions» i
-    kommandomenyen. Mønsteret er altså ikke `/plugin`-spesifikt: utvidelsen
-    eksponerer enkelte CLI-kommandoer som menyvalg i stedet for slash-kommandoer.
-    README bør si det som en regel, ikke som en kuriositet om `/plugin`, og
-    nevne terminal-CLI-en som fallback for kommandoer man ikke finner.
+**Avkreftet, og verdt å huske:** hypotesen om at bar filnavn-form resolveres
+relativt til katalogen `settings.json` ligger i. Den hvilte på én observasjon gjort
+under en konfigurasjon som aldri ble verifisert ordrett før kjøring. Lærdommen står
+i grense 5 og er verdt mer enn funnet var.
 
-- **Test 3 (2026-08-17): en uverifisert nøkkel i `permissions` kan invalidere
-  hele blokken — malen bør kreve en integritetssjekk.** Ved å legge inn en
-  `ask`-liste (uverifisert form) risikerte vi at Claude Code forkaster hele
-  `permissions`-objektet, slik at *alle* deny-regler blir stille inaktive og hver
-  probe leser «kjørte». Det er den verste feilmoden: den ser ut som «vernet virker
-  ikke» framfor «konfigurasjonen ble avvist».
-  - **Retting i malen:** ved endring av `.claude/settings.json` skal man alltid
-    verifisere med én regel man vet virker (f.eks. `Bash(curl:*)` mot
-    `http://127.0.0.1:9/`) FØR man konkluderer på noe annet. Billig, og skiller
-    «regel treffer ikke» fra «fil avvist».
+**Fortsatt umålt, og skal stå som umålt:** om bar filnavn-form dekker vilkårlige
+undermapper — bare prosjektrot og `.claude/` er testet. Derfor står glob-formen
+`Read(**/fil.txt)` ved siden av den bare formen.
 
-- **Test 3 (2026-08-17): `windows.md` mangler BOM-nyansen for `.ps1`-kildekode.**
-  Referansefila behandler BOM utelukkende som en fare (shebang, JSON-parsere),
-  men sier ingenting om det motsatte tilfellet: Windows PowerShell 5.1 tolker en
-  `.ps1`-fil **uten** BOM som ANSI, så strenglitteraler med æøå mojibakes i
-  utskriften (`på` → `pÃ¥`). Oppdaget da første testscript ble skrevet.
-  - **Avslørende detalj:** et argument gitt på kommandolinjen kom ut riktig
-    samtidig som litteraler i fila var korrupte — det er signaturen på at det er
-    *fildekodingen*, ikke konsollet, som er problemet.
-  - **Retting:** `Set-Content -Encoding utf8` (skriver BOM i 5.1). Regelen som
-    må inn: BOM er uønsket i **output**-filer, men påkrevd i **`.ps1`-kildekode
-    med æøå**. De to henger sammen og må stå sammen, ellers leses den ene som en
-    motsigelse av den andre.
-  - **Hvorfor det treffer hver gang:** Write-verktøyet skriver UTF-8 uten BOM,
-    så ethvert nytt script med norske tegn må lagres på nytt.
-  - **Betinges riktig:** gjelder Windows PowerShell 5.1. PowerShell 7+ antar
-    UTF-8 uten BOM og trenger det ikke. Verifiser 7+-oppførselen før den
-    formuleres i malen. Samme plattformkrav som Mac-skjevheten under.
-  - **NB ved formulering:** eksempelet i selve `windows.md` må være
-    plattformnøytralt og uten personnavn — fila pushes, og renhetssjekken
-    krever null treff på personnavn.
+## PreToolUse-hook som tredje forsvarslinje — ÅPEN, ikke bygget
 
-- **Test 3 (2026-08-17): fase-slutt-vakten kjørte `fase-slutt` i stedet for å
-  foreslå den.** På «verifisert, alt OK» startet den andre økten hele
-  faseslutt-rutinen selv. Malen krever «**foreslå** `/faseflyt:fase-slutt` +
-  `/clear` med én gang» ([maler.md:170](../plugins/faseflyt/skills/nytt-prosjekt/references/maler.md#L170)) — ikke utfør.
-  - **Hvorfor det er alvorlig, ikke bare ivrig:** `fase-slutt` steg 6 committer
-    og pusher uten eget klarsignal (riktig når brukeren kalte skillen). Kjører
-    vakten den selv, blir en verifiseringsbekreftelse alene nok til å utløse
-    commit + push — og verifiseringsporten, som er hele poenget med flyten, er
-    omgått. I et persondata-prosjekt kan det bety utilsiktet push.
-  - **Sannsynlig årsak — formulering:** «foreslå … **med én gang**» leser like
-    naturlig som «sett i gang straks» som «foreslå straks». Rett til noe i
-    retning av: «foreslå — og vent på klarsignal. Ikke kall `fase-slutt` selv;
-    den committer og pusher.» Samme presisering vurderes for plan-vakten.
-  - **BEKREFTET 2026-08-17.** Rutinen gikk helt gjennom og committet (`005b07c`)
-    uten å spørre. Ingen push skjedde — men *bare* fordi testprosjektet ikke har
-    remote. Det er flaks i oppsettet, ikke en vakt som virket.
-  - **Diagnostisk kontrast — den stoppet foran `gh issue create` og spurte.**
-    Samme klasse handling (utoverrettet, vanskelig å reversere), men der finnes
-    en eksplisitt regel ([fase-slutt/SKILL.md:41](../plugins/faseflyt/skills/fase-slutt/SKILL.md#L41)).
-    For selve kallet på `fase-slutt` finnes ingen. Eksplisitt port respektert,
-    implisitt port ikke — samme lærdom som deny-reglene: regelen må stå skrevet
-    der den gjelder. Dette peker på fiksen: gjør porten eksplisitt, ikke
-    underforstått.
-  - **Vurder også:** eksplisitt regel i `fase-slutt/SKILL.md` om at skillen bare
-    kjøres når brukeren har bedt om den — og at commit/push i steg 6 forutsetter
-    at det var brukeren som kalte den.
-  - **Sidefunn:** faseslutt-rutinen kjørte før deny-sjekken med dummy `.env`
-    (rekkefølgen i STATUS) — deny-sjekken må gjentas i test-prosjektet.
+Det eneste laget som lukker verktøy-hullet i grense 6: en PreToolUse-hook får
+`tool_name` og hele kommandostrengen, og er derfor verktøy-agnostisk der
+`Bash(...)` og `PowerShell(...)` ikke er. Tilbys i `nytt-prosjekt` steg 6 når
+brukeren svarer ja på persondata-spørsmålet.
 
-- **Test 3 (2026-08-17): `<navn>`-plassholderen i beslutningsmønsteret tolkes som
-  tema, ikke som person.** I testprosjektets `logg.md` ble alle tre beslutninger
-  merket `**Beslutning (git-remote)**`, `(script-encoding)`, `(persondata)` —
-  altså emneord. Mønsteret er dokumentert som *navngitt beslutningstaker*
-  ([fallgruver.md:13](../plugins/faseflyt/skills/nytt-prosjekt/references/fallgruver.md#L13)),
-  og det er sporbarheten som er poenget: «hvem bestemte dette?» uker senere.
-  - **Årsak:** plassholderen `<navn>` står uten et eneste konkret eksempel på
-    alle fem stedene den brukes — `nytt-prosjekt/SKILL.md:36`,
-    `fase-slutt/SKILL.md:18`, `grill-me/SKILL.md:36`, `maler.md:21` og `:180`,
-    `claude-design-oppskrift.md:38`. «Navn» leser like naturlig som navnet på
-    beslutningen.
-  - **Retting:** bytt til utvetydig plassholder (`<beslutningstaker>`) og vis
-    **ett konkret eksempel** i `maler.md`. Vurder å tillate begge deler
-    eksplisitt (`**Beslutning (<beslutningstaker>, <tema>):**`) — emneordet var
-    faktisk nyttig for skanning, så det beste er antakelig å beholde det og
-    kreve personen i tillegg. Alle fem stedene rettes samtidig, ellers driver de
-    fra hverandre.
-  - **Lav prioritet, samme fil:** logg-malens topptekst sier ubetinget «Hver
-    fase føres to ganger», men [fase-slutt/SKILL.md:19-21](../plugins/faseflyt/skills/fase-slutt/SKILL.md#L19-L21)
-    gjør «skrevet»-innslaget betinget av at verifisering ikke har skjedd ennå.
-    Verifiseres implementering og bekreftelse i samme økt, er ETT ✅-innslag
-    riktig — som her. Toppteksten bør si «to ganger *når* verifiseringen skjer i
-    en senere økt», så den ikke leses som et brudd.
+**Ikke på kritisk vei for samlingen:** persondata = nei på alle seks oppgavene, og
+ingen backend. Dette treffer den dagen en kollega scaffolder et ekte
+persondata-prosjekt på Windows.
 
-- **Test 3 (2026-08-17): deny-settet kan ikke verifiseres av brukeren — vernet er
-  selvskjulende.** Ba testøkten lese dummy-`.env`. Den avslo av eget skjønn
-  (CLAUDE.md-regelen), **uten å forsøke noe verktøykall** — så harness-en ble
-  aldri testet. Modellens gode oppførsel maskerer om deny-regelen i det hele tatt
-  er koblet til.
-  - **Hvorfor det er en pakkemangel, ikke bare et testproblem:** `nytt-prosjekt`
-    installerer deny-settet og `CLAUDE.md`-regelen som «to forsvarslinjer», men
-    gir ingen oppskrift på å bekrefte at linje to lever. En kollega kan derfor
-    aldri vite om vernet virker — og et ubekreftet vern er verre enn ingen, fordi
-    det gir falsk trygghet. Ærlighetsavsnittet dekker at *mønstre kan omgås*,
-    ikke at en regel kanskje aldri var tilkoblet.
-  - **Retting:** kort «slik verifiserer du deny-settet»-avsnitt i `maler.md` eller
-    `references/`, med **ukonfundert** probe: bruk en regel som IKKE har en
-    tilsvarende CLAUDE.md-regel (nett-cmdlet mot `http://127.0.0.1:9/`), siden
-    fil-probene alltid vil kollidere med personvernregelen.
-  - **Åpent spørsmål til hooken:** en PreToolUse-hook er testbar (den logger og
-    returnerer exit 2) og løser dermed verifiserbarheten samtidig som den lukker
-    shell-hullet. Styrker saken for hooken.
+Krav til implementasjonen — det sirkulerende scriptforslaget var feil på alle tre:
 
-- **Test 3 (2026-08-17): `logg.md` krever ikke belegg for funn — antakelser kan
-  føres som oppdagelser.** Testøkten skrev «To ting dette avdekket: `Read(.env)`
-  fanger ikke absolutt sti» etter å ha **nektet å forsøke kallet**. Påstanden kan
-  være riktig, men den er utledet, ikke målt — og var på vei inn i `logg.md` som
-  funn, med en regelendring som følge.
-  - **Presis mangel:** `laering.md`-malen krever belegg for hvert punkt (og
-    testøkten leverte det, forbilledlig). `fase-slutt` steg 1 ber om
-    «overraskelser og funn» i `logg.md` **uten** samme krav. Standarden finnes
-    altså i pakken, men bare på den ene av to filer.
-  - **Retting:** samme belegg-krav i logg-malen, og et eksplisitt skille mellom
-    *observert* (kall forsøkt, resultat sett) og *antatt* (utledet, ikke testet).
-    Antakelser føres som hypotese med hva som ville avgjort dem. Ellers eroderer
-    loggens troverdighet — som er hele grunnlaget for at «verifisert ✅» betyr noe.
-  - **Beslektet, verdt en linje i malen:** modellen holdt riktig på at en regel
-    ikke omgås i én melding, men skal endres skriftlig. Det er ønsket oppførsel og
-    bør stå som mønster i `fallgruver.md` (blant tingene som beviselig fungerte).
+- hooks får JSON på **stdin** (`tool_name`, `tool_input`)
+- blokkering krever **exit-kode 2** eller `permissionDecision: "deny"`; exit 1
+  blokkerer IKKE
+- registrering er en liste med `matcher` + `hooks`-objekter
 
-## PreToolUse-hook som forsvarslinje for persondata-prosjekter (etter grønne tester)
+Må virke på **både Mac og Windows** — verken bash-only eller PowerShell-only.
+Verifiser formatet mot dokumentasjonen før det skrives inn i malene.
 
-Vurdert 2026-08-17 etter innspill om at deny-regler ikke garantert stopper
-fillesing via Bash (`cat .env` o.l.). Konklusjon: reell, men delvis utdatert
-bekymring — Claude Code anvender Read/Edit-deny best-effort også på
-Bash-kommandoer, og planen dokumenterer alt grensen («risikoreduksjon, ikke
-sandkasse»). Verdt å legge til en *teknisk* tredje forsvarslinje:
+**Ærligheten beholdes:** hooken ser `[Net.WebClient]` som tekst, men ikke `& $c`,
+der navnet først finnes ved kjøring. Sterkere lag, ikke tett lag — absolutt
+isolasjon krever sandkasse eller container. Samme klausul som deny-settet alt har.
 
-- **Hva:** PreToolUse-hook i prosjektets `.claude/settings.json` + script i
-  repoet, som denyer Bash-kommandoer som treffer sensitive filer
-  (`.env`, `local.settings.json`, datamapper). Tilbys i `nytt-prosjekt`
-  steg 6 når brukeren svarer ja på persondata-spørsmålet — samme lag som
-  deny-reglene, følger med ved overtakelse.
-- **Krav til implementasjonen** (det sirkulerende scriptforslaget var feil):
-  hooks får JSON på **stdin** (`tool_name`, `tool_input`), blokkering krever
-  **exit-kode 2** eller `permissionDecision: "deny"` (exit 1 blokkerer IKKE),
-  registrering er liste med `matcher` + `hooks`-objekter. Må virke på **både
-  Mac og Windows** (de fleste utviklerne er på Mac; noen på Windows) — altså
-  verken bash-only eller PowerShell-only; vurder portabelt script eller
-  plattformdelt hook. Verifiser eksakt format mot dokumentasjonen før det
-  skrives inn i malene.
-- **Ærlighet beholdes:** hook + deny + CLAUDE.md-regel = tre lag
-  risikoreduksjon; absolutt isolasjon krever sandbox/container.
-- **Prosess:** egen liten fase/PR etter at testplan 1–3 er grønne.
-
-## HYPOTESE (økt 3): bare-filnavn-formen i Read(...) matcher aldri — også Read(.env)
-
-Probe 1a: `Read(kanarifugl.txt)` i deny stoppet **ikke** Read-verktøyet på absolutt
-sti, mens `permissions`-blokken beviselig var aktiv. Tre kandidatforklaringer, alle
-utestet:
-
-1. absolutt sti glipper forbi mønsteret
-2. bare-filnavn-formen matcher aldri, uansett stiform
-3. stimønstre resolveres relativt til `settings.json`s katalog — `Read(kanarifugl.txt)`
-   blir da `.claude/kanarifugl.txt`, som ikke finnes
-
-**Hvorfor dette er verre enn nettverksfunnet:** er 2 sann, er `Read(.env)` i malen
-også dødvekt — og `.env` så beskyttet ut i økt 2 kun fordi Claude Code kan ha
-innebygd særstatus for `.env`. Da hviler filvernet på én mekanisme vi ikke
-kontrollerer pluss modellens eget skjønn. `Read(data/**)` er glob-form og kan være
-den eneste som lever.
-
-**Rigg for neste økt, én omstart skiller alle tre:**
-
-- bytt til `Read(**/kanarifugl.txt)`, gjenta 1a → blokkerer ⇒ forklaring 1
-- legg `.claude/kanarifugl2.txt` + regel `Read(kanarifugl2.txt)` → blokkerer ⇒ forklaring 3
-- begge kjører ⇒ forklaring 2, og `Read(.env)` må antas død til motsatt er vist
-- deretter 1b (`Get-Content` via PowerShell) først når en av dem blokkerer
-
-Ikke test med dummyfil i `data/` — bryter den stående regelen, og glob-spørsmålet
-kan besvares på kanarifugl-filen.
-
-## Testdisiplin inn i fallgruver.md: «én observasjon, ett utfall, én forklaring»
-
-Kom ut av testøkten som `[flere-forklaringer]` og er generell, ikke
-prosjektspesifikk. Regelen: en probe som kan feile av flere grunner måler
-ingenting — del den i to *før* den kjøres. Tre tilfeller i én økt:
-
-- hypotese ført som funn uten at noe kall ble forsøkt
-- `Get-Content` mot en `Read(...)`-regel — konflaterte lasting, stiform og
-  verktøy-scoping i ett utfall
-- blokkering attribuert til `settings.json` der innebygd `.env`-særstatus var
-  like sannsynlig forklaring
-
-Følgeregel, samme punkt (`[hypotese-vs-funn]`): en overskrift skal ikke påstå mer
-enn forbeholdene under den tillater. Hører sammen med belegg-kravet i logg-malen.
-
-## Deny-settet må differensieres per prosjekttype — aksen er feil
-
-Vurdert 2026-08-17. Mønstrene treffer **kommandonavn**, mens risikoen ligger i
-**målet**: `Invoke-RestMethod http://localhost:5173/api/health` (Claude røyktester
-eget endepunkt — kjernen i Fase 0) og et kall mot et produksjons-API er samme
-kommando og helt ulike handlinger. Ett bredt sett for alle typer betyr at webapp-
-og API/backend-prosjekter mister evnen til å verifisere eget arbeid — og et deny
-som står i veien for normalt arbeid blir slått av i irritasjon, som er den verste
-utgangen.
-
-- **Retting i `maler.md`/`prosjekttyper.md`:** deny-sett per prosjekttype. script
-  og dokumentasjon: bredt nettverksdeny, null kostnad. webapp og API/backend:
-  enten `ask`-tier for nett-kommandoer, eller mønstre som treffer
-  produksjonsvertene framfor kommandonavnene.
-- **`ask`-tieren må verifiseres** (nøkkelnavn + oppførsel) med samme
-  kontrollkall-metode som `PowerShell(...)`-formen. Skrives ikke inn i malen før
-  den er testet — samme disiplin som resten av denne runden.
-- **`Read(data/**)`:** skill produksjonsuttrekk (`data/`, denied) fra syntetiske
-  fixtures (`testdata/`, tillatt). Blokkerer malen fixtures Claude trygt kan lese,
-  blir hele regelen slått av.
-- **`Read(.env)` beholdes hardt** — behovet finnes ikke: nøkkelnavn uten verdier,
-  `.env.example` og `$env:NAVN` dekker alle reelle tilfeller. Skriv erstatningene
-  inn i malen, så brukeren ikke tror regelen koster noe.
-- **Prinsipp for malteksten:** asymmetrien i feilmodus favoriserer deny — for
-  bredt gir en synlig blokkering som fjernes på sekunder, for smalt gir en
-  usynlig lekkasje. Men det gjelder bare når regelen ikke står i veien for
-  normalt arbeid; da vinner irritasjonen. Si det rett ut.
+**Sidegevinst som styrker saken:** en hook er testbar — den logger og returnerer
+exit 2 — og løser dermed verifiserbarheten som var det andre halve problemet.
 
 ## ~~Mac-skjevhet i prosjekttyper.md~~ — RETTET i PR #2, verifisert 2026-08-18
 

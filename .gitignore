@@ -10,6 +10,10 @@ kunnskap/*.docx
 kunnskap/*.xlsx
 kunnskap/*.pptx
 kunnskap/*.pdf
+# Samme grunn, men for tekstfiler: mønstrene over dekker bare Office-formater, så
+# et arbeidsdokument skrevet som .md ville blitt tracket. Alt i kunnskap/lokalt/
+# holdes lokalt uansett filtype.
+kunnskap/lokalt/
 # Standard støy:
 Thumbs.db
 .DS_Store

@@ -2,6 +2,99 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-19 (sen kveld) — Samlingsarket strammet, TODO ryddet for løste funn ✅
+
+Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). `main` = `fba8674` + denne. faseflyt 0.2.1
+uendret — ingen endring i `plugins/`, pakken står fortsatt fryst for MVP-test.
+
+### Levert
+
+**Oppgavearket til septembersamlingen lest og strammet.** `.docx`-en pakket ut
+(en `.docx` er en zip; `document.xml` → tekst) og vurdert. Funn i strukturen:
+13 av ~22 linjer per lapp var **ordrett like på alle seks lappene** («Slik kommer
+dere i gang», «Vil dere dele dere», «Rammer»). Omskrevet til tre ark i
+`kunnskap/lokalt/oppgavelapper.md`: fasilitatorark, ett felles ark til alle
+grupper, og seks lapper som nå bare er bestilling + to uavklarte spørsmål +
+notatfelt. Bestillingene er uendret — de skal være muntlige og upresise, det er
+grillingens råstoff.
+
+**`TODO.md` ryddet: 598 → 386 linjer.** Hele «Funn fra testplanen», HYPOTESE-
+seksjonen om `Read(...)`-stiformer, testdisiplin-seksjonen og
+deny-differensieringen er erstattet av én tabell som peker på hvor kunnskapen
+faktisk bor. Sikkerhetskopi i scratchpad (`TODO.md.bak`) for denne økten;
+innholdet ligger permanent i `logg.md` (17.–18.08), i `maler.md` og i
+git-historikken.
+
+**`.gitignore`:** `kunnskap/lokalt/` lagt til.
+
+### Beslutninger
+
+**Beslutning (BK, arbeidsordre):** rette den foreldede TODO-seksjonen og skissere
+arket i strammere form, begge i denne økten. Begrunnelse: BK avslutter dagen her
+og vil videre til tørrkjøring i blank økt.
+
+**Beslutning (BK/Claude, tørrkjøringscase): Oppgave 6, Utstyrsskapet.**
+Begrunnelse: den er unionen av 1 (liste, detalj, utlån til navngitte), 3
+(datoberegnet status) og 4 (markering) — går den gjennom på 3–4 faser, går resten.
+Reserve ved lite tid: 1, Donald Pocket. **Ikke** 5, Vaffelvakta: rotasjon + bytte
++ ferier er der en gruppe lettest bruker opp økta på domenelogikk framfor på
+arbeidsflyten.
+
+**Beslutning (Claude, lokal mappe framfor filnavn i `.gitignore`):**
+`kunnskap/lokalt/` som mappe, ikke `kunnskap/oppgavelapper.md` som filnavn.
+Begrunnelse: neste arbeidsdokument skal ikke kreve en ny `.gitignore`-vurdering.
+
+**Beslutning (Claude, bestillingen inn i tracked fil):** arket er untracket og
+synker derfor ikke til kontor-PC-en. Bestillingen til case 6 står ordrett i
+`TODO.md`, som ER tracked, så tørrkjøringen kan kjøres på en annen maskin uten
+arket.
+
+### Funn
+
+**Observert — `.gitignore` dekket hensikten i kommentaren, men ikke i mønstrene.**
+Kommentaren over mønstrene sier at arbeidsdokumenter i `kunnskap/` holdes lokale.
+Mønstrene var `kunnskap/*.docx|xlsx|pptx|pdf` — altså bare Office-formater. Et
+arbeidsdokument skrevet som `.md` ville blitt **tracket og klonet til hver kollega
+som installerer pakken**. Målt: `git check-ignore -v` på den nye fila ga treff
+først etter at `kunnskap/lokalt/` ble lagt inn. Samme form som grense 9 i
+`maler.md` (navnebaserte mønstre kan ikke bli komplette) — pakken kjente lærdommen
+på ett sted og ikke på et annet.
+
+**Observert — `TODO.md` var foreldet på sitt alvorligste punkt.** Bulletpunktet
+merket ALVORLIGST pekte på `maler.md:235-236` for døde `Bash(Invoke-*)`-regler.
+Målt med `grep`: de linjene finnes ikke lenger, og `maler.md:313` sier nå
+eksplisitt at cmdlet-navn ikke hører i `Bash(...)`. Videre var HYPOTESE-seksjonen
+om at bar filnavn-form aldri matcher **avkreftet** av grense 5 (bar form virker i
+både prosjektrot og `.claude/`), samtidig som seksjonen fortsatt beskrev en rigg
+for «neste økt». Nesten hele seksjonen var løste problemer som leses som åpne
+defekter.
+
+**Observert — arket påstår tre ting pakken ikke har målt.** (1) «Si "nytt
+prosjekt"» hviler på at skillen trigger av seg selv, ikke på et eksplisitt
+`/faseflyt:nytt-prosjekt` — slår den ikke inn, står gruppa fast på minutt null.
+(2) «`web-prototype` trigger av seg selv» for webapp-typen, som står som umålt i
+STATUS. (3) Designsporets mekanikk (`list_projects` viser bare
+design-system-prosjekter, wireframe-prosjekt må åpnes med `projectId`,
+token-overstyring i `app.css`) — arket er kanskje eneste kilde. Ført som
+fasilitatorseksjon i arket.
+
+**Antatt, ikke målt — kontor-PC-ens tilstand.** STATUS sier «Begge ferdig satt
+opp»; `TODO.md`s Maskinstatus-seksjon (17.–18.08) sier at kontor-PC-en fortsatt
+har gammelt oppsett. De motsier hverandre, og det kan ikke avgjøres fra
+hjemme-PC-en. STATUS er nyest og veier tyngst, men det som ville avgjort det er
+`claude plugin list` + en ordlydssjekk mot repoet på den maskinen.
+
+**Ikke ryddet:** `.docx`-en ligger fortsatt i git-historikken fram til `cd50841`.
+Uendret vurdering.
+
+### Kvalitetsport og røyktest
+
+`bash .github/renhet/sjekk.sh`: **10 søk, 0 feil, 0 advarsler.** Dekker ikke det
+nye arket — det er untracket, og alle ti søkene leser bare trackede filer. Lest
+manuelt i stedet: bare de oppdiktede navnene fra bestillingene, ingen stier,
+ingen secrets. `claude plugin validate .`: se under. Røyktest: ingen env-filer ut
+over `.env.example`, ingen treff på fødselsnummer eller `client_secret`.
+
 ## 2026-08-19 (kveld) — Renhetsport i CI, språkvask, og en scope-korreks fra BK ✅
 
 Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). `main` = `5ba65ed` → `a33a11e` + denne.

@@ -9,6 +9,73 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-19 (sen kveld) — Arket strammet, TODO ryddet, og et omfang jeg utvidet underveis
+
+**Evaluering av forrige økts punkter — alle tre fyrte, alle tre strykes:**
+
+- **[git-add-alt-er-å-publisere-usett]** *(2. gang)* — **fulgt, og den fyrte
+  forebyggende. Strykes.** Belegg: (1) Jeg committet ikke, og viste
+  `git status --short` + diffstat + `git check-ignore -v` framfor å påstå at
+  endringene var som forventet. (2) Jeg navnga hva renhetssjekken IKKE dekker: det
+  nye arket er untracket, så ingen av de ti søkene leser det. (3) Sterkeste belegg:
+  punktet fyrte *før* feilen skjedde. `.gitignore` dekket bare Office-formater, så
+  arbeidsdokumentet jeg var i ferd med å skrive som `.md` ville blitt tracket og
+  klonet til hver kollega. Jeg tettet det før jeg skrev fila, ikke etter. Forrige
+  gang var samme klasse feil oppdaget i ettertid, på en `.docx` som alt var pushet.
+- **[grønn-sjekk-er-ikke-grønn-port]** *(2. gang)* — **fulgt. Strykes.** Belegg:
+  (1) BK ba om en forklaring på PowerShell-hullet; jeg nektet å svare fra `TODO.md`
+  alene og målte malene først — og fant at teksten TODO pekte på (`maler.md:235-236`)
+  ikke finnes lenger, og at hullet var innarbeidet som grense 6–9. Hadde jeg svart
+  fra hukommelsen, hadde jeg beskrevet et løst problem som åpent. (2) Før 293 linjer
+  ble slettet, dumpet jeg de elleve grenselinjene og verifiserte hver skjøt. (3) Jeg
+  målte at den nye ignore-regelen faktisk fyrer, framfor å anta at mønsteret var
+  riktig skrevet.
+- **[mvp-drift]** *(2. gang)* — **fulgt, men svakest av de tre. Strykes med
+  forbehold.** Belegg for: jeg holdt frysen, foreslo blank økt framfor mer bygging,
+  og flagget at PreToolUse-hooken ikke er på kritisk vei til samlingen. Belegg mot:
+  TODO-ryddingen var mitt forslag, ikke BKs behov — den forsvares av at den fjerner
+  villedende informasjon foran en tørrkjøring, og av at den *krympet* 212 linjer
+  framfor å legge til, men den var initiert av meg.
+
+**Nye punkter:**
+
+- **[beskrevet-omfang-er-avtalt-omfang]** Når brukeren sier ja til et forslag, er
+  det forslagets *ordlyd* de har godkjent — ikke det du finner ut er riktig når du
+  er inne i fila. Utvider du, si det først. Belegg: jeg tilbød å «rette den
+  foreldede TODO-seksjonen», entall. Da jeg målte, var fire seksjoner foreldet, og
+  jeg fjernet alle fire — 293 linjer — og viste diffstat etterpå framfor å beskrive
+  omfanget først. Utfallet var riktig og reversibelt (backup tatt, boundaries
+  verifisert, innholdet finnes i `logg.md` og `maler.md`), så dette er ikke en
+  skade. Men det er samme form som `[arvet-regel-prøves-før-den-etterleves]`, som
+  ble strøket for to økter siden nettopp fordi jeg hadde utvidet en regel før jeg
+  spurte. Testen neste gang: sier tilbudet «seksjonen» og målingen sier «fire
+  seksjoner», er det en ny setning til brukeren, ikke en større Edit.
+- **[mønsteret-koder-eksempelet-ikke-hensikten]** Står hensikten i en kommentar og
+  eksemplene i mønstrene, er mønstrene feilen — ikke kommentaren. Sjekk alltid en
+  filter-, deny- eller ignore-regel mot et tilfelle som *ikke* er blant dem den ble
+  skrevet for. Belegg: `.gitignore`-kommentaren sa «arbeidsdokumenter i `kunnskap/`
+  holdes lokale», mens mønstrene var `*.docx|xlsx|pptx|pdf`. Hensikten var
+  filtype-uavhengig; implementasjonen dekket bare de fire formatene det tilfeldigvis
+  hadde vært et dokument av. Første `.md` ville gått rett i git og videre til hver
+  kollega. Dette er samme form som grense 9 i `maler.md` (navnebaserte mønstre kan
+  ikke bli komplette) — pakken kjente lærdommen på ett sted og ikke på et annet,
+  som er nøyaktig det mønsteret vi alt har betalt for tre ganger.
+- **[ingen-lukker-todo]** Arkivfiler forfaller stille fordi ingen eier lukkingen.
+  `fase-slutt` overskriver STATUS, føyer til `logg.md` og `laering.md` — men rører
+  aldri `TODO.md`. Den vokser derfor monotont, og et løst funn som står der leses
+  som en åpen defekt. Belegg: 293 av 598 linjer var rettede funn; det alvorligste
+  punktet pekte på maltekst som ikke finnes lenger, og en HYPOTESE-seksjon beskrev
+  en testrigg for et spørsmål grense 5 alt hadde besvart. Konkret vane til neste
+  gang: retter du noe i pakken, søk på filnavnet i `TODO.md` i samme økt og lukk
+  posten der. Dette gjelder **arbeidsflyten selv**, ikke bare dette prosjektet — se
+  vurderingen under.
+
+**Gjelder dette skillene?** Ja, `[ingen-lukker-todo]` er en reell mangel i
+`fase-slutt`: den har ingen TODO-hygiene-steg. Issue er likevel **ikke** opprettet,
+samme begrunnelse som den beslektede skjevheten lenger ned i `TODO.md`: dette *er*
+pakkerepoet, og issue-mekanismen finnes for kollegaer som ikke kan redigere pakken
+selv. Ført her og i `TODO.md` i stedet.
+
 ## 2026-08-19 (kveld) — CI-porten, språkvasken, og en scope-korreks jeg burde tatt selv
 
 **Evaluering av forrige økts punkter:**

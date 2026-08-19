@@ -36,6 +36,12 @@ det parafrase, som kastet bort ordlydsrettingene fra 0.2.0 uten at noen så det.
   `kodeformat` mismatcher stille. Målt under bygging av etterkontrollen over —
   12 av 54 linjer ble rapportert manglende i en fil der de sto ordrett.
   `.Contains()` er svaret.
+- **Manifestene stemte ikke overens i første 0.2.1-push.** `plugin.json` ble
+  bumpet til 0.2.1, mens `marketplace.json` ble stående på 0.2.0. Ved
+  installasjon vinner `plugin.json`, så pakken som installeres er riktig — men
+  `/plugin`-listen viser feil versjon, og avviket er stille. Oppdaget ved
+  installasjon på en ny maskin. Rettet, og `claude plugin validate` er lagt inn
+  som fast steg i release-rutinen i `docs/installasjon.md`.
 
 Ikke brytende: ingen endring i `kunnskap/`-strukturen. Prosjekter scaffoldet med
 0.2.0 kan hente inn de manglende malavsnittene ved behov — særlig

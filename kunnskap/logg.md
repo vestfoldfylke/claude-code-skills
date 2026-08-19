@@ -2,6 +2,89 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-19 (kveld) — Renhetsport i CI, språkvask, og en scope-korreks fra BK ✅
+
+Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). `main` = `5ba65ed` → `a33a11e` + denne.
+faseflyt 0.2.1 uendret.
+
+### Levert
+
+**Renhetskravene ble en port** (`ed04300`). `.github/renhet/sjekk.sh` — ni søk,
+kjøres av både CI og lokalt, samme kode, slik at prosaen i `docs/installasjon.md`
+og porten ikke kan drifte fra hverandre. Pluss workflow, unntaksliste for
+FINT-deklarasjonslogikken, og `.gitattributes` (`*.sh` = LF — `bash script.sh`
+feiler på CR på Linux-runneren).
+
+**Språkvask** (`a33a11e`). Se beslutning under. 27 steder i pakken; TODO-punktet
+om at `fase-slutt` steg 4 pekte mot å hoppe over en sjekk som finnes ble rettet i
+samme endring, fordi det var samme formulering som skapte problemet.
+
+**Steg 5 styrket som instruks** (denne commiten): datauttrekk mot `.gitignore`,
+filene arbeidsflyten selv lager (former og feltnavn, aldri verdier), skjermbilder
+som persondata, krav om å melde *hva* som ble kjørt, og en ærlighetsklausul om at
+dette er en instruks og ikke en håndhevet regel.
+
+### Beslutninger
+
+- **Beslutning (BK, actions-omfang):** Actions holdes til dette repoet, ikke ut i
+  kollegaprosjekter. Begrunnelse: innholdet er pakkeregler (gammel forkortelse,
+  FINT-innhold utenfor `fint-graphql`, stier i `plugins/`) og hensikten er å verne
+  distribusjonskanalen. Et kollegaprosjekt er ikke en kanal inn til andre.
+- **Beslutning (BK, kollegavernet):** styrke `fase-slutt` steg 5 som **instruks**,
+  ikke som mekanisme. Alternativene som ble vurdert og lagt bort: Action ut i hvert
+  prosjekt (krever GitHub + Actions + org-avklaring per repo — friksjonen dreper
+  bruk), og lokal `pre-push`-hook (best passform, men hooks følger ikke med i git,
+  så den svekker overtakelseshistorien).
+- **Beslutning (BK, MVP):** pakken fryses og testes på et par kollegaer framfor å
+  poleres videre. Begrunnelse: den har vokst forbi MVP, og «helhetsvurdering»-
+  spørsmålet (hvem pakken er for, hvor mye maskineri kollegaene skal ha) besvares
+  bedre av to reelle brukere enn av mer analyse.
+- **Beslutning (BK, direkte til main):** pakkeendring går rett på `main` når
+  hardening er av; branch + PR gjelder når den er på. Målt samme dag, se under.
+
+### Funn
+
+- **Observert: Actions er avslått for repoet.** `actions/permissions` →
+  `{"enabled": false}`, `gh run list` tom etter to pusher. Workflow-fila er altså
+  inert. **Konsekvens:** porten er bygget og scriptet er bevist, men *porten* er
+  ikke i drift — den er ikke verifisert, og skal ikke føres som det.
+- **Hypotese: om avslaget er org-policy eller repo-bryter er uavklart.** Begge
+  org-endepunktene ga 403, og feilmeldingen navngir **to** forklaringer (ikke
+  org-admin / token mangler `admin:org`). Én observasjon, to forklaringer ⇒ måler
+  ingenting. Avgjøres av: en org-admin, eller et token med `admin:org`.
+  Repo-rollen er målt: `admin: true`.
+- **Observert: to kanoniske renhetssøk slo ut på seg selv.** `client_secret` traff
+  instruksjonsteksten som *beskriver* søket (5 treff, alle legitime), og `fint`
+  traff deklarasjonslogikken `docs/installasjon.md` eksplisitt unntar. Skjerpet:
+  `client_secret` krever nå tilordnet verdi; `fint` deler i hardt forbud mot
+  FINT-*innhold* pluss unntaksliste for bar omtale.
+- **Observert: kontrollsøket kunne tilfredsstilles av sjekkens egen tekst.** Første
+  utkast søkte over hele repoet og ga 8 treff på «faseflyt» i et repo som bare
+  inneholdt sjekkescriptet — altså bevist at `git grep` kjørte, ikke at søkene nådde
+  pakken. Avgrenset til `plugins/`, re-verifisert: exit 1 i et repo uten pakke.
+- **Observert: pakken brøt sin egen klarspråk-regel.** Regelen fantes
+  (`nytt-prosjekt/SKILL.md`: «si «sette opp prosjektet», ikke «scaffolde»»), men
+  listet ikke `kvalitetsport`/`røyktest`/`probe` — og pakken brukte dem to linjer
+  nedenfor. Jeg la selv inn to nye brudd (`positiv kontroll`, `kanarifugl`) samme
+  dag, i en fil jeg redigerte mens regelen sto der.
+- **Observert: setningene BK reagerte på fantes ikke i noen fil.** `git grep` etter
+  «røyktesten er ren og proben bevist levende» og «ingen package.json» ga null
+  treff. De ble *satt sammen* av ordene i skillene og kom ut i chatten. Det flyttet
+  fiksen: å vaske filprosa alene ville ikke stoppet dem.
+- **Observert: plugin-cachen er foreldet mot repoet.** `/faseflyt:fase-slutt` lastet
+  0.1.0-teksten med «Kvalitetsport», «Sikkerhetsrøyktest» og
+  `**Beslutning (<navn>)**` — altså ordlyden før dagens språkvask. Repoet er
+  kanonisk og ble fulgt. Ikke en defekt: cachen oppdateres av
+  `/plugin marketplace update`, som ikke er kjørt etter dagens commiter.
+- **Kvalitetsport (steg 4, ny ordlyd):** `claude plugin validate .` exit 0 og
+  renhetssjekken 9 søk / 0 feil / 0 advarsler. Merk at det gamle steget ville meldt
+  «ingen kvalitetsport» her, siden repoet ikke har `package.json`.
+- **Kanarifugl-testing av porten:** alle sju harde krav slo ut med exit 1, det myke
+  kravet ga advarsel med exit 0. Porten er bevist å kunne feile, ikke bare å kunne
+  si OK.
+- **Målt på nytt (opphever påstand fra samme dag):** hardening er av — `rulesets`
+  `[]`, `rules/branches/main` `[]`, `branches/main.protected` `false`.
+
 ## 2026-08-19 — To maskiner, tre PR-er merget, `kunnskap/` inn i git ✅
 
 **Maskiner:** kontor-PC-en `VPC-8WD9VC4` (Dell, ARM64/Snapdragon X Elite, Win 11

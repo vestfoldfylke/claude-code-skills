@@ -1,20 +1,64 @@
 # TODO — utenfor gjeldende fase
 
-## Nytt 2026-08-19
+## MVP-frys 2026-08-19 (kveld) — les dette først
 
-- **`fase-slutt` steg 4 peker mot å hoppe over en port som finnes.** Ordlyden er
-  «bygg/typecheck/tester slik de er definert i `CLAUDE.md` eller `package.json`.
-  Finnes ingen: hopp over og si det». Et plugin-marketplace har ingen
-  `package.json`, men `claude plugin validate` er en reell kvalitetsport — den
-  fanget manifest-avviket i PR #13. Forslag: la steget nevne manifest-/
-  skjemavalidering som gyldig port, ikke bare byggverktøy. Formuleringen er fri for
-  prosjektdata og kan gjenbrukes ordrett som issue-tekst.
-- **CI-sjekk for renhetskravene, før 1.0.** Hardening er av og review er droppet
-  fram til 1.0, så det finnes ingen port mellom en commit og kollegaers
-  `/plugin marketplace update`. En workflow som kjører søkene i
-  `docs/installasjon.md` **med** den positive kontrollen erstatter reviewen med en
-  måling. Se hook-skissen lenger ned i denne fila; en GitHub Action er sannsynligvis
-  enklere enn en PreToolUse-hook, siden den også virker for andre bidragsytere.
+**Beslutning (BK):** pakken fryses og testes på et par kollegaer. Ikke bygg mer
+før testen er gjort. Nesten alt under denne linjen er vedlikeholderklasse og
+blokkerer ikke testen — `TODO.md` (535 linjer) + `plan.md` (605) er utredning,
+mens pakken alt er testbar. «Helhetsvurdering»-spørsmålet lenger ned besvares
+av to reelle brukere, ikke av mer analyse.
+
+## Actions — venter på utviklerne (BK tar samtalen)
+
+Målt 2026-08-19: `actions/permissions` → `enabled: false`, `gh run list` tom
+etter to pusher. Workflow-fila er inert. Repo-rollen er `admin: true`, så
+bryteren er innen teknisk rekkevidde — den venter på avklaring, ikke tilgang.
+Org-nivået er **uavklart**: begge org-endepunktene ga 403, og feilmeldingen
+navngir to forklaringer (ikke org-admin / token mangler `admin:org`), så det
+måler ingenting.
+
+Spørsmålene å ta med:
+
+1. Kan Actions slås på for dette private repoet — eller styrer en org-policy det?
+2. Begrenser org-en hvilke actions som er tillatt? Vi bruker `actions/checkout`
+   (GitHub-eid). Er lista snevret til verifiserte utgivere, vil vi vite det først.
+3. Har vi Actions-minutter for private repo på planen? Vår kjøring tar sekunder.
+4. Er standard `GITHUB_TOKEN` read-only på org-nivå? Vi deklarerer
+   `permissions: contents: read` og trenger ikke mer.
+5. Sier policy nei: foretrekker de en lokal `pre-push`-hook i stedet?
+6. **Viktigst, til 1.0:** kan sjekken settes som *required status check* på `main`?
+   Slik den er nå, kjører den etter at commiten ligger der — den rapporterer, den
+   stopper ingenting.
+
+Verdt å si til dem: workflowen er 25 linjer, kjører ett bash-script, ingen
+nettverkstilgang, ingen secrets, read-only token.
+
+## Avgjort 2026-08-19 (kveld) — ikke gjenåpne
+
+- **~~`fase-slutt` steg 4 peker mot å hoppe over en port som finnes~~ — RETTET**
+  i `a33a11e`. Steget heter nå «Virker prosjektet fortsatt?» og krever at man
+  leter bredt (manifest-/skjemavalidering, at et script kjører, død lenke) før
+  man melder at ingen sjekk finnes. Ikke gjenta.
+- **~~CI-sjekk for renhetskravene~~ — BYGGET** i `ed04300`
+  (`.github/renhet/sjekk.sh` + workflow + unntaksliste). Scriptet er bevist:
+  kanarifugl på alle sju harde krav ga exit 1. **Men porten er ikke i drift** —
+  se Actions-seksjonen over.
+- **Beslutning (BK, actions-omfang):** Actions holdes til dette repoet. Følger
+  ikke ut i kollegaprosjekter — innholdet er pakkeregler, og hensikten er å verne
+  distribusjonskanalen.
+- **Beslutning (BK, kollegavernet):** `fase-slutt` steg 5 styrkes som **instruks**,
+  ikke mekanisme. Gjort i denne commiten. Lagt bort: Action per prosjekt (krever
+  GitHub + Actions + org-avklaring per repo — friksjonen dreper bruk) og lokal
+  `pre-push`-hook (best passform, men hooks følger ikke med i git, så
+  overtakelseshistorien svekkes). Kan tas opp igjen etter kollegatesten.
+
+## Liten skjevhet i læringssløyfen (oppdaget under bruk 2026-08-19)
+
+Ratchet-en sier at et punkt som står i tre påfølgende faseslutt skal promoteres
+til «prosjektets `CLAUDE.md`» — men skillen sier ikke hva som skjer når prosjektet
+ikke *har* en `CLAUDE.md`. Dette repoet har ingen, så promoteringen ble et forslag
+i chatten framfor en handling. Ikke ført som issue: dette *er* pakkerepoet, og
+issue-mekanismen finnes for kollegaer som ikke kan redigere pakken selv.
 - **Slett `master` i `claude-global-config`**, lokalt og på remote. Den ble beholdt
   eksplisitt «for usynket maskin» = kontor-PC-en, som nå er over på `main`.
 - **Issue #9:** `web-prototype` er bekreftet identisk mellom `~/.claude` og repoet.

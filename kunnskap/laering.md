@@ -9,6 +9,67 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-19 (kveld) — CI-porten, språkvasken, og en scope-korreks jeg burde tatt selv
+
+**Evaluering av forrige økts punkter:**
+
+- **[todo-er-datert-observasjon-ikke-tilstand]** *(3. gang)* — **fulgt, og den fyrte
+  gjentatte ganger. Nådd tre påfølgende faseslutt ⇒ foreslått promotert til
+  `CLAUDE.md`, ut av STATUS.** Belegg for etterlevelsen: (1) STATUS påsto hardening
+  var av per 19.08; jeg målte om før jeg anbefalte rett-på-main, framfor å arve
+  påstanden. (2) Loggen sa «renhetssjekk: ren» — jeg kjørte søkene om mot gjeldende
+  tre før jeg skrev dem inn som CI-regler, og to av dem viste seg å slå ut på seg
+  selv. (3) Jeg nektet å føre CI-porten som verifisert da Actions viste seg avslått.
+  (4) Da `printf` slukte `\U` og en kanarifugl aldri ble plantet, forkastet jeg det
+  grønne resultatet framfor å kreditere det. Fulgt konsistent i tre økter ⇒ dette er
+  en stående regel, ikke en korrigering jeg trenger påminnelse om.
+- **[arvet-regel-prøves-før-den-etterleves]** *(2. gang)* — **fulgt, den fyrte to
+  ganger. Strykes.** Belegg (1): før sveipet på 27 språkvask-steder stoppet jeg og
+  ba om godkjenning av ordtabellen, med eksplisitt henvisning til at jeg sist utvidet
+  en regel før jeg spurte og at commit 2 måtte reversere commit 1. BK godkjente, og
+  sveipet ble gjort én gang. Belegg (2): jeg målte de arvede kanoniske søkene fra
+  `docs/installasjon.md` før jeg gjorde dem til porter — og fant at to av dem traff
+  sin egen regeltekst. Hadde jeg kodet dem ordrett, ville CI feilet ved hver kjøring
+  på seg selv.
+- **[explore-delegering]** *(2. gang)* — **kunne ikke prøves, VIDEREFØRES OMFORMULERT.**
+  Årsak: Explore-delegering var ikke tilgjengelig denne økten (økt-instruksen forbød
+  å kalle Agent-verktøyet uten at brukeren ba om det). Punktet var altså skrevet mot
+  en mekanisme som ikke alltid finnes. Målet bak det holder likevel, og ble fulgt med
+  andre midler: jeg leste linjeintervaller framfor hele filer, brukte `git grep -c`
+  for oversikt før innhold, og hentet ut én seksjon med `sed` framfor å lese
+  `fase-slutt/SKILL.md` på nytt. Omformuleres til `[hent-bare-det-du-trenger]`, som
+  er verktøyuavhengig og derfor faktisk etterprøvbar.
+
+**Nye punkter:**
+
+- **[grønn-sjekk-er-ikke-grønn-port]** Når leveransen er en *mekanisme*, mål at
+  mekanismen er koblet til — ikke bare at delene virker. Rekkefølgen er poenget: den
+  billige målingen skal komme før byggingen. Belegg: jeg skrev 276 linjer
+  renhetsport, kanarifugl-testet alle sju krav, committet og pushet — og *deretter*
+  oppdaget at Actions er avslått for repoet (`enabled: false`, `gh run list` tom).
+  Ett `gh api`-kall, tilgjengelig fra første minutt, ville avdekket det før noe ble
+  skrevet. Scriptet er bevist; porten er ikke i drift. Jeg meldte det ærlig som umålt
+  underveis, men det er ikke det samme som å ha målt det først. Dette er pakkens egen
+  lærdom («et ubekreftet vern er verre enn ingen») anvendt på meg selv.
+- **[mvp-drift]** STATUS rangerer etter «høyest verdi», men ikke mot brukerens
+  nærmeste mål. Sjekk rangeringen mot det målet før du bygger, ikke etter. Belegg:
+  STATUS ga CI-porten som punkt 1 og jeg bygget den; BK bestemte samme økt at den
+  holdes internt — den var altså ikke på kritisk vei til det faktiske målet, som er
+  å teste på et par kollegaer. Det var BK som måtte si «jeg tror jeg har gått litt
+  langt», ikke jeg. Målingen som burde utløst spørsmålet fra min side: `TODO.md` 535
+  linjer + `plan.md` 605 linjer utredning mot en pakke som alt var testbar (README
+  dekker begge de målte oppstartsfellene). Kontrast i samme økt: språkvasken kom fra
+  en ekte bruker som ikke forsto tre ord, og traff kollegatesten direkte. Skillet
+  mellom de to er hvem som etterspurte det.
+- **[les-pakkens-egne-regler-før-du-skriver-i-den]** Før du skriver brukerrettet
+  tekst i et prosjekt som har stilregler, les reglene prosjektet selv håndhever.
+  Belegg: klarspråk-regelen sto i `nytt-prosjekt/SKILL.md` og pakken brøt den to
+  linjer nedenfor (27 treff) — og jeg la selv inn to nye brudd («positiv kontroll»,
+  «kanarifugl») samme dag, i `docs/installasjon.md`, mens regelen lå i repoet jeg
+  redigerte. Regelen er nå en tabell med åtte par pluss en fanget-alt-klausul, så
+  denne konkrete feilen er institusjonalisert bort — punktet føres for mønsteret, og
+  bæres ikke videre som aktiv korrigering.
+
 ## 2026-08-19 — Synkeøkten: `kunnskap/` inn i git, og regelsettet som målte én maskin
 
 **Evaluering av forrige økts punkter:**

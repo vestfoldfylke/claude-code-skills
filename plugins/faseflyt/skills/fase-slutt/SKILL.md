@@ -96,8 +96,29 @@ Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
    - `git ls-files` skal ikke vise andre env-filer enn `.env.example`
    - `git grep` etter 11-sifrede tall (fødselsnummer) og `client_secret` i
      tracked filer — kjente eksempelverdier i dokumentasjon er OK
-   Utenfor git: samme sjekker med vanlig filsøk i prosjektmappen. Skaler etter
-   prosjekttype: for dokumentasjonsprosjekter er persondata-sjekken hovedsaken.
+   - **Datauttrekk skal være dekket av `.gitignore`.** Sjekk at ingen uttrekksfil
+     er tracket — `git ls-files` mot datamappene prosjektet bruker.
+
+   **Sjekk også filene arbeidsflyten selv har laget.** Dette er den lekkasjen som
+   er lettest å gjøre og vanskeligst å se, fordi filene føles som notater:
+   - `kunnskap/logg.md`, `STATUS.md` og `plan.md` skal beskrive **former og
+     feltnavn, aldri verdier**. «Responsen har `fodselsnummer` og `fornavn`» er
+     riktig; én ekte rad limt inn som «eksempel på responsformen» er en lekkasje
+     — og den blir committet i samme åndedrag.
+   - Skjermbilder av en prototype med ekte data ER persondata. Ligger det bilder
+     i repoet, gjelder samme krav for dem.
+   - Skal noe av dette ut som issue i org-repoet (steg 2), beskriv
+     arbeidsflytproblemet — aldri prosjektets data.
+
+   **Meld hva du kjørte og hva du fant**, ikke «sjekk utført»: brukeren skal kunne
+   se hvilke søk som faktisk ble gjort. Skaler etter prosjekttype — for
+   dokumentasjonsprosjekter er persondata-sjekken hovedsaken. Utenfor git: samme
+   sjekker med vanlig filsøk i prosjektmappen.
+
+   **Vær ærlig om hva dette er.** Sjekken er en instruks du følger, ikke en regel
+   noe håndhever — den kan overses, i motsetning til `deny`-reglene. Behandler
+   prosjektet persondata, er `.gitignore` og deny-settet førstelinjen; denne
+   sjekken er et nett under, ikke i stedet for.
 
 6. **Commit og push** med beskrivende melding. Flerlinjet melding → skriv
    meldingsfil og bruk `git commit -F <fil>`. (Ikke-git-prosjekter: hopp over,

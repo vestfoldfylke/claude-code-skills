@@ -52,6 +52,11 @@ ferdig app.
   hode.
 - **Før tørrkjøringen:** verifiser at installert pakke er identisk med repoet.
   Cachen kan være foreldet, og da måles en annen pakke enn du tror.
+  **Gjort på hjemme-PC-en 2026-08-20** (`0.2.1`, `784f039`, 0 avvik). Cachen *var*
+  foreldet — den sto på 0.1.0 med 9 reelle innholdsavvik, så bekymringen var
+  berettiget. Posten står fortsatt åpen fordi målingen gjelder én maskin: skjer
+  tørrkjøringen på kontor-PC-en, må den gjøres om der. Mål med linjeskift
+  normalisert — cachen er CRLF, repoet LF, og byte-hashing gir ellers falske avvik.
 - **Tørrkjøringen skal skje i en blank økt i en tom mappe utenfor dette repoet.**
   En økt som har lest `plan.md`/`TODO.md` kjenner pakkens svake punkter og måler
   derfor seg selv med fasit i hånda.

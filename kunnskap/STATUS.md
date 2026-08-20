@@ -7,7 +7,9 @@
 kode, men å tørrkjøre én case i en blank økt. faseflyt 0.2.1 uendret siden
 `a33a11e` — de to siste commitene rører bare `kunnskap/` og `.gitignore`.
 Renhetssjekken 10 søk / 0 feil, `claude plugin validate .` ✔. Ingen kjente åpne
-defekter i pakken.
+defekter i pakken. **Installert pakke = repoet, målt 2026-08-20 på hjemme-PC-en:**
+user scope 0.2.1, `gitCommitSha 784f039` = HEAD, 0 innholdsavvik på alle 10 filer,
+og `~/.claude/skills|commands` er tomme (ingen skyggekopier).
 
 **Maskiner:** hjemme `VPC-5CG3433WMH` (AMD64), kontor `VPC-8WD9VC4` (ARM64).
 PS 5.1, ingen `pwsh`. CLI: `~\.local\bin\claude.exe`, ikke alltid på PATH. Sjekk
@@ -25,14 +27,15 @@ droppet.**
 1. **Tørrkjør Oppgave 6, Utstyrsskapet** — blank økt, tom mappe utenfor dette
    repoet. Bestillingen står ordrett i `TODO.md` (arket selv er untracket og
    synker ikke mellom maskiner). Kjøres den på kontor-PC-en, er den samtidig
-   **ARM-pre-flighten** for samlingen. Verifiser FØRST at installert pakke er
-   identisk med repoet — gammel cache eller gamle kopier i `~/.claude/skills/`
-   måler feil versjon. Tre påstander å se etter står i arkets fasilitatorseksjon;
+   **ARM-pre-flighten** for samlingen. Forutsetningen «installert pakke = repoet»
+   er oppfylt på hjemme-PC-en (se Fase over) — **men målingen gjelder én maskin.**
+   Skjer tørrkjøringen på kontor-PC-en, må den gjøres om der: gammel cache eller
+   gamle kopier i `~/.claude/skills/` måler feil versjon.
+   Tre påstander å se etter står i arkets fasilitatorseksjon;
    den viktigste er om «nytt prosjekt» trigger av seg selv.
 2. **Actions:** BK snakker med utviklerne før bryteren slås på. Målt:
    `actions/permissions` → `enabled: false`, så workflowen er inert. Org-nivået er
    uavklart (403 med to mulige forklaringer). Spørsmålene ligger i `TODO.md`.
-3. **Tre `faseflyt`-oppføringer** i `claude plugin list` — uforklart, se loggen.
 
 ## Arbeidsmåte neste økt
 
@@ -73,7 +76,16 @@ droppet.**
   åpne punkt er PreToolUse-hooken, som ikke er på kritisk vei for samlingen
   (persondata = nei på alle seks oppgavene).
 - **Versjonsetiketter lyver, ordlyd gjør det ikke** — mål på innhold. Plugin-cachen
-  kan være foreldet mot repoet; repoet er kanonisk.
+  kan være foreldet mot repoet; repoet er kanonisk. **Normaliser linjeskift når du
+  måler:** cache-checkouten er CRLF, repoet LF, så byte-hashing gir falske avvik.
+- **De tre `faseflyt`-oppføringene er forklart (målt 2026-08-20), ikke et mysterium:**
+  to foreldreløse project-scope-rader i
+  `~/.claude/plugins/installed_plugins.json` fra testkjøringene 17.–18.08
+  (`test-faseflyt` og en slettet scratchpad), begge pinnet til 0.1.0 / `cfc4558`.
+  Radene er fjernet; `plugin list` viser nå én. Deklarasjonen i
+  `test-faseflyt/.claude/settings.json` er *riktig* og ble beholdt — det var raden
+  som var foreldet. **Gotcha:** `claude plugin uninstall -s project` nekter når
+  samme plugin finnes i user scope, så opprydding krever redigering av registeret.
 - **Maskinlokale tillatelser i `.claude/settings.local.json`** (gitignorert).
   `/plugin` og `/permissions` finnes ikke i VS Code-chatten; bruk terminalen.
   Flerlinjede commit-meldinger: skriv meldingsfil og bruk `git commit -F`.

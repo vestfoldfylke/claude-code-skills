@@ -10,12 +10,18 @@ Renhetssjekken 10 søk / 0 feil, `claude plugin validate .` ✔. Ingen kjente å
 defekter i pakken. Pakken er **ikke** lenger fryst: `faseflyt` står på **0.2.2**
 (klarspråkrunden, se CHANGELOG).
 
-**Cachen er utdatert igjen — og det er vår egen skyld.** Målingen 2026-08-20 (user
-scope 0.2.1, `784f039` = HEAD, 0 avvik, tomme `~/.claude/skills|commands`) ble
-usann i samme økt, fordi vi deretter pushet 0.2.2. **Kjør
-`/plugin marketplace update claude-code-skills` og mål på nytt før tørrkjøringen.**
-Lærdommen er verdt mer enn målingen: endrer du pakken, er den installerte kopien
-foreldet fra det sekundet du pusher.
+**Installert pakke = repoet (målt 2026-08-20 kveld, hjemme-PC-en):** user scope
+0.2.2, `gitCommitSha 4b64670` = HEAD, **0 avvik på alle 10 filer**, én oppføring
+per plugin, `~/.claude/skills|commands` tomme. Forutsetningen for tørrkjøringen er
+oppfylt *på denne maskinen* — kontor-PC-en må måles for seg.
+
+**Slik måler du det riktig, to ganger lært samme dag:** *(1)* normaliser linjeskift
+— cachen er CRLF, repoet LF, så byte-hashing gir falske avvik (meldte 10 der 9 var
+reelle). *(2)* Målingen dør i det du pusher: vi målte cachen ren, pushet 0.2.2, og
+gjorde vår egen måling usann i samme økt. Endrer du pakken, kjør
+`/plugin marketplace update claude-code-skills` og mål om.
+*Restene `0.1.0/` og `0.2.1/` ligger fortsatt i cachen — ingen peker på dem, og
+Claude Codes egen `in_use`-sweep rydder dem når prosessene som holder dem avsluttes.*
 
 **Maskiner:** hjemme `VPC-5CG3433WMH` (AMD64), kontor `VPC-8WD9VC4` (ARM64).
 PS 5.1, ingen `pwsh`. CLI: `~\.local\bin\claude.exe`, ikke alltid på PATH. Sjekk

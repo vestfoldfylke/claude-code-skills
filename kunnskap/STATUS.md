@@ -7,9 +7,15 @@
 kode, men å tørrkjøre én case i en blank økt. faseflyt 0.2.1 uendret siden
 `a33a11e` — de to siste commitene rører bare `kunnskap/` og `.gitignore`.
 Renhetssjekken 10 søk / 0 feil, `claude plugin validate .` ✔. Ingen kjente åpne
-defekter i pakken. **Installert pakke = repoet, målt 2026-08-20 på hjemme-PC-en:**
-user scope 0.2.1, `gitCommitSha 784f039` = HEAD, 0 innholdsavvik på alle 10 filer,
-og `~/.claude/skills|commands` er tomme (ingen skyggekopier).
+defekter i pakken. Pakken er **ikke** lenger fryst: `faseflyt` står på **0.2.2**
+(klarspråkrunden, se CHANGELOG).
+
+**Cachen er utdatert igjen — og det er vår egen skyld.** Målingen 2026-08-20 (user
+scope 0.2.1, `784f039` = HEAD, 0 avvik, tomme `~/.claude/skills|commands`) ble
+usann i samme økt, fordi vi deretter pushet 0.2.2. **Kjør
+`/plugin marketplace update claude-code-skills` og mål på nytt før tørrkjøringen.**
+Lærdommen er verdt mer enn målingen: endrer du pakken, er den installerte kopien
+foreldet fra det sekundet du pusher.
 
 **Maskiner:** hjemme `VPC-5CG3433WMH` (AMD64), kontor `VPC-8WD9VC4` (ARM64).
 PS 5.1, ingen `pwsh`. CLI: `~\.local\bin\claude.exe`, ikke alltid på PATH. Sjekk

@@ -30,6 +30,13 @@ droppet.**
 
 ## Neste — start her
 
+0. **To VURDERINGSPUNKTER øverst i `TODO.md` skal gjennomgås i detalj med BK — ikke
+   rettes på eget initiativ.** (a) `nytt-prosjekt` steg 6 mangler «ikke
+   overskriv»-klausulen som steg 1 og 8 har, så en kollegas eksisterende
+   `.claude/settings.json` kan bli overskrevet — kravet er at installasjon aldri
+   overskriver noe. (b) Ordlyden i websiden og oppgavelappene trenger finpuss. To
+   utformede pakkefikser ligger i kø bak (a).
+
 1. **Tørrkjør Oppgave 6, Utstyrsskapet** — blank økt, tom mappe utenfor dette
    repoet. Bestillingen står ordrett i `TODO.md` (arket selv er untracket og
    synker ikke mellom maskiner). Kjøres den på kontor-PC-en, er den samtidig

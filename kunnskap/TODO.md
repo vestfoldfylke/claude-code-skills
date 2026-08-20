@@ -8,6 +8,83 @@ blokkerer ikke testen — `TODO.md` (535 linjer) + `plan.md` (605) er utredning,
 mens pakken alt er testbar. «Helhetsvurdering»-spørsmålet lenger ned besvares
 av to reelle brukere, ikke av mer analyse.
 
+## VURDERINGSPUNKT — installasjon skal ikke overskrive noe (BK 2026-08-20)
+
+**Status: ikke besluttet, ikke rettet. Skal gjennomgås i detalj med BK før noe
+endres.** Reist av BK etter en konsekvensgjennomgang. To parkerte fikser (se «Første eksterne
+datapunkt» under «Helhetsvurdering») ligger bak dette punktet i kø.
+
+**Kravet, BKs ordlyd:** kollegaene skal bare kunne installere pluginen uten at noe
+overskrives. Det er akseptansekriteriet punktet måles mot — ikke «lav risiko».
+
+### Funnet (målt 2026-08-20)
+
+`nytt-prosjekt` steg 6 sier «**Skriv** `.claude/settings.json` … fra malene — også
+her **ordrett**». Sammenlign med de to andre stegene som skriver filer:
+
+| Steg | Fil | Har «ikke overskriv»-klausul? |
+|---|---|---|
+| 1 | generelt | ja — «opprett kun det som mangler» |
+| 8 | `CLAUDE.md` | ja — «legg avsnittet til, ikke overskriv» + obligatorisk etterkontroll |
+| **6** | **`.claude/settings.json`** | **nei** |
+
+Forsterkende: malen i `maler.md` er et **komplett JSON-dokument** («Grunnform, alle
+prosjekter»), ikke et fragment å flette inn — og ordrett-kontrakten trekker mot å
+skrive det som det står. Om en kollegas fil overlever, avhenger i dag av at Claude
+*slutter* seg til steg 6 fra steg 1.
+
+**Konkret skade hvis det går galt i et prosjekt som alt er i gang:**
+
+| Det som forsvinner | Konsekvens |
+|---|---|
+| deres `permissions.allow` | tillatelsesspørsmål kommer tilbake — irriterende, reversibelt |
+| deres egne `deny`-regler | et reelt vern fjernet, i stillhet |
+| deres `enabledPlugins` for andre plugins | **deres andre skills slutter å laste i det prosjektet** |
+
+Nedslagsfeltet er **prosjekt-scope**, aldri det globale oppsettet, og fila ligger i
+git hvis prosjektet er sporet. Men feilen skjer uten varsel, og «reversibelt» er
+ikke «trygt».
+
+### Målt som IKKE risiko — ikke mål dette om
+
+- **Ingenting i pakken skriver utenfor prosjektmappa.** Søk på `~/.claude` i alle
+  skills og referansefiler ga fire treff, alle *lesing* av `~/.claude/plans/`
+  (planmodus sin egen fil), alle om å kopiere derfra og inn i prosjektet. Ingen
+  skriving til brukerens globale `settings.json` eller `~/.claude/skills/`.
+- **Skills er inert tekst** — SKILL.md leses inn i kontekst, den kjører ikke.
+- **Installasjon legger bare til.** Observert i denne økten: `marketplace update`
+  opprettet `0.2.1/` ved siden av `0.1.0/` og rørte ingenting annet. Andre plugins
+  ligger i egne mapper.
+- **`CLAUDE.md` er godt vernet** — klausul i både steg 1 og steg 8.
+
+### Å avgjøre i gjennomgangen
+
+1. Flettesemantikk: hvilke nøkler eier vi (`extraKnownMarketplaces`,
+   `enabledPlugins`), og hva rører vi aldri?
+2. Bør malen slutte å være et komplett dokument for dette tilfellet? Et fragment
+   med «legg disse to nøklene til» er vanskeligere å bruke feil enn et helt
+   dokument merket «ordrett».
+3. Skal brukeren se endringen før den skrives — og hva er etterkontrollen, tilsvarende
+   den steg 8 har?
+4. Gjelder samme hull `.gitignore` i steg 7? Der er hele steget gatet på «med
+   mindre repo finnes», men det er ikke målt.
+
+## VURDERINGSPUNKT — ordlyd i artefakten og oppgavene trenger finpuss (BK 2026-08-20)
+
+**Status: ikke gjennomgått.** BK vil gå gjennom ordlyden i detalj. Gjelder begge
+artefaktene fra språkrunden 20.08:
+
+- **Websiden** (Artifact, privat lenke — deltakerark: ordliste + Ark 2 + Ark 3,
+  fasilitatorarket bevisst utelatt). Publisert, men ikke ordlydsgjennomgått med BK.
+- **Oppgavelappene og det felles arket** i `kunnskap/lokalt/oppgavelapper.md`, og
+  utskriftsfila `kunnskap/…- sprakvasket 2026-08-20.docx` som bygges fra den.
+
+Å huske i gjennomgangen: bestillingen til Oppgave 6 finnes i **to** kopier — lappen
+og sitatet i denne fila — og de er verifisert ordrett like. Endres ordlyden, endres
+begge. Ordlisten finnes i **tre** kopier (arket, websiden, klarspråktabellen i
+`nytt-prosjekt/SKILL.md`); de ble avstemt 20.08, og et avvik på to rader ble
+oppdaget og rettet da.
+
 ## Velg case til samlingen (BK, lagt inn 2026-08-19)
 
 **Underlaget ligger lokalt, ikke i git:** `kunnskap/KI-Samling for DT september
@@ -295,6 +372,34 @@ språkvasket, men funnet under er et pakkefunn, ikke et arkfunn:
   er betalt for tre ganger før (deny-regler, rytmevakter, modellmiks): en regel som
   skal virke alltid, må ligge der den alltid leses — og den må dekke de ordene som
   faktisk brukes.
+
+**Årsakskjeden er belagt (2026-08-20), og den peker på plassering, ikke slurv:**
+arket ble skrevet av en økt i *dette* repoet. Dette repoet har ingen `CLAUDE.md`.
+Klarspråkregelen bor bare i `nytt-prosjekt/SKILL.md`, som lastes kun når noen
+kjører `/nytt-prosjekt`. En økt som skriver samlingsmateriale laster den aldri.
+Regelen var altså til stede i pakken og fraværende i arbeidet. Sjekket samtidig:
+CLAUDE.md-malen i `maler.md` har `Fase-arbeidsflyt`, rytmevaktene,
+`Kunnskapsfangst` og `Skills` — **ingen språkregel i det hele tatt**.
+
+**To fikser er utformet, men IKKE gjort — BK har parkert dem bak
+vurderingspunktet om installasjon:**
+
+1. **Dette repoet får en `CLAUDE.md`.** Innholdet finnes alt, spredt i STATUS' «det
+   en ny økt må vite»: renhetsporten, ordrett-kravet, `git commit -F`, daterte
+   målinger, klarspråk, `kunnskap/lokalt/`. Løser samtidig at læringssløyfens
+   trestegs-promotering ikke har noe sted å lande (se skjevheten lenger ned).
+   *Målt som null risiko for kollegaer:* hele repoet klones ved
+   `/plugin marketplace add`, så fila havner hos dem — men under
+   `~/.claude/plugins/marketplaces/`, utenfor alle prosjekttrær, så den aktiveres
+   aldri i deres økter. Den blir distribuert tekst, så renhetsreglene gjelder den.
+2. **Kondensert språkregel inn i CLAUDE.md-malen.** Delelinjen er prinsipiell:
+   ordene som dukker opp i *hver* økt (`fase`, `fase 0`, `verifisere`, `faseslutt`,
+   `/clear`, `planmodus`) hører i malen; oppsettsordene (`skill`, `grilling`,
+   `mock`, `prototype`) blir stående i `nytt-prosjekt`, som er lastet når de
+   brukes. Åtte linjer, ikke fjorten — malen er den eneste teksten som lastes i
+   hver økt i hvert prosjekt, og derfor den dyreste tomta i pakken.
+   *Målt som null risiko for eksisterende prosjekter:* teksten skrives bare ved
+   oppsett, og steg 8 legger til framfor å overskrive. Additiv, ikke brytende.
 
 - **Prototyping** er best dekket: `web-prototype` er ferdig teknologivalg, og fase
   0 er alltid oppsett + røyktest. Flaskehalsen er distribusjon, ikke innhold.

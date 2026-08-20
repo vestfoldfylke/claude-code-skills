@@ -67,6 +67,48 @@ filnavn og kommandoer står som de er. Møter du et fagord som ikke står i
 tabellen, gjelder regelen bak den: bruk det bare hvis du forklarer det i samme
 setning.
 
+### Arbeidsflytordene: forklares, ikke byttes ut
+
+Tabellen over bytter ett ord for et annet. Det virker ikke på ordene
+arbeidsflyten *består av* — `fase` har ikke noe synonym, og `/clear` er et
+literalt kommandonavn som skal stå. Disse ordene skal derfor **brukes**, men de
+skal forklares **første gang de dukker opp for brukeren** — i planen, i STATUS, i
+CLAUDE.md-avsnittet og i chatten. Én setning holder:
+
+| Ord | Forklaringen som følger med første gang |
+|---|---|
+| skill | en ferdig oppskrift Claude følger; du kaller den ved å skrive det den heter |
+| planmodus | en modus der Claude bare planlegger og ikke endrer noe — du godkjenner først |
+| grilling (`/faseflyt:grill-me`) | Claude intervjuer deg og stiller de kjipe spørsmålene til bestillingen er avklart; du svarer |
+| fase | en bit arbeid som er liten nok til at du kan se at den virker |
+| fase 0 | den første fasen: prosjektet settes opp, og du sjekker at det så vidt virker |
+| faseslutt (`/faseflyt:fase-slutt`) | punktet der du har godkjent en fase; Claude oppsummerer og lagrer, slik at neste økt kan starte uten å ha vært med |
+| `/clear` | tømmer samtalen; alt viktig er alt lagret i filer, så ingenting går tapt |
+| verifisere | at **du** ser at det virker — ikke at Claude sier det virker |
+| mocke / mock-data | vi later som vi har en database, men bruker noen enkle filer med oppdiktet innhold |
+| prototype | noe som skal vises fram, ikke settes i drift |
+
+**Bruk navnene, bare ikke ubeskyttet.** «Si "nytt prosjekt"», `web-prototype` og
+`/faseflyt:fase-start` skal hete det de heter — brukeren må kunne skrive dem. Det
+er *begrepet bak navnet* som trenger setningen sin, og bare første gang.
+Forklaringen gjentas ikke i hver setning etterpå.
+
+En ordliste er nødvendig, men svakere enn en forklaring på stedet: den krever at
+leseren husker å slå opp. Står ordet i en instruksjon brukeren skal utføre, hører
+forklaringen i samme setning.
+
+**Grunn (tredje måling, 2026-08-20):** en ikke-teknisk kollega leste
+oppgavematerialet til en samling og fikk ikke noe ut av det. Målt etterpå: **20
+uforklarte fagord på det ene arket hun fikk i hånda**, og ingen ordliste noe sted
+— materialet brukte i tillegg `scaffold`, `røyktest` og `trigge`, tre ord som står
+i «Ikke dette»-kolonnen over. Ingen av ordene som faktisk stoppet henne sto i
+tabellen, fordi tabellen bare dekket ord Claude bruker om *seg selv*.
+Vedlikeholderens egen forklaring på funnet er verdt å ta med som regel:
+**«jeg har jobbet med dette i ukesvis, så ikke rart at det blir uforståelig for en
+som ikke har vært med på reisen.»** Den som har skrevet materialet er dårligst
+egnet til å bedømme om det er lesbart. Derfor er dette en liste å følge, ikke en
+magefølelse å stole på.
+
 **Grunn (målt to ganger):** teksten i denne fila speiles rett ut i chatten. Da
 skillen omtalte seg selv som å «scaffolde», svarte økten brukeren «jeg trenger tre
 avklaringer før jeg scaffolder» — og fasenavn som «Fase 0 — Scaffold og røyktest»

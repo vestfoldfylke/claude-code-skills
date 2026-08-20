@@ -4,6 +4,32 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.2.2 — 2026-08-20
+
+`faseflyt` 0.2.2. Klarspråkregelen fra 0.2.1 virket, men dekket feil ordklasse.
+
+- **Arbeidsflytordene forklares, de byttes ikke ut.** Tabellen i 0.2.1 er en
+  erstatningstabell («si dette, ikke dette»), og den virker ikke på ordene
+  arbeidsflyten *består av*: `fase` har ikke noe synonym, og `/clear` er et
+  literalt kommandonavn som skal stå. Ny forklaringstabell i
+  `nytt-prosjekt/SKILL.md` med ti arbeidsflytord og setningen som skal følge
+  hvert av dem første gang brukeren møter det — skill, planmodus, grilling, fase,
+  fase 0, faseslutt, `/clear`, verifisere, mocke, prototype. Navnene skal fortsatt
+  brukes; det er begrepet bak navnet som trenger sin setning, og bare første gang.
+- **Målt, ikke antatt:** en ikke-teknisk leser fikk oppgavematerialet til en
+  samling og fikk ikke noe ut av det. Etterpå målt til **20 uforklarte fagord på
+  det ene arket hun fikk i hånda**, uten ordliste noe sted — og materialet brukte
+  `scaffold`, `røyktest` og `trigge`, tre ord som alt sto i «Ikke dette»-kolonnen.
+  Ingen av ordene som faktisk stoppet henne sto i tabellen, fordi tabellen bare
+  dekket ord Claude bruker om *seg selv*.
+- **En ordliste er svakere enn en forklaring på stedet**, og det står nå som regel:
+  står ordet i en instruksjon brukeren skal utføre, hører forklaringen i samme
+  setning. En liste krever at leseren husker å slå opp.
+- **Kjent begrensning, ikke rettet her:** regelen bor fortsatt bare i
+  `nytt-prosjekt`, som lastes ved oppsett. `fase-slutt` skriver STATUS og
+  læringspunkter i hver økt uten å kjenne den. Samme strukturfeil som er målt for
+  deny-regler, rytmevakter og modellmiks.
+
 ## 0.2.1 — 2026-08-18
 
 `faseflyt` 0.2.1. En retting av leveransen, ikke av innholdet: malteksten i 0.2.0

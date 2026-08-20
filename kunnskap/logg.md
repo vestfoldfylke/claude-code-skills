@@ -2,6 +2,102 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-20 — Klarspråk: en ikke-teknisk leser målte pakken, og pakken tapte
+
+Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). `main` = `095a1c1` + denne. **faseflyt
+0.2.1 → 0.2.2.** Økten avsluttes midt i ordlydsgjennomgangen av websiden.
+
+### Levert
+
+**Synk målt, og de tre `faseflyt`-oppføringene forklart.** `installed_plugins.json`
+hadde to foreldreløse project-scope-rader fra testkjøringene 17.–18.08
+(`test-faseflyt` og en siden slettet scratchpad), begge pinnet til 0.1.0 /
+`cfc4558`. Radene fjernet; `plugin list` viser nå én per plugin. Deklarasjonen i
+`test-faseflyt/.claude/settings.json` beholdt — den er riktig, det var raden som
+var foreldet. **Observert:** `claude plugin uninstall -s project` nekter med «is
+installed in user scope, not project» når samme plugin finnes i user scope, så
+opprydding krevde redigering av registeret (backup tatt først).
+
+**Språkvask av samlingsmaterialet** etter tilbakemelding fra en ikke-teknisk
+kollega som ikke fikk noe ut av oppgavene. Hun leste `.docx`-en — den før
+strammingen. **Observert ved å pakke ut `document.xml`:** 20 av 20 søkte fagord
+finnes på ÉN deltakerlapp, 22 forekomster, og blokken gjentas på alle seks
+lappene. Dokumentet bruker i tillegg `scaffold`, `røyktest` og `trigge` — tre ord
+som alt sto i «Ikke dette»-kolonnen i pakkens egen klarspråktabell. Kontrollsøk på
+et ord som ikke finnes ga 0.
+
+Funnet var at **bestillingene virket** — det var arket rundt dem som ikke var
+lesbart. `kunnskap/lokalt/oppgavelapper.md` har nå ordliste på Ark 2, og
+mock-setningen som sto sist i alle seks bestillingene er erstattet.
+
+**faseflyt 0.2.2:** ny forklaringstabell i `nytt-prosjekt/SKILL.md` ved siden av
+erstatningstabellen. Ti arbeidsflytord med setningen som skal følge dem første
+gang. Begge manifestene bumpet og krysssjekket — i forrige runde ble
+`marketplace.json` stående igjen.
+
+**To artefakter til finpuss:** en privat webside (deltakerark: ordliste + Ark 2 +
+Ark 3, fasilitatorarket bevisst utelatt) og en utskriftsklar `.docx` på nytt
+filnavn — originalen urørt, verifisert på tidsstempel. `.docx`-en bygges **fra**
+`oppgavelapper.md` av `kunnskap/lokalt/build-docx.ps1`, så teksten har én kilde.
+Scriptet er rent ASCII (verifisert byte for byte) og leser norsk med
+`-Encoding utf8` — nettopp fella `windows.md` advarer mot. Verifisert etter bygg:
+194 æøå intakt, alle seks bestillinger med, 0 jargontreff i deltakerdelen.
+
+**Websiden er språkvasket to runder** etter BKs funn: «Det er dere som er porten»
+(hvilken port?), `økt` brukt tre ganger uten forklaring, «Målet er rytmen», og at
+steg 1 ikke sa *hvordan* man kommer i planmodus. Deretter: `/clear` mangler et
+**hvorfor**, og samme mangel fantes i `planmodus`, `fase 0` og `mock-data`.
+
+### Beslutninger
+
+- **Beslutning (BK, installasjonssikkerhet):** ingenting rettes i pakken før
+  konsekvensene er gjennomgått i detalj. Kravet er at kollegaene skal kunne
+  installere pluginen uten at noe overskrives. Ført som vurderingspunkt.
+- **Beslutning (BK, klarspråk):** tabellen utvides, men skill-navn skal fortsatt
+  kunne brukes i opplegget — de må bare forklares godt. Derfor en
+  *forklaringstabell*, ikke flere erstatninger: `fase` har ikke noe synonym, og
+  `/clear` er et literalt navn. BKs begrunnelse tatt inn i pakken som regel: «jeg
+  har jobbet med dette i ukesvis, så ikke rart at det blir uforståelig for en som
+  ikke har vært med på reisen» — den som har skrevet materialet er dårligst egnet
+  til å bedømme om det er lesbart.
+- **Beslutning (BK, rekkefølge):** ordlyden gjennomgås før arket og `.docx`-en
+  oppdateres, slik at de tre kopiene pusses én gang framfor tre.
+
+### Funn og overraskelser
+
+- **Observert: byte-hashing gir falske avvik mellom cache og repo.**
+  Cache-checkouten er CRLF, repoet LF. Første måling meldte 10 avvik der 9 var
+  reelle — `fase-start/SKILL.md` var innholdslik hele tiden. Normaliser linjeskift.
+- **Observert: en måling av «installert = repoet» dør i det du pusher.** Vi målte
+  cachen ren mot `784f039`, pushet 0.2.2, og gjorde vår egen STATUS-påstand usann i
+  samme økt. STATUS måtte rettes to ganger.
+- **Observert: klarspråkregelen var til stede i pakken og fraværende i arbeidet.**
+  Arket ble skrevet av en økt i dette repoet; repoet har ingen `CLAUDE.md`; regelen
+  bor bare i `nytt-prosjekt`, som lastes ved oppsett. Sjekket samtidig at
+  CLAUDE.md-malen i `maler.md` ikke har noen språkregel i det hele tatt.
+- **Observert: `nytt-prosjekt` steg 6 mangler «ikke overskriv»-klausulen** som steg
+  1 og steg 8 har, og malen er et komplett JSON-dokument merket ordrett. Verste
+  utfall er at en kollegas `enabledPlugins` for andre plugins forsvinner.
+  Ikke rettet — vurderingspunkt.
+- **Målt som ikke risiko:** ingenting i pakken skriver utenfor prosjektmappa (fire
+  treff på `~/.claude`, alle lesing av planmodus-fila); skills er inert tekst;
+  installasjon legger bare til en versjonert mappe (observert: `0.2.1/` opprettet
+  ved siden av `0.1.0/`); `CLAUDE.md` er vernet i to steg.
+- **Fire målinger som ikke kunne feile, fanget underveis:** `$pid` er
+  skrivebeskyttet i PowerShell, så `Get-Process` målte øktens egen prosess og svarte
+  «LEVENDE» uansett input; `[char]0x72 + 'oyktest'` ble to separate søk, så
+  «røyktest» ble aldri sjekket; `bash` finnes ikke på PATH fra PowerShell, så
+  `$LASTEXITCODE` ga «renhetssjekk exit 0» uten at porten hadde kjørt; og en
+  ordrett-sammenligning strippet `>` bare i strengens start og meldte avvik i
+  identisk tekst. Alle rettet og gjentatt med kontroll.
+
+### Sjekker
+
+Renhetssjekk `bash .github/renhet/sjekk.sh`: **10 søk / 0 feil / 0 advarsler** på
+hver av seks commits. `claude plugin validate .`: **Validation passed**.
+Cachen målt mot repoet etter oppdatering: **0 avvik på alle 10 filer**, med to
+kontroller (fanger ett innsatt tegn, ignorerer CRLF).
+
 ## 2026-08-19 (sen kveld) — Samlingsarket strammet, TODO ryddet for løste funn ✅
 
 Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). `main` = `fba8674` + denne. faseflyt 0.2.1

@@ -9,6 +9,74 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-20 — Klarspråkrunden: to punkter innarbeidet, ett gjentok seg
+
+**Evaluering av forrige økts punkter:**
+
+- **[mønsteret-koder-eksempelet-ikke-hensikten]** *(1. gang)* — **fulgt sterkt.
+  Strykes.** Belegg, seks separate tilfeller der jeg fanget en måling som ikke
+  kunne feile: (1) `$pid` er skrivebeskyttet i PowerShell, så `Get-Process` målte
+  øktens egen prosess og svarte «LEVENDE» uansett input — oppdaget og målt om.
+  (2) Byte-hashing meldte 10 cache-avvik der 9 var reelle; CRLF mot LF. Bygget
+  normalisering *pluss* to kontroller: fanger ett innsatt tegn, ignorerer CRLF.
+  (3) `[char]0x72 + 'oyktest'` ble to søk, så «røyktest» ble aldri sjekket.
+  (4) `bash` finnes ikke på PATH fra PowerShell, så «renhetssjekk exit 0» kom fra
+  forrige kommando — porten hadde ikke kjørt. (5) En ordrett-sammenligning
+  strippet `>` bare i strengens start og meldte avvik i identisk tekst.
+  (6) Før jeg påsto at steg 6 mangler «ikke overskriv»-klausulen, leste jeg
+  `maler.md` for å se om malen dekket det steget ikke sa. Punktet fyrte
+  forebyggende, ikke i ettertid.
+- **[ingen-lukker-todo]** *(1. gang)* — **fulgt. Strykes.** Belegg: (1) Etter
+  språkvasken søkte jeg `TODO.md` på det berørte og annoterte linje 53 framfor å la
+  posten stå som åpen defekt. (2) Den ordrette Oppgave 6-kopien i `TODO.md` ble
+  oppdatert i samme runde som lappen, og likheten verifisert mekanisk. (3) STATUS
+  punkt 3 lukket med belegg. (4) Jeg rettet STATUS **to** ganger da mine egne
+  endringer gjorde den usann — først da `784f039` sluttet å være HEAD, så da cachen
+  ble ren igjen.
+- **[beskrevet-omfang-er-avtalt-omfang]** *(2. gang)* — **delvis fulgt.
+  Videreføres.** Belegg for: jeg beskrev omfang før hver av de to «småtingene», sa
+  eksplisitt fra da jeg avvek fra eget forslag (beholdt `test-faseflyt`-deklarasjonen
+  framfor å fjerne den), og stoppet helt på konsekvensspørsmålet — «jeg rører
+  ingenting før du sier fra». Belegg mot, og det er tungt: BK sa «raffinere disse
+  oppgavene **litt ekstra**». Jeg skrev om hele Ark 2, la til ordliste, skrev om
+  designsporet, endret alle seks bestillingene og la inn en ny
+  fasilitatorseksjon — i **én** `Write`, rett etter diagnosen, uten å vente på
+  svar. Jeg beskrev, men jeg avtalte ikke. «Litt ekstra» og en full omskriving er
+  ikke samme bestilling.
+
+**Nye punkter:**
+
+- **[artefakter-divergerer-uten-eier]** Samme tekst i N kopier divergerer innen én
+  økt hvis ingen kopi er kilde. Enten generér de andre fra én, eller verifiser
+  likhet mekanisk i samme runde — aldri «jeg skrev det samme begge steder». Belegg:
+  ordlisten endte i tre kopier (arket, websiden, pakketabellen), og jeg skapte selv
+  et avvik på to rader ved å legge `verifisere` og `mock-data` i to av dem. Oppdaget
+  bare fordi en mekanisk sammenligning ga `mock-data = 0` i `.docx`-en. Motgiften
+  virket der jeg brukte den: `.docx`-en bygges *fra* `oppgavelapper.md`, så den kan
+  ikke drifte. Websiden er i dag den ene kopien uten den koblingen — og etter to
+  ordlydsrunder ligger den to runder foran arket. Det er nøyaktig samme
+  råtneproblem som pakken alt har en regel mot for skills («deklarer, aldri
+  kopier»); jeg gjentok det med prosatekst.
+- **[scratchpad-er-ikke-lagring]** Leveranser hører i prosjektet, aldri i øktens
+  scratchpad — den er midlertidig og forsvinner med økten. Belegg, og det er
+  pinlig presist: **tidligere i samme økt** målte jeg at en scratchpad-sti fra 18.08
+  var `BORTE` (den lå som foreldreløs rad i plugin-registeret nettopp fordi mappen
+  var slettet). Likevel skrev jeg både websidens kildefil og `build-docx.ps1` dit,
+  og oppdaget det først da BK sa «fortsetter i morgen». Kopiert til
+  `kunnskap/lokalt/` (gitignorert, varig) før avslutning. Beviset lå i min egen
+  måling én time tidligere, og jeg koblet det ikke.
+
+**Ført i loggen, ikke som aktivt punkt** (dekket av en varig instruks i STATUS i
+stedet): **[måling-dør-når-du-pusher]** — «installert = repoet» er sant til neste
+push. Vi målte cachen ren, pushet 0.2.2, og gjorde vår egen STATUS-påstand usann i
+samme økt.
+
+**Gjelder arbeidsflyten selv, men ingen issue opprettet:** funnene om steg 6 og om
+klarspråkregelens plassering gjelder pakken. Dette *er* pakkerepoet, og
+issue-mekanismen finnes for kollegaer som ikke kan redigere pakken selv — samme
+begrunnelse som står i `TODO.md`. Ført som vurderingspunkter i stedet, etter BKs
+beslutning om at ingenting rettes før konsekvensene er gjennomgått.
+
 ## 2026-08-19 (sen kveld) — Arket strammet, TODO ryddet, og et omfang jeg utvidet underveis
 
 **Evaluering av forrige økts punkter — alle tre fyrte, alle tre strykes:**

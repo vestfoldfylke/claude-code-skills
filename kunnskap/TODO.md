@@ -60,6 +60,13 @@ ferdig app.
 - **Tørrkjøringen skal skje i en blank økt i en tom mappe utenfor dette repoet.**
   En økt som har lest `plan.md`/`TODO.md` kjenner pakkens svake punkter og måler
   derfor seg selv med fasit i hånda.
+- **Språkvasket 2026-08-20** etter at en ikke-teknisk kollega ikke fikk noe ut av
+  oppgavene. Funnet var at bestillingene virket, mens *det felles arket* rundt dem
+  ikke var lesbart — og «Vi mocker alt som ligner på database i enkle filer» sto
+  som siste setning i alle seks bestillingene. Ark 2 har nå en ordliste. Se
+  pakkefunnet under «Helhetsvurdering» — klarspråktabellen dekker feil ordklasse.
+  **Å se etter under tørrkjøringen:** blir ordlisten brukt, eller spør deltakerne
+  om ordene likevel?
 
 **Arket synker IKKE mellom maskiner.** Både `.docx`-en og
 `kunnskap/lokalt/oppgavelapper.md` er untracket med vilje, så ingen av dem følger
@@ -71,17 +78,22 @@ for å kjøre testen:
 > projektorer, kameraer, ladere og høyttalere. Oversikt over hva som finnes, hva
 > som er ute og hva som er ledig. Det skal være mulig å registrere utlån til
 > Mikkel Rev, Sattosk Rev eller Lita Tavle, med forventet retur. Utstyr som er
-> over tiden skal vises tydelig. Vi mocker alt som ligner på database i enkle
-> filer.
+> over tiden skal vises tydelig. Vi bruker ingen ekte database — det som skal
+> lagres, legger vi i noen enkle filer med oppdiktet innhold.
 >
 > *Uavklart, som gruppa svarer på selv:* Hva betyr «over tiden», og hvem er det
 > som skal se det? Kan samme gjenstand lånes ut to ganger samtidig — og hva
 > hindrer i så fall det?
 >
-> *Rammer:* mock i enkle filer, ingen backend, ingen ekte bilder (fargede kort,
-> SVG eller emoji), norsk tekst, prototype. Ingen fase er ferdig før noen har sett
-> den virke i nettleseren. Svar i oppsettet: type = webapp/prototype,
-> persondata = nei, FINT = nei. Sikt på 3–4 faser.
+> *Rammer:* ingen ekte database (enkle filer med oppdiktet innhold), ingen
+> backend, ingen ekte bilder (fargede felt, enkle strektegninger eller emoji),
+> norsk tekst, prototype. Ingen fase er ferdig før noen har sett den virke i
+> nettleseren. Svar i oppsettet: type = webapp/prototype, persondata = nei,
+> FINT = nei. Sikt på 3–4 faser.
+
+*Ordlyden over er språkvasket 2026-08-20 og skal være ordrett lik lappen i
+`kunnskap/lokalt/oppgavelapper.md`. Endrer du én, endre begge — arket er untracket
+og følger ikke med en `git pull`.*
 
 ## Actions — venter på utviklerne (BK tar samtalen)
 
@@ -259,6 +271,30 @@ ikke er sagt.
 den. Innholdet er vedlikeholderklasse (målte deny-grenser, probedisiplin,
 læringssløyfe med etiketter og trestegs-promotering). Sterk for maintaineren,
 tynn for de fire målene.
+
+**Første eksterne datapunkt (2026-08-20, ikke analyse):** en ikke-teknisk kollega
+leste samlingsarket og skjønte ikke oppgavene i det hele tatt. Arket er
+språkvasket, men funnet under er et pakkefunn, ikke et arkfunn:
+
+- **Klarspråktabellen dekker feil ordklasse.** De åtte radene i
+  `nytt-prosjekt/SKILL.md` er alle *maintainer*-ord — `scaffolde`, `harness-en`,
+  `probe`, `røyktest`, `positiv kontroll`. Ingen av ordene som faktisk stoppet
+  henne står der: **skill, fase, fase 0, planmodus, grilling, faseslutt,
+  `/clear`, mock**. Det er ordene arbeidsflyten *består av*, og de møter hver
+  bruker i første økt — mens ordene i tabellen dukker opp når Claude snakker om
+  seg selv.
+- Tabellen er dermed bevist utilstrekkelig for målgruppen pakken sier den er for.
+  Regelen bak den («fagord bare hvis du forklarer det i samme setning») holder;
+  det er dekningen som er feil.
+- **Kandidat, ikke gjort:** utvid tabellen med arbeidsflytordene, og gi hvert av
+  dem en hverdagsforklaring framfor et synonym — `fase` har ikke noe synonym, den
+  trenger en setning. Ordlisten på Ark 2 i `kunnskap/lokalt/oppgavelapper.md` er et
+  førsteutkast på nøyaktig de forklaringene og kan høstes derfra.
+- **Verdt å merke:** arket ble skrevet av denne arbeidsflyten, av maintaineren, og
+  brøt maintainerens egen klarspråkregel på sju ord. Det er samme strukturfeil som
+  er betalt for tre ganger før (deny-regler, rytmevakter, modellmiks): en regel som
+  skal virke alltid, må ligge der den alltid leses — og den må dekke de ordene som
+  faktisk brukes.
 
 - **Prototyping** er best dekket: `web-prototype` er ferdig teknologivalg, og fase
   0 er alltid oppsett + røyktest. Flaskehalsen er distribusjon, ikke innhold.

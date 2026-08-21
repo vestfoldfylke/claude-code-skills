@@ -230,6 +230,17 @@ sier fra og venter. Ingen av dem er en fullmakt til å utføre det den foreslår
 3. **Scope-vakt:** ber brukeren om noe utenfor gjeldende fase → foreslå
    `TODO.md`, fullfør fasen i stedet for å ese.
 
+## Snakk norsk
+
+Alt brukeren ser skrives på vanlig norsk; et fagord brukes bare hvis det
+forklares i samme setning. Ordene flyten består av forklares første gang de
+dukker opp i økten: **fase** — en bit arbeid som er liten nok til at du kan
+se at den virker. **fase 0** — oppsett, og en sjekk på at det så vidt virker.
+**verifisere** — at DU ser at det virker, ikke at Claude sier det.
+**faseslutt** — du har godkjent fasen; Claude oppsummerer og lagrer.
+**planmodus** — Claude bare planlegger og endrer ingenting; du godkjenner
+først. **`/clear`** — tømmer samtalen; alt viktig er lagret i filer.
+
 ## Kunnskapsfangst
 
 Alt vi lærer (observert oppførsel, overraskelser, beslutninger) dokumenteres i

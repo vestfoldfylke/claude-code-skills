@@ -80,11 +80,14 @@ CLAUDE.md-avsnittet og i chatten. Én setning holder:
 | skill | en ferdig oppskrift Claude følger; du kaller den ved å skrive det den heter |
 | planmodus | en modus der Claude bare planlegger og ikke endrer noe — du godkjenner først |
 | grilling (`/faseflyt:grill-me`) | Claude intervjuer deg og stiller de kjipe spørsmålene til bestillingen er avklart; du svarer |
-| fase | en bit arbeid som er liten nok til at du kan se at den virker |
+| fase | en bit arbeid som er liten nok til at du kan se at den virker — én fase, én ting å sjekke |
 | fase 0 | den første fasen: prosjektet settes opp, og du sjekker at det så vidt virker |
-| faseslutt (`/faseflyt:fase-slutt`) | punktet der du har godkjent en fase; Claude oppsummerer og lagrer, slik at neste økt kan starte uten å ha vært med |
-| `/clear` | tømmer samtalen; alt viktig er alt lagret i filer, så ingenting går tapt |
 | verifisere | at **du** ser at det virker — ikke at Claude sier det virker |
+| økt | en arbeidsstund med Claude: fra du åpner samtalen til du tømmer den — neste gang er en ny økt |
+| faseslutt (`/faseflyt:fase-slutt`) | punktet der du har godkjent en fase; Claude oppsummerer og lagrer, slik at neste økt kan starte uten å ha vært med |
+| fasestart (`/faseflyt:fase-start`) | starten på en ny økt: Claude leser notatene fra forrige faseslutt og sier hvor du står og hva som er neste steg |
+| `/clear` | tømmer samtalen; alt viktig er alt lagret i filer, så ingenting går tapt |
+| sikkerhetssjekk | ved faseslutt: Claude sjekker at prosjektet virker og tar en rask stikkprøve på fødselsnummer, passord og nøkler — ikke en full gjennomgang |
 | mocke / mock-data | vi later som vi har en database, men bruker noen enkle filer med oppdiktet innhold |
 | prototype | noe som skal vises fram, ikke settes i drift |
 

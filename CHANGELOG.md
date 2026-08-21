@@ -4,6 +4,25 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.2.4 — 2026-08-21
+
+`faseflyt` 0.2.4. Språkregelen dit den alltid leses, og ordforklaringene i takt
+med samlingsmaterialet.
+
+- **Språkregel i CLAUDE.md-malen.** Ny seksjon «Snakk norsk» i malen i
+  `maler.md`: vanlig norsk, fagord bare med forklaring i samme setning, og
+  én-setnings-forklaringer på ordene som møter brukeren i hver økt (fase,
+  fase 0, verifisere, faseslutt, planmodus, `/clear`). Bakgrunn (målt
+  2026-08-20): klarspråkregelen bodde bare i `nytt-prosjekt`, som lastes ved
+  oppsett — en økt som skrev brukervendt materiale hadde den aldri aktiv.
+  Malen er den eneste teksten som lastes i hver økt i hvert prosjekt.
+  Additivt: teksten skrives bare ved oppsett, steg 8 legger til uten å
+  overskrive.
+- **Arbeidsflytord-tabellen speiler samlingsmaterialets ordliste.** Tre nye
+  rader i `nytt-prosjekt/SKILL.md` — økt, fasestart, sikkerhetssjekk — og
+  `fase` utvidet med «én fase, én ting å sjekke». Ordlisten på websiden og
+  tabellen forklarer nå samme ordene; radene står i samme rekkefølge.
+
 ## 0.2.3 — 2026-08-21
 
 `faseflyt` 0.2.3. To vern: oppsett i eksisterende prosjekter overskriver

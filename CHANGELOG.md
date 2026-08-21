@@ -4,6 +4,33 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.2.3 — 2026-08-21
+
+`faseflyt` 0.2.3. To vern: oppsett i eksisterende prosjekter overskriver
+ingenting, og hver økt kan oppdage at den kjører en foreldet pakke.
+
+- **`nytt-prosjekt` steg 6 fikk flettregel, forhåndsvisning og etterkontroll.**
+  Pakken eier bare `extraKnownMarketplaces.claude-code-skills` og
+  `enabledPlugins`-oppføringene som slutter på `@claude-code-skills`. Finnes
+  `.claude/settings.json` fra før, legges kun disse nøklene til; endringen
+  vises som før/etter og venter på klarsignal, og etterkontrollen er målbar —
+  hver nøkkel som fantes før, skal finnes igjen med samme verdi. Deny-settet
+  tilbys som tillegg til en eksisterende `deny`-liste, aldri som erstatning.
+  Malen i maler.md er nå merket som mal for ny fil — «Grunnform (alle
+  prosjekter)» trakk mot å skrive hele dokumentet også der en fil fantes.
+  Steg 7: en eksisterende `.gitignore` får kun manglende linjer lagt til.
+  Bakgrunn: vurderingspunkt reist 2026-08-20 — kollegaer skal kunne kjøre
+  oppsettet uten at noe overskrives; installasjonen selv var målt ren, hullet
+  var `/nytt-prosjekt` i et prosjekt med eksisterende fil.
+- **Versjonssjekk som steg 0 i `fase-start` og `nytt-prosjekt`.** Tre versjoner
+  kan sprike: den økten kjører, den som er installert, og den i org-repoet.
+  Målt 2026-08-21: en økt kjørte 0.1.0 mens installasjonsregisteret sa 0.2.2 —
+  en kjørende prosess beholder versjonen den startet med, så
+  `/plugin marketplace update` virker ikke før Claude Code også startes på
+  nytt. Sjekken er et varsel, aldri en port: den feiler mykt uten nett og
+  sammenligner versjonsnummer og commit, ikke innhold. Cache-oppbygningen den
+  leser er observert på våre maskiner, ikke dokumentert kontrakt.
+
 ## 0.2.2 — 2026-08-20
 
 `faseflyt` 0.2.2. Klarspråkregelen fra 0.2.1 virket, men dekket feil ordklasse.

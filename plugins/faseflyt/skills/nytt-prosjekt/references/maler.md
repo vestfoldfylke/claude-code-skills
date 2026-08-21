@@ -264,9 +264,9 @@ deny-sett hører sammen som par, og ingen av dem er en sandkasse.
 
 ## `.claude/settings.json`
 
-Grunnform (alle prosjekter). `enabledPlugins` utvides med
-`"web-prototype@claude-code-skills": true` for webapp-typen og
-`"fint-graphql@claude-code-skills": true` når prosjektet bruker FINT:
+Grunnform **når fila ikke finnes fra før** — da kopieres dokumentet ordrett.
+`enabledPlugins` utvides med `"web-prototype@claude-code-skills": true` for
+webapp-typen og `"fint-graphql@claude-code-skills": true` når prosjektet bruker FINT:
 
 ```json
 {
@@ -284,7 +284,15 @@ Grunnform (alle prosjekter). `enabledPlugins` utvides med
 }
 ```
 
-Behandler prosjektet persondata, legg til deny-settet. **Les «Deny-settets
+**Finnes `.claude/settings.json` fra før, er dokumentet over IKKE malen —
+flettingen er det.** Pakken eier bare `extraKnownMarketplaces.claude-code-skills`
+og `enabledPlugins`-oppføringene som slutter på `@claude-code-skills`; de legges
+til, og alt annet i fila står urørt — også nøkler du ikke kjenner. Vis endringen
+som før/etter, vent på klarsignal før du skriver, og etterkontroller: hver
+nøkkel som fantes før, skal finnes igjen med samme verdi.
+
+Behandler prosjektet persondata, legg til deny-settet — i tillegg til en
+eksisterende `deny`-liste, aldri i stedet for den. **Les «Deny-settets
 grenser» og kjør kontrollkallet under før du stoler på noe av det** — settet
 dekker mindre enn navnene antyder, og et vern man tror er tettere enn det er, er
 verre enn ingen vern.

@@ -121,6 +121,21 @@ regel om hva du skriver her, ikke bare om hva du sier.
 
 ## Når du blir kalt — gjør i rekkefølge
 
+0. **Sjekk at pakken er oppdatert — raskt, og aldri blokkerende.** Les `version`
+   i `.claude-plugin/plugin.json` to nivåer over denne skillens basekatalog
+   (kjørende versjon) og i
+   `~/.claude/plugins/marketplaces/claude-code-skills/plugins/faseflyt/.claude-plugin/plugin.json`
+   (installert versjon), og sammenlign `git -C
+   ~/.claude/plugins/marketplaces/claude-code-skills rev-parse HEAD` med
+   `git -C <samme mappe> ls-remote origin main` (org-repoet). Er installert
+   nyere enn kjørende: si det, og tilby å ta oppsettet etter at brukeren har
+   lukket og startet Claude Code på nytt — en kjørende prosess beholder
+   versjonen den startet med, og et oppsett kjørt på gammel versjon bruker
+   gamle maler. Er org-repoet nyere: foreslå `/plugin marketplace update
+   claude-code-skills` i terminalen (ikke i VS Code-chatten), og omstart
+   etterpå. Får du ikke lest en fil eller nådd nettet: si det i én setning og
+   fortsett — sjekken er et varsel, ikke en port.
+
 1. **Nytt eller eksisterende prosjekt?** I et eksisterende prosjekt: opprett kun
    det som mangler, hopp over `git init` når repo finnes, og UTVID eksisterende
    `CLAUDE.md` — overskriv aldri noe.
@@ -166,8 +181,19 @@ regel om hva du skriver her, ikke bare om hva du sier.
    arbeidsflyt-skillene automatisk (regelen er: org-skills deklareres, aldri
    kopieres; kun prosjektets egen domenekunnskap bor i `.claude/skills/`).
    Deklarer `web-prototype` kun for webapp-typen og `fint-graphql` kun når
-   prosjektet bruker FINT. Behandler prosjektet persondata: tilby deny-settet
-   for prosjekttypen (se maler.md) — men **skriv aldri en `permissions`-blokk uten
+   prosjektet bruker FINT.
+   **Pakken eier bare to ting i denne fila:**
+   `extraKnownMarketplaces.claude-code-skills` og oppføringene i
+   `enabledPlugins` som slutter på `@claude-code-skills`. Finnes
+   `.claude/settings.json` fra før: legg KUN disse nøklene til, og rør
+   ingenting annet — ikke brukerens `permissions`, ikke andre marketplaces
+   eller plugins, ikke nøkler du ikke kjenner. Vis endringen som før/etter og
+   **vent på klarsignal før du skriver**. **Etterkontroll (obligatorisk når
+   fila fantes):** les den skrevne fila og bekreft at hver nøkkel som fantes
+   før, finnes igjen med samme verdi — mangler én, rett det FØR du går videre.
+   Behandler prosjektet persondata: tilby deny-settet
+   for prosjekttypen (se maler.md) — som tillegg til en eksisterende
+   `deny`-liste, aldri som erstatning — men **skriv aldri en `permissions`-blokk uten
    å levere kontrollkallet i samme endring** (`Bash(curl:*)` mot
    `http://127.0.0.1:9/`): en uverifisert nøkkel kan gjøre hele blokken stille
    inaktiv, og et ubekreftet vern er verre enn ingen. Vær ærlig om grensene i
@@ -180,6 +206,8 @@ regel om hva du skriver her, ikke bare om hva du sier.
 7. **Tilby privat git-repo** (med mindre repo finnes): `git init -b main` +
    `.gitignore` (node_modules, `.env` unntatt `.env.example`, build-artefakter)
    + første commit + `gh repo create <navn> --private --source . --push`.
+   Finnes en `.gitignore` fra før (uten at repo finnes): legg kun til linjene
+   som mangler — overskriv den ikke.
    Commit-og-push hører deretter til hvert `/faseflyt:fase-slutt`.
 
 8. **Tilby CLAUDE.md-avsnittet** fra maler.md, og kopier det **ORDRETT** når

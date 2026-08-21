@@ -2,6 +2,57 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-21 (sent kveld) — Køpunkt 2 levert: faseflyt 0.2.4 + repo-CLAUDE.md; promoteringen landet
+
+Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). To pusher: `4d86520` (faseflyt 0.2.4,
+begge manifestene bumpet) og `f1b4a68` (repo-CLAUDE.md).
+
+### Målt først: cache ren mot 0.2.3
+
+Versjonssjekkens steg 0 meldte grønt (kjørende 0.2.3 = installert 0.2.3,
+marketplace-klone = remote `3ec006f`). Innholdsmåling: alle 10 pakkefiler i
+`plugins/faseflyt/` identiske mellom cache og repo, linjeskift normalisert,
+positiv kontroll OK. Eneste avvik i fillisten: `.in_use/25916` — kjøretidsmarkør
+(PID), ikke pakkeinnhold. **Målingen ble datert i samme økt** da 0.2.4 ble
+pushet — forventet og flagget: installert står nå på 0.2.3, repo på 0.2.4.
+
+### Levert (alle tre med ordlydsforslag + klarsignal per punkt før skriving)
+
+- **Repo-CLAUDE.md** (`f1b4a68`): promoteringen av
+  [beskrevet-omfang-er-avtalt-omfang] etter fjerde påfølgende faseslutt-innslag,
+  pluss porten før push, pakkeendringsrutinen, måle-/språkregler og lokale
+  filer. Ordet «fint» bevisst unngått i fila («unntakslisten i
+  `.github/renhet/`») så den ikke trenger unntaksoppføring.
+- **Språkregel i CLAUDE.md-malen** (0.2.4, `maler.md`): ny seksjon «Snakk
+  norsk» inne i malblokken — ordene som møter brukeren i hver økt (fase,
+  fase 0, verifisere, faseslutt, planmodus, `/clear`) med
+  én-setnings-forklaringer. Delelinjen fra TODO: oppsettsordene blir stående i
+  `nytt-prosjekt`.
+- **Klarspråktabell-speiling** (0.2.4, `nytt-prosjekt/SKILL.md`): nye rader
+  `økt`, `fasestart`, `sikkerhetssjekk`; `fase` utvidet («én fase, én ting å
+  sjekke»); radene i websidens rekkefølge.
+
+### Beslutninger
+
+- **Beslutning (BK, køpunkt 2):** alle tre delpunktene godkjent samlet («Kjør
+  alle») etter ordlydsforslag per punkt — promoteringen, språkregelen og
+  speilingen.
+
+### Funn (observert)
+
+- **Kilden hadde flere avvik enn notatet:** `TODO.md` navnga tre ordlisterader
+  (`fasestart`, `sikkerhetssjekk`, utvidet `fase`); mekanisk sammenligning av
+  websidens ordliste mot tabellen fant en fjerde (`økt`). Den ble med i
+  leveransen. «Utformet» i STATUS viste seg å bety spesifikasjonen i TODO, ikke
+  en ferdig tekst — tre grep-søk i loggen bekreftet at ingen ferdigtekst fantes.
+
+### Porter
+
+- 0.2.4-commiten (`4d86520`): renhetssjekk **10 søk · 0 feil · 0 advarsler**,
+  `claude plugin validate .` ✔.
+- CLAUDE.md-commiten (`f1b4a68`): renhetssjekk **10 søk · 0 feil · 0
+  advarsler**, `plugin validate` ✔.
+
 ## 2026-08-21 (kveld) — faseflyt 0.2.3: vurderingspunkt installasjon lukket + versjonssjekk; økten kjørte selv 0.1.0 uten å vite det
 
 Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). **Pakkeendring pushet:** `156dd94`,

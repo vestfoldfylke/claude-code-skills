@@ -9,6 +9,34 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-21 (sent kveld) — Promoteringen landet; begge nypunktene fulgt
+
+**Evaluering av forrige økts punkter:**
+
+- **[beskrevet-omfang-er-avtalt-omfang]** *(4. gang — fulgt, og PROMOTERT.
+  Strykes fra STATUS.)* Belegg: alle tre delpunktene i køpunkt 2 gikk som
+  ordlydsforslag med eksplisitt «klarsignal per punkt», og skrivingen startet
+  først etter «Kjør alle». Ratchet-en er fullført: regelen står nå permanent i
+  repo-CLAUDE.md (`f1b4a68`), som lastes i hver økt i dette repoet.
+- **[paaminnelser-utfoeres-ikke-gjengis]** — **fulgt. Strykes.** Belegg:
+  hostname ble målt i selve fase-start-kvitteringen (`VPC-5CG3433WMH`, AMD64)
+  som handling, ikke gjengivelse — og versjonssjekkens tre ledd ble målt før
+  oppsummeringen ble skrevet. Ett datapunkt, men oppførselen var umiddelbar og
+  komplett; punktet var en presisering, ikke et brudd som må bevises over tid.
+- **[metadata-i-kallet-er-maaledata]** — **fulgt. Strykes.** Belegg:
+  skill-kallets basekatalog (`...\faseflyt\0.2.3\...`) ble lest som øktens
+  første handling og rapportert i kvitteringen — avvikssituasjonen fra forrige
+  økt kunne ikke gjenta seg usett.
+
+**Nytt punkt:**
+
+- **[kilden-teller-ikke-listen]** Når kopier skal speiles, tell avvikene mot
+  kilden — ikke mot notatet som omtaler dem. Belegg: `TODO.md` navnga tre
+  ordlisterader som skulle speiles; mekanisk sammenligning av websidens
+  ordliste mot tabellen fant en fjerde (`økt`), som ble med i leveransen.
+  Notater eldes i det kilden endres — sammenligningen gjøres FØR forslaget
+  skrives, og notatets liste brukes som kontroll, ikke som fasit.
+
 ## 2026-08-21 (kveld) — Vurderingspunktet lukket; påminnelser skal utføres, ikke gjengis
 
 **Evaluering av forrige økts punkter:**

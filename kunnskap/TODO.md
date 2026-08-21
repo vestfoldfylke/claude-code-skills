@@ -31,10 +31,10 @@ websiden var eneste gjenværende kanal. **To rester, ikke lukket:**
 
 - **Designspor-spørsmålet er fortsatt ubesvart:** skal «Vil dere dele dere?»-sporet
   inn på websiden, eller holder siden seg til hoveddelen?
-- **Klarspråktabell-speiling i pakken:** ordlisterader som er nye/endret på websiden
-  (`fasestart`, `sikkerhetssjekk`, utvidet `fase`) bør vurderes inn i
-  forklaringstabellen i `nytt-prosjekt/SKILL.md`. Pakkeendring — køen er åpen
-  etter at vurderingspunktet ble lukket 2026-08-21; venter på BK-klarsignal.
+- ~~**Klarspråktabell-speiling i pakken**~~ — **GJORT 2026-08-21 (sent kveld)**
+  i faseflyt 0.2.4 (`4d86520`): radene `økt`/`fasestart`/`sikkerhetssjekk` inn,
+  `fase` utvidet, websidens rekkefølge. Merk: TODO navnga tre rader, mekanisk
+  sammenligning mot websiden fant fire (`økt`).
 
 ## Velg case til samlingen (BK, lagt inn 2026-08-19)
 
@@ -181,7 +181,9 @@ nettverkstilgang, ingen secrets, read-only token.
 Ratchet-en sier at et punkt som står i tre påfølgende faseslutt skal promoteres
 til «prosjektets `CLAUDE.md`» — men skillen sier ikke hva som skjer når prosjektet
 ikke *har* en `CLAUDE.md`. Dette repoet har ingen, så promoteringen ble et forslag
-i chatten framfor en handling. Ikke ført som issue: dette *er* pakkerepoet, og
+i chatten framfor en handling. *(For dette repoet løst 2026-08-21: `CLAUDE.md`
+opprettet i `f1b4a68` og promoteringen landet der. Skjevheten i skillen —
+hva `fase-slutt` skal gjøre når fila mangler — står fortsatt åpen.)* Ikke ført som issue: dette *er* pakkerepoet, og
 issue-mekanismen finnes for kollegaer som ikke kan redigere pakken selv.
 - **Slett `master` i `claude-global-config`**, lokalt og på remote. Den ble beholdt
   eksplisitt «for usynket maskin» = kontor-PC-en, som nå er over på `main`.
@@ -341,8 +343,10 @@ Regelen var altså til stede i pakken og fraværende i arbeidet. Sjekket samtidi
 CLAUDE.md-malen i `maler.md` har `Fase-arbeidsflyt`, rytmevaktene,
 `Kunnskapsfangst` og `Skills` — **ingen språkregel i det hele tatt**.
 
-**To fikser er utformet, men IKKE gjort — vurderingspunktet som parkerte dem ble
-lukket 2026-08-21, så de venter nå kun på BK-klarsignal:**
+**~~To fikser er utformet, men IKKE gjort~~ — BEGGE GJORT 2026-08-21 (sent
+kveld) på BK-klarsignal: repo-CLAUDE.md i `f1b4a68`, språkregelen i
+CLAUDE.md-malen i faseflyt 0.2.4 (`4d86520`). Historikken under står som
+begrunnelse:**
 
 1. **Dette repoet får en `CLAUDE.md`.** Innholdet finnes alt, spredt i STATUS' «det
    en ny økt må vite»: renhetsporten, ordrett-kravet, `git commit -F`, daterte

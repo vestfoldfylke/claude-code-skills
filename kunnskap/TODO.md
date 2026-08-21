@@ -8,66 +8,20 @@ blokkerer ikke testen — `TODO.md` (535 linjer) + `plan.md` (605) er utredning,
 mens pakken alt er testbar. «Helhetsvurdering»-spørsmålet lenger ned besvares
 av to reelle brukere, ikke av mer analyse.
 
-## VURDERINGSPUNKT — installasjon skal ikke overskrive noe (BK 2026-08-20)
+## ~~VURDERINGSPUNKT — installasjon skal ikke overskrive noe~~ — LUKKET 2026-08-21
 
-**Status: ikke besluttet, ikke rettet. Skal gjennomgås i detalj med BK før noe
-endres.** Reist av BK etter en konsekvensgjennomgang. To parkerte fikser (se «Første eksterne
-datapunkt» under «Helhetsvurdering») ligger bak dette punktet i kø.
-
-**Kravet, BKs ordlyd:** kollegaene skal bare kunne installere pluginen uten at noe
-overskrives. Det er akseptansekriteriet punktet måles mot — ikke «lav risiko».
-
-### Funnet (målt 2026-08-20)
-
-`nytt-prosjekt` steg 6 sier «**Skriv** `.claude/settings.json` … fra malene — også
-her **ordrett**». Sammenlign med de to andre stegene som skriver filer:
-
-| Steg | Fil | Har «ikke overskriv»-klausul? |
-|---|---|---|
-| 1 | generelt | ja — «opprett kun det som mangler» |
-| 8 | `CLAUDE.md` | ja — «legg avsnittet til, ikke overskriv» + obligatorisk etterkontroll |
-| **6** | **`.claude/settings.json`** | **nei** |
-
-Forsterkende: malen i `maler.md` er et **komplett JSON-dokument** («Grunnform, alle
-prosjekter»), ikke et fragment å flette inn — og ordrett-kontrakten trekker mot å
-skrive det som det står. Om en kollegas fil overlever, avhenger i dag av at Claude
-*slutter* seg til steg 6 fra steg 1.
-
-**Konkret skade hvis det går galt i et prosjekt som alt er i gang:**
-
-| Det som forsvinner | Konsekvens |
-|---|---|
-| deres `permissions.allow` | tillatelsesspørsmål kommer tilbake — irriterende, reversibelt |
-| deres egne `deny`-regler | et reelt vern fjernet, i stillhet |
-| deres `enabledPlugins` for andre plugins | **deres andre skills slutter å laste i det prosjektet** |
-
-Nedslagsfeltet er **prosjekt-scope**, aldri det globale oppsettet, og fila ligger i
-git hvis prosjektet er sporet. Men feilen skjer uten varsel, og «reversibelt» er
-ikke «trygt».
-
-### Målt som IKKE risiko — ikke mål dette om
-
-- **Ingenting i pakken skriver utenfor prosjektmappa.** Søk på `~/.claude` i alle
-  skills og referansefiler ga fire treff, alle *lesing* av `~/.claude/plans/`
-  (planmodus sin egen fil), alle om å kopiere derfra og inn i prosjektet. Ingen
-  skriving til brukerens globale `settings.json` eller `~/.claude/skills/`.
-- **Skills er inert tekst** — SKILL.md leses inn i kontekst, den kjører ikke.
-- **Installasjon legger bare til.** Observert i denne økten: `marketplace update`
-  opprettet `0.2.1/` ved siden av `0.1.0/` og rørte ingenting annet. Andre plugins
-  ligger i egne mapper.
-- **`CLAUDE.md` er godt vernet** — klausul i både steg 1 og steg 8.
-
-### Å avgjøre i gjennomgangen
-
-1. Flettesemantikk: hvilke nøkler eier vi (`extraKnownMarketplaces`,
-   `enabledPlugins`), og hva rører vi aldri?
-2. Bør malen slutte å være et komplett dokument for dette tilfellet? Et fragment
-   med «legg disse to nøklene til» er vanskeligere å bruke feil enn et helt
-   dokument merket «ordrett».
-3. Skal brukeren se endringen før den skrives — og hva er etterkontrollen, tilsvarende
-   den steg 8 har?
-4. Gjelder samme hull `.gitignore` i steg 7? Der er hele steget gatet på «med
-   mindre repo finnes», men det er ikke målt.
+Alle fire spørsmålene besluttet av BK og implementert i faseflyt **0.2.3**
+(`156dd94`): pakken eier kun sine to nøkler i `.claude/settings.json`
+(`extraKnownMarketplaces.claude-code-skills` + `enabledPlugins`-oppføringene
+`@claude-code-skills`), eksisterende fil flettes med før/etter-visning +
+klarsignal + målbar etterkontroll, malen er merket som mal for ny fil, deny-settet
+er tillegg — aldri erstatning, og steg 7 utvider eksisterende `.gitignore` i
+stedet for å overskrive. Detaljer: logg 2026-08-21 (kveld), CHANGELOG 0.2.3.
+Samme runde: **versjonssjekk som steg 0** i `fase-start`/`nytt-prosjekt` (BKs
+bestilling), etter funnet at en kjørende prosess beholder versjonen den startet
+med. *Denne seksjonen var 60 linjer utredning; funnene bor nå i skill-teksten,
+loggen og CHANGELOG.* **Køen bak punktet er dermed åpen** — de to pakkefiksene og
+klarspråktabell-speilingen venter kun på BK-klarsignal.
 
 ## ~~VURDERINGSPUNKT — ordlyd i artefakten og oppgavene~~ — GJENNOMFØRT 2026-08-21
 
@@ -79,8 +33,8 @@ websiden var eneste gjenværende kanal. **To rester, ikke lukket:**
   inn på websiden, eller holder siden seg til hoveddelen?
 - **Klarspråktabell-speiling i pakken:** ordlisterader som er nye/endret på websiden
   (`fasestart`, `sikkerhetssjekk`, utvidet `fase`) bør vurderes inn i
-  forklaringstabellen i `nytt-prosjekt/SKILL.md`. Pakkeendring — ligger i kø bak
-  vurderingspunktet om installasjon, som alt annet.
+  forklaringstabellen i `nytt-prosjekt/SKILL.md`. Pakkeendring — køen er åpen
+  etter at vurderingspunktet ble lukket 2026-08-21; venter på BK-klarsignal.
 
 ## Velg case til samlingen (BK, lagt inn 2026-08-19)
 
@@ -132,6 +86,10 @@ ferdig app.
   berettiget. Posten står fortsatt åpen fordi målingen gjelder én maskin: skjer
   tørrkjøringen på kontor-PC-en, må den gjøres om der. Mål med linjeskift
   normalisert — cachen er CRLF, repoet LF, og byte-hashing gir ellers falske avvik.
+  **Utvidet 2026-08-21: målingen er nå TRE ledd** — `marketplace update` →
+  **omstart Claude Code** → mål om (mot 0.2.3, `156dd94`). Målt samme dag: en
+  kjørende prosess beholder versjonen den startet med, så disk-målingen alene
+  garanterer ikke hva økten kjører. Versjonssjekkens steg 0 melder dette selv.
 - **Tørrkjøringen skal skje i en blank økt i en tom mappe utenfor dette repoet.**
   En økt som har lest `plan.md`/`TODO.md` kjenner pakkens svake punkter og måler
   derfor seg selv med fasit i hånda.
@@ -383,8 +341,8 @@ Regelen var altså til stede i pakken og fraværende i arbeidet. Sjekket samtidi
 CLAUDE.md-malen i `maler.md` har `Fase-arbeidsflyt`, rytmevaktene,
 `Kunnskapsfangst` og `Skills` — **ingen språkregel i det hele tatt**.
 
-**To fikser er utformet, men IKKE gjort — BK har parkert dem bak
-vurderingspunktet om installasjon:**
+**To fikser er utformet, men IKKE gjort — vurderingspunktet som parkerte dem ble
+lukket 2026-08-21, så de venter nå kun på BK-klarsignal:**
 
 1. **Dette repoet får en `CLAUDE.md`.** Innholdet finnes alt, spredt i STATUS' «det
    en ny økt må vite»: renhetsporten, ordrett-kravet, `git commit -F`, daterte

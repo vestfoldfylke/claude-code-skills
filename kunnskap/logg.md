@@ -2,6 +2,66 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-21 (kveld) — faseflyt 0.2.3: vurderingspunkt installasjon lukket + versjonssjekk; økten kjørte selv 0.1.0 uten å vite det
+
+Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). **Pakkeendring pushet:** `156dd94`,
+faseflyt 0.2.3, begge manifestene bumpet.
+
+### Levert
+
+- **Installasjonsvernet** (vurderingspunktet fra 2026-08-20, alle fire
+  spørsmålene besluttet av BK via valgspørsmål, ordlyd godkjent før skriving):
+  steg 6 i `nytt-prosjekt` fikk nøkkeleierskap + flettregel + før/etter-visning
+  med klarsignal + målbar etterkontroll; deny-settet tilbys som tillegg til
+  eksisterende `deny`-liste; `maler.md` merker JSON-dokumentet som mal for ny
+  fil med flettregelen rett under; steg 7 utvider eksisterende `.gitignore` i
+  stedet for å overskrive.
+- **Versjonssjekk som nytt steg 0** i `fase-start` og `nytt-prosjekt` (BKs
+  bestilling denne økten): tre ledd — kjørende / installert / org-repo — varsel,
+  aldri port, myk feiling uten nett. CHANGELOG 0.2.3, `fint-unntak.txt` oppdatert.
+
+### Beslutninger
+
+- **Beslutning (BK, nøkkeleierskap):** pakken eier kun
+  `extraKnownMarketplaces.claude-code-skills` og `enabledPlugins`-oppføringene
+  som slutter på `@claude-code-skills`; alt annet urørt, også ukjente nøkler.
+- **Beslutning (BK, malform):** komplett JSON-dokument beholdes for ny fil,
+  eksplisitt flettregel for eksisterende — et fragment kan ikke kopieres ordrett,
+  så instruksen er vernet, ikke formen.
+- **Beslutning (BK, kontroll):** før/etter-visning + klarsignal ved eksisterende
+  fil, og etterkontroll alltid: hver gammel nøkkel intakt med samme verdi.
+- **Beslutning (BK, .gitignore):** det smale hullet (fil uten repo) lukkes med én
+  setning; utvidelsen (persondata-linjer i eksisterende repoer) ble IKKE tatt.
+- **Beslutning (BK, versjonssjekk):** tre-ledds sjekk i BEGGE skillene, samme
+  0.2.3 — nytt-prosjekt er stedet skaden er størst (gamle maler).
+
+### Funn (observert)
+
+- **Kjørende ≠ installert.** Denne øktens skill-kall lastet fra
+  `cache/.../faseflyt/0.1.0/` mens `installed_plugins.json` sa 0.2.2
+  (`4b64670`, oppdatert 2026-08-20 21:40). `0.1.0/.in_use/12176` peker på en
+  `claude`-prosess startet 2026-08-20 kl. 17:21 — FØR oppdateringen. 0.1.0
+  avviker fra 0.2.2 i 8 innholdsfiler (fase-start tilfeldigvis identisk, så
+  øktens instruks var uskadd; fase-slutt var IKKE identisk — repoets 0.2.3-versjon
+  ble lest og fulgt i stedet). Forklaringen «en kjørende prosess beholder
+  versjonen den startet med» er konsistent med alle målingene, men mekanismen er
+  ikke direkte verifisert. Konsekvens: måleprosedyren «installert = repo» har
+  fått et tredje ledd — **omstart av Claude Code etter update**.
+- **Renhetssjekken fanget linjebryting:** omflettet tekst kastet to legitime
+  FINT-deklarasjonslinjer ut av den eksakte unntakslisten (exit 1). Behandlet
+  etter sjekkens egen veiledning: maler.md-linjen brutt om så
+  `fint-graphql`-autofilteret dekker den, SKILL.md-oppføringen i
+  `fint-unntak.txt` oppdatert. Kontrollsøket sto på 23 treff.
+
+### Porter
+
+- Pakke-commiten (`156dd94`): renhetssjekk **10 søk · 0 feil · 0 advarsler**,
+  `claude plugin validate .` ✔ (full sti `~/.local/bin/claude.exe`).
+- Kunnskap-commiten (denne): renhetssjekk **10 søk · 0 feil · 0 advarsler**
+  (kontrollsøk 23 treff), `plugin validate` ✔. Rask sikkerhetssjekk: ingen
+  env-filer tracked, ingen 11-sifrede tall, `client_secret` kun i
+  instruksjonstekst, ingen tracked filer i `kunnskap/lokalt/` eller datamapper.
+
 ## 2026-08-21 — Websiden ble eneste kanal: klarspråkrunde 3, Snoozeloggen ut, docx-sporet lagt ned
 
 Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). **Ingen pakkeendring** — alt skjedde i

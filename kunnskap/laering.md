@@ -9,6 +9,36 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-21 (kveld) — Vurderingspunktet lukket; påminnelser skal utføres, ikke gjengis
+
+**Evaluering av forrige økts punkter:**
+
+- **[beskrevet-omfang-er-avtalt-omfang]** *(4. gang — fulgt)*. Belegg: begge
+  leveransene gikk som ordlyd-forslag pluss eksplisitte beslutningsspørsmål før
+  noe ble skrevet — installasjonsvernet ventet på fire valg, versjonssjekken på
+  tre, og skrivingen startet først etter «Ja, som foreslått». **Ratchet-en:**
+  fjerde påfølgende innslag, og blokkeringen (vurderingspunktet) er nå borte —
+  promoteringen til en repo-CLAUDE.md er klar til beslutning og ligger som eget
+  købunkt i STATUS. Punktet står i STATUS til den beslutningen er tatt.
+- **[beslutninger-forplanter-seg]** — **fulgt. Strykes.** Belegg: da
+  versjonssjekk-målingen drepte premisset «disk-måling er nok», ble konsekvensen
+  ført gjennom alt som hvilte på det i samme runde — måleprosedyren fikk
+  omstarts-leddet i CHANGELOG, STATUS og TODO, og unntakslisten ble oppdatert i
+  samme redigering som linjebrytingen som brøt den.
+
+**Nye punkter:**
+
+- **[paaminnelser-utfoeres-ikke-gjengis]** En per-økt-påminnelse er en handling,
+  ikke en opplesning. Belegg: «sjekk hostname først» sto i STATUS og ble gjengitt
+  i fase-start-kvitteringen, men hostname ble først målt midt i økten, da
+  versjonssjekk-målingen tilfeldigvis trengte den. Gjør påminnelsen til et steg
+  som utføres idet den kvitteres — ellers er kvitteringen teater.
+- **[metadata-i-kallet-er-maaledata]** Skill-kallets basekatalog bar
+  versjonsnummeret hele tiden. Belegg: `...\faseflyt\0.1.0\...` sto synlig i
+  øktens FØRSTE melding, og avviket mot STATUS («0.2.2 verifisert») ble ikke
+  flagget før BK stilte versjonsspørsmålet timer senere. Les metadataene i
+  kallet som måledata, ikke som pynt.
+
 ## 2026-08-21 — Alle tre fulgt; beslutninger forplanter seg
 
 **Evaluering av forrige økts punkter:**

@@ -2,6 +2,63 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-21 — Websiden ble eneste kanal: klarspråkrunde 3, Snoozeloggen ut, docx-sporet lagt ned
+
+Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). **Ingen pakkeendring** — alt skjedde i
+`kunnskap/` og på artefakten. faseflyt står på 0.2.2.
+
+### Levert
+
+**Klarspråkrunde 3 på websiden, med divergert målgruppe som fokus.** Hele runden
+gikk som nummererte forslag FØRST (13 punkter over to diskusjonsrunder), ingenting
+skrevet før BKs «Alt ok — kjør»:
+
+- Ordlisten: nye rader `fasestart` og `sikkerhetssjekk` (med ærlighetsklausul:
+  stikkprøve, ikke full gjennomgang), `fase`-raden fikk hvorfor-et, `økt` peker på
+  `/clear`, «rørlegging» → «teknisk grunnarbeid», «Ti ord» → «Ordene» (tallet
+  råtner ikke ved neste rad).
+- Steg 6 fikk halen som knytter sløyfen: faseslutt skriver → `/clear` tømmer →
+  fasestart leser.
+- Rammene: «Norsk tekst» og «Dette er en prototype» splittet; «Cover» → «Omslag».
+- Oppgavene: **Snoozeloggen kuttet helt** (BK — «jeg»-formen var uforståelig, og å
+  registrere kollegers søvn skurret mot footerens løfte om oppdiktede folk),
+  resten renummerert 1–5. Donald Pocket omskrevet («litt info om hver bok»,
+  «omslag», «tre personer» — «tittel» var uforståelig). «web-løsning» →
+  «nettside» i alle fem. Vaffelvaktas feriespørsmål kuttet, som TODO anbefalte.
+- Overskrift: «KI-samling for Digitale tjenester — 14. september 2026»
+  (artefaktnavnet fulgte etter; gammel eyebrow fjernet som dublett).
+  Skrivelinjene på kortene + tilhørende CSS fjernet («alle har PC»), footerens
+  utdelingstekst fjernet.
+
+### Beslutninger
+
+- **Beslutning (BK, kanal):** kun artefakten deles — arket og `.docx`-en er
+  droppet. Konsekvens utført samme økt: `oppgavelapper.md`, `build-docx.ps1` og
+  begge `.docx`-ene slettet (originalunderlaget ligger i git-historikken fram til
+  `cd50841`); kilden omdøpt `vaffelvakta.html` → `ki-samling-oppgaver.html`.
+  Synkkøen fra 20.08 (websiden to runder foran arket) er dermed død — det som
+  finnes nå er artefakten, kilden og det trackede Utstyrsskapet-sitatet i
+  `TODO.md`, avstemt mekanisk med positiv kontroll.
+- BK avviste først omdøpingsforslaget `ki-samling-deltakerark.html` — «ark» var
+  samme metafor beslutningen nettopp hadde drept. Se læringsloggen.
+
+### Funn (observert)
+
+- **Artefakt-publisering fra en ny økt sperres til økten har SETT gjeldende
+  versjon:** første publish ga «Read it first (WebFetch the URL)». WebFetch mot
+  artefakt-URL-en returnerer hele rå-HTML-en (~20k tegn rett i konteksten —
+  planlegg for det). Etter WebFetch virker publish med `url`-param, også fra
+  omdøpt kildesti — samme lenke beholdt gjennom seks publiseringer.
+- Den publiserte versjonen var identisk med kilden før endringene — ingen
+  fremmede endringer å flette, målt før overskriving.
+
+### Porter (kjørt ved fase-slutt 2026-08-21, etter `git add`)
+
+- Renhetssjekk: **10 søk · 0 feil · 0 advarsler**, kontrollsøk 21 treff.
+- `claude plugin validate .`: ✔ (kjørt som `~/.local/bin/claude.exe` — `claude`
+  er ikke på PATH i Bash-verktøyet heller).
+- Røyktest: ingen env-filer tracked, ingen 11-sifrede tall; alle
+  `client_secret`-treff er instruksjonstekst (scriptet selv, logg, skill-tekst).
 ## 2026-08-20 — Klarspråk: en ikke-teknisk leser målte pakken, og pakken tapte
 
 Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). `main` = `095a1c1` + denne. **faseflyt

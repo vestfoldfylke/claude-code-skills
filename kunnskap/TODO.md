@@ -69,21 +69,18 @@ ikke «trygt».
 4. Gjelder samme hull `.gitignore` i steg 7? Der er hele steget gatet på «med
    mindre repo finnes», men det er ikke målt.
 
-## VURDERINGSPUNKT — ordlyd i artefakten og oppgavene trenger finpuss (BK 2026-08-20)
+## ~~VURDERINGSPUNKT — ordlyd i artefakten og oppgavene~~ — GJENNOMFØRT 2026-08-21
 
-**Status: ikke gjennomgått.** BK vil gå gjennom ordlyden i detalj. Gjelder begge
-artefaktene fra språkrunden 20.08:
+BK gikk gjennom hele websiden med divergert målgruppe som fokus; 13 forslag
+godkjent og utført (se logg 2026-08-21). Ark/`.docx` ble droppet samme dag, så
+websiden var eneste gjenværende kanal. **To rester, ikke lukket:**
 
-- **Websiden** (Artifact, privat lenke — deltakerark: ordliste + Ark 2 + Ark 3,
-  fasilitatorarket bevisst utelatt). Publisert, men ikke ordlydsgjennomgått med BK.
-- **Oppgavelappene og det felles arket** i `kunnskap/lokalt/oppgavelapper.md`, og
-  utskriftsfila `kunnskap/…- sprakvasket 2026-08-20.docx` som bygges fra den.
-
-Å huske i gjennomgangen: bestillingen til Oppgave 6 finnes i **to** kopier — lappen
-og sitatet i denne fila — og de er verifisert ordrett like. Endres ordlyden, endres
-begge. Ordlisten finnes i **tre** kopier (arket, websiden, klarspråktabellen i
-`nytt-prosjekt/SKILL.md`); de ble avstemt 20.08, og et avvik på to rader ble
-oppdaget og rettet da.
+- **Designspor-spørsmålet er fortsatt ubesvart:** skal «Vil dere dele dere?»-sporet
+  inn på websiden, eller holder siden seg til hoveddelen?
+- **Klarspråktabell-speiling i pakken:** ordlisterader som er nye/endret på websiden
+  (`fasestart`, `sikkerhetssjekk`, utvidet `fase`) bør vurderes inn i
+  forklaringstabellen i `nytt-prosjekt/SKILL.md`. Pakkeendring — ligger i kø bak
+  vurderingspunktet om installasjon, som alt annet.
 
 ## Velg case til samlingen (BK, lagt inn 2026-08-19)
 
@@ -113,13 +110,14 @@ ferdig app.
 
 - **Struktur:** 13 av ~22 linjer per lapp var ordrett like på alle seks. Flyttet
   til ett felles ark; lappen er nå bestilling + to uavklarte spørsmål + notatfelt.
-- **Case til tørrkjøringen: 6, Utstyrsskapet.** Den er unionen av 1 (liste, detalj,
-  utlån til navngitte), 3 (datoberegnet status) og 4 (markering) — går den gjennom
-  på 3–4 faser, går resten. Reserve hvis tiden er kort: **1, Donald Pocket**
-  (enklest verifisering, men den ene uten datologikk).
-- **Ikke start med 5, Vaffelvakta.** Rotasjon + bytte + ferier er der en gruppe
-  lettest bruker opp økta på domenelogikk framfor på arbeidsflyten. Vurder å kutte
-  «ferier og fridager» fra bestillingen.
+- **Case til tørrkjøringen: 5, Utstyrsskapet** *(nummer per renummereringen
+  2026-08-21 — Snoozeloggen er kuttet)*. Den er unionen av liste/detalj/utlån til
+  navngitte (Donald Pocket), datoberegnet status (Plantevakta) og markering
+  (Hittegodset) — går den gjennom på 3–4 faser, går resten. Reserve hvis tiden er
+  kort: **1, Donald Pocket** (enklest verifisering, men den ene uten datologikk).
+- **Ikke start med 4, Vaffelvakta.** Rotasjon + bytte er der en gruppe lettest
+  bruker opp økta på domenelogikk framfor på arbeidsflyten. «Ferier og fridager»
+  ble kuttet fra bestillingen 2026-08-21, som anbefalt her.
 - **Tre påstander arket hviler på, som pakken ikke har målt** — står som egen
   seksjon på fasilitatorarket: at «nytt prosjekt» trigger av seg selv (høyest
   risiko: slår den ikke inn, står gruppa fast på minutt null), at `web-prototype`
@@ -145,13 +143,18 @@ ferdig app.
   **Å se etter under tørrkjøringen:** blir ordlisten brukt, eller spør deltakerne
   om ordene likevel?
 
-**Arket synker IKKE mellom maskiner.** Både `.docx`-en og
-`kunnskap/lokalt/oppgavelapper.md` er untracket med vilje, så ingen av dem følger
-med en `git pull` på kontor-PC-en. Derfor står bestillingen til tørrkjøringscasen
-ordrett her, i en fil som ER tracket — det er det eneste som må være tilgjengelig
-for å kjøre testen:
+**Beslutning (BK, 2026-08-21): kun artefakten (websiden) deles — arket og
+`.docx`-en er droppet.** `kunnskap/lokalt/oppgavelapper.md`, `build-docx.ps1` og
+begge `.docx`-ene er **slettet** samme dag på BKs ordre; originalunderlaget ligger
+i git-historikken fram til `cd50841`. Kilden til websiden er
+`kunnskap/lokalt/ki-samling-oppgaver.html` (omdøpt fra `vaffelvakta.html` samme
+dag) — eneste fil igjen i `lokalt/`. Samme runde:
+Snoozeloggen kuttet helt, oppgavene renummerert 1–5, «web-løsning» → «nettside»,
+og hele klarspråkrunden 2026-08-21 er inne på websiden. De to kopiene som nå skal
+holdes like er **websiden og sitatet under** — sitatet er tracket og finnes derfor
+på alle maskiner, det er alt tørrkjøringen trenger:
 
-> **Oppgave 6 — Utstyrsskapet.** Lag en web-løsning for utstyret på huset:
+> **Oppgave 5 — Utstyrsskapet.** Lag en nettside for utstyret på huset:
 > projektorer, kameraer, ladere og høyttalere. Oversikt over hva som finnes, hva
 > som er ute og hva som er ledig. Det skal være mulig å registrere utlån til
 > Mikkel Rev, Sattosk Rev eller Lita Tavle, med forventet retur. Utstyr som er
@@ -168,9 +171,8 @@ for å kjøre testen:
 > nettleseren. Svar i oppsettet: type = webapp/prototype, persondata = nei,
 > FINT = nei. Sikt på 3–4 faser.
 
-*Ordlyden over er språkvasket 2026-08-20 og skal være ordrett lik lappen i
-`kunnskap/lokalt/oppgavelapper.md`. Endrer du én, endre begge — arket er untracket
-og følger ikke med en `git pull`.*
+*Ordlyden over er avstemt ordrett mot websiden 2026-08-21. Endres den ene,
+endres begge i samme runde.*
 
 ## Actions — venter på utviklerne (BK tar samtalen)
 

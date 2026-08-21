@@ -9,6 +9,39 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-21 — Alle tre fulgt; beslutninger forplanter seg
+
+**Evaluering av forrige økts punkter:**
+
+- **[beskrevet-omfang-er-avtalt-omfang]** *(3. gang)* — **fulgt. Videreføres én
+  økt til.** Belegg: hele klarspråkrunden gikk som nummererte forslag med
+  eksplisitt vent-på-godkjenning — to diskusjonsrunder, 13 punkter, ingenting
+  skrevet før «Alt ok — kjør». Da BK sa «vi diskuterer ferdig før du gjør noe»,
+  ble også lesingen gjort som diskusjonsgrunnlag, ikke som retting. Videreføres
+  likevel: forrige økt var et brudd, og ett fulgt-datapunkt etter et brudd er
+  ikke innarbeidet. **Merk ratchet-en: tre påfølgende innslag = manglende regel.
+  Landingen (en repo-CLAUDE.md) er alt utformet, men parkert av BK bak
+  vurderingspunktet om installasjon — promoteringen venter der.**
+- **[artefakter-divergerer-uten-eier]** — **fulgt, og strukturelt løst. Strykes.**
+  Belegg: Utstyrsskapet-sitatet i `TODO.md` ble oppdatert i samme runde som
+  websiden og likheten verifisert mekanisk med positiv kontroll. Viktigere: BKs
+  kanalbeslutning fjernet selve kopisettet — én delt kanal (artefakten), én kilde
+  (`ki-samling-oppgaver.html`), ett tracket sitat.
+- **[scratchpad-er-ikke-lagring]** — **fulgt. Strykes.** Belegg: ingenting ble
+  lagt i scratchpad denne økten; alle leveranser gikk til `kunnskap/lokalt/` og
+  artefakten.
+
+**Nytt punkt:**
+
+- **[beslutninger-forplanter-seg]** Når brukeren fatter en beslutning som dreper
+  en premiss, gå gjennom alt som hviler på premissen i samme runde — navn,
+  metaforer, instrukser — i stedet for å vente på neste korreksjon. Belegg begge
+  veier fra samme økt: footerens «Dette er arket dere som deltar får» fanget jeg
+  selv og flagget etter kanalbeslutningen; men omdøpingsforslaget mitt,
+  `ki-samling-deltakerark.html`, ble avvist av BK fordi «ark» var nøyaktig den
+  metaforen beslutningen tre meldinger tidligere hadde drept. Samme økt lot jeg
+  også STATUS-instruksen om `build-docx.ps1` bli stående til den ble ryddet av
+  selve fase-slutten.
 ## 2026-08-20 — Klarspråkrunden: to punkter innarbeidet, ett gjentok seg
 
 **Evaluering av forrige økts punkter:**

@@ -4,6 +4,17 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.4.1 — 2026-08-24
+
+`faseflyt` 0.4.1. Én linje om hvorfor arbeidsflyten ikke kan måle seg selv.
+
+- **`fallgruver.md` navngir konfunderingen i læringssløyfen.** Nytt
+  testdisiplin-punkt `[selvobservasjon-i-samme-artefakt]`: en korrigering skrevet
+  til `## Arbeidsmåte neste økt` blir instruks for den økten som skulle måles.
+  Belegg fra tre forsøk på å måle en rytmevakt (issue #11). Sløyfen virker som
+  designet — begrensningen er at målingen ikke kan gjøres innenfra, og den skal
+  stå skrevet framfor å oppdages på nytt.
+
 ## 0.4.0 — 2026-08-24
 
 `faseflyt` 0.4.0. Porten sjekker skills, og `TODO.md` fortettes framfor å slettes.

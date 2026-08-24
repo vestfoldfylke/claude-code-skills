@@ -92,6 +92,17 @@ måler ingenting. Del den i to FØR den kjøres.
   måling som kan gjenbrukes og en som må kastes.
   Før du kaller et null for målt: sjekk exit-koden, eller kjør et kontrollsøk som
   SKAL gi treff. Gjelder like fullt når du selv er den som «bare sjekket raskt».
+- **`[selvobservasjon-i-samme-artefakt]`** Selvobservasjon og selvkorrigering kan
+  ikke bo i samme artefakt. En korrigering skrevet til `## Arbeidsmåte neste økt`
+  havner i den ene seksjonen `/fase-start` leser først og kvitterer på — så neste
+  økt får den oppførselen instruert før den gjør noe som helst. Belegg: tre forsøk
+  på å måle om en rytmevakt (at Claude foreslår `/fase-slutt` av seg selv) slår inn
+  uoppfordret. Det første kunne forklares av to ting, det andre var ikke uavhengig
+  av det første, og det tredje målte en økt som hadde lest instruksen på forhånd.
+  Sløyfen virket som designet; det var målingen som ikke kunne gjøres innenfra.
+  Skal du måle hva modellen gjør **uoppfordret**, mål ved første eksponering — i et
+  prosjekt der korrigeringen ikke står i STATUS — eller skriv ned at målingen ikke
+  var ren, så ingen senere tror den var det.
 - **Et ubekreftet vern er verre enn ingen vern.** Det gir falsk trygghet, og
   modellens egen gode oppførsel kan maskere at regelen aldri var koblet til:
   avslår Claude et kall av eget skjønn, ble Claude Code selv aldri testet. Enhver

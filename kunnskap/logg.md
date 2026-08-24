@@ -2,6 +2,113 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-24 (kveld) — faseflyt 0.4.0: to skills levert, og porten som ikke leste skills
+
+Hjemme-PC `VPC-5CG3433WMH` (AMD64) — målt med `hostname` og `uname -m`, ikke
+antatt. Fire commits, alle pushet: `ffc43d4`, `967d5d3`, `8eda2c3`, `5f0f1aa`.
+`faseflyt` 0.2.4 → 0.3.0 → 0.4.0. Issues #6 og #4 lukket.
+
+**Rettelse som gjelder pushet historikk:** commit-meldingene til `967d5d3` og
+`8eda2c3` sier at målingene ble gjort «på kontor-PC-en». Det er feil — de ble
+gjort på hjemme-PC-en, maskinen over. Historikken er ikke omskrevet; denne linjen
+er korreksjonen. Selve målingene står, det er maskinnavnet som var galt.
+
+### Levert
+
+- **`/faseflyt:hjelp`** (issue #6, `ffc43d4`, 0.3.0). Flyten, de fem kommandoene,
+  og — hvis `kunnskap/STATUS.md` finnes — hvilken fase prosjektet står i.
+  Avgrenset eksplisitt mot `fase-start`, som leser samme fil, og avsluttet med en
+  stopp-instruks. 67 linjer.
+- **`fase-start` steg 2: oppdager uavsluttet økt** (issue #4, `967d5d3`, 0.3.0).
+  Ucommittet arbeid, og commits som kom etter at `logg.md` sist ble endret. Steg
+  2–7 renummerert til 3–8.
+- **Renhetsporten sjekker skill-frontmatter** (`8eda2c3`). Ellevte søk i
+  `sjekk.sh`, strukturelt framfor mønsterbasert. `docs/installasjon.md` rettet.
+- **`fase-slutt` steg 4: fortetter avklarte TODO-poster** (issue #4s
+  tilleggsmulighet, `5f0f1aa`, 0.4.0). Forslagssteg med klarsignal, aldri
+  automatisk sletting. Samme regel i TODO-malen. Steg 4–7 renummerert til 5–8.
+
+### Beslutninger
+
+- **Beslutning (BK, `hjelp`-omfang):** skillen leser STATUS hvis den finnes,
+  framfor å være rent statisk. Begrunnelse: den halvparten kan per definisjon
+  ikke drive fra README, som er den feilen issue #6 selv advarte mot.
+- **Beslutning (BK, ordforklaringer i `hjelp`):** ordene forklares i setningen de
+  brukes i — tabellen fra `nytt-prosjekt` kopieres IKKE inn. Begrunnelse: to
+  tabeller å holde i takt er den to-kopier-driften `nytt-prosjekt` alt har vært
+  gjennom.
+- **Beslutning (BK, issue #4s tilleggsmulighet):** bygges som forslagssteg, ikke
+  som rydding. Begrunnelse: begge gangene dette repoet har ryddet sin egen
+  `TODO.md`, var den verdifulle handlingen å **fortette til en peker** framfor å
+  slette — deny-runden fra 290 linjer til en tabell med fjorten rader,
+  VURDERINGSPUNKT-seksjonene fra 60 linjer til åtte. Begge krevde å vite HVOR
+  innholdet ble flyttet, som er nettopp det en automatisk rydding ikke vet.
+- **Beslutning (BK, porten):** frontmatter-søket legges i `sjekk.sh`, og
+  `docs/installasjon.md` slutter å love en CI som ikke finnes.
+
+### Funn (observert)
+
+- **`claude plugin validate` leser BARE manifester.** Både `validate .` og
+  `validate ./plugins/faseflyt` meldte «Validation passed» og skrev selv at de
+  leste manifestfila. Ingen av dem åpner `SKILL.md`. En skill med ødelagt
+  frontmatter passerte altså hele porten grønt. Samme feilmodus som
+  binærfil-hullet: «0 feil» betydde «jeg så ikke etter». Tettet i `8eda2c3`,
+  bevist med kanarifugl på alle fire bruddene (første linje ikke `---`,
+  frontmatter ikke lukket, `name` feil, `description` mangler) — hver ga sin egen
+  melding og exit 1.
+- **`git log --since=<bar dato som er i dag>` har blindsone.**
+  `--since=2026-08-24` ga 0 treff mens seks commits fra samme dag fantes;
+  `--since='2026-08-24 00:00'` ga 6. Git tolker en bar dato som er i dag som
+  «nå», ikke som midnatt. Det var mekanismen issue #4 selv foreslo, og blindsonen
+  ligger nøyaktig på dagen sjekken oftest kjøres — den ville meldt «alt klart»
+  med ucommittet arbeid på disken. Erstattet av commit-forankret form, som ikke
+  har noen dato å tolke feil.
+- **Tom verdi i en git-range feiler stille.** `git log -1 --format=%H --
+  kunnskap/logg.md` gir tom streng når loggen aldri er committet, og
+  `git log --oneline ..HEAD` er da gyldig syntaks (= `HEAD..HEAD`) som svarer
+  tomt uten feil. «Loggen aldri committet» ville lest som «alt loggført». Målt i
+  et tomt test-repo. Står som eksplisitt regel i skillen.
+- **`maler.md` pekte på «steg 6» i `fase-slutt`.** Malen installeres i
+  prosjektets `CLAUDE.md`, så renummereringen ville brutt referansen stille i
+  HVERT nytt prosjekt. Funnet av et bredt søk (`steg [0-9]` over hele `plugins/`);
+  det smalere søket jeg brukte ved forrige renummerering ville ikke funnet det.
+  Rettet til å navngi steget framfor nummeret.
+- **Cache mot repo på hjemme-PC-en: 11 filer, 0 avvik.** Linjeskift normalisert
+  (cachen CRLF, repoet LF). Positiv kontroll: samme metode mot cache-versjon
+  0.2.4 fant avvik, så metoden kan se forskjeller. Tre ledd stemmer: kjørende =
+  installert = repo = 0.4.0, commit `5f0f1aa`. Cachen holder seks versjoner;
+  `0.3.0` kom aldri inn, siden oppdateringen skjedde etter at den var avløst.
+  **Denne målingen lukker IKKE TODO-posten om cache-verifisering.** Den posten
+  ber eksplisitt om at målingen gjøres om på maskinen tørrkjøringen skjer på, og
+  peker på kontor-PC-en (Snapdragon/ARM). Målingen 2026-08-20 var også på
+  hjemme-PC-en, så denne bekrefter en ny versjon på samme maskin — ikke en ny
+  maskin. ARM-leddet er fortsatt umålt.
+- **Skillen laster.** `/faseflyt:hjelp` dukket opp i skill-listen etter
+  `marketplace update` + omstart av VS Code. Det er den positive kontrollen på at
+  frontmatteren faktisk er gyldig — noe `validate` ikke kunne svart på.
+
+### Feil i eget arbeid
+
+- **HOVEDFEILEN: jeg navngav maskinen uten å måle den.** Jeg skrev «kontor-PC
+  (Snapdragon/ARM)» i loggen og «kontor-PC-en» i to commit-meldinger som nå er
+  pushet. Målt i ettertid, etter at BK stoppet det: `hostname` gir
+  `VPC-5CG3433WMH` og `uname -m` gir `x86_64`. Det er hjemme-PC-en.
+  Sannsynlig årsak, og den er verre enn slurv: `TODO.md` sier at
+  cache-målingen må gjøres om på kontor-PC-en, og jeg leste maskinen jeg satt på
+  som den maskinen fordi det gjorde historien hel. Konsekvensen var reell —
+  jeg meldte i chatten at TODO-posten var lukket, og den er fortsatt åpen.
+  Repoets egen regel er at målinger navngir maskinen; da må maskinen måles, ikke
+  utledes av hva som ville passet.
+
+- **README-raden jeg selv foreslo var feil norsk.** «Når du har glemt hvordan det
+  gikk» leser som *hvordan det endte*; meningen var *hvordan det virker*. Den sto
+  i et godkjent ordlyd-forslag og ble committet — og ble først oppdaget da jeg
+  leste `git show` på min egen commit. Rettet med `--amend` før push.
+- **Rewrap etter en margin som ikke finnes.** Jeg «rettet» en CHANGELOG-linje til
+  80 tegn ut fra en antakelse om repoets konvensjon. Målt etterpå: maks
+  linjelengde er 90 i CHANGELOG, 101 i `fase-start/SKILL.md` og 167 i de andre
+  skillene. Regelen fantes ikke. Endringen var harmløs, premisset var ikke målt.
+
 ## 2026-08-24 — PATH fikset, 0.2.4 målt om, tolv beslutninger avgjort; issue #5 lukket
 
 Hjemme-PC `VPC-5CG3433WMH` (AMD64). Fire pusher: `2003cb7`, `ef6e66d`,

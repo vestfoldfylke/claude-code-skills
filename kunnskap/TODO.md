@@ -90,6 +90,9 @@ ferdig app.
   **omstart Claude Code** → mål om (mot 0.2.3, `156dd94`). Målt samme dag: en
   kjørende prosess beholder versjonen den startet med, så disk-målingen alene
   garanterer ikke hva økten kjører. Versjonssjekkens steg 0 melder dette selv.
+  **Gjentatt 2026-08-24 (kveld) mot 0.4.0 (`5f0f1aa`), hjemme-PC-en: 11 filer,
+  0 avvik, alle tre ledd kjørt.** Posten står fortsatt åpen — ARM-leddet
+  (kontor-PC-en) er umålt.
 - **Tørrkjøringen skal skje i en blank økt i en tom mappe utenfor dette repoet.**
   En økt som har lest `plan.md`/`TODO.md` kjenner pakkens svake punkter og måler
   derfor seg selv med fasit i hånda.

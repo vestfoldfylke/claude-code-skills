@@ -9,6 +9,73 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-24 (kveld) — Tre punkter fulgt, det tredje ga tre funn; men jeg navngav maskinen uten å måle den
+
+**Evaluering av forrige økts tre punkter — alle fulgt, alle strykes:**
+
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, og strykes.**
+  Belegg: før `hjelp`-forslaget ble lagt fram, søkte jeg etter feilen forslaget
+  kunne gjenskape, og fant to — at issue #6 selv advarte mot README-duplisering,
+  og at `nytt-prosjekt` alt hadde vært gjennom to-kopier-drift. Det formet
+  designet framfor å bli et forbehold etterpå: den STATUS-lesende halvparten kan
+  per definisjon ikke drive fra README, og ordforklaringstabellen ble bevisst
+  IKKE kopiert inn. Samme sjekk avgjorde issue #4s tilleggsmulighet — fortetning
+  framfor sletting, fordi repoets egne to ryddinger begge var pekere.
+- **[retning-til-bruker-detaljer-til-meg]** — **fulgt, og strykes.** Belegg: to
+  retningsspørsmål stilt (statisk kontra STATUS-lesende, ordliste ja/nei), og alle
+  detaljer avgjort selv med etterfølgende melding om hva som ble valgt —
+  triggeravgrensning, ingen `references/`-mappe, plassering av steg 4 før
+  commit-steget, `--amend` framfor egen fiks-commit, og «commit-steget» framfor
+  «steg 7» i `maler.md`. Ingen detaljspørsmål gikk til BK.
+- **[verifiser-verktoeyet-ikke-bare-utfallet]** — **fulgt på verktøy, brutt på
+  maskinen. Videreføres i skjerpet form, se nytt punkt under.** Belegg for at det
+  virket: tre funn kom av å måle verktøyet — (1) `claude plugin validate` skrev
+  selv at den leste manifestet, så jeg sjekket om den åpnet `SKILL.md`; den gjør
+  ikke det, og porten hadde et hull; (2) issue #4s foreslåtte `--since`-form ble
+  prøvd før den ble skrevet inn, og ga 0 treff der seks commits fantes; (3) tom
+  verdi i en git-range ble prøvd i et tomt test-repo og feilet stille. Positiv
+  kontroll på hvert rapportert søk: kanarifugl på alle fire
+  frontmatter-bruddene, cache-diffen mot 0.2.4, «steg 99» for stegsøket.
+  **Men samme økt påsto jeg maskinnavn uten et eneste kall.** Punktet dekket
+  verktøyene mine og ikke premissene mine.
+
+**Nye punkter:**
+
+- **[maskinen-og-miljoeet-maales-som-alt-annet]** Maskin, arkitektur og miljø er
+  måledata på linje med søkeresultater — de utledes ikke av hva som ville passet
+  historien. Belegg: jeg skrev «kontor-PC (Snapdragon/ARM)» i loggen og
+  «kontor-PC-en» i to commit-meldinger som nå er pushet. `hostname` gir
+  `VPC-5CG3433WMH` og `uname -m` gir `x86_64` — hjemme-PC-en. BK stoppet det, ikke
+  jeg. Årsaken er verre enn slurv: `TODO.md` sier cache-målingen må gjøres om på
+  kontor-PC-en, og jeg leste maskinen jeg satt på som den maskinen fordi det
+  gjorde historien hel. Konsekvensen var reell — jeg meldte en TODO-post som
+  lukket, og den er fortsatt åpen, siden ARM-leddet er umålt. Repoets `CLAUDE.md`
+  krever at målinger navngir maskinen; da er maskinnavnet det første som må måles.
+- **[egen-ordlyd-fortjener-samme-blikk-som-diffen]** Ordlyd jeg selv har foreslått
+  og fått godkjent, leses ikke på nytt før den committes — og det er nettopp der
+  feilen overlever. Belegg: README-raden «Når du har glemt hvordan det gikk» sto i
+  et forslag BK godkjente, ble committet, og ble først oppdaget da jeg leste
+  `git show` på min egen commit. «Hvordan det gikk» betyr hvordan det *endte*,
+  ikke hvordan det *virker* — og README er teksten en fersk kollega leser først.
+  Godkjent ordlyd er ikke verifisert ordlyd.
+- **[soek-bredt-foer-du-melder-null]** Et søk som er avgrenset for å bli lesbart
+  måler smalere enn det påstår. Belegg: ved renummereringen av `fase-start` søkte
+  jeg etter linjer med både «fase-start» og «steg» — det ga null, og jeg meldte
+  «ingen foreldede referanser». Ved renummereringen av `fase-slutt` søkte jeg
+  bredt (`steg [0-9]` over hele `plugins/`) og fant `maler.md`, som pekte på
+  commit-steget og installeres i hvert nytt prosjekt. Det brede søket kjørt i
+  ettertid viste at den første renummereringen var trygg — men den var heldig,
+  ikke målt.
+
+*Kuttet fra denne runden for å holde tre aktive punkter:
+[maal-konvensjonen-foer-du-retter-etter-den] — jeg rewrappet en CHANGELOG-linje
+til 80 tegn etter en konvensjon jeg ikke hadde målt; repoets maks er 90/101/167.
+Harmløst utfall, samme premissfeil som punkt 1, og dekkes av det.*
+
+**Gjelder arbeidsflyten selv:** funnet om at `claude plugin validate` ikke leser
+skills er ført i pakken framfor som issue — dette repoet ER pakken, og det er
+rettet i `sjekk.sh` og `docs/installasjon.md` i `8eda2c3`.
+
 ## 2026-08-24 — Kilden slo notatet fem ganger; men jeg foreslo maskineri prosjektet alt hadde forkastet
 
 **Evaluering av forrige økts punkt:**

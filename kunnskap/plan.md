@@ -146,7 +146,8 @@ claude-code-skills/                      # → vestfoldfylke/claude-code-skills,
 │   │       ├── nytt-prosjekt/SKILL.md + references/
 │   │       ├── fase-start/SKILL.md
 │   │       ├── fase-slutt/SKILL.md
-│   │       └── grill-me/SKILL.md
+│   │       ├── grill-me/SKILL.md
+│   │       └── hjelp/SKILL.md          # lagt til 0.3.0, issue #6
 │   ├── web-prototype/                   # teknologivalg — kun webapp-prosjekter
 │   │   ├── .claude-plugin/plugin.json
 │   │   └── skills/web-prototype/SKILL.md + references/components.md
@@ -390,16 +391,20 @@ brukerens tilleggsbeskjed fra prompten).
    oppgradere (opprett `laering.md`, flytt planen til `kunnskap/plan.md`). Aldri
    automatisk; brukeren bestemmer.
 1. Les `kunnskap/STATUS.md`. Mangler den: ikke gjett — foreslå `nytt-prosjekt`.
-2. Les `kunnskap/plan.md` (fallback: `**Plan:**`-linjen i STATUS) og `TODO.md`.
+2. **Ble forrige økt avsluttet?** (lagt til 0.3.0, issue #4) Ucommittet arbeid,
+   og commits som kom etter at `kunnskap/logg.md` sist ble endret. Treff = STATUS
+   er utdatert; tilby å oppsummere, aldri rydd eller commit automatisk.
+   Datoformen `--since` er eksplisitt forbudt — se skillen for målingen.
+3. Les `kunnskap/plan.md` (fallback: `**Plan:**`-linjen i STATUS) og `TODO.md`.
    `logg.md` og `laering.md` kun hvis STATUS er uklar om noe som trengs nå.
-3. Ikke utforsk kodebasen for det STATUS/planen svarer på; utforskning senere i
+4. Ikke utforsk kodebasen for det STATUS/planen svarer på; utforskning senere i
    økten delegeres til Explore-subagent.
-4. Oppsummer: fase/tilstand, hva som er verifisert, og **ETT** konkret neste steg.
-5. **Kvitter på `## Arbeidsmåte neste økt`** — gjenta korrigeringene som konkrete
+5. Oppsummer: fase/tilstand, hva som er verifisert, og **ETT** konkret neste steg.
+6. **Kvitter på `## Arbeidsmåte neste økt`** — gjenta korrigeringene som konkrete
    forpliktelser for denne økten (nytt steg, se læringssløyfen).
-6. Gjengi per-økt-påminnelser fra STATUS og prosjektets `CLAUDE.md` (erstatter
+7. Gjengi per-økt-påminnelser fra STATUS og prosjektets `CLAUDE.md` (erstatter
    dagens hardkodede FINT-avsnitt).
-7. Vent på klarsignal — med mindre brukerens tilleggsbeskjed alt er en arbeidsordre.
+8. Vent på klarsignal — med mindre brukerens tilleggsbeskjed alt er en arbeidsordre.
 
 **`fase-slutt` — stegene skillen skal utføre:**
 
@@ -413,15 +418,20 @@ brukerens tilleggsbeskjed fra prompten).
 3. **STATUS:** overskriv `kunnskap/STATUS.md` (maks ~30 linjer) — fase og tilstand,
    hva som er verifisert, konkret neste steg, kritiske filer, `## Arbeidsmåte neste
    økt`, og det en ny økt må vite. Selvbærende for `/fase-start`.
-4. **Kvalitetsport:** kjør prosjektets egen sjekk før commit — bygg/typecheck/tester
+4. **Er noe i `TODO.md` avklart av det som ble gjort nå?** (lagt til 0.4.0, issue
+   #4) Treff = foreslå å **fortette** seksjonen til én pekerlinje til hvor
+   innholdet bor nå. Før/etter vises, klarsignal kreves, og bare det økten selv
+   avklarte er kandidat. Fortetning framfor sletting: fila bærer beslutninger og
+   resonnement, og belegget er ofte det mest verdifulle i den.
+5. **Kvalitetsport:** kjør prosjektets egen sjekk før commit — bygg/typecheck/tester
    slik de er definert i prosjektets `CLAUDE.md` eller `package.json`. Finnes ingen,
    hopp over og si det. Feiler den, ikke commit stille: rapporter og la brukeren
    avgjøre. Resultatet føres i loggen, slik at «fase X ✅» faktisk betyr noe.
-5. **Sikkerhetsrøyktest:** skaleres etter prosjekttype og tåler ikke-git-prosjekter.
+6. **Sikkerhetsrøyktest:** skaleres etter prosjekttype og tåler ikke-git-prosjekter.
    Beholder fnr-grep (11 sifre) og `client_secret`, men eksplisitt merket som
    røyktest — ikke en review; peker på `/security-review` for det.
-6. **Commit og push** med beskrivende melding (`git commit -F` ved flere linjer).
-7. **Avslutt:** «FERDIG — klar for /clear», pluss fallback-oppstartsmelding i
+7. **Commit og push** med beskrivende melding (`git commit -F` ved flere linjer).
+8. **Avslutt:** «FERDIG — klar for /clear», pluss fallback-oppstartsmelding i
    kodeblokk, renset for FINT-eksempelet. Er planens faser ferdige: foreslå å
    flytte gjenstående til `TODO.md`.
 

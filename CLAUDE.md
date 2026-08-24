@@ -22,8 +22,10 @@ i samme redigering. Alltid én positiv kontroll i samme runde.
 
 ## Pakkeendringer
 
-Rett på `main` — hardening er AV til 1.0, så diffen din er eneste port: les
-den. Bump BEGGE manifestene (`plugins/<navn>/.claude-plugin/plugin.json` og
+Rett på `main` — det finnes **ingen** automatisk port: Actions er droppet
+(BK 2026-08-24), hardening er av, og review er droppet. Diffen din er eneste
+port, også etter 1.0 — les den. Bump BEGGE manifestene
+(`plugins/<navn>/.claude-plugin/plugin.json` og
 `.claude-plugin/marketplace.json`) og før endringen i `CHANGELOG.md`.
 
 ## Målinger og språk

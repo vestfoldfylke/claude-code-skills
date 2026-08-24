@@ -85,16 +85,29 @@ hvem som helst som kjenner URL-en installere det. Derfor, som harde krav:
   unntak «bevisst ikke er tatt i bruk».
   **Beslutning (BK):** vi opererer alene fram til 1.0. Reviewen var i praksis et
   stempel uten leser, og en port ingen går gjennom er ingen port.
-  - **Konsekvensen er reell og skal tas opp igjen ved 1.0:** repoet er en
+  - **Konsekvensen er reell og ble tatt opp 2026-08-24 (se under):** repoet er en
     instruksjonskanal inn i kollegaers Claude-økter — alt som pushes til `main`
     blir arbeidsinstrukser hos alle som har installert pakken, særlig med sentral
     utrulling/`autoUpdate` — og repoet har ingen automatisk sjekk (ingen
     `package.json`). Uten hardening og uten review finnes det nå **ingen** port.
     Det er akseptabelt så lenge vedlikeholderen er én person som leser sin egen
     diff; det er det ikke når pakken har brukere som ikke gjør det.
-  - **Naturlig erstatning før 1.0:** en CI-sjekk eller pre-commit-hook som kjører
-    renhetssøkene *med* den positive kontrollen. Da er porten en måling framfor en
-    person, og den virker også når review er av. Jf. hook-skissen i `TODO.md`.
+  - **Avgjort 2026-08-24 (BK): ingen automatisk port bygges.** Actions er
+    droppet for repoet, og pre-push-hook ble vurdert og forkastet: den krever én
+    config-kommando per maskin, følger ikke med i klonen, kan omgås med
+    `--no-verify`, og ingen kan se fra repoet om den er aktiv hos noen. En port
+    ingen kan verifisere er dårligere enn ingen port, fordi den inviterer til å
+    tro at sjekken skjedde — samme «formelt på plass, reelt borte»-mønster som er
+    navngitt tre ganger ellers i dette prosjektet. Utviklere som vedlikeholder
+    pakken vil dessuten pushe fra sitt eget oppsett, der hooken stille ikke er
+    satt opp.
+    **Porten er derfor manuell og skal forbli det:** regelen i `CLAUDE.md` kjøres
+    etter `git add` før hver push, og vedlikeholderen leser sin egen diff. Ønskes
+    en ekte port senere, er Actions det riktige laget — den kjører på serveren,
+    kan ikke hoppes over, og status er synlig for alle. Spørsmålene til
+    utviklerne ligger ferdige i `TODO.md`.
+  - **1.0 krever derfor ikke en port.** Ny definisjon: 1.0 = prøvd på samlingen,
+    funnene rettet, og fraværet av automatisk sjekk dokumentert.
   - Historisk, ikke gjeldende nå: `require_last_push_approval` gjorde at en push
     etter godkjenning kostet en ekstra review-runde (erfart i PR #2).
   - Skrivetilgang bør uansett begrenses til de som vedlikeholder pakken.

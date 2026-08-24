@@ -2,6 +2,131 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-24 — PATH fikset, 0.2.4 målt om, tolv beslutninger avgjort; issue #5 lukket
+
+Hjemme-PC `VPC-5CG3433WMH` (AMD64). Fire pusher: `2003cb7`, `ef6e66d`,
+`41f0c97`, `420844a`. Ingen versjonsbump — ingen av endringene rører `plugins/`.
+
+### Levert
+
+- **`claude` på PATH.** `%USERPROFILE%\.local\bin` lagt i bruker-PATH via
+  registeret (`ExpandString`-typen bevart; `setx` unngått fordi den trunkerer
+  over 1024 tegn), `WM_SETTINGCHANGE` kringkastet. Verifisert etter omstart:
+  `claude` løses opp i Bash-verktøyet, og `claude plugin validate .` kjørte via
+  PATH framfor absolutt sti.
+- **README, issue #5** (`2003cb7`): ny seksjon «Trenger du alt dette?» før «Kom
+  i gang», «feil er normalt» i steg 5, og FAQ-punkt om å skru av flyten
+  (`disable`/`uninstall`/`marketplace remove`, `--scope`, oppføringen i
+  `.claude/settings.json`). Issue lukket med kommentar om at README-testens funn
+  føres som ny issue.
+- **Workflowen merket inert + porten peker på PATH-formen** (`ef6e66d`).
+- **Ingen automatisk port; 1.0 redefinert** (`41f0c97`).
+- **Repo-tillatelser committet** (`420844a`): `Bash(git add *)` og
+  `Bash(bash .github/renhet/sjekk.sh)`.
+- **Fem issues merket `kjent-før-test`** (#3, #7, #8, #9, #10). Ny label
+  opprettet. #4, #6 og #11 står umerket fordi de skal lukkes før testen.
+
+### Beslutninger
+
+- **Beslutning (BK, retning):** **likt for alle** — ingen splitt mellom
+  maintainer og kollega. Forenklinger gjelder alle. Dette **kansellerer** den
+  tredje av de tre blokkerte leveransene («hva skal ut av kollegaenes prosjekter
+  og inn i vedlikeholderdokumentasjonen»), siden den forutsatte et skille.
+  Produksjonsgap-fila og artefaktreglene står igjen.
+- **Beslutning (BK, dataregime):** spørsmålet «ekte data eller oppdiktede» ved
+  oppsett er en god idé uansett — men planlegges **etter** samlingen: alle seks
+  oppgavene er syntetiske, så på dagen ville det hatt ett riktig svar for alle 30.
+- **Beslutning (BK, Actions):** Actions droppes for repoet.
+- **Beslutning (BK, port):** **ingen automatisk port bygges.** Pre-push-hook
+  vurdert og forkastet — krever én config-kommando per maskin, følger ikke med i
+  klonen, kan omgås med `--no-verify`, og ingen kan se fra repoet om den er aktiv
+  hos noen. Utviklere som vedlikeholder pakken pusher fra eget oppsett, der den
+  stille ikke er satt opp. Porten er manuell og skal forbli det.
+- **Beslutning (BK, 1.0):** 1.0 kommer etter samlingen, og krever **ikke** en
+  port. Ny definisjon: prøvd på samlingen, funnene rettet, og fraværet av
+  automatisk sjekk dokumentert.
+- **Beslutning (BK, køen):** issues bærer køen, `TODO.md` bærer beslutninger og
+  resonnement, STATUS bærer nå. En TODO-post som modnes til en definert endring
+  forlater `TODO.md` samme dag.
+- **Beslutning (BK, samlingen):** **14. september**, seks grupper, deltakernes
+  egne maskiner, satt opp på forhånd sammen med BK. Blanding av Mac, ARM og
+  AMD64. Spores ikke her.
+- **Beslutning (BK, kollegatest):** én testperson på Mac — samme person dekker
+  Mac-pre-flighten og profil A.
+- **Beslutning (BK, `fint-samtykke`):** legges bort. Det er et eget prosjekt, og
+  posten hører ikke i dette repoets sporing.
+- **Beslutning (BK, issue #11):** godta begrensningen og skriv linjen i
+  `fallgruver.md` framfor å bygge måleprosjekt eller instrumentmodus.
+- **Beslutning (BK, tørrkjøring):** BK kjører den selv.
+- **Beslutning (BK, `.claude/settings.json`):** committes, ikke
+  `settings.local.json` — reglene er repospesifikke og like på alle maskiner.
+
+### Funn (observert)
+
+- **Versjonssjekkens tre ledd mot 0.2.4, alle grønne:** installert 0.2.4,
+  marketplace-klone `86c0673` = `origin/main`, cache innholdsren. Ni av ti
+  pakkefiler er byte-identiske; den tiende (`fase-start/SKILL.md`) avviker bare i
+  linjeskift — cache CRLF 3966 B mot arbeidstre LF 3891 B, differanse 75 B = én
+  CR per linje. **Presisering til TODO:** indeksen er LF for alle ti, mens
+  arbeidstreet er CRLF for ni og LF for én. TODO sa «repoet LF».
+- **0.2.4 endret bare `nytt-prosjekt`.** `fase-start/SKILL.md` er identisk i
+  0.2.3 og 0.2.4, så det hadde ingen betydning hvilken av dem økten lastet.
+- **Kjørende versjon observert i begge retninger:** skill-kallets basekatalog var
+  `...\0.2.3\...` før omstart og `...\0.2.4\...` etter. To PID-er (30228, 32532)
+  holdt 0.2.4, begge levende.
+- **Pakkens tokenkostnad, ikke kjent før:** ~668 tokens alltid-på per økt;
+  `nytt-prosjekt` ~6,8k når den kalles (`claude plugin details faseflyt`).
+  Alltid-på-tallet er lavt nok at bekymringen i «Helhetsvurdering» om
+  tokeneffektivitet antakelig er ubegrunnet.
+- **`.claude/settings.json` når ikke kollegaers økter.** Plugin-cachen inneholder
+  bare `.claude-plugin/plugin.json` og `skills/`, fordi pluginkilden er
+  `./plugins/faseflyt` og repo-rotens `.claude/` ligger utenfor den.
+  `plugin details` gir 0 agents, 0 hooks, 0 MCP-servere — ingen kanal der en
+  plugin injiserer tillatelser.
+- **Det finnes en ferdig kollegatest-protokoll** i `kunnskap/kollegatest.md` (116
+  linjer: profiler, tidsbudsjett, tre regler for observatørrollen, notatmal).
+  Verken STATUS eller TODO nevner den, og forutsetningen den selv setter
+  («testplan test 1–3 grønne») har vært oppfylt siden 17.08.
+- **Webapp-typen dekkes av ingen av kollegatestprofilene** — A kjører
+  script/API, B kjører dokumentasjon. Verifiseringsplanens punkt 2 krever én
+  tørrkjøring per type, og webapp er typen alle seks samlingsoppgavene bruker.
+  Den måles bare av BKs tørrkjøring.
+- **Åtte av ni issues sa «Timing: etter merge av PR #2»**, som ble merget 18.08.
+  Køen ventet altså ikke på noe, og hadde ikke gjort det på en uke.
+- **`enabledPlugins` er et objekt med boolske verdier**, ikke en liste — lest
+  ordrett fra `maler.md` framfor gjettet.
+
+### Feil i egne målinger, alle rettet i samme runde
+
+Ført fordi belegg-kravet gjelder også når målingen var min:
+
+- `grep -c $'\r'` ga 75 for begge filene fordi mønsteret kollapset til tomt og
+  matchet hver linje. Konklusjonen «begge er CRLF» ble sagt før byte-sjekk.
+  Avløst av `git ls-files --eol` + `cmp`.
+- `ps -p` meldte begge PID-ene døde; Git Bash ser bare MSYS-prosesser, ikke
+  native Windows-prosesser. Avløst av `Get-Process`.
+- PATH sto et øyeblikk som én ugyldig oppføring fordi `Where-Object` returnerte
+  skalar og `+` konkatenerte framfor å legge til. Rettet umiddelbart og
+  verifisert oppføring for oppføring.
+- Lenkesjekken meldte falsk brutt lenke i `TODO.md` fordi den ikke løste
+  relativt til fila. Rettet, og positiv kontroll lagt til.
+- Commit-melding skrevet med `-m` og transliterte æøå («hoerer», «Maalt») i
+  strid med repoets `git commit -F`-regel. Amendet før push.
+
+### Porter
+
+- Per commit: renhetssjekk **10 søk · 0 feil · 0 advarsler** med positivt
+  kontrollsøk, og `claude plugin validate .` ✔. Porten ble kjørt om etter at det
+  stagede endret seg.
+- **Porten fanget noe på første bruk etter at den ble erklært eneste port:**
+  `.claude/settings.json` var skrevet av tillatelsessystemet og kom med i
+  `git add -A` uten å være del av avtalt omfang. Tatt ut av commiten, lagt fram,
+  og committet separat etter beslutning.
+- Ved faseslutt i tillegg: ingen `.env`-filer tracket, ingen 11-sifrede tall,
+  ingen secrets, ingen Office-/datafiler, `kunnskap/lokalt/` ikke tracket, og
+  alle relative lenker i README/CLAUDE.md/plan/TODO/STATUS peker på filer som
+  finnes.
+
 ## 2026-08-21 (sent kveld) — Køpunkt 2 levert: faseflyt 0.2.4 + repo-CLAUDE.md; promoteringen landet
 
 Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). To pusher: `4d86520` (faseflyt 0.2.4,

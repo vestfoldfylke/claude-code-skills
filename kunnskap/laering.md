@@ -9,6 +9,50 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-24 — Kilden slo notatet fem ganger; men jeg foreslo maskineri prosjektet alt hadde forkastet
+
+**Evaluering av forrige økts punkt:**
+
+- **[kilden-teller-ikke-listen]** — **fulgt, og strykes.** Belegg, fem ganger i
+  én økt: (1) ni issues ble lest i sin helhet framfor klassifisert på titlene —
+  det avdekket at åtte av dem sa «Timing: etter merge av PR #2», som var merget en
+  uke før; (2) tre TODO-poster ført som ugjorte ble verifisert mot kildefilene med
+  grep før de ble omtalt som ugjorte; (3) `kunnskap/kollegatest.md` og
+  `testplan.md` ble funnet ved å liste mappa framfor å stole på at STATUS nevnte
+  alt; (4) `enabledPlugins`-formen ble lest ordrett fra `maler.md` — den er et
+  objekt med boolske verdier, og jeg ville skrevet en liste; (5) cache mot repo
+  ble målt fil for fil framfor å stole på STATUS' «målt ren». Punktet var
+  avgjørende nok at det ble anvendt uoppfordret.
+
+**Nye punkter:**
+
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** Før et forslag legges
+  fram: sjekk om prosjektet alt har navngitt feilen forslaget gjenskaper. Belegg:
+  jeg foreslo en pre-push-hook som 1.0-port. Den kunne ikke verifiseres utenfra
+  (én config-kommando per maskin, følger ikke med i klonen, `--no-verify`, hopper
+  over halve seg selv uten `claude` på PATH) — altså nøyaktig «formelt på plass,
+  reelt borte», som står navngitt tre steder i dette repoet fra før
+  (deny-regler, rytmevakter, den inerte workflowen). BK stoppet det med «mye
+  styr», ikke jeg. Repoet har en liste over egne lærdommer; den skal leses som
+  sjekkliste mot eget forslag, ikke bare som historikk.
+- **[retning-til-bruker-detaljer-til-meg]** Spør brukeren om retning, avgjør
+  implementasjonen selv, og fortell hva som ble valgt. Belegg: hook-forslaget ba
+  BK avgjøre to detaljer — om manglende `claude` skulle stoppe pushen eller
+  advare, og om skittent arbeidstre skulle stoppe eller advare. Begge var mine å
+  avgjøre. Det kom rett etter at BK hadde sagt at et annet spørsmål var uklart
+  formulert, og svaret ble «Dette var vanskelig». To spørsmål om detaljer kostet
+  mer tillit enn de sparte i risiko.
+- **[verifiser-verktoeyet-ikke-bare-utfallet]** Et søk som ikke kan feile
+  synlig, måler ingenting — sjekk at verktøyet ser det du tror før utfallet
+  rapporteres. Belegg, tre ganger samme økt: `grep -c $'\r'` ga 75 for både
+  CRLF- og LF-fila fordi mønsteret kollapset til tomt og matchet hver linje;
+  `ps -p` meldte to levende PID-er som døde fordi Git Bash bare ser
+  MSYS-prosesser; lenkesjekken meldte falsk brutt lenke fordi den ikke løste
+  relativt til fila. Alle tre ble sagt før de ble avløst av et verktøy som
+  faktisk så målet (`git ls-files --eol`/`cmp`, `Get-Process`, korrigert sti).
+  Renhetsscriptet i dette repoet har prinsippet innebygd — kontrollsøket først —
+  og det gjelder like fullt for engangssøk i chatten.
+
 ## 2026-08-21 (sent kveld) — Promoteringen landet; begge nypunktene fulgt
 
 **Evaluering av forrige økts punkter:**

@@ -62,6 +62,17 @@ i kommandomenyen — og bruk terminal-CLI-en som fallback.
 skill-katalog der. Selve faseflyt-en (`nytt-prosjekt`/`fase-start`/`fase-slutt`)
 krever filsystem og git og finnes derfor kun i Claude Code.
 
+## Trenger du alt dette?
+
+Nei. Skal du lage en liten prototype på et par timer, hopp over faseflyten:
+installer `web-prototype`, beskriv hva du vil ha, og bygg. Vil du tenke gjennom
+valgene først, er `/faseflyt:grill-me` nyttig helt alene.
+
+Fase-opplegget lønner seg når prosjektet er stort nok til å gå over flere økter
+— når du ellers ville brukt første halvtime på «hva var det vi holdt på med?».
+Vokser prototypen til noe sånt, kjører du `/faseflyt:nytt-prosjekt` i mappa som
+allerede finnes: den oppretter bare det som mangler, og rører ikke det du har.
+
 ## Kom i gang: ditt første prosjekt
 
 Slik ser et prosjekt ut fra tom mappe til første fase i mål. Det du skriver,
@@ -97,6 +108,10 @@ i rekkefølge:
 
 5. **Du verifiserer.** Kjør appen, klikk deg gjennom, test. Dette er porten:
    ingen ny fase før du har sagt at denne virker.
+
+   Virker det ikke: beskriv feilen, og arbeidet fortsetter i samme fase. Det er
+   normalt, ikke et avvik — `fase-slutt` kjøres først når du har bekreftet at
+   det virker.
 
 6. **`/faseflyt:fase-slutt`** — Claude oppdaterer logg og STATUS, vurderer sin
    egen arbeidsmåte, sjekker at prosjektet fortsatt virker, kjører en rask
@@ -195,6 +210,22 @@ med dine egne skills.
 **Hvordan oppdaterer jeg pakken?**
 `/plugin marketplace update claude-code-skills`. Endringer står i
 [CHANGELOG.md](CHANGELOG.md).
+
+**Hvordan skrur jeg dette av igjen?**
+I terminalen, ikke i VS Code-chatten:
+
+```
+claude plugin disable faseflyt@claude-code-skills     # skru av, behold installasjonen
+claude plugin uninstall faseflyt@claude-code-skills   # fjern pluginen
+claude plugin marketplace remove claude-code-skills   # fjern hele pakken
+```
+
+Både `disable` og `uninstall` tar `--scope user|project|local`, så du velger om
+det gjelder overalt eller bare her. Er prosjektet satt opp med
+`/faseflyt:nytt-prosjekt`, står `faseflyt` også i prosjektets
+`.claude/settings.json` — fjern oppføringen der hvis prosjektet ikke skal bruke
+flyten videre. Filene i `kunnskap/` blir liggende: de er vanlig markdown, og kan
+slettes eller beholdes som dokumentasjon.
 
 ## For administrator
 

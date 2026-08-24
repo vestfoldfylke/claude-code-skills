@@ -4,6 +4,33 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.3.0 — under arbeid
+
+Batchen som testes på kollegaer. README-en svarer nå på det en fersk bruker
+lurer på før flyten er lært.
+
+- **README: «Trenger du alt dette?»** Ny seksjon rett før «Kom i gang»: for en
+  liten prototype på et par timer holder `web-prototype` alene, og
+  `/faseflyt:grill-me` virker uten resten. Fase-opplegget lønner seg først når
+  prosjektet går over flere økter — og den som starter enkelt kan kjøre
+  `/faseflyt:nytt-prosjekt` i mappa senere, uten at noe overskrives. Bakgrunn
+  (issue #5): en kollega som møter hele oppsettet første gang kan konkludere
+  «dette er ikke for meg» og aldri komme tilbake. Plasseringen er valgt slik at
+  innvendingen er besvart før filtreet i steg 1 utløser den.
+- **README: feil underveis er normalt.** «Kom i gang» steg 5 sier nå at arbeidet
+  fortsetter i samme fase når verifiseringen ikke går, og at `fase-slutt` først
+  kjøres når brukeren har bekreftet at det virker.
+- **README: hvordan skru det av.** Nytt FAQ-punkt med `claude plugin disable`,
+  `uninstall` og `marketplace remove`, `--scope`-valget, og at prosjekter satt
+  opp med `nytt-prosjekt` også har en oppføring i `.claude/settings.json`.
+  Kommandoene er verifisert mot `claude plugin --help` (Claude Code 2.1.237,
+  2026-08-24). Umålt, og derfor ikke lovet: om den ubekvalifiserte formen
+  `faseflyt` virker like godt som `faseflyt@claude-code-skills`.
+
+Ingen versjonsbump i pluginene for denne endringen: README endrer ikke hva en
+plugin gjør, og leses fra repoet framfor fra plugin-cachen. Bumpen til 0.3.0
+skjer når skill-endringene i samme batch landes.
+
 ## 0.2.4 — 2026-08-21
 
 `faseflyt` 0.2.4. Språkregelen dit den alltid leses, og ordforklaringene i takt

@@ -13,8 +13,10 @@ ekstra» er ikke en full omskriving. Nye ideer underveis går til forslag eller
 
 ## Porten før hver push
 
-ETTER `git add`, fra Bash-verktøyet (`claude` mangler på PATH):
-`bash .github/renhet/sjekk.sh` og `~/.local/bin/claude.exe plugin validate .`.
+ETTER `git add`, fra Bash-verktøyet: `bash .github/renhet/sjekk.sh` og
+`claude plugin validate .`. Er `claude` ikke på PATH — en økt som startet før
+PATH ble satt, eller en maskin der binæren ikke er lagt inn — bruk
+`~/.local/bin/claude.exe plugin validate .` i stedet.
 Brytes en unntakslistet linje om, oppdateres unntakslisten i `.github/renhet/`
 i samme redigering. Alltid én positiv kontroll i samme runde.
 

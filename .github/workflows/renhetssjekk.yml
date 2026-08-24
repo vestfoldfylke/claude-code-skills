@@ -1,13 +1,18 @@
 name: Renhetssjekk
 
-# Porten mellom en commit og kollegaenes «/plugin marketplace update».
+# INERT: Actions er slått av for dette repoet (beslutning BK 2026-08-24), så
+# denne workflowen kjører ikke. Den står igjen fordi å skru den på er én bryter,
+# og fordi reglene den kjører er de samme som gjelder lokalt.
+#
+# Porten som FAKTISK gjelder er lokal, og kjøres før hver push:
+#     git add -A && bash .github/renhet/sjekk.sh
+#
 # Repoet er en instruksjonskanal inn i andres Claude-økter: alt som havner på
-# main blir arbeidsinstrukser hos alle som har installert pakken. Branch-hardening
-# er av og review er droppet fram til 1.0, så denne kjøringen er den eneste
-# porten som finnes — en måling framfor en person.
+# main blir arbeidsinstrukser hos alle som har installert pakken. Med Actions av,
+# branch-hardening av og review droppet fram til 1.0 er den lokale kjøringen og
+# maintainerens lesing av diffen de eneste portene som finnes.
 #
 # Reglene med begrunnelser: docs/installasjon.md, «Renhetskrav».
-# Samme script kjøres lokalt før push: git add -A && bash .github/renhet/sjekk.sh
 
 on:
   push:

@@ -133,6 +133,7 @@ Gjenta 4–8 til planen er levert.
 | `/faseflyt:grill-me` | Nådeløst intervju som låser beslutningene før koding | Før planen skrives |
 | `/faseflyt:fase-start` | Leser STATUS + plan, oppsummerer, foreslår neste steg | Første handling i hver økt |
 | `/faseflyt:fase-slutt` | Logg, STATUS, selvvurdering, sikkerhetssjekk, commit | Når du har verifisert en fase |
+| `/faseflyt:hjelp` | Flyten, kommandoene og hvor du står nå | Når du har glemt flyten |
 
 | Plugin | For hvem |
 |---|---|

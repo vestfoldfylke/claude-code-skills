@@ -7,8 +7,18 @@ skal ellers alltid tåle eldre struktur.
 ## 0.3.0 — under arbeid
 
 Batchen som testes på kollegaer. README-en svarer nå på det en fersk bruker
-lurer på før flyten er lært.
+lurer på før flyten er lært — og flyten kan slås opp i chatten.
 
+- **Ny skill: `/faseflyt:hjelp`.** Flyten, de fem kommandoene og — hvis
+  `kunnskap/STATUS.md` finnes — hvilken fase prosjektet står i og hva neste steg
+  er. Bevisst kort, og bevisst ikke et README-utdrag: halvparten som leser STATUS
+  kan per definisjon ikke drive fra README, og resten peker dit framfor å gjenta
+  den. Bakgrunn (issue #6): tre uker etter installasjon husker ingen flyten
+  utenat, og forklaringen lå på GitHub framfor i chatten der spørsmålet oppstår.
+  Ordforklaringene fra `nytt-prosjekt` er **ikke** kopiert inn — ordene forklares
+  i setningen de brukes i, slik at det ikke finnes to tabeller å holde i takt.
+  Umålt, og derfor ikke lovet: om triggeren «hjelp» slår inn på generelle
+  hjelpespørsmål som ikke gjelder flyten.
 - **README: «Trenger du alt dette?»** Ny seksjon rett før «Kom i gang»: for en
   liten prototype på et par timer holder `web-prototype` alene, og
   `/faseflyt:grill-me` virker uten resten. Fase-opplegget lønner seg først når
@@ -27,9 +37,9 @@ lurer på før flyten er lært.
   2026-08-24). Umålt, og derfor ikke lovet: om den ubekvalifiserte formen
   `faseflyt` virker like godt som `faseflyt@claude-code-skills`.
 
-Ingen versjonsbump i pluginene for denne endringen: README endrer ikke hva en
-plugin gjør, og leses fra repoet framfor fra plugin-cachen. Bumpen til 0.3.0
-skjer når skill-endringene i samme batch landes.
+`faseflyt` bumpes til 0.3.0 for den nye skillen. README-endringene over utløste
+ingen bump alene: README endrer ikke hva en plugin gjør, og leses fra repoet
+framfor fra plugin-cachen.
 
 ## 0.2.4 — 2026-08-21
 

@@ -4,6 +4,31 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.4.0 — 2026-08-24
+
+`faseflyt` 0.4.0. Porten sjekker skills, og `TODO.md` fortettes framfor å slettes.
+
+- **`fase-slutt` foreslår å fortette avklarte `TODO.md`-poster.** Nytt steg 4:
+  har økten avklart noe fila beskriver som åpent, foreslås seksjonen erstattet av
+  én pekerlinje til hvor innholdet bor nå. Før/etter vises, og klarsignal kreves;
+  ingenting slettes av seg selv, og bare det økten selv avklarte er kandidat.
+  Bakgrunn (issue #4, tilleggsmuligheten): fila vokser ellers i det uendelige, og
+  en åpen post leses som en åpen defekt. **Fortetning framfor sletting** er valgt
+  fordi begge gangene dette repoet har ryddet sin egen `TODO.md`, var den
+  verdifulle handlingen å peke videre — ikke å fjerne. Samme regel i TODO-malen.
+  Dagens steg 4–7 renummerert til 5–8.
+- **Renhetsporten sjekker skill-frontmatter.** `claude plugin validate` leser
+  bare manifester — målt 2026-08-24: begge former meldte «Validation passed» uten
+  å ha åpnet en `SKILL.md`. Ellevte søk i `.github/renhet/sjekk.sh` krever nå
+  lukket frontmatter, `name` lik mappenavnet og `description` for hver
+  `plugins/*/skills/*/SKILL.md` i indeksen. Bevist med kanarifugl på alle fire
+  bruddene.
+- **`docs/installasjon.md` lovet en CI som ikke finnes.** Seksjonen sa at
+  scriptet kjøres av GitHub Actions ved hver push, mens Actions er droppet og
+  workflowen inert — og sa åtte linjer lenger ned det motsatte. Rettet.
+- **Referansen til `fase-slutt`s commit-steg i CLAUDE.md-malen er avnummerert**,
+  så renummerering ikke kan brekke den stille i nye prosjekter.
+
 ## 0.3.0 — 2026-08-24
 
 Batchen som testes på kollegaer. README-en svarer nå på det en fersk bruker

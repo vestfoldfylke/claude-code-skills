@@ -190,6 +190,11 @@ Oppdateres når nye endepunkter/dataflater legges til. Full gjennomgang: se logg
 Parkeringsplass for «må huskes, men ikke nå» — fra dag 1, og for gjenstående
 punkter etter at planens faser er levert. Vedlikeholdes manuelt.
 
+En avklart post **fortettes til én pekerlinje** — hvor innholdet bor nå (dato i
+`logg.md`, versjon i `CHANGELOG.md`, commit, issue) — framfor å slettes.
+Begrunnelsen for hvorfor noe ble som det ble er ofte det mest verdifulle i fila,
+og en tom plass forteller ingenting.
+
 ## 1. <punkt>
 
 <beskrivelse, avklaringer som må gjøres før arbeidet starter hvis noen>
@@ -219,10 +224,11 @@ sier fra og venter. Ingen av dem er en fullmakt til å utføre det den foreslår
    bedt om det i en egen melding — `/faseflyt:fase-slutt`, «avslutt fasen» eller
    tilsvarende. Finner du ikke en slik melding, er dette et vakt-utløst forslag,
    og da gjør du **ingenting** av rutinen: verken å kalle skillen eller å utføre
-   stegene selv (logg, STATUS, commit). Begge veier ender i samme sted — steg 6
-   committer og pusher uten eget klarsignal, så en verifiseringsbekreftelse ville
-   alene utløst en push, og verifiseringsporten som er hele poenget med flyten er
-   omgått. «Verifisert, alt OK» betyr ikke «avslutt fasen».
+   stegene selv (logg, STATUS, commit). Begge veier ender i samme sted —
+   commit-steget committer og pusher uten eget klarsignal, så en
+   verifiseringsbekreftelse ville alene utløst en push, og verifiseringsporten
+   som er hele poenget med flyten er omgått. «Verifisert, alt OK» betyr ikke
+   «avslutt fasen».
 
    Dette har gått galt to ganger i test, begge under en svakere formulering —
    regn det som en kjent felle, ikke en teoretisk. Blir konteksten lang midt i en

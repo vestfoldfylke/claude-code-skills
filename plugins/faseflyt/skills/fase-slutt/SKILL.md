@@ -15,7 +15,7 @@ description: >-
 **Porten: denne skillen kjøres BARE når brukeren har bedt om den.** At brukeren
 bekrefter en verifisering («verifisert, alt OK») er ikke en bestilling — da
 foreslår du fase-slutt og venter (fase-slutt-vakten i prosjektets `CLAUDE.md`).
-Grunnen er steg 6: det committer og pusher uten eget klarsignal, og det er bare
+Grunnen er steg 7: det committer og pusher uten eget klarsignal, og det er bare
 forsvarlig når det var brukeren som kalte skillen.
 
 **Sjekk porten før du begynner, den er observerbar:** finn meldingen der brukeren
@@ -73,7 +73,26 @@ Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
    godkjent plan som bare finnes under `~/.claude/plans/` kopieres inn som
    `kunnskap/plan.md` NÅ — den originale er en engangsartikkel.)
 
-4. **Virker prosjektet fortsatt?** Kjør sjekken prosjektet selv har, og skriv i
+4. **Er noe i `TODO.md` avklart av det som ble gjort nå?** Finnes `TODO.md`,
+   sammenlign det økten faktisk leverte — loggen fra steg 1, commitene, issues
+   som ble lukket — mot punktene fila beskriver som åpne.
+
+   Finner du treff: **foreslå å fortette seksjonen til én pekerlinje** som sier
+   hvor innholdet bor nå (dato i `logg.md`, versjon i `CHANGELOG.md`, commit,
+   issue-nummer). Vis før/etter og **vent på klarsignal**. Ikke slett noe uten
+   det, og ikke fortett noe økten ikke selv avklarte — punkter avgjort for hånd
+   eller i en annen økt er usynlige for deg her.
+
+   **Fortett, ikke slett.** `TODO.md` bærer beslutninger og resonnement, ikke
+   oppgaver, og belegget for *hvorfor* noe ble som det ble er ofte det mest
+   verdifulle i fila. En avklart seksjon erstattes derfor av én linje som peker
+   videre — aldri av ingenting. Den som leser fila om tre måneder skal kunne
+   finne begrunnelsen, ikke bare se at posten er borte.
+
+   Er du i tvil om et punkt er avklart, la det stå. En åpen post som er lukket
+   koster et blikk; en fjernet post som var åpen koster arbeidet på nytt.
+
+5. **Virker prosjektet fortsatt?** Kjør sjekken prosjektet selv har, og skriv i
    loggen hva du kjørte og hva som skjedde — det er det som gjør at «fase X ✅»
    betyr noe.
 
@@ -90,7 +109,7 @@ Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
    manglende fil: et prosjekt uten `package.json` kan godt ha en. Feiler sjekken:
    IKKE commit stille — rapporter og la brukeren avgjøre.
 
-5. **Rask sikkerhetssjekk.** Rask er nøkkelordet: dette fanger de grove tabbene,
+6. **Rask sikkerhetssjekk.** Rask er nøkkelordet: dette fanger de grove tabbene,
    det er ikke en gjennomgang. Full gjennomgang er `/security-review`, en egen
    jobb. I git-prosjekter:
    - `git ls-files` skal ikke vise andre env-filer enn `.env.example`
@@ -120,12 +139,12 @@ Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
    prosjektet persondata, er `.gitignore` og deny-settet førstelinjen; denne
    sjekken er et nett under, ikke i stedet for.
 
-6. **Commit og push** med beskrivende melding. Flerlinjet melding → skriv
+7. **Commit og push** med beskrivende melding. Flerlinjet melding → skriv
    meldingsfil og bruk `git commit -F <fil>`. (Ikke-git-prosjekter: hopp over,
    men si det.) Dette steget forutsetter porten øverst: at brukeren kalte
    skillen. Kom du hit uten det, stopp og spør.
 
-7. **Avslutt** med: «FERDIG — klar for /clear. Start neste økt med
+8. **Avslutt** med: «FERDIG — klar for /clear. Start neste økt med
    /faseflyt:fase-start.» Er planens faser ferdige: foreslå å flytte
    gjenstående punkter til `TODO.md`. Legg ved en oppstartsmelding i kodeblokk
    som FALLBACK for økter i verktøy uten skillen (fyll inn konkret):

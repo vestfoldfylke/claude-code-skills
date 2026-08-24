@@ -226,6 +226,63 @@ EOF
 fi
 
 echo
+echo "== Skill-frontmatter (plugin validate leser BARE manifester) =="
+# Hvorfor dette er et hardt krav: «claude plugin validate .» og
+# «claude plugin validate ./plugins/<navn>» leser begge BARE manifestfila og
+# åpner aldri SKILL.md. Målt 2026-08-24: begge former meldte «Validation passed»
+# uten å ha sett en enkelt skill-fil. En skill med ødelagt frontmatter —
+# manglende delimiter, «name» som ikke stemmer med mappenavnet, ingen
+# «description» — passerer derfor både validate og hvert av søkene over, og
+# lastes så ikke i det hele tatt, eller lastes uten triggerflate. Da ville
+# «RENHETSSJEKK OK» betydd «jeg så ikke etter».
+# Metode: git ls-files framfor find — sjekken skal måle det som ligger i
+# indeksen, som resten av scriptet.
+kjorte=$((kjorte + 1))
+skillfiler=$(git ls-files 'plugins/*/skills/*/SKILL.md' | sort)
+if [ -z "$skillfiler" ]; then
+  echo "✗ Fant ingen SKILL.md i plugins/*/skills/ — søket kunne ikke kjøres."
+  feil=$((feil + 1))
+else
+  fm_feil=""
+  while IFS= read -r f; do
+    [ -z "$f" ] && continue
+    mappe=$(basename "$(dirname "$f")")
+    if [ "$(head -1 "$f")" != "---" ]; then
+      fm_feil="${fm_feil}${f}: første linje er ikke «---»
+"
+      continue
+    fi
+    if [ "$(grep -c '^---$' "$f")" -lt 2 ]; then
+      fm_feil="${fm_feil}${f}: frontmatteren er ikke lukket med «---»
+"
+      continue
+    fi
+    fm=$(sed -n '2,/^---$/p' "$f")
+    navn=$(printf '%s\n' "$fm" | sed -n 's/^name:[[:space:]]*//p' | head -1)
+    if [ "$navn" != "$mappe" ]; then
+      fm_feil="${fm_feil}${f}: «name: ${navn:-<mangler>}» stemmer ikke med mappenavnet «$mappe»
+"
+    fi
+    if ! printf '%s\n' "$fm" | grep -q '^description:'; then
+      fm_feil="${fm_feil}${f}: mangler «description» — skillen har ingen triggerflate
+"
+    fi
+  done <<EOF
+$skillfiler
+EOF
+  if [ -z "$fm_feil" ]; then
+    printf '✓ Skill-frontmatter: %s skills med lukket frontmatter, «name» = mappenavn og «description»\n' \
+      "$(printf '%s\n' "$skillfiler" | wc -l | tr -d ' ')"
+  else
+    echo "✗ Skill-frontmatter:"
+    printf '%s' "$fm_feil" | sed 's/^/    /'
+    echo "  En skill med ødelagt frontmatter lastes ikke, eller lastes uten trigger."
+    echo "  «claude plugin validate» ser dette IKKE — den leser bare manifester."
+    feil=$((feil + 1))
+  fi
+fi
+
+echo
 echo "== kunnskap/ (internt arbeidsarkiv — «bør», ikke «skal») =="
 
 # docs/installasjon.md: absolutte brukerstier BØR generaliseres til ~/-form her.

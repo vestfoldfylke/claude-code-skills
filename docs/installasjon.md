@@ -87,19 +87,20 @@ Kravene har to nivåer. De første gjelder **pakken** — `plugins/`, `docs/` og
 `README.md`, altså alt en kollega faktisk får installert. De siste gjelder
 `kunnskap/`, som er internt arbeidsarkiv og har løsere krav med hensikt.
 
-**Kravene er automatisert.** Denne teksten er begrunnelsene; den maskinlesbare
-utgaven er [`.github/renhet/sjekk.sh`](../.github/renhet/sjekk.sh), som kjøres av
-GitHub Actions ved hver push til `main` og hver PR — og av deg lokalt før push:
+**Kravene er automatisert, men porten er manuell.** Denne teksten er
+begrunnelsene; den maskinlesbare utgaven er
+[`.github/renhet/sjekk.sh`](../.github/renhet/sjekk.sh). Scriptet kjøres av deg
+lokalt før hver push:
 
 ```
 git add -A && bash .github/renhet/sjekk.sh
 ```
 
-CI og lokal kjøring er *samme* script, nettopp for at prosa og port ikke skal
-drive fra hverandre. Endrer du et krav her, endres scriptet i samme commit.
-Kjøringen er den eneste porten som finnes så lenge branch-hardening er av og
-review er droppet — se `kunnskap/plan.md` for beslutningen og hva som skal tas
-opp ved 1.0.
+**Ingenting kjører det for deg.** Actions er droppet for repoet (BK 2026-08-24),
+workflow-fila er inert, branch-hardening er av og review er droppet. Scriptet og
+diffen din er hele porten. Prosa og port holdes i takt ved regel framfor ved
+maskin: endrer du et krav her, endres scriptet i samme commit. Se
+`kunnskap/plan.md` for beslutningen og hva som skal tas opp ved 1.0.
 
 ### Pakken (`plugins/`, `docs/`, `README.md`)
 
@@ -149,6 +150,20 @@ installerer pakken. Arbeidsdokumenter og vurderingsunderlag i `kunnskap/` holdes
 derfor lokale — `.gitignore` dekker de vanlige kontorformatene. Skal en binærfil
 likevel være med, føres den i `.github/renhet/binaer-unntak.txt` med en linje om
 hvorfor innholdet er greit å dele.
+
+### `plugin validate` leser ikke skills — frontmatteren sjekkes separat
+
+`claude plugin validate .` og `claude plugin validate ./plugins/<navn>` leser
+begge **bare manifestfila** og åpner aldri en `SKILL.md`. Målt 2026-08-24: begge
+former meldte «Validation passed» uten å ha sett en enkelt skill-fil. En skill
+med ødelagt frontmatter — manglende `---`, `name` som ikke stemmer med
+mappenavnet, ingen `description` — passerer derfor både `validate` og hvert av
+søkene over, og lastes så ikke i det hele tatt, eller lastes uten triggerflate.
+
+Sjekken er derfor strukturell framfor et søk: hver
+`plugins/*/skills/*/SKILL.md` i indeksen må ha lukket frontmatter, `name` lik
+mappenavnet, og en `description`. `name` er det kommandoen heter, og
+`description` er hele triggerflaten — en skill uten den blir aldri kalt.
 
 ### Måleregelen (gjelder alle søkene over)
 

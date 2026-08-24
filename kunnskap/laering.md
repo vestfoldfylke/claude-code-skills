@@ -9,6 +9,70 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-24 (natt) — Alle tre fulgt; men jeg ga et råd som prosjektets egne målinger alt hadde avkreftet
+
+**Evaluering av forrige økts tre punkter — alle fulgt, alle strykes:**
+
+- **[maskinen-og-miljoeet-maales-som-alt-annet]** — **fulgt, og strykes.** Belegg:
+  `hostname` + `uname -m` kjørt FØR commit-meldingen ble ferdigstilt, ikke etter.
+  Og målingen endret teksten: jeg hadde skrevet «AMD64» av vane, `uname -m` ga
+  `x86_64`, og meldingen ble rettet til den målte strengen før commit. Samme
+  disiplin i cache-målingen, som navngir maskin og arkitektur.
+- **[egen-ordlyd-fortjener-samme-blikk-som-diffen]** — **fulgt, og strykes.**
+  Belegg: `git diff --cached` lest i sin helhet før commit, og jeg konstaterte
+  eksplisitt at den stemte ordrett med det godkjente forslaget. Fire filer rørt,
+  fire filer avtalt — ingenting «litt ekstra».
+- **[soek-bredt-foer-du-melder-null]** — **fulgt, og strykes.** Belegg:
+  cache-diffen gikk over `find . -type f` i hele plugin-treet (11 filer), ikke et
+  utvalg, og den hadde positiv kontroll mot 0.4.0 — som ga 2 avvik, presis de to
+  filene commiten rørte. Kontrollen målte altså både at søket kunne finne avvik og
+  at det fant de riktige.
+
+**Nye punkter:**
+
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **gjentakelse, og den
+  koster denne gangen.** Etiketten ble strøket som innarbeidet i forrige faseslutt.
+  Denne økten brøt jeg den: jeg anbefalte `gh pr merge --admin` for å komme forbi
+  PR-kravet, med begrunnelsen at BK er repo-admin. Svaret sto i `plan.md`, målt
+  2026-08-18 — regelsamlingen `Hardening` ligger på **organisasjonsnivå** med
+  **tomme bypass-aktører** og `require_last_push_approval`. Repo-admin har
+  ingenting å overstyre med. Jeg leste ikke prosjektets egen måling før jeg ga
+  rådet, og BK brukte kveldstid på et forsøk som ikke kunne lykkes. Samme økt
+  reviderte jeg alvorlighetsgraden i det samme funnet tre ganger — hver revisjon
+  drevet av en måling fra den *andre* økten, ikke av at jeg leste våre egne filer.
+  **Regelen er: før et råd om tilgang, regler eller konfigurasjon — søk i
+  `plan.md`, `TODO.md` og `logg.md` etter om det alt er målt.** Tre påfølgende
+  faseslutt: se promoteringsforslaget under.
+- **[begrensning-er-ikke-det-samme-som-hull]** Når jeg melder hva en måling IKKE
+  dekket, skal jeg si den smaleste sanne versjonen — ikke den mest dramatiske.
+  Belegg: BK gjennomførte hele `/grill-me` og valgte anbefalingen hver gang. Jeg
+  meldte det som at «`/grill-me` ble **ikke** målt denne runden» og skrev et helt
+  avsnitt om at grillingen som gruppeverktøy var udekket. BK svarte: «Grilling er
+  grilling og den fungerte.» Det var riktig — mekanismen kjørte, spørsmålene ble
+  stilt, beslutningene ble låst. Det eneste uprøvde var den ene grenen der et svar
+  går mot anbefalingen. Jeg gjorde en kant til en kategori, og det svekker de
+  grensene som ER reelle: en rapport som overdriver hull blir lest med rabatt.
+- **[bruker-er-kilden-for-tilgangsfakta]** Fakta om org-roller, tilganger og hva
+  BK *kan* gjøre i GitHub er noe BK vet og jeg må måle. Da spør jeg framfor å
+  probe. Belegg: jeg satte i gang fem `gh api`-kall for å finne ut om BK kunne
+  skru av hardening per repo. Kallet ble avvist, og svaret kom i én setning: «Jeg
+  kan slå av hardening på enkelte repoer… Jeg har jo gjort det med det repoet vi
+  holder på med nå.» Det kostet en avvist verktøykjøring og en runde ekstra i en
+  samtale sent på kvelden. Skillet: *pakkens* oppførsel måler jeg selv;
+  *organisasjonens* oppsett og BKs egne rettigheter spør jeg om først.
+
+**Promoteringsforslag (tre påfølgende faseslutt):**
+`[proev-forslaget-mot-prosjektets-egne-laerdommer]` har nå stått i tre påfølgende
+faseslutt — innført 2026-08-24, evaluert som fulgt og strøket 2026-08-24 (kveld),
+og brutt i kveld. Et punkt som kommer tilbake én økt etter at det ble strøket, er
+ikke en påminnelse: **det er en manglende regel.** Foreslår å skrive den inn i
+repoets `CLAUDE.md` under «Målinger og språk» og fjerne den fra STATUS. Venter på
+BKs klarsignal — promotering skjer ikke automatisk.
+
+**Gjelder arbeidsflyten selv:** org-regelsamlingen som stopper faseslutt for en
+person som jobber alene, er et pakkefunn — `fase-slutt` steg 7 antar push rett på
+`main`. Ført som issue, se steg 2e i denne faseslutten.
+
 ## 2026-08-24 (kveld) — Tre punkter fulgt, det tredje ga tre funn; men jeg navngav maskinen uten å måle den
 
 **Evaluering av forrige økts tre punkter — alle fulgt, alle strykes:**

@@ -2,6 +2,188 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-24 (natt) — 0.4.1 levert, og tørrkjøringen fant veggen ingen hadde forutsett
+
+Maskin `VPC-5CG3433WMH`, `uname -m: x86_64` — målt med `hostname` og `uname -m`
+før commit-meldingen ble skrevet, ikke antatt. Én commit pushet: `378a624`.
+`faseflyt` 0.4.0 → 0.4.1. Issue #11 lukket.
+
+### Levert
+
+- **`fallgruver.md`: `[selvobservasjon-i-samme-artefakt]`** (issue #11, `378a624`,
+  0.4.1). Plassert under Testdisiplin framfor i fallgruve-listen — det er en
+  målefeil av samme slag som de fire punktene der, og de har alle etikett og
+  belegg. Begge manifester bumpet, CHANGELOG ført. Patch: ingen atferdsendring.
+  De tre veiene issuet skisserte (eget måleprosjekt uten læringssløyfe,
+  dokumentert instrumentmodus, godta-og-mål-ved-første-eksponering) er **ikke**
+  valgt — det står i issue-kommentaren ved lukking.
+
+### Målinger (observert)
+
+- **Porten per commit:** `sjekk.sh` 11 søk · 0 feil · 0 advarsler, positivt
+  kontrollsøk 37 treff på «faseflyt» i `plugins/`. `claude plugin validate .` ✔.
+- **Cache mot repo, tre ledd kjørt** (`marketplace update` → omstart → mål om):
+  11 filer, 0 avvik med linjeskift normalisert. **Positiv kontroll mot cache
+  0.4.0 ga 2 avvik — `plugin.json` og `fallgruver.md`, presis de to filene
+  commiten rørte.** Kontrollen viste altså ikke bare *at* den kunne finne avvik,
+  men at den fant de riktige. x86_64-leddet er dermed målt om; **ARM-leddet er
+  fortsatt umålt.**
+- **Kjørende versjon etter omstart = 0.4.1.** Belegg: basekatalogen i
+  `fase-slutt`-kallet er `…/faseflyt/0.4.1/skills/fase-slutt`. Under
+  tørrkjøringen meldte `fase-start` steg 0 selv «kjørende og installert er begge
+  0.4.1». Det var ikke målbart fra denne økten tidligere på kvelden — en kjørende
+  prosess beholder versjonen den startet med, som `TODO.md` sier.
+
+### Tørrkjøring av Oppgave 5 (Utstyrsskapet) — BK kjørte, jeg tolket
+
+Blank økt i `C:\dev\test-utstyrskapet`, utenfor repoet. Kun oppgaveteksten limt
+inn — ingen slash-kommando, ingen kontekst fra dette repoet. Fase 0 implementert
+og verifisert i nettleser, faseslutt nummer én kjørt. Fase 1 ikke begynt.
+
+**De tre umålte påstandene fra `TODO.md`:**
+
+| Påstand | Utfall |
+|---|---|
+| «nytt prosjekt» trigger av seg selv | **observert** — trigget, og tilbød grilling |
+| `web-prototype` trigger av seg selv for webapp-typen | **observert** |
+| Designsporets mekanikk ligger i oppskriften | **ikke prøvd** — utenfor oppgave 5 |
+
+**Rytmevaktene — alle tre målt, og i begge retninger:**
+
+- **Plan-vakten fyrte uoppfordret** i fase 0 (byttet selv til planmodus), og
+  **holdt seg i ro** i fase 1 med begrunnelse: «planen for fase 1 er allerede
+  godkjent i `kunnskap/plan.md`, så plan-vakten er tilfredsstilt». En vakt som
+  alltid fyrer er støy; dette er den vanskelige halvparten.
+- **Fase-slutt-vakten fyrte uoppfordret** da BK sa «siden ser riktig ut», og
+  **utførte ikke**: «Jeg gjør ingenting av det før du sier fra. «Verifisert, alt
+  OK» er ikke det samme som «avslutt fasen».» Det er `[vakt-forslag-ikke-fullmakt]`
+  — korrigeringen som var *årsaken* til issue #11 — målt hermetisk i en økt som
+  aldri har lest vår STATUS. Issuet konkluderte at en fjerde ren trial ikke var
+  tilgjengelig i testprosjektet; den ble tilgjengelig ved å måle utenfor repoet.
+  Det bekrefter den tredje veien issuet skisserte, i praksis.
+- **Scope-vakten er fortsatt uprøvd** — BK ba ikke om noe utenfor fasen.
+
+**Læringssløyfen lukket ende til ende, utenfor dette repoet, for første gang.**
+`fase-slutt` skrev tre etiketterte punkter til `laering.md` + STATUS; `fase-start`
+etter `/clear` kvitterte ordrett i formen skillen krever («Denne økten …»), ikke
+som gjengivelse. Og den bar **svaret**, ikke bare påminnelsen: påminnelseslista
+inneholdt hvilke `<ds-*>` som faktisk finnes — kunnskapen forrige økt betalte
+1377 linjer for.
+
+**Toppnivået fyrte også:** økten skilte `[ds-oppslag]` ut som pakkefunn framfor
+prosjektfunn, foreslo issue-tekst, sa selv «ingen prosjektdata i den», og nektet
+å kjøre `gh issue create` før klarsignal. Alle fire kravene fra planens
+«Læring tilbake til pakken», uoppfordret.
+
+**Fikser observert i drift for første gang:** 0.2.3 (`.gitignore` utvides
+framfor å overskrives — den konstaterte at SvelteKit-oppsettet alt dekket
+`node_modules`, `.env`, byggemapper, og lot den være), 0.2.4 (klarspråk — «økt»
+forklart som «en arbeidsstund fra du åpner samtalen til du tømmer den»), 0.4.0
+steg 4 (**negativ retning**: sjekket `TODO.md` og konkluderte korrekt at
+ingenting skulle fortettes, med begrunnelse per post).
+
+**Probedisiplinen fyrte sju ganger, ingen av dem bedt om:** `curl` gir HTTP 200
+men `ssr = false` betyr at tittel og banner ikke er i svaret — «det er derfor du
+må se den»; `read:org` navngitt som mulig sperre *før* forsøket; commit-innhold
+sjekket for `node_modules` før commiten ble laget; `.gitignore` lest framfor
+antatt; positiv kontroll i sikkerhetsrøyktesten (`git grep -c 'Utstyrskapet' --
+CLAUDE.md → 1`); org-regelsamlingen undersøkt med `gh api` framfor gjettet
+(«undersøkt, ikke gjettet»); og at admin-overstyring kan bli loggført i
+revisjonsloggen, sagt før valget ble tatt.
+
+**Verifiseringsporten fikk den formen `TODO.md` sier mangler, to ganger** — uten
+at kravet står i plan-malen. Fase 0: «Åpne `http://localhost:5173` — du skal se»
++ tre observerbare ting. Fase 1: «14 gjenstander, tellere som summerer til 14,
+minst to rader merket over tiden, og at begge filtrene virker». Ført som
+observert med forbehold: **én økt viser at oppførselen er oppnåelig, ikke at den
+er pålitelig.** Fiksen `TODO.md` foreslår (kravet inn i malen) er fortsatt det
+som gjør den forutsigbar.
+
+**Kunnskapsfangst-regelen fra CLAUDE.md-malen fyrte midt i fasen** — etter
+repo-flyttingen skrev økten logg og STATUS med én gang, men **committet ikke**:
+«commit hører til faseslutt, og den porten er din». To mekanismer fra to ulike
+filer som spilte sammen uoppfordret.
+
+### Funnet ingen hadde forutsett (observert)
+
+**Et nytt repo i `vestfoldfylke` arver en org-regelsamling som gjør at én person
+ikke kan fullføre en faseslutt.** Målt i tre trinn, hvert med et kall:
+
+1. Push til `main` avvist. `gh api repos/vestfoldfylke/test-utstyrskapet/rules/branches/main`
+   ga to regler, `pull_request` + `non_fast_forward`, arvet fra org-nivå. Første
+   push gikk gjennom fordi den *opprettet* grenen.
+2. PR #1 kunne ikke godkjennes av egen konto.
+3. `gh pr merge --admin` hjelper ikke: regelsamlingen ligger på organisasjonsnivå
+   (`vestfoldfylke`, ruleset `9211483`) med `require_last_push_approval: true`, og
+   kontoen står ikke i omgåelseslista — den lista er heller ikke lesbar uten
+   `admin:org`. Flagget feilet på samme regel som det skulle omgå.
+
+Det stemmer presis med målingen 2026-08-18 i `plan.md`: `Hardening`,
+`enforcement: active`, **tomme bypass-aktører**, 1 godkjenning +
+`require_last_push_approval`. Vårt eget repo ble eksplisitt fritatt 2026-08-19,
+og **vi har siden målt unntaket vårt og lest det som normalen.**
+
+Konsekvensen for pakken: `fase-slutt` steg 7 er skrevet for commit + push rett på
+`main`. I organisasjonens standardoppsett stopper første faseslutt i et nytt
+prosjekt, og løsningen krever et annet menneske hver fase. Skillen *tilpasset* seg
+til gren + PR da BK valgte det i dialog — den brøt ikke sammen — men teksten sier
+ingenting om noen av delene.
+
+### Friksjonsfunn
+
+- **Hver git-kommando ber om tillatelse.** `nytt-prosjekt` steg 6 skriver
+  marketplace-deklarasjon og (ved persondata) deny-regler, men **ingen
+  allow-regler**. Friksjonen er innebygd i oppsettet. Seks grupper × mange
+  dialoger, og `/permissions` finnes ikke i VS Code-utvidelsen — så det må inn i
+  fila på forhånd.
+- **Oppstarten er ~40 linjer** før arbeidet begynner: status, grenvalg, forslag,
+  tre kvitteringer, seks påminnelser. Tett og nyttig for BK; mye å lese på minutt
+  null for en gruppe. Observasjon, ikke defekt.
+
+### Grenser på det som ble målt — skal stå som grenser
+
+- **`/grill-me` ble gjennomført fullt ut og virket.** Men ingen av svarene gikk
+  *mot* anbefalingen, så hvordan grillingen håndterer å bli motsagt er uprøvd.
+  (Jeg meldte først dette som at grillingen «ikke ble målt»; BK korrigerte, og
+  hadde rett — se `laering.md`.)
+- **Org-repo-opprettelsen er målt på en konto som er repo-admin.** At BK kan
+  opprette repo i organisasjonen sier ingenting om en vanlig kollega. Hører i
+  pre-flighten.
+- **Ingen bildefiler, ingen ekte data:** de tre låntakerne i oppgaven er
+  oppdiktede figurer. Bekreftet av økten selv i steg 6.
+
+### Beslutninger
+
+- **Beslutning (BK, plassering av issue #11-linjen):** under Testdisiplin i
+  `fallgruver.md`, ikke i fallgruve-listen. Begrunnelse: det er en målefeil av
+  samme slag som de fire punktene der, og etikett + belegg er formen de har.
+- **Beslutning (BK, repo-plassering i tørrkjøringen):** org først, deretter
+  flyttet til `bkaarstein/test-utstyrskapet` etter at PR-veggen krevde et annet
+  menneske og det var sen kveld. Begrunnelse for org først (mitt råd): personlig
+  konto måler en sti ingen kollega går. Begrunnelse for flyttingen: funnet var i
+  banken, og org-konfigurasjonen hadde ikke mer å lære oss i denne tørrkjøringen.
+  Kostnaden var en kveld med friksjon og en PR som måtte slås sammen etter
+  flytting; utbyttet var det eneste funnet ingen hadde forutsett, tre uker før
+  samlingen framfor på dagen.
+- **Beslutning (BK, samlingsrepo) — ikke endelig:** lener mot ferdig opprettede
+  repo med hardening i unntakslisten. BK har bekreftet at unntak per repo er
+  innen egen rekkevidde og at praksisen er sikkerhetsklarert. Konsekvens som ikke
+  er lukket: da innføres en sti ingen har prøvd — `nytt-prosjekt` steg 7 *tilbyr
+  å opprette* repo, og hva den gjør når remote finnes fra før er umålt. Hvordan
+  repoene opprettes (tomme kontra initialisert med README) avgjør om første
+  commit kolliderer.
+- **Beslutning (BK, kveldens avslutning):** commit av dokumentasjonsendringen i
+  testprosjektet, men **ingen ny faseslutt** der — fase 0 fikk sin, fase 1 er
+  ikke begynt, og logg + STATUS var alt oppdatert av kunnskapsfangst-regelen.
+
+### Rettelse
+
+**Mitt råd om `gh pr merge --admin` var feil.** Jeg antok at repo-admin kunne
+overstyre, uten å lese prosjektets egen måling fra 2026-08-18 som sier at
+regelsamlingen ligger på org-nivå med tomme bypass-aktører. Svaret sto i
+`plan.md`. Se `laering.md` — punktet er en gjentakelse av en etikett som ble
+strøket som innarbeidet i forrige faseslutt.
+
 ## 2026-08-24 (kveld) — faseflyt 0.4.0: to skills levert, og porten som ikke leste skills
 
 Hjemme-PC `VPC-5CG3433WMH` (AMD64) — målt med `hostname` og `uname -m`, ikke

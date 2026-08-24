@@ -4,7 +4,7 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
-## 0.3.0 — under arbeid
+## 0.3.0 — 2026-08-24
 
 Batchen som testes på kollegaer. README-en svarer nå på det en fersk bruker
 lurer på før flyten er lært — og flyten kan slås opp i chatten.
@@ -19,6 +19,18 @@ lurer på før flyten er lært — og flyten kan slås opp i chatten.
   i setningen de brukes i, slik at det ikke finnes to tabeller å holde i takt.
   Umålt, og derfor ikke lovet: om triggeren «hjelp» slår inn på generelle
   hjelpespørsmål som ikke gjelder flyten.
+- **`fase-start` oppdager en økt som ikke ble avsluttet.** Nytt steg 2: er det
+  ucommittet arbeid, eller commits som kom etter at `kunnskap/logg.md` sist ble
+  endret, sier skillen at STATUS er utdatert og tilbyr å oppsummere hva som
+  faktisk er gjort. Aldri automatisk opprydding eller commit. Bakgrunn (issue
+  #4): flyten antar at hver økt avsluttes med `fase-slutt`, og hullet er usynlig
+  til noen faller i det. Målingen som formet mekanismen: issue-ens egen foreslåtte
+  form, `git log --since=<dato fra loggen>`, ga **0 treff mens seks commits fra
+  samme dag fantes** — git tolker en bar dato som er i dag som «nå», ikke som
+  midnatt. Den commit-forankrede formen har ingen dato å tolke feil. Målt også:
+  tom verdi fra `git log -1 -- kunnskap/logg.md` gir `..HEAD`, som er gyldig
+  syntaks og svarer tomt uten å feile. Begge kanter står som eksplisitte regler
+  i skillen.
 - **README: «Trenger du alt dette?»** Ny seksjon rett før «Kom i gang»: for en
   liten prototype på et par timer holder `web-prototype` alene, og
   `/faseflyt:grill-me` virker uten resten. Fase-opplegget lønner seg først når
@@ -37,9 +49,9 @@ lurer på før flyten er lært — og flyten kan slås opp i chatten.
   2026-08-24). Umålt, og derfor ikke lovet: om den ubekvalifiserte formen
   `faseflyt` virker like godt som `faseflyt@claude-code-skills`.
 
-`faseflyt` bumpes til 0.3.0 for den nye skillen. README-endringene over utløste
-ingen bump alene: README endrer ikke hva en plugin gjør, og leses fra repoet
-framfor fra plugin-cachen.
+`faseflyt` bumpes til 0.3.0 for de to skill-endringene. README-endringene over
+utløste ingen bump alene: README endrer ikke hva en plugin gjør, og leses fra
+repoet framfor fra plugin-cachen.
 
 ## 0.2.4 — 2026-08-21
 

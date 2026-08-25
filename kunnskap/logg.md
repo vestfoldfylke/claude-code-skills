@@ -2,6 +2,115 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-25 (kveld) — Fire utgivelser: pakken sluttet å rapportere at ingenting var galt
+
+Maskin `VPC-5CG3433WMH` (hjemmekontor). Fem commits, fire utgivelser —
+`faseflyt` 0.5.0/0.5.1/0.5.2 og `web-prototype` 0.1.1. Renhetsporten kjørt etter
+`git add` foran hver push: 11 søk · 0 feil, positiv kontroll 38 treff på
+«faseflyt». `claude plugin validate .` passed hver gang.
+
+### Beslutninger
+
+- **Beslutning (BK, utdatamengde):** `fase-start` og `fase-slutt` skal rapportere
+  **avvik framfor gjennomføring**. Bakgrunn: utdataet var vokst til ~60 linjer per
+  fasestart, og det meste rapporterte at ingenting var galt. Reist fra bruk, ikke
+  fra analyse. Skillelinja som ble lagt: rapportering som *er belegg* beholdes,
+  rapportering som *gjentar en fil* går ut. Derfor er kvalitets- og
+  sikkerhetsrapporten i `fase-slutt` steg 5–6 eksplisitt unntatt — å stryke den
+  ville vært samme «formelt på plass, reelt borte» som er navngitt fem ganger før.
+  **Dette svarer samtidig på det parkerte retningsspørsmålet i `TODO.md`**
+  («én flyt, mindre maskineri») — men bare den halvdelen; dataregime-spørsmålet
+  står fortsatt ubesvart.
+- **Beslutning (BK, ikke nedgrader innhold):** 2026-08-18-avgjørelsen om å ikke
+  trimme innhold står urørt. Den gjaldt funksjonalitet; dette gjelder utskrift.
+  Ingen steg og ingen sjekk er fjernet.
+- **Beslutning (BK, retest av scope-vakten):** ingen egen retest før samlingen.
+  Feilmodusen er godartet (den stopper og spør), en ekte retest krever et nytt
+  scaffoldet prosjekt med uprimet økt, og Mac-pre-flight, ARM-pre-flight og
+  kollegatesten er dyrere umålte poster med tre uker igjen.
+- **Beslutning (BK, `.claude/settings.json`):** skrives om generisk framfor å
+  committes som den var eller gitignoreres.
+
+### Scope-vakten målt for første gang — riktig utfall, drift på andre ledd
+
+*Observert av BK i tørrkjøringen, ordlyden referert hit; jeg kjørte ikke den
+økten.* BK ba naturlig om noe utenfor fase 2 (en ASCII-apekatt). Vakten navnga
+seg selv, **utførte ikke**, og tilbød TODO-sporet — ingen av de to feilretningene
+inntraff. Dermed er den siste umålte rytmevakten målt.
+
+Men den drev på andre ledd av sin egen setning («fullfør fasen i stedet for å
+ese»): den argumenterte for tillegget etter å ha flagget det («det er ikke et
+*nei* fra meg… bryter ingenting»), og stoppet fasen for å stille et
+designspørsmål med fire valg, hvorav to implementerte med én gang. **Hardet i
+0.5.1** med målingen som belegg, i samme form som fase-slutt-vakten rett over —
+den ble hardet på samme måte etter å ha feilet to ganger i test.
+
+**Merk rekkevidden:** `nytt-prosjekt` skriver CLAUDE.md-avsnittet ved oppsett, så
+hardningen når **ikke** prosjekter som alt er scaffoldet. Den gjelder fra neste
+prosjekt.
+
+### Fase-slutt-vakten: tredje uoppfordrede fyring, tredje gang uten å utføre
+
+*Observert av BK, referert hit.* Denne gangen med porten begrunnet i klartekst
+(«commit-steget committer og pusher uten eget klarsignal»), og med
+`settings.json`-avgjørelsen etterspurt i samme melding for å spare en runde.
+`[vakt-forslag-ikke-fullmakt]` er dermed den best belagte av de tre vaktene.
+
+### Funn (observert) — pakken motsa seg selv i et positivt eksempel
+
+`web-prototype/SKILL.md` linje 207 og 215–218 sier at `<ds-button>` ikke finnes
+og aldri skal brukes. Linje 303 brukte det som anbefalt løsning, og bar `<a>` på
+linje 294 brøt regelen på linje 223. Lest direkte i fila.
+
+**Tørrkjøringens fase 2-kode gikk klar** — men bare fordi prosjektets egen
+`CLAUDE.md` alt bar regelen etter at en tidligere fase betalte for den. Et ferskt
+scaffoldet prosjekt har ikke det vernet, og samlingen består av ferskt scaffoldede
+prosjekter. **Rettet i `web-prototype` 0.1.1.** Sjette gang mønsteret «regelen
+virket fordi den lå der den alltid leses» dukker opp.
+
+### Funn (observert) — `data-variant="primary"`: her var pakken riktig
+
+Tørrkjøringsøkten fjernet `data-variant="primary"` og meldte det som «nøyaktig
+samme stille-virkningsløse felle som `data-size`». Målt her: `components.md:198`
+sier ordrett `[data-variant='secondary' | 'tertiary']` — style variant (default
+is primary)`, og linje 204 har `<!-- Primary (default) -->`. **Ingen
+pakkeendring.**
+
+Forskjellen er verdt å holde fast på: `data-size` sitt svar står på linje 1367 av
+~1400 i en gotcha-seksjon (plasseringsproblem); `data-variant` sitt står i
+attributt-definisjonen. Det gjør episoden til et funn om **læringspunktet**, ikke
+om pakken: `[pakkekilde-foer-referanse]` sender nå økten til CSS-dist-en for ting
+referansefila svarer på i sin egen definisjonslinje. **Anbefaling til
+tørrkjøringens faseslutt nummer tre: presiser punktet, ikke stryk og ikke
+promoter** — «referansefila først; pakkens CSS når fila ikke svarer eller ser ut
+til å motsi det du observerer».
+
+### Funn (observert i to prosjekter) — `.claude/settings.json` er en falsk positiv-fabrikk
+
+Fila er tracket fordi pakken skriver den ved oppsett, og enhver
+permission-godkjenning endrer den. `fase-start` steg 2 flagget den som «arbeid
+STATUS ikke vet om» både her og i tørrkjøringen samme dag. Begge øktene dempet det
+på eget initiativ — de så at `logg.md` var HEAD — men det er to modellkjøringer,
+ikke en regel, og hver kollega møter samme fil i hvert prosjekt. **Rettet i 0.5.2.**
+
+Samme fil bar en absolutt sti med brukernavn, skrevet av en godkjenning, og en
+regel pinnet til `faseflyt/0.4.1/` — en sti som ikke finnes etter dagens
+utgivelser. Begge deler rettet i `e4759cf`.
+
+### Hypotese, ikke funn — tilde-formen i en `Read()`-matcher
+
+Om `Read(~/.claude/...)` faktisk ekspanderes er **ikke verifisert**. Denne økten
+kan ikke måle det, siden godkjenningene alt ligger i minnet. Feiler formen, er
+konsekvensen en permission-forespørsel og ingenting annet. **Testen som avgjør:**
+neste `/faseflyt:fase-start` i dette repoet — leses manifestene uten prompt,
+virker formen.
+
+### Tørrkjøringen: fase 2 verifisert
+
+BK verifiserte i nettleseren: utlån, retur, F5, to-fane-vernet mot dobbeltutlån og
+nullstilling. Faseslutt nummer tre gjenstår, og med den ratchet-ens vanskelige
+halvdel. **Fase 3 skal ikke kjøres** — se beslutningen over.
+
 ## 2026-08-25 (natt) — Tørrkjøringen nådde suksesskriteriet, og sikkerhetsrøyktesten viste seg å mangle sin egen kontroll
 
 Ingen pakkeendring denne økten — ingen versjonsbump, ingen manifestendring. Én

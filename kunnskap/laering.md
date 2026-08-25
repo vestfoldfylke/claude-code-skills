@@ -9,6 +9,56 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-25 (kveld) — Alle tre fulgt igjen; men jeg spurte et spørsmål som ikke kunne besvares entydig, og talte omtaler som forekomster
+
+**Evaluering av forrige økts tre punkter — alle fulgt:**
+
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, og nå femte
+  påfølgende runde.** Belegg: (1) da BK reiste utdatamengden, søkte jeg i
+  `TODO.md` før jeg foreslo noe — og fant både det parkerte
+  retningsspørsmålet («én flyt, mindre maskineri») og 2026-08-18-avgjørelsen «ikke
+  nedgrader innholdet». Uten det søket ville jeg foreslått en trimming som så ut
+  til å gjenåpne en avgjort sak; med det kunne jeg vise at aksene er ulike.
+  (2) Jeg leste `logg.md` 61–80 før jeg kommenterte `data-size`, og gjentok
+  dermed ikke premisset som alt var avvist der. **Se promoteringsforslaget under.**
+- **[maal-det-maalbare-foer-du-spor]** — **fulgt, og strykes.** Belegg:
+  tørrkjøringsøkten meldte `data-variant="primary"` som «samme stille-virkningsløse
+  felle som `data-size`». Jeg målte `components.md` før jeg skrev noe — og linje
+  198 sa det motsatte: attributtet er dokumentert, med `primary` som standard.
+  Målingen snudde konklusjonen og stoppet en pakkeendring som ville vært feil.
+  Samme disiplin på `.ds-link`: verifisert at klassen finnes før den gikk inn i et
+  ordlyd-forslag.
+- **[les-status-for-indre-motsigelser]** — **fulgt, og strykes.** Belegg: ved
+  fase-start fant jeg at STATUS linje 12 («Fase 3 gjenstår») motsa dens egen
+  neste-liste («Fase 2 i tørrkjøringen») — to faseslutt betyr at fase 2 *og* 3
+  gjenstår. Meldt i kvitteringen, ikke etter at det hadde styrt en beslutning.
+
+**Nye punkter:**
+
+- **[still-spoersmaal-som-tar-ja-som-svar]** Jeg avsluttet et ordlyd-forslag med
+  «si fra hvis ordlyden skal justeres, så redigerer jeg» og fikk «Juster
+  ordlyden!». Det kunne bety både *gjør endringen i fila* og *endre teksten du
+  foreslo* — to motsatte handlinger. Jeg måtte gjette og flagge gjettingen, og i
+  et repo der klarsignal er selve porten er det en dårlig plass å gjette.
+  Feilen var min egen formulering: jeg bygde spørsmålet slik at «ja» var
+  tvetydig. **Regelen: formuler spørsmålet så et bekreftende svar bare kan bety
+  én ting** — «si ja, så redigerer jeg» framfor «si fra hvis den skal justeres».
+- **[tell-forekomster-ikke-omtaler]** Jeg meldte `.claude/settings.json`-fenomenet
+  som «tre forekomster». Det var to prosjekter; den tredje var samme fil nevnt om
+  igjen av fase-slutt-vakten. Tallet var ett steg fra å gå inn i en pakkefil som
+  datert måling, der det ville blitt stående som belegg ingen kunne etterprøve.
+  **Regelen: skill mellom en ny forekomst og en ny omtale av den samme.** Teller
+  du belegg, tell hendelser — en gjentakelse i en samtale er ikke et nytt
+  datapunkt.
+
+**Promoteringsforslag — femte runde, står fortsatt:**
+
+`[proev-forslaget-mot-prosjektets-egne-laerdommer]` har nå overlevd fem
+påfølgende faseslutt og er fulgt uoppfordret i hver av dem. Ratchet-en sier tre.
+Forslaget er uendret: inn i `CLAUDE.md` under «Målinger og språk», ut av STATUS.
+**Krever BKs klarsignal — aldri automatisk.** Mønsteret er nå målt i begge
+retninger: brutt den ene økten det var strøket, fulgt fem ganger da det sto.
+
 ## 2026-08-25 (natt) — Alle tre fulgt; men jeg la en luke i en issue-tekst for noe som var ett kall unna å måles
 
 **Evaluering av forrige økts tre punkter — alle fulgt:**

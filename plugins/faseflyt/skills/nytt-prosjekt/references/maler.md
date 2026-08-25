@@ -234,7 +234,10 @@ sier fra og venter. Ingen av dem er en fullmakt til å utføre det den foreslår
    regn det som en kjent felle, ikke en teoretisk. Blir konteksten lang midt i en
    fase: si fra FØR kvaliteten faller.
 3. **Scope-vakt:** ber brukeren om noe utenfor gjeldende fase → foreslå
-   `TODO.md`, fullfør fasen i stedet for å ese.
+   `TODO.md`, fullfør fasen i stedet for å ese. **Ikke argumenter for
+   tillegget, og ikke spør hvordan det skal løses** — begge deler er esing med
+   ekstra steg, og en valgmeny med «gjør det nå» blant valgene er å utføre.
+   Målt 2026-08-25: vakten fyrte riktig, men gjorde begge deler.
 
 ## Snakk norsk
 

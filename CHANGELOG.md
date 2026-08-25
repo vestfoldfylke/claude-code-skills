@@ -4,6 +4,20 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.5.1 — 2026-08-25
+
+`faseflyt` 0.5.1. Scope-vakten hardet etter første måling.
+
+- **Scope-vakten i CLAUDE.md-malen sier nå hva den ikke skal gjøre.** Målt
+  2026-08-25 i tørrkjøringen: vakten fyrte riktig og utførte ikke, men senket
+  sin egen terskel («det er ikke et nei fra meg, det bryter ingenting») og
+  stoppet fasen for å spørre hvor tillegget skulle bo — med en firevalgs meny
+  der to av valgene implementerte det med én gang. Første ledd av regelen ble
+  fulgt, andre ledd («fullfør fasen i stedet for å ese») ikke. Malen forbyr nå
+  begge deler eksplisitt, med målingen som belegg. To linjer blir fem; formen
+  følger fase-slutt-vakten over, som ble hardet på samme måte etter å ha feilet
+  to ganger i test. Dette var den siste umålte rytmevakten.
+
 ## 0.5.0 — 2026-08-25
 
 `faseflyt` 0.5.0. Skillene rapporterer avvik framfor gjennomføring.

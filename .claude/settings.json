@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(git add *)",
-      "Bash(bash .github/renhet/sjekk.sh)"
+      "Bash(bash .github/renhet/sjekk.sh)",
+      "Read(~/.claude/plugins/cache/claude-code-skills/**/.claude-plugin/**)",
+      "Read(~/.claude/plugins/marketplaces/claude-code-skills/**/.claude-plugin/**)",
+      "Bash(git -C ~/.claude/plugins/marketplaces/claude-code-skills rev-parse HEAD)",
+      "Bash(git -C ~/.claude/plugins/marketplaces/claude-code-skills ls-remote origin main)"
     ]
   }
 }

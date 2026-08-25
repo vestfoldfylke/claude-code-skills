@@ -74,6 +74,15 @@ Gjør følgende, i rekkefølge:
    økten fortsetter. **Aldri automatisk opprydding, commit eller `git checkout`**
    — brukeren bestemmer hva som skjer med det ucommittede.
 
+   **Kjent falsk positiv: `.claude/settings.json`.** Fila er tracket — pakken
+   skriver den ved oppsett — og enhver permission-godkjenning endrer den. Er
+   den eneste ucommittede endringen, og berører den bare `permissions`, er det
+   nesten alltid en godkjenning fra forrige økt og ikke uavsluttet arbeid.
+   Nevn den i én linje og la brukeren avgjøre; ikke behandle den som funn.
+   Observert i to prosjekter 2026-08-25. **Ser du en absolutt brukersti i
+   linjene, si fra:** fila følger med i klonen, så stien havner hos alle som
+   henter prosjektet.
+
    Kantene — de to første er målt 2026-08-24, og begge gir **stille** feil:
 
    - **Gir første kommando tom verdi**, er `logg.md` aldri committet. Ikke kjør

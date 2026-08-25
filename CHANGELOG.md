@@ -4,6 +4,20 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.5.2 — 2026-08-25
+
+`faseflyt` 0.5.2. Steg 2 kjenner igjen sin vanligste falske positiv.
+
+- **`.claude/settings.json` flagges ikke lenger som uavsluttet arbeid.** Fila
+  er tracket — pakken skriver den ved oppsett — og enhver permission-godkjenning
+  endrer den, så `fase-start` steg 2 meldte «arbeid STATUS ikke vet om» i
+  prosjekter der ingenting var galt. Observert i to prosjekter 2026-08-25;
+  begge øktene dempet det på eget initiativ, men det er to modellkjøringer, ikke
+  en regel. En ren `permissions`-endring nevnes nå i én linje.
+- **Absolutte brukerstier i den fila skal påpekes.** Målt samme dag: en
+  godkjenning skrev inn full sti med brukernavn. Fila følger med i klonen, så
+  stien havner hos alle som henter prosjektet.
+
 ## web-prototype 0.1.1 — 2026-08-25
 
 - **Navigasjonseksempelet brukte `<ds-button>`, som skillen selv forbyr.**

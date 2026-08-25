@@ -33,6 +33,12 @@ er ikke prøvd i drift. Neste `/fase-start` etter omstart er første måling av 
 kritisk vei for samlingen. Rekkefølgen for ARM står i `TODO.md` under
 «Maskinstatus»: `git -C ~/.claude pull` FØRST, så `/plugin marketplace add`.
 
+**3. Første post: `fase-slutt`s utdatakontrakt sier ingenting om rekkefølge.**
+Sluttrapporten 2026-08-25 kom som 5, 6, 4, 2 — «unntaket er steg 5 og 6» inviterer
+til å løfte dem først, og de rene stegene fikk egen seksjon framfor én samlelinje.
+Vurder samtidig om stegnumre hører i utskriften i det hele tatt. Utsatt med vilje
+(BK): fiksen bør formes av hvordan neste faseslutt faktisk leser.
+
 ## Arbeidsmåte neste økt
 
 - **[proev-forslaget-mot-prosjektets-egne-laerdommer]** *(sjette runde — se

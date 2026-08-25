@@ -45,7 +45,10 @@ Gjør følgende, i rekkefølge:
    versjoner kan sprike: den økten kjører, den som er installert, og den som
    ligger i org-repoet.
    - *Kjørende:* les `version` i `.claude-plugin/plugin.json` to nivåer over
-     denne skillens basekatalog (katalogen står i kallet).
+     denne skillens basekatalog (katalogen står i kallet). **Basekatalogen
+     oppgis absolutt** — skriv den om til tilde-form
+     (`~/.claude/plugins/cache/...`) før du leser, ellers koster kallet en
+     godkjenning selv når allowlisten dekker fila.
    - *Installert:* les `version` i
      `~/.claude/plugins/marketplaces/claude-code-skills/plugins/faseflyt/.claude-plugin/plugin.json`.
    - *Org-repoet:* sammenlign `git -C

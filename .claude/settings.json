@@ -5,8 +5,8 @@
       "Bash(bash .github/renhet/sjekk.sh)",
       "Read(~/.claude/plugins/cache/claude-code-skills/**/.claude-plugin/**)",
       "Read(~/.claude/plugins/marketplaces/claude-code-skills/**/.claude-plugin/**)",
-      "Bash(git -C ~/.claude/plugins/marketplaces/claude-code-skills rev-parse HEAD)",
-      "Bash(git -C ~/.claude/plugins/marketplaces/claude-code-skills ls-remote origin main)",
+      "Bash(git -C ~/.claude/plugins/marketplaces/claude-code-skills rev-parse:*)",
+      "Bash(git -C ~/.claude/plugins/marketplaces/claude-code-skills ls-remote:*)",
       "Bash(git status:*)",
       "Bash(git log:*)"
     ]

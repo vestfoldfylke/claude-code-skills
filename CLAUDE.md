@@ -11,14 +11,14 @@ eksplisitt klarsignal. Å beskrive en endring er ikke å avtale den — «litt
 ekstra» er ikke en full omskriving. Nye ideer underveis går til forslag eller
 `TODO.md`, ikke rett i filene.
 
-## Porten før hver push
+## Sjekkene før hver push
 
 ETTER `git add`, fra Bash-verktøyet: `bash .github/renhet/sjekk.sh` og
 `claude plugin validate .`. Er `claude` ikke på PATH — en økt som startet før
 PATH ble satt, eller en maskin der binæren ikke er lagt inn — bruk
 `~/.local/bin/claude.exe plugin validate .` i stedet.
 Brytes en unntakslistet linje om, oppdateres unntakslisten i `.github/renhet/`
-i samme redigering. Alltid én positiv kontroll i samme runde.
+i samme redigering. Alltid ett kontrollsøk som skal gi treff, i samme runde.
 
 ## Pakkeendringer
 
@@ -28,14 +28,37 @@ port, også etter 1.0 — les den. Bump BEGGE manifestene
 (`plugins/<navn>/.claude-plugin/plugin.json` og
 `.claude-plugin/marketplace.json`) og før endringen i `CHANGELOG.md`.
 
-## Målinger og språk
+## Målinger
 
-- Målinger dateres og navngir maskinen — en måling eldes, også i
-  `plan.md`/`TODO.md`. Funn føres som observert kun når kallet faktisk ble
-  kjørt og utfallet sett; ellers som hypotese.
-- Alt brukervendt materiale skrevet i dette repoet følger språkreglene i
-  `plugins/faseflyt/skills/nytt-prosjekt/SKILL.md` («Snakk norsk til
-  brukeren») — de gjelder her selv om skillen aldri lastes.
+Målinger dateres og navngir maskinen — en måling eldes, også i
+`plan.md`/`TODO.md`. Funn føres som observert kun når kallet faktisk ble kjørt
+og utfallet sett; ellers som hypotese.
+
+## Språket i alt som skrives her
+
+Gjelder chatten like mye som filene. Vedlikeholdsordene er de som lekker ut:
+
+| Si dette | Ikke dette |
+|---|---|
+| sjekk at prosjektet virker | kvalitetsport |
+| kontrollsøk som skal gi treff | positiv kontroll |
+| rask sjekk / rask sikkerhetssjekk | røyktest, smoke test |
+| test / kontrollkall | probe |
+| sette opp prosjektet | scaffolde |
+| Claude Code selv | harness-en |
+| slår inn / utløser | trigge |
+
+`port` står som repoets ord om det som må passeres før en endring havner på
+`main` — det er noe annet enn kvalitetsporten ved faseslutt.
+
+Vis til ting med navn, aldri med bokstav eller nummer fra en tidligere melding
+(«A og B», «punkt 3») — leseren skal ikke måtte bla opp for å se hva svaret
+gjelder.
+
+Literale navn står som de er: `deny`, `commit`, filnavn, kommandoer. Møter du et
+fagord som ikke står i tabellen, gjelder regelen bak den: bruk det bare hvis du
+forklarer det i samme setning. Full tabell, inkludert ordene arbeidsflyten består
+av: `plugins/faseflyt/skills/nytt-prosjekt/SKILL.md`.
 
 ## Lokale filer
 

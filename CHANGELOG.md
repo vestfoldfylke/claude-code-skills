@@ -17,6 +17,31 @@ skal ellers alltid tåle eldre struktur.
   auto-generert fra `digdir/designsystemet`, så håndskrevet tekst der forsvinner
   ved neste regenerering.
 
+## 0.5.6 — 2026-08-25
+
+`faseflyt` 0.5.6. 0.5.4 beskrev hullet i steg 0 uten å lukke det.
+
+- **Steg 0 sier nå at basekatalogen kommer absolutt, og skal skrives om.**
+  Avsnittet «Kall som ikke skal koste en godkjenning» krever tilde-form, mens
+  «Kjørende»-punktet to linjer under peker på skillens egen basekatalog — som
+  Claude Code oppgir som absolutt brukersti. Regelen og instruksen motsa
+  hverandre, og instruksen vant. Observert 2026-08-25 på `VPC-5CG3433WMH`:
+  første oppstart som kjørte 0.5.5 kostet fortsatt en dialog på `Read` av
+  kjørende `plugin.json`, i et prosjekt der allowlisten dekket fila i
+  tilde-form.
+- **CLAUDE.md-malen: vis til ting med navn, ikke med bokstav eller nummer.**
+  Ny linje i «Snakk norsk». Regelen fanget ikke referanser til egne tidligere
+  punkter, og en oppsummering som sier «A og B er gjort» tvinger brukeren til å
+  bla opp for å se hva som ble gjort. Observert 2026-08-25 i en økt i
+  pakkerepoet, meldt av brukeren.
+- **Ikke rørt i denne runden, men målt samtidig:** to `Bash`-oppføringer i
+  eksakt-form (`Bash(git -C ~/… rev-parse HEAD)`) ga dialog i samme oppstart,
+  mens `Bash(git status:*)` og `Bash(git log:*)` ikke gjorde det. Hypotesen om
+  at bare kolon-prefiksformen matcher er **sluttet, ikke isolert** — repoets
+  egen `.claude/settings.json` er lagt om til prefiks-form som måling, og
+  bekreftes eller avkreftes av neste oppstart. Holder den, må
+  `maler.md`-allowlisten følge etter.
+
 ## 0.5.5 — 2026-08-25
 
 `faseflyt` 0.5.5. To småposter ut av verden.

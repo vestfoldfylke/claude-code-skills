@@ -250,6 +250,10 @@ se at den virker. **fase 0** — oppsett, og en sjekk på at det så vidt virker
 **planmodus** — Claude bare planlegger og endrer ingenting; du godkjenner
 først. **`/clear`** — tømmer samtalen; alt viktig er lagret i filer.
 
+Vis til ting med navn, aldri med bokstav eller nummer fra en tidligere melding
+(«A og B», «punkt 3») — brukeren skal ikke måtte bla opp for å se hva svaret
+gjelder.
+
 ## Kunnskapsfangst
 
 Alt vi lærer (observert oppførsel, overraskelser, beslutninger) dokumenteres i

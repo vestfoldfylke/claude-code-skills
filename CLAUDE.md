@@ -55,6 +55,11 @@ Vis til ting med navn, aldri med bokstav eller nummer fra en tidligere melding
 («A og B», «punkt 3») — leseren skal ikke måtte bla opp for å se hva svaret
 gjelder.
 
+Den korte teksten som følger hvert verktøykall er brukervendt tekst — brukeren
+leser den mens du jobber. «Kjør renhetssjekken» og «Stage alle endringer» bryter
+regelen like fullt; skriv «Sjekk at ingen persondata eller brukerstier er med»
+og «Legg endringene til commiten».
+
 Literale navn står som de er: `deny`, `commit`, filnavn, kommandoer. Møter du et
 fagord som ikke står i tabellen, gjelder regelen bak den: bruk det bare hvis du
 forklarer det i samme setning. Full tabell, inkludert ordene arbeidsflyten består

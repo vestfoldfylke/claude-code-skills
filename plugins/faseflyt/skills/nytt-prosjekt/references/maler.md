@@ -252,7 +252,8 @@ først. **`/clear`** — tømmer samtalen; alt viktig er lagret i filer.
 
 Vis til ting med navn, aldri med bokstav eller nummer fra en tidligere melding
 («A og B», «punkt 3») — brukeren skal ikke måtte bla opp for å se hva svaret
-gjelder.
+gjelder. Dette gjelder også den korte teksten som følger hvert verktøykall:
+brukeren leser den mens du jobber.
 
 ## Kunnskapsfangst
 
@@ -304,14 +305,43 @@ webapp-typen og `"fint-graphql@claude-code-skills": true` når prosjektet bruker
   },
   "enabledPlugins": {
     "faseflyt@claude-code-skills": true
+  },
+  "permissions": {
+    "allow": [
+      "Read(~/.claude/plugins/cache/claude-code-skills/**/.claude-plugin/**)",
+      "Read(~/.claude/plugins/marketplaces/claude-code-skills/**/.claude-plugin/**)",
+      "Bash(git -C ~/.claude/plugins/marketplaces/claude-code-skills rev-parse:*)",
+      "Bash(git -C ~/.claude/plugins/marketplaces/claude-code-skills ls-remote:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)"
+    ]
   }
 }
 ```
 
+**Hva `allow`-settet er, og hva det ikke er.** De seks oppføringene dekker
+`fase-start` sine egne kall: versjonssjekken (steg 0) leser pakkens to
+manifester og spør org-repoet om siste commit, og sjekken av om forrige økt ble
+avsluttet (steg 2) kjører `git status` og `git log`. Uten dem koster hver
+oppstart fire godkjenningsdialoger før brukeren har gjort noe. Alle seks er
+**lesende** — de rører ikke prosjektets data og kan ikke skrive noe. Merk
+likevel at pakken her *utvider* hva Claude får gjøre uten å spørre, i motsetning
+til deny-settet lenger ned, og at de to siste er brede: all `git status` og all
+`git log`, ikke bare oppstartens egne.
+
+**Formen er målt, ikke valgt.** Kolon-prefiks (`rev-parse:*`) matcher;
+eksakt-form med hele kommandoen gjør det ikke. Målt 2026-08-25 på
+`VPC-5CG3433WMH`: to oppføringer i eksakt-form ga dialog i samme oppstart der
+`Bash(git status:*)` og `Bash(git log:*)` ikke gjorde det, og omleggingen til
+kolon-form fjernet den. Tilde-form er like påkrevd — en tilde-matcher treffer
+ikke det samme kallet skrevet som full brukersti.
+
 **Finnes `.claude/settings.json` fra før, er dokumentet over IKKE malen —
-flettingen er det.** Pakken eier bare `extraKnownMarketplaces.claude-code-skills`
-og `enabledPlugins`-oppføringene som slutter på `@claude-code-skills`; de legges
-til, og alt annet i fila står urørt — også nøkler du ikke kjenner. Vis endringen
+flettingen er det.** Pakken eier bare tre ting:
+`extraKnownMarketplaces.claude-code-skills`, `enabledPlugins`-oppføringene som
+slutter på `@claude-code-skills`, og de seks `permissions.allow`-oppføringene
+over. De legges til — en eksisterende `allow`-liste utvides, aldri erstattes — og
+alt annet i fila står urørt, også nøkler du ikke kjenner. Vis endringen
 som før/etter, vent på klarsignal før du skriver, og etterkontroller: hver
 nøkkel som fantes før, skal finnes igjen med samme verdi.
 

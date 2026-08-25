@@ -17,6 +17,30 @@ skal ellers alltid tåle eldre struktur.
   auto-generert fra `digdir/designsystemet`, så håndskrevet tekst der forsvinner
   ved neste regenerering.
 
+## 0.5.7 — 2026-08-25
+
+`faseflyt` 0.5.7. Kollegaprosjekter fikk aldri allowlisten oppstarten trenger.
+
+- **`.claude/settings.json`-malen har nå seks `permissions.allow`-oppføringer.**
+  Pakken har til nå bare *begrenset* hva Claude får gjøre uten å spørre
+  (deny-settet); dette utvider det. De dekker `fase-start` sine egne kall —
+  versjonssjekken i steg 0 og «ble forrige økt avsluttet» i steg 2 — som ellers
+  koster hver kollega fire godkjenningsdialoger i hver oppstart, i hvert
+  prosjekt. Alle seks er lesende og rører ikke prosjektets data; de to siste er
+  brede (all `git status`, all `git log`) og malen sier det.
+- **Kolon-prefiksformen er nå målt, ikke antatt.** 0.5.6 førte hypotesen som
+  sluttet. Bekreftet 2026-08-25 på `VPC-5CG3433WMH`: omleggingen fra eksakt-form
+  til `rev-parse:*`/`ls-remote:*` fjernet dialogen på det samme kallet, i samme
+  økt. Malen fører målingen, så formen ikke blir gjettet på om igjen.
+- **«Pakken eier bare to ting i denne fila» rettet til tre**, i både
+  `nytt-prosjekt/SKILL.md` steg 6 og `maler.md`. Uten den rettelsen forbyr
+  flettingsregelen sin egen nye mal — samme form for motsetning som steg 0 hadde
+  i 0.5.6. En eksisterende `allow`-liste utvides, aldri erstattes.
+- **«Snakk norsk» dekker nå teksten som følger hvert verktøykall.** Beskrivelsen
+  brukeren leser mens Claude jobber er brukervendt tekst, og «Kjør
+  renhetssjekken» er like utilgjengelig der som i en fil. Meldt av brukeren
+  2026-08-25, i samme økt som forrige språkfunn.
+
 ## 0.5.6 — 2026-08-25
 
 `faseflyt` 0.5.6. 0.5.4 beskrev hullet i steg 0 uten å lukke det.

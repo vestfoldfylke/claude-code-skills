@@ -185,12 +185,15 @@ regel om hva du skriver her, ikke bare om hva du sier.
    kopieres; kun prosjektets egen domenekunnskap bor i `.claude/skills/`).
    Deklarer `web-prototype` kun for webapp-typen og `fint-graphql` kun når
    prosjektet bruker FINT.
-   **Pakken eier bare to ting i denne fila:**
-   `extraKnownMarketplaces.claude-code-skills` og oppføringene i
-   `enabledPlugins` som slutter på `@claude-code-skills`. Finnes
+   **Pakken eier bare tre ting i denne fila:**
+   `extraKnownMarketplaces.claude-code-skills`, oppføringene i
+   `enabledPlugins` som slutter på `@claude-code-skills`, og de seks
+   `permissions.allow`-oppføringene i malen — de dekker `fase-start` sine egne
+   kall, og uten dem koster hver oppstart fire godkjenningsdialoger. Finnes
    `.claude/settings.json` fra før: legg KUN disse nøklene til, og rør
-   ingenting annet — ikke brukerens `permissions`, ikke andre marketplaces
-   eller plugins, ikke nøkler du ikke kjenner. Vis endringen som før/etter og
+   ingenting annet — en eksisterende `allow`-liste utvides og aldri erstattes,
+   brukerens `deny`-liste røres ikke, og heller ikke andre marketplaces
+   eller plugins eller nøkler du ikke kjenner. Vis endringen som før/etter og
    **vent på klarsignal før du skriver**. **Etterkontroll (obligatorisk når
    fila fantes):** les den skrevne fila og bekreft at hver nøkkel som fantes
    før, finnes igjen med samme verdi — mangler én, rett det FØR du går videre.

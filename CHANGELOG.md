@@ -17,6 +17,25 @@ skal ellers alltid tåle eldre struktur.
   auto-generert fra `digdir/designsystemet`, så håndskrevet tekst der forsvinner
   ved neste regenerering.
 
+## 0.5.4 — 2026-08-25
+
+`faseflyt` 0.5.4. Oppstartens egne kall skal ikke koste godkjenninger.
+
+- **`fase-start` sier nå hvordan steg 0 og 2 skal skrives.** Nytt avsnitt «Kall
+  som ikke skal koste en godkjenning»: tilde-form framfor absolutt brukersti, og
+  ett kall per kommando framfor `&&`/`;`-kjeder. Målt 2026-08-25 på
+  `VPC-5CG3433WMH`: fem godkjenningsdialoger i én oppstart i et prosjekt der
+  allowlisten dekket alle kallene. Tilde mot absolutt sti er direkte observert —
+  samme fil, to skrivemåter, én prompt og én ikke. At kjeding bryter matchingen
+  er sluttet fra at nøyaktig de fem kallene som ikke matchet ga nøyaktig fem
+  dialoger; `&&` er ikke isolert som variabel.
+- **Vurdert og forkastet:** å korte ned steg 6 (kvitteringen på
+  `## Arbeidsmåte neste økt`) til etiketter. Steget krever «konkret forpliktelse,
+  ikke bare gjengivelse», og en etikettliste er gjengivelse — komprimeringen
+  ville gjeninnført feilen teksten ble skrevet for å hindre, for tolv linjer.
+  Den lange oppstarten som utløste vurderingen var brudd på 0.5.0-kontrakten,
+  ikke en svakhet i steg 6. **Beslutning (BK).**
+
 ## 0.5.3 — 2026-08-25
 
 `faseflyt` 0.5.3. Selvvurderingen skrives, men leses ikke opp.

@@ -24,6 +24,20 @@ forrige økt avsluttet, plan lest.» Så rett på nåsituasjon og neste steg (st
 
 Dette gjelder utskriften, ikke arbeidet: hvert steg kjøres som før.
 
+## Kall som ikke skal koste en godkjenning
+
+Steg 0 og 2 er de eneste stegene som leser utenfor prosjektmappa eller kaller
+git, og de kjøres i hver eneste økt. To skrivemåter gjør dem dyre for brukeren:
+
+- **Bruk tilde-form** (`~/.claude/...`), aldri absolutt brukersti
+  (`C:\Users\<navn>\...`). Permission-matchere er tekstlige — en tilde-matcher
+  treffer ikke det samme kallet skrevet absolutt, selv om det er samme fil.
+- **Ett kall per kommando.** To allowlistede kommandoer slått sammen med `&&`
+  eller `;` matcher ingen av dem.
+
+Målt 2026-08-25 på `VPC-5CG3433WMH`: begge feilene i én oppstart ga fem
+godkjenningsdialoger i et prosjekt der allowlisten dekket kallene.
+
 Gjør følgende, i rekkefølge:
 
 0. **Sjekk at pakken er oppdatert — raskt, og aldri blokkerende.** Tre

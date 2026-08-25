@@ -9,6 +9,64 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-25 (natt) — Alle tre fulgt; men jeg rapporterte et utfall bare brukeren kunne se, og skrev et forbud som traff prosjektets eget ord
+
+**Evaluering av forrige økts tre punkter — alle fulgt:**
+
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, sjuende
+  påfølgende runde.** Belegg, to ganger med reell effekt på forslaget: (1) før
+  språkfiksen søkte jeg i `maler.md` og fant at «Snakk norsk» alt fantes der med
+  innhold — det snudde diagnosen fra «malen mangler reglene» til «bare dette
+  repoet mangler dem», og gjorde fiksen liten. (2) Før allowlist-forslaget søkte
+  jeg på `allow` i hele `plugins/faseflyt/` og fant tre treff, alle i løpende
+  tekst. Jeg var i ferd med å foreslå «legg om formen i malen»; funnet var at
+  malen ikke hadde noen allowlist i det hele tatt. **Se promoteringsforslaget
+  under — nå sjuende runde.**
+- **[foelg-kontrakten-du-selv-leser]** — **fulgt, og strykes.** Belegg:
+  oppstarten holdt 0.5.0-formen (åpningslinje, nåsituasjon, ett neste steg,
+  kvittering), og jeg sjekket utkastet mot «avvik, ikke gjennomføring» før jeg
+  sendte det. Feilen i samme melding var av en annen familie — se det nye punktet
+  under.
+- **[tilby-valgene-brukeren-faktisk-har]** — **fulgt, og strykes.** Belegg: da
+  språkproblemet kom, la jeg «gjør det ferdig nå» inn som anbefalt alternativ
+  framfor å tilby å føre det i `TODO.md`; for allowlisten spente de tre
+  alternativene fra hele settet via et smalere sett til utsettelse. Begge ble
+  besvart uten oppklaringsrunde.
+
+**Nye punkter:**
+
+- **[ikke-rapporter-utfall-du-ikke-kan-se]** Jeg skrev «**null**
+  godkjenningsdialoger» om en oppstart der BK hadde fire, og brukte det som
+  belegg for at 0.5.4 virket. Jeg kan ikke se permission-dialoger — jeg sluttet
+  det fra at mine egne kall var i tilde-form, og oppgav slutningen som
+  observasjon. Det er samme feil som `[hypotese-vs-funn]`, men på en kant
+  disiplinen ikke dekket: utfallet fantes ikke i noe verktøysvar jeg hadde.
+  **Regelen: rapporter bare det verktøysvarene faktisk viser. Utfall bare
+  brukeren kan se — dialoger, hva skjermen viste, om noe føltes tregt — spørres
+  om eller utelates.**
+- **[flytt-regelen-dit-den-leses]** Jeg foreslo først å notere språkfunnet i
+  `laering.md`. BK ville ha det løst, og løsningen var å flytte reglene fra en
+  fil som lastes ved oppsett til fila som leses hver økt. `TODO.md` hadde alt
+  belagt samme årsakskjede, og forrige rettelse ble en *henvisning* — som ikke
+  virker bedre enn ingen regel. Femte gang prosjektet betaler for mønsteret.
+  **Regelen: foreslår jeg en regel, sjekk i samme åndedrag om den lastes der den
+  skal virke — og er svaret nei, er plasseringen fiksen, ikke teksten.**
+- **[skriv-forbud-som-treffer-bare-det-du-mener]** Tabellinja mi forbød «porten»
+  generelt. Ordet har to betydninger i dette repoet, og den ene — det som må
+  passeres før en endring havner på `main` — er innarbeidet og bærer mening. BK
+  godtok ordlyden, og jeg måtte stramme den til «kvalitetsport» i samme økt.
+  **Regelen: et forbud rettes mot betydningen, ikke mot bokstavene. Før jeg
+  forbyr et ord, søk om det har en annen bruk i prosjektet som skal beholdes.**
+
+**Promoteringsforslag — sjuende runde, står fortsatt:**
+
+`[proev-forslaget-mot-prosjektets-egne-laerdommer]` har nå overlevd sju
+påfølgende faseslutt og er fulgt uoppfordret i hver av dem. Ratchet-en sier tre.
+Forslaget er uendret bortsett fra plasseringen: `CLAUDE.md` har ikke lenger
+seksjonen «Målinger og språk» — den ble delt i denne økten — så punktet hører nå
+under `## Målinger`. Ut av STATUS samtidig.
+**Krever BKs klarsignal — aldri automatisk.**
+
 ## 2026-08-25 (sent kveld) — Alle tre fulgt; men jeg brøt utdatakontrakten jeg nettopp hadde lest, og tilbød to valg som begge var feil
 
 **Evaluering av forrige økts tre punkter — alle fulgt:**

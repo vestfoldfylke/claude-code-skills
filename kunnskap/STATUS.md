@@ -9,58 +9,60 @@ resonnement. Merkelappen `kjent-før-test` = bevisst utsatt.
 egne maskiner, satt opp på forhånd av BK (Mac + ARM + x86_64).
 
 **Fase:** tørrkjøringen er avsluttet (fase 0/1/2 verifisert, fase 3 bevisst ikke
-kjørt). **LEVERT 2026-08-25 (sent kveld), på `VPC-5CG3433WMH`:** `faseflyt`
-**0.5.4** (oppstartens egne kall skal ikke koste godkjenninger) og **0.5.5** (to
-småposter ut av verden). Renhetsporten kjørt foran push. Arbeidstreet er rent.
+kjørt). **LEVERT 2026-08-25 (natt), på `VPC-5CG3433WMH`:** `faseflyt` **0.5.6**
+(steg 0 lukker godkjenningshullet), **0.5.7** (allowlist inn i malen) og **0.5.8**
+(faseslutten sier hva økten leverte). Renhetssjekken og
+`claude plugin validate .` kjørt foran hver push.
 
-**Første økt som kjørte 0.5.3 i drift.** Funnet: én fase-start kostet fem
-godkjenningsdialoger — tre `Read` skrevet med absolutt brukersti mot
-tilde-matchere, og steg 0s to git-kommandoer kjedet med `&&`. Steg 2s
-git-kommandoer var dessuten aldri allowlistet. Alt rettet i 0.5.4.
+**Kjørende er 0.5.7, installert er 0.5.8** — 0.5.8 ble skrevet etter omstarten.
+Neste økt kjører den først etter `/plugin marketplace update` + ny omstart.
 
-**Avklart, ikke lenger umålt:** `Read(~/...)` i en permission-matcher **virker** —
-men bare når kallet også skrives med tilde. Direkte observert i begge retninger,
-samme fil. At `&&`-kjeding bryter matchingen er *sluttet*, ikke isolert.
+**Målt og avgjort:** kolon-prefiksformen matcher der eksakt-form ikke gjør det.
+Samme `ls-remote`-kall ga dialog i eksakt-form og ingen dialog etter omleggingen,
+i samme økt. Tilde-form er like påkrevd som før — og gjelder også stier skillen
+selv oppgir absolutt.
 
 ## Neste — start her
 
-**1. `/plugin marketplace update claude-code-skills` i terminalen + omstart.**
-0.5.5 ligger på `main`; økten som skrev dette kjørte 0.5.3, så SKILL.md-endringene
-er ikke prøvd i drift. Neste `/fase-start` etter omstart er første måling av dem.
+**1. Tørrkjør allowlisten i en tom mappe utenfor dette repoet.** 0.5.7 la seks
+lesende oppføringer i `.claude/settings.json`-malen. At `nytt-prosjekt` skriver
+dem riktig, og at oppstarten i det nye prosjektet så går uten dialoger, er
+**skrevet, ikke målt**. Dette er den ene endringen som treffer alle seks
+gruppene, så den bør måles før samlingen.
 
 **2. Mac-pre-flight (helt urørt, plattformen flest er på) og ARM-pre-flight**
-(kontor-PC, Snapdragon). `kollegatest.md` har alle bokser tomme. Dette er
-kritisk vei for samlingen. Rekkefølgen for ARM står i `TODO.md` under
-«Maskinstatus»: `git -C ~/.claude pull` FØRST, så `/plugin marketplace add`.
+(kontor-PC, Snapdragon). `kollegatest.md` har alle bokser tomme. Kritisk vei.
+Rekkefølgen for ARM står i `TODO.md` under «Maskinstatus»: `git -C ~/.claude
+pull` FØRST, så `/plugin marketplace add`. Denne maskinen er AMD64 — ingen av de
+to kan gjøres herfra.
 
-**3. Første post: `fase-slutt`s utdatakontrakt sier ingenting om rekkefølge.**
-Sluttrapporten 2026-08-25 kom som 5, 6, 4, 2 — «unntaket er steg 5 og 6» inviterer
-til å løfte dem først, og de rene stegene fikk egen seksjon framfor én samlelinje.
-Vurder samtidig om stegnumre hører i utskriften i det hele tatt. Utsatt med vilje
-(BK): fiksen bør formes av hvordan neste faseslutt faktisk leser.
+**3. `fase-slutt`s utdatakontrakt — LUKKET i 0.5.8, men umålt.** Skillen krever
+nå en kort «levert i denne runden»-del før stegrapporteringen, og at stegene
+kommer i sin egen rekkefølge. Teksten er skrevet etter tre observasjoner, men
+**aldri kjørt** — første måling er neste faseslutt som kjører 0.5.8.
 
 ## Arbeidsmåte neste økt
 
-- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** *(sjette runde — se
-  promoteringsforslag)* Før et råd om tilgang, regler eller konfigurasjon: søk i
-  `plan.md`, `TODO.md` og `logg.md` etter om det alt er målt eller avgjort.
-- **[foelg-kontrakten-du-selv-leser]** *(ny)* Oppgir en skill jeg kjører et
-  konkret utdatamål, sjekker jeg utkastet mot det målet før jeg sender — ikke
-  bare mot om innholdet er sant. Alt kan være korrekt og likevel bryte kontrakten.
-- **[tilby-valgene-brukeren-faktisk-har]** *(ny)* Før jeg tilbyr et valg: spenner
-  alternativene over det brukeren realistisk kan ville? «Gjør det ferdig nå» skal
-  være med når posten er liten nok til det.
+- **[ikke-rapporter-utfall-du-ikke-kan-se]** *(ny)* Rapporter bare det
+  verktøysvarene faktisk viser. Utfall bare brukeren kan se — dialoger, hva
+  skjermen viste — spørres om eller utelates.
+- **[flytt-regelen-dit-den-leses]** *(ny)* Foreslår jeg en regel: sjekk i samme
+  åndedrag om den lastes der den skal virke. Er svaret nei, er plasseringen
+  fiksen — ikke teksten.
+- **[skriv-forbud-som-treffer-bare-det-du-mener]** *(ny)* Et forbud rettes mot
+  betydningen, ikke bokstavene. Søk om ordet har en annen bruk i prosjektet som
+  skal beholdes.
 
 ## Det en ny økt må vite
 
-- **PROMOTERINGSFORSLAG VENTER, sjette runde:**
+- **PROMOTERINGSFORSLAG VENTER, sjuende runde:**
   `[proev-forslaget-mot-prosjektets-egne-laerdommer]` inn i `CLAUDE.md` under
-  «Målinger og språk», ut av STATUS. **Krever BKs klarsignal — aldri automatisk.**
-- **Skriv dine egne kall slik allowlisten ser dem:** tilde-form, aldri absolutt
-  brukersti, og ett kall per kommando — `&&`/`;`-kjeder matcher ingen oppføring.
-  Står nå som eget avsnitt i `fase-start/SKILL.md`.
-- **Ingen automatisk port finnes.** Diffen er eneste port. Renhetsporten kjøres
-  fra Bash ETTER `git add`, alltid med én positiv kontroll, og
+  `## Målinger`, ut av STATUS. **Krever BKs klarsignal — aldri automatisk.**
+- **Språkreglene står nå i `CLAUDE.md` som tekst, ikke som henvisning.** De
+  gjelder chatten og teksten som følger hvert verktøykall, ikke bare filene.
+  `port` er beholdt som repoets ord om det som må passeres før `main`.
+- **Ingen automatisk sjekk finnes.** Diffen er eneste port. Renhetssjekken kjøres
+  fra Bash ETTER `git add`, alltid med ett kontrollsøk som skal gi treff, og
   `claude plugin validate .` ved siden av.
 - **Beskrevet omfang er avtalt omfang:** ingen pakke-/mal-/dokumentfil endres
   uten ordlyd-forslag og klarsignal. Pakkeendring = bump BEGGE manifestene +

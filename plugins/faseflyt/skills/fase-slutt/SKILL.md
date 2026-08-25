@@ -28,6 +28,15 @@ felle: er du i tvil, spør før du gjør noe.
 
 ## Hva du skriver i chatten
 
+**Start med hva økten leverte.** «Avvik, ikke gjennomføring» under gjelder
+stegene i denne skillen — ikke arbeidet økten gjorde. Før stegrapporteringen
+kommer en kort del som sier hva som faktisk ble levert: utgivelser med
+versjonsnummer, commits, hva som ble målt, og hva som fortsatt er utestet.
+Brukeren skal kunne avgjøre om fasen er ferdig uten å bla opp i økten. Fem linjer
+er nok — en liste over filendringer er ikke en leveranse.
+
+Stegene rapporteres deretter i sin egen rekkefølge.
+
 Rapporter **avvik, ikke gjennomføring**. Et steg som gikk rent får én linje i en
 samlelinje, ikke egen seksjon; et steg som fant noe får plassen funnet trenger.
 

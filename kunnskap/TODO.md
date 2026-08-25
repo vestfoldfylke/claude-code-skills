@@ -351,6 +351,14 @@ kveld) på BK-klarsignal: repo-CLAUDE.md i `f1b4a68`, språkregelen i
 CLAUDE.md-malen i faseflyt 0.2.4 (`4d86520`). Historikken under står som
 begrunnelse:**
 
+**Presisert 2026-08-25 (natt): fiks 1 var halvferdig.** `CLAUDE.md` ble
+opprettet, men språkregelen sto der som en *henvisning* til
+`nytt-prosjekt/SKILL.md` — en fil som ikke lastes i en vedlikeholdsøkt, så
+regelen var til stede i repoet og fraværende i arbeidet på nøyaktig samme måte
+som før fiksen. Reglene står nå som tekst i `CLAUDE.md`, og dekker også chatten
+og den korte teksten som følger hvert verktøykall. Se `logg.md` 2026-08-25 (natt)
+og CHANGELOG 0.5.7.
+
 1. **Dette repoet får en `CLAUDE.md`.** Innholdet finnes alt, spredt i STATUS' «det
    en ny økt må vite»: renhetsporten, ordrett-kravet, `git commit -F`, daterte
    målinger, klarspråk, `kunnskap/lokalt/`. Løser samtidig at læringssløyfens

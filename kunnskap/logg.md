@@ -2,6 +2,101 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-25 (natt) — Fire godkjenninger igjen, og språkregelen som lå bak en henvisning
+
+Maskin `VPC-5CG3433WMH` (hjemmekontor, AMD64 — ikke ARM-maskinen). To utgivelser:
+`faseflyt` 0.5.6 og 0.5.7, begge pushet til `main` (`6086d60`, `3093595`).
+Renhetssjekken og `claude plugin validate .` kjørt etter `git add` foran hver
+push. Første økt som kjørte 0.5.5 i drift.
+
+### Funn: 0.5.4 beskrev hullet i steg 0 uten å lukke det
+
+**Observert.** BK: fire godkjenningsdialoger i oppstarten, tre vist som
+skjermbilde. Tre ulike årsaker:
+
+- **`Read` av kjørende `plugin.json` med full brukersti.** Steg 0 krever
+  tilde-form to linjer over, men «Kjørende»-punktet peker på skillens egen
+  basekatalog — som Claude Code oppgir absolutt. Regelen og instruksen motsa
+  hverandre, og instruksen vant. Rettet i 0.5.6.
+- **De to `git -C`-oppføringene sto i eksakt-form.** Skrevet ordrett likt kallet,
+  tilde-form, ett kall per kommando — og ga dialog likevel.
+- **Mitt eget `$env:PROCESSOR_ARCHITECTURE`-kall.** Ikke i skillen. Maskinnavnet
+  sto i STATUS og arkitekturen kunne utledes fra `TODO.md`. Selvpålagt kostnad.
+
+### Funn: kolon-prefiksformen matcher der eksakt-form ikke gjør det
+
+**Observert, og isolert.** I samme oppstart ga `Bash(git status:*)` og
+`Bash(git log:*)` ingen dialog, mens de to eksakt-formene ga én hver. Etter
+omleggingen til `rev-parse:*`/`ls-remote:*` ble det samme `ls-remote`-kallet
+kjørt om i samme økt: **ingen dialog** (bekreftet av BK). Det avgjør formen som
+har stått som «alle målte Bash-regler bruker kolon-prefiks» uten at motsatsen var
+prøvd.
+
+### Funn: pakken hadde ingen allowlist for kollegaprosjekter i det hele tatt
+
+**Observert.** Søk på `allow` i hele `plugins/faseflyt/` ga tre treff, alle i
+løpende tekst — ingen mal. `nytt-prosjekt` skrev bare marketplace-deklarasjonen
+og deny-settet. Hver kollega ville altså betalt fire dialoger i hver oppstart, i
+hvert prosjekt, og på samlingen ville det truffet seks grupper på minutt null.
+Rettet i 0.5.7: seks lesende oppføringer i `.claude/settings.json`-malen.
+**Utestet:** at `nytt-prosjekt` faktisk skriver dem riktig, og at et nytt
+prosjekt så starter uten dialoger. Testen som avgjør: tørrkjøring i tom mappe.
+
+### Funn: språkregelen lå bak en henvisning, ikke i teksten som leses
+
+**Observert.** BK reagerte på tre formuleringer i chatten («A og B», «porten»,
+«Kjør renhetssjekken»). Årsaken var plassering, ikke slurv: språkreglene bor i
+`nytt-prosjekt/SKILL.md`, som lastes bare ved oppsett, og repoets `CLAUDE.md`
+*pekte* på dem framfor å inneholde dem. Jeg fulgte aldri pekeren.
+`TODO.md` har alt belagt samme årsakskjede under «Helhetsvurdering» — fiksen den
+gang («dette repoet får en `CLAUDE.md`») ble en henvisning, og en henvisning til
+en fil som ikke lastes virker ikke bedre enn ingen regel. **Femte gang prosjektet
+betaler for at en regel står der den ikke leses** (deny-regler, rytmevakter,
+modellmiks, klarspråktabellen, nå denne).
+
+To ting regelen ikke dekket, begge meldt av BK i denne økten: at man skal vise
+til ting med navn framfor bokstav eller nummer fra en tidligere melding, og at
+den korte teksten som følger hvert verktøykall er brukervendt tekst. Begge inn i
+`CLAUDE.md` og i malen.
+
+### Beslutninger
+
+- **Beslutning (BK, omfang på språkfiksen):** reglene inn begge steder — repoets
+  `CLAUDE.md` og «Snakk norsk» i malen. Begrunnelse: feilen rammer en kollega
+  like lett som meg, og tillegget er én linje i en seksjon som alt finnes.
+- **Beslutning (BK, allowlist i malen):** hele settet på seks inn nå, ikke det
+  smale alternativet og ikke `TODO.md`. Begrunnelse: kritisk vei for samlingen.
+  Pakken utvider med dette hva Claude får gjøre uten å spørre, for første gang —
+  alle seks er lesende, og malen sier eksplisitt at de to siste er brede.
+- **Beslutning (BK, ordet `port`):** forbudslinja mi («porten») ble strammet til
+  «kvalitetsport», og `port` står som repoets ord om det som må passeres før en
+  endring havner på `main`. Begrunnelse: den betydningen er innarbeidet og bærer
+  mening; det var kvalitetsporten ved faseslutt som skulle byttes ut.
+
+### Funn: «avvik, ikke gjennomføring» spiste leveransen i faseslutt-rapporten
+
+**Observert.** BK om sluttrapporten: rekkefølgen leste bedre, men «det som kanskje
+mangler er kort om hva som er gjort i denne runden — det ser ut til å være helt
+vekk». Det var det. Jeg rapporterte hva hvert steg gjorde med filene, og
+utelot hva økten leverte, fordi 0.5.0-kontrakten sier at et steg som gikk rent
+ikke får egen plass.
+
+Kontrakten er skrevet om **stegene i skillen**, og den sier ingenting om at
+faseslutten også har en leveranse brukeren skal kunne se før hun sier ferdig. To
+utgivelser med versjonsnummer, tre pusher og en målt permission-form sto ingen
+steder i rapporten. Det er tredje observasjon på samme åpne post (`fase-slutt`s
+utdatakontrakt), og den peker nå på hva som mangler framfor bare på rekkefølgen:
+en fast, kort «levert i denne runden»-del, adskilt fra stegrapporteringen.
+
+### Overraskelse
+
+`fase-start` lastet fra `0.5.5`-mappa i cachen, `fase-slutt` fra `0.5.7` etter at
+BK kjørte `/plugin marketplace update` og startet om midt i økten. Samtalen
+overlevde omstarten i VS Code-utvidelsen. Konsistent med omstart-rådet i steg 0,
+og verdt å merke fordi cachen får én mappe per versjon: glob-formen
+`Read(~/.claude/plugins/cache/claude-code-skills/**/.claude-plugin/**)` er derfor
+den som holder over tid.
+
 ## 2026-08-25 (sent kveld) — Oppstarten kostet fem godkjenninger, og jeg brøt kontrakten jeg nettopp hadde lest
 
 Maskin `VPC-5CG3433WMH` (hjemmekontor). To utgivelser: `faseflyt` 0.5.4 og 0.5.5.

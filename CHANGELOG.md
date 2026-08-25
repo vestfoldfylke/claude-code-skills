@@ -17,6 +17,21 @@ skal ellers alltid tåle eldre struktur.
   auto-generert fra `digdir/designsystemet`, så håndskrevet tekst der forsvinner
   ved neste regenerering.
 
+## 0.5.8 — 2026-08-25
+
+`faseflyt` 0.5.8. Faseslutten sa hva stegene gjorde, men ikke hva økten leverte.
+
+- **`fase-slutt` starter nå med hva økten leverte.** «Avvik, ikke
+  gjennomføring» fra 0.5.0 er skrevet om stegene i skillen, men ble lest som at
+  også arbeidet skulle vekk: en faseslutt med to utgivelser, tre pusher og en
+  målt permission-form rapporterte ingen av dem. Ny åpning krever en kort del
+  med utgivelser, commits, hva som ble målt og hva som er utestet — brukeren skal
+  kunne avgjøre om fasen er ferdig uten å bla opp i økten.
+- **Rekkefølgen er samtidig fastsatt:** stegene rapporteres i sin egen
+  rekkefølge. Det lukker den opprinnelige halvdelen av posten, som har stått
+  åpen siden 2026-08-25 (sent kveld) da sluttrapporten kom som 5, 6, 4, 2.
+  Tredje observasjon på samme post, meldt av brukeren hver gang.
+
 ## 0.5.7 — 2026-08-25
 
 `faseflyt` 0.5.7. Kollegaprosjekter fikk aldri allowlisten oppstarten trenger.

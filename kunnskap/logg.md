@@ -2,6 +2,122 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-25 (natt) — Tørrkjøringen nådde suksesskriteriet, og sikkerhetsrøyktesten viste seg å mangle sin egen kontroll
+
+Ingen pakkeendring denne økten — ingen versjonsbump, ingen manifestendring. Én
+leveranse: **issue #16**. Maskin `VPC-5CG3433WMH` (`uname -m: x86_64`), målt med
+`hostname` + `uname -m` i økten, ikke antatt.
+
+### Tørrkjøringen: fase 1 + faseslutt nummer to — BK kjørte, jeg tolket
+
+Hjemmekontor-PC-en, samme maskin som over. **Suksesskriteriet fra oppgavearket er
+nådd: minst to faseslutt.**
+
+- **Fase-slutt-vakten fyrte uoppfordret igjen** — foreslo faseslutt etter at BK
+  bekreftet at fase 1 virket, og utførte ikke. Andre observasjon, i en annen fase
+  enn den første. `[vakt-forslag-ikke-fullmakt]` er dermed den rytmevakten med
+  mest belegg. *Observert av BK, referert hit — jeg kjørte ikke den økten.*
+- **Scope-vakten er fortsatt uprøvd.** BK ba ikke om noe utenfor fasen i fase 1.
+  Den er nå den eneste av de tre som mangler måling; vinduet er fase 3.
+- **Ratchet-en fyrte, men bare i den gunstige retningen.** Alle tre punktene fra
+  faseslutt nummer én ble evaluert som fulgt og strøket, og to nye skrevet med
+  etikett og belegg (`[pakkekilde-foer-referanse]`, `[les-regelen-foer-flagget]`).
+  **Den vanskelige halvdelen — at et punkt som gjentar seg overlever strykningen
+  og telles mot promotering — er umålt i tørrkjøringen**, og kan ikke måles der
+  ennå: begge foregående runder innarbeidet alt. Den halvdelen er derimot målt
+  her i repoet, der `[proev-forslaget-mot-prosjektets-egne-laerdommer]` har
+  overlevd fire runder. Skillet føres bevisst: sløyfen er *ikke* lukket i begge
+  retninger utenfor dette repoet.
+- **Steg 4 (TODO-fortetning, 0.4.0) fyrte i negativ retning igjen**, med
+  begrunnelse per post. Andre negative observasjon; **positiv retning — en faktisk
+  fortetning — er aldri observert utenfor dette repoet.**
+- **Steg 5:** `npm run check` → 0 feil på 179 filer, `npm run build` bygger med
+  forventet `adapter-auto`-melding.
+- **Toppnivået (læring tilbake til pakken) fyrte igjen:** skilte
+  `[pakkekilde-foer-referanse]` ut som pakkefunn, tilbød issue, nektet
+  `gh issue create` før klarsignal. Andre gang. **Men mønsteret å merke seg:** fase
+  0 tilbød også et issue som aldri ble opprettet. Mekanismen produserer forslag
+  pålitelig; det er landingen som mangler.
+
+### Funn (observert) — sikkerhetsrøyktesten mangler positiv kontroll
+
+`fase-slutt` steg 6 kjørte fire søk i tørrkjøringen — env-filer, uttrekksfiler,
+fødselsnummer, secrets — og **alle fire ga null treff**. Fire nullsvar er ikke
+skillbare fra fire søk som ikke virker.
+
+Verifisert i pakken framfor antatt: `plugins/faseflyt/skills/fase-slutt/SKILL.md`
+steg 6 (linje 112–135) lister søkene og krever «Meld hva du kjørte og hva du
+fant» — **ingen positiv kontroll noe sted**. Skillen ble altså fulgt korrekt;
+mangelen er i teksten. Belegget for at det er tilfeldig og ikke en regel: samme
+skill gjorde en positiv kontroll *uoppfordret* i fase 0 (`git grep -c` → 1) og
+ikke i fase 1. Samme instruks, to faser, ulikt utfall.
+
+**Asymmetrien som gjør det verdt å rette:** repoets egen `CLAUDE.md` krever
+«alltid én positiv kontroll i samme runde» for renhetsporten — samme slags sjekk.
+Pakken krever kontrollen av seg selv og ikke av kollegaene, og steg 6 er den av de
+to som kjøres i *alle* prosjekter. Femte gang mønsteret «formelt på plass, reelt
+borte» dukker opp her. **Ført som issue #16**, uten `kjent-før-test`.
+
+### Funn (premisset er umålt) — `data-size` er et plasseringsproblem
+
+Tørrkjøringens `[pakkekilde-foer-referanse]` er ekte som observasjon: `data-size`
+på `.ds-label` gjorde ingenting, og tre søk i pakkens egen CSS besvarte det
+referansefila ikke svarte på. Men konklusjonen «referansefila dekker ikke dette»
+holder ikke: `components.md:1367` sier at size-arv gjelder alle `ds-`-komponenter
+**unntatt** `.ds-heading`, `.ds-paragraph`, `.ds-spinner` og `.ds-avatar` — presis
+de fire klassene.
+
+De to påstandene er ikke like: fila beskriver hvilke som *ikke arver*, økten
+konkluderte at attributtet *bare virker* på de fire. Begge kan være sanne samtidig
+(arv via CSS-variabel oppfører seg annerledes enn attributtet satt på elementet
+selv), men **det er ikke målt**. Skrives issuet på øktens premiss, kan vi påstå at
+fila mangler noe den har.
+
+Det som ser ut til å holde uansett utfall: informasjonen ligger på linje 1367 av
+~1400, i en gotcha-seksjon, mens `data-size` slås opp på linje 96, 119, 149, 822
+og 941. **Plassering, ikke innhold** — femte gang samme mønster (etter
+deny-reglene, rytmevaktene, modellmiksen og klarspråkregelen). Issue utsatt til
+premisset er målt i `node_modules/@digdir/designsystemet-css/dist`.
+
+### Funn (observert i egne filer) — en overskrift som påsto mer enn punktlisten
+
+STATUS linje 22 sa «alle tre rytmevaktene målt i begge retninger». `logg.md`
+linje 64 sa samtidig «scope-vakten er fortsatt uprøvd», og STATUS motsa seg selv
+sju linjer lenger ned i sin egen «Neste»-liste. Kilden er loggens egen
+mellomtittel fra 2026-08-24 (natt), som var bredere enn punktene under den —
+nøyaktig det `fase-slutt` steg 1 forbyr («en overskrift skal ikke påstå mer enn
+forbeholdene under den tillater»). Regelen fantes i pakken og ble brutt likevel.
+**Rettet i begge filer i denne runden.**
+
+### Porten og sjekkene (observert)
+
+- **Renhetsporten:** `bash .github/renhet/sjekk.sh` etter `git add` → **11 søk · 0
+  feil · 0 advarsler**, innebygd kontrollsøk 37 treff på «faseflyt» i `plugins/`.
+  `claude plugin validate .` ✔ (marketplace-manifestet).
+- **Sikkerhetsrøyktest:** `git ls-files` mot `.env`-mønstre → ingen treff; mot
+  `.csv/.xlsx/.sqlite/.db/.dump` → ingen treff. Fødselsnummer og secrets er dekket
+  av renhetsporten, som søker hele repoet inkludert `kunnskap/`.
+- **Den positive kontrollen feilet først, og det er verdt å føre:**
+  `git grep -c 'Renhetsporten' -- CLAUDE.md` ga **null treff** — ordet står i
+  STATUS, ikke i `CLAUDE.md`, som sier «Porten før hver push» og `sjekk.sh`. Jeg
+  valgte kontrollord uten å verifisere at det fantes. Kjørt om mot strenger jeg
+  hadde verifisert: `sjekk.sh` i `CLAUDE.md` → 1, `Renhetsporten` i `STATUS.md`
+  → 1. Søkene treffer.
+
+  **Hendelsen er belegg for issue #16 fra vår egen side:** fordi søket var *merket*
+  «skal gi treff», avslørte tomheten seg selv med én gang. Var det umerket — slik
+  steg 6 lister sine fire søk — ville et null-svar vært uskillbart fra et rent
+  utfall. Den er samtidig andre forekomst av `[maal-det-maalbare-foer-du-spor]`
+  i samme økt som punktet ble skrevet.
+
+### Beslutninger
+
+- **Beslutning (BK, merkelapp på #16):** ingen `kjent-før-test`. Funnet kom *under*
+  tørrkjøringen, og merkelappen betyr bevisst utsatt før den.
+- **Beslutning (BK, rekkefølge i tørrkjøringen):** faseslutt nummer to kjøres før
+  scope-vakten; scope-vakten tas midt i fase 3. Begrunnelse: ratchet-målingen
+  krever en hel faseslutt, scope-vakten krever én setning — det dyre først.
+
 ## 2026-08-24 (natt) — 0.4.1 levert, og tørrkjøringen fant veggen ingen hadde forutsett
 
 Maskin `VPC-5CG3433WMH`, `uname -m: x86_64` — målt med `hostname` og `uname -m`
@@ -48,7 +164,11 @@ og verifisert i nettleser, faseslutt nummer én kjørt. Fase 1 ikke begynt.
 | `web-prototype` trigger av seg selv for webapp-typen | **observert** |
 | Designsporets mekanikk ligger i oppskriften | **ikke prøvd** — utenfor oppgave 5 |
 
-**Rytmevaktene — alle tre målt, og i begge retninger:**
+**Rytmevaktene — to av tre målt, og de to i begge retninger:**
+*(Overskriften sa opprinnelig «alle tre målt, og i begge retninger». Rettet
+2026-08-25: den påsto mer enn punktlisten under den tillot — se det tredje
+punktet, som alltid har sagt at scope-vakten er uprøvd. Feilen ble videreført til
+STATUS linje 22 og oppdaget først et døgn senere.)*
 
 - **Plan-vakten fyrte uoppfordret** i fase 0 (byttet selv til planmodus), og
   **holdt seg i ro** i fase 1 med begrunnelse: «planen for fase 1 er allerede

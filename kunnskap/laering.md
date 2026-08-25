@@ -9,6 +9,80 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-25 (natt) — Alle tre fulgt; men jeg la en luke i en issue-tekst for noe som var ett kall unna å måles
+
+**Evaluering av forrige økts tre punkter — alle fulgt:**
+
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, tre ganger
+  uoppfordret.** Belegg: (1) da BK meldte `data-size`-funnet, søkte jeg i pakkens
+  egen `components.md` framfor å ta tørrkjøringsøktens premiss for god fisk — og
+  fant linje 1367, som dekker nettopp de fire klassene; det stoppet et issue på
+  feil premiss. (2) Jeg leste `fase-slutt/SKILL.md` steg 6 i sin helhet før jeg
+  påsto at positiv kontroll mangler, framfor å påstå det fra grep-treffet alene.
+  (3) `gh issue list --state all` kjørt før issue-teksten ble skrevet — #7 viste
+  seg å ligge nær (kvalitetsporten), men ikke overlappe. **Se
+  promoteringsforslaget under: dette er fjerde påfølgende runde.**
+- **[begrensning-er-ikke-det-samme-som-hull]** — **fulgt, og strykes.** Belegg:
+  ratchet-en ble meldt som «målt i én retning — den gunstige», ikke som lukket
+  sløyfe. `data-size`-funnet ble meldt som ekte observasjon med uverifisert
+  forklaring, ikke som «referansefila mangler dette». Issue #16 fikk både en
+  ærlighetsklausul om hva en positiv kontroll *ikke* dekker (et galt regex kan
+  bestå den) og en «ikke løst av dette»-linje om at sjekken fortsatt bare er en
+  instruks. Samme disiplin fant feilen i vår egen STATUS: en overskrift som påsto
+  mer enn punktlisten under.
+- **[bruker-er-kilden-for-tilgangsfakta]** — **fulgt, og strykes.** Belegg:
+  spurte BK hvilken maskin tørrkjøringen kjørte på og hvordan fase-slutt-vakten
+  faktisk ordla seg, framfor å anta fra natt-loggen. Delelinjen holdt i den andre
+  retningen også: `gh issue list` og `gh issue create` mot vårt eget repo kjørte
+  jeg selv uten å spørre, siden det er repoets egen tilstand og ikke org-tilgang.
+  Begge gikk gjennom.
+
+**Nye punkter:**
+
+- **[maal-det-maalbare-foer-du-spor]** Jeg skrev `‹maskin›` som en luke i
+  issue-teksten og spurte BK om å fylle den — men maskinnavnet var ett kall unna:
+  `hostname` + `uname -m` kjørte jeg først *etter* at BK hadde svart, og de
+  bekreftet det jeg kunne målt før jeg spurte. Delelinjen i
+  `[bruker-er-kilden-for-tilgangsfakta]` gjelder *tilgangsfakta*, ikke alt BK vet
+  noe om: hva maskinen heter er målbart, hvilken maskin en handling skjedde på er
+  BKs kunnskap. Jeg blandet dem og la et hull i en tekst jeg ellers var klar til å
+  publisere. **Regelen: er svaret målbart fra denne maskinen, mål det først — spør
+  bare om det bare brukeren kan vite.**
+
+  **Andre forekomst, samme økt, i sikkerhetssjekken minutter etter at punktet var
+  skrevet:** jeg kjørte `git grep -c 'Renhetsporten' -- CLAUDE.md` som positiv
+  kontroll og fikk null treff — ordet står i STATUS, ikke i `CLAUDE.md`. Jeg valgte
+  kontrollord fra hukommelsen om en fil jeg hadde i kontekst. En kontroll som selv
+  er ukontrollert måler ingenting. Utvidelsen av regelen: **verifiser at
+  kontrollstrengen finnes før du bruker den som kontroll** — ellers er den positive
+  kontrollen bare et femte søk som kan feile stille.
+- **[les-status-for-indre-motsigelser]** Ved fase-start leste jeg hele STATUS og
+  kvitterte på arbeidsmåte-punktene, men **oppdaget ikke at fila motsa seg selv
+  sju linjer fra hverandre**: linje 22 sa «alle tre rytmevaktene målt i begge
+  retninger», linje 29–30 sa «scope-vakten er den eneste uprøvde». Jeg fant det
+  først da BK meldte fase 1-resultatet og jeg gikk til loggen. En 69-linjers fil
+  jeg nettopp hadde lest i sin helhet. Årsaken er strukturell: «hva som er
+  verifisert» og «Neste — start her» skrives som separate seksjoner i `fase-slutt`
+  steg 3, så de kan sprike uten at noen leser dem mot hverandre. **Regelen: les
+  STATUS' verifisert-påstander mot dens egen neste-liste før du kvitterer — de er
+  skrevet i ulike steg og kan motsi hverandre.**
+
+**Promoteringsforslag (fjerde påfølgende faseslutt) — gjentas:**
+`[proev-forslaget-mot-prosjektets-egne-laerdommer]` har nå stått i fire
+påfølgende faseslutt: innført 2026-08-24, strøket som innarbeidet samme dag
+(kveld), **brutt** natten etter, og **fulgt tre ganger uoppfordret** i denne
+økten. Mønsteret er nå målt i begge retninger, og det er selve argumentet: regelen
+virker når den står der, og ble brutt i den ene økten den var strøket. Det er
+definisjonen på en manglende permanent regel, ikke en påminnelse. Forslaget står
+uendret — inn i repoets `CLAUDE.md` under «Målinger og språk», ut av STATUS.
+**Venter fortsatt på BKs klarsignal.**
+
+**Gjelder arbeidsflyten selv:** `[les-status-for-indre-motsigelser]` er et
+pakkefunn så vel som et prosjektpunkt — `fase-start` har ingen sjekk av STATUS mot
+seg selv. Det ligger nær issue #15 («fase-start bør liste `kunnskap/` framfor å
+stole på at STATUS nevner alt») og hører antakelig som en kommentar der framfor et
+eget issue. Tilbudt BK, ikke opprettet.
+
 ## 2026-08-24 (natt) — Alle tre fulgt; men jeg ga et råd som prosjektets egne målinger alt hadde avkreftet
 
 **Evaluering av forrige økts tre punkter — alle fulgt, alle strykes:**

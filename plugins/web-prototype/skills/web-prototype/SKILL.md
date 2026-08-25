@@ -289,18 +289,21 @@ src/routes/
 
 Navigation between screens:
 
-Prefer:
+Prefer a link — navigation is a link, not a button:
 ```svelte
-<a href="/step-2">Next</a>
+<a href="/step-2" class="ds-button">Next</a>
 ```
 
-If you need programmatic or must use a button, use SvelteKit's `goto`:
+Use `.ds-link` instead of `.ds-button` when it should read as text rather than
+as an action.
+
+If the navigation must be programmatic, use SvelteKit's `goto`:
 ```svelte
 <script lang="ts">
   import { goto } from '$app/navigation';
 </script>
 
-<ds-button onclick={() => goto('/step-2')}>Next</ds-button>
+<button class="ds-button" type="button" onclick={() => goto('/step-2')}>Next</button>
 ```
 
 ---

@@ -17,7 +17,7 @@
       "source": "./plugins/web-prototype",
       "displayName": "Web-prototype",
       "description": "SvelteKit + Designsystemet (digdir) for brukertestingsklare prototyper. Kun for webapp-prosjekter.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "fint-graphql",

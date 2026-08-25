@@ -4,6 +4,17 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## web-prototype 0.1.1 — 2026-08-25
+
+- **Navigasjonseksempelet brukte `<ds-button>`, som skillen selv forbyr.**
+  Linje 207 og 215–218 sier at custom-elementet ikke finnes; linje 303 brukte
+  det som anbefalt løsning, og bar `<a>` på linje 294 brøt regelen på linje 223.
+  Funnet i tørrkjøringen 2026-08-25 — koden der gikk klar bare fordi
+  prosjektets egen `CLAUDE.md` alt bar regelen. Et ferskt scaffoldet prosjekt
+  har ikke det vernet. Eksempelet bruker nå `<a class="ds-button">` for vanlig
+  navigasjon og `<button class="ds-button" type="button">` for programmatisk,
+  og peker på `.ds-link` når lenken skal leses som tekst.
+
 ## 0.5.1 — 2026-08-25
 
 `faseflyt` 0.5.1. Scope-vakten hardet etter første måling.

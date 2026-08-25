@@ -17,6 +17,20 @@ skal ellers alltid tåle eldre struktur.
   auto-generert fra `digdir/designsystemet`, så håndskrevet tekst der forsvinner
   ved neste regenerering.
 
+## 0.5.5 — 2026-08-25
+
+`faseflyt` 0.5.5. To småposter ut av verden.
+
+- **Eksempellinja i `fase-start` er versjonsløs.** Den sa «Faseflyt 0.4.1
+  kjørende og installert» som illustrasjon på normaltilfellets ene linje, og et
+  hardkodet versjonsnummer i en eksempeltekst råtner ved hver utgivelse.
+  `<versjon>` i stedet.
+- **`Bash(git add:*)` i repoets egen `.claude/settings.json`.** Mellomromsformen
+  `Bash(git add *)` er ikke blant de målte formene i `maler.md` — alle målte
+  Bash-regler bruker kolon-prefiks. **Ikke en bevist feil:** formen ble aldri
+  isolert, fordi kallet som kunne målt den ble kjedet med `&&` og dermed rotet
+  til begge variablene. Endringen bringer linja i tråd med det som er målt.
+
 ## 0.5.4 — 2026-08-25
 
 `faseflyt` 0.5.4. Oppstartens egne kall skal ikke koste godkjenninger.

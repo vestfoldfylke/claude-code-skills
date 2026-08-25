@@ -2,6 +2,57 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-25 (sent kveld) — Oppstarten kostet fem godkjenninger, og jeg brøt kontrakten jeg nettopp hadde lest
+
+Maskin `VPC-5CG3433WMH` (hjemmekontor). To utgivelser: `faseflyt` 0.5.4 og 0.5.5.
+Renhetsporten kjørt etter `git add` foran push. Første økt som faktisk kjørte
+0.5.3 i drift — punkt 1 i forrige STATUS («marketplace update + omstart») var
+allerede utført da økten startet.
+
+### Funn: fem godkjenningsdialoger i én fase-start
+
+**Observert.** BK: «fem brukerspørsmål jeg må svare ja på før vi kommer i gang».
+Jeg talte etterpå hvilke av mine kall som ikke matchet noen linje i
+`.claude/settings.json`: nøyaktig fem. To ulike årsaker, begge mine:
+
+- **Tre `Read` av manifestene med absolutt Windows-sti** mot tilde-baserte
+  matchere. **Direkte observert i begge retninger:** samme fil lest med absolutt
+  sti ga dialog; lest med `~/...` gikk gjennom. Dette avgjør samtidig den
+  umålte hypotesen som har stått i STATUS siden 0.5.2 — tilde-form i en
+  permission-matcher virker, men bare når kallet også skrives med tilde.
+- **De to allowlistede git-kommandoene i steg 0 slått sammen med `&&`.**
+  **Sluttet, ikke isolert:** at nøyaktig de fem umatchede kallene ga nøyaktig
+  fem dialoger er sterk korrespondanse, men `&&` ble aldri kjørt som egen
+  variabel. Testen som ville avgjort det: kjør de to kommandoene hver for seg i
+  et prosjekt med begge allowlistet, og se om dialogen uteblir.
+
+**Reelt hull i pakken, ikke bare min feil:** allowlisten fra `e4759cf` dekker
+steg 0. Steg 2 kjører `git status --porcelain` og to `git log` i hver eneste økt
+og var udekket. Rettet i 0.5.4.
+
+### Beslutninger
+
+- **Beslutning (BK, steg 6 beholdes):** kvitteringen på `## Arbeidsmåte neste
+  økt` kortes IKKE ned til etiketter. Vurdert fordi den er den ene delen av
+  oppstarten som ikke kan bli kort — tre punkter × én linje er gulvet. Forkastet
+  fordi steget krever «konkret forpliktelse, ikke bare gjengivelse», og en
+  etikettliste *er* gjengivelse: komprimeringen ville gjeninnført feilen teksten
+  ble skrevet for å hindre, for tolv linjer. **Diagnosen var feil sted:** den
+  lange oppstarten som utløste spørsmålet var ~35 linjer, hvorav steg 6 var tre.
+  De øvrige tretti var mitt brudd på 0.5.0-kontrakten.
+- **Beslutning (BK, de to småpostene):** `Bash(git add *)`-formen og det
+  hardkodede «0.4.1» i eksempellinja fikses framfor å føres i `TODO.md` — «ut av
+  verden». Begge i 0.5.5.
+
+### Overraskelse: kontrakten var riktig, jeg fulgte den ikke
+
+0.5.0 sier at normaltilfellet er én linje. Alt var rent i denne oppstarten, og
+jeg skrev rundt trettifem. Kontrakten sto i skillteksten jeg hadde lest i samme
+runde. Ingen pakkeendring følger av dette — pakken var ikke i veien — og det er
+nettopp derfor det er verdt å loggføre: den første målingen av 0.5.0 i drift
+viser at teksten kan følges eller ikke, og at det ikke er observerbart for
+brukeren før utdataet alt er skrevet.
+
 ## 2026-08-25 (kveld) — Fire utgivelser: pakken sluttet å rapportere at ingenting var galt
 
 Maskin `VPC-5CG3433WMH` (hjemmekontor). Fem commits, fire utgivelser —

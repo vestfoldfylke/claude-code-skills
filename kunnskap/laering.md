@@ -9,6 +9,54 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-25 (sent kveld) — Alle tre fulgt; men jeg brøt utdatakontrakten jeg nettopp hadde lest, og tilbød to valg som begge var feil
+
+**Evaluering av forrige økts tre punkter — alle fulgt:**
+
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, sjette
+  påfølgende runde.** Belegg: før jeg foreslo allowlist-ordlyden søkte jeg i
+  `maler.md` etter målte permission-former, og fant at alle målte Bash-regler
+  bruker kolon-prefiks mens stiformer er eksplisitt utestet. Det endret
+  forslaget mitt fra mellomromsform til `Bash(git status:*)`. Uten søket ville
+  jeg foreslått en form prosjektet selv har notert som overraskende.
+  **Se promoteringsforslaget under — nå sjette runde.**
+- **[still-spoersmaal-som-tar-ja-som-svar]** — **fulgt, og strykes.** Belegg: to
+  avsluttende spørsmål i økten («Skal jeg gjøre 1 og 2 nå — altså redigere de
+  fire filene …», «Skal jeg commite disse fem filene og pushe til `main`?»).
+  Begge er formulert så «ja» bare kan bety én ting, og begge ble besvart med et
+  bart «kjør» uten oppklaringsrunde. Erstattes av punktet under, som er samme
+  familie men en annen kant.
+- **[tell-forekomster-ikke-omtaler]** — **fulgt, og strykes.** Belegg: jeg holdt
+  «fem kall matchet ikke» (mitt tall, talt) adskilt fra «fem dialoger» (BKs tall,
+  observert av BK), og nektet å skrive `&&` som årsak i CHANGELOG uten å ha
+  isolert den — formuleringen «`&&` er ikke isolert som variabel» står i
+  utgivelsesteksten. Disiplinen holdt der den kostet noe.
+
+**Nye punkter:**
+
+- **[foelg-kontrakten-du-selv-leser]** Jeg skrev ~35 linjer i en fase-start der
+  alt var rent og 0.5.0-kontrakten sier normaltilfellet er én linje. Kontrakten
+  sto i skillteksten jeg hadde lest samme runde, og BK måtte påpeke det. Dette
+  er ikke en pakkefeil: teksten var riktig og til stede. **Regelen: når en skill
+  jeg kjører oppgir et konkret utdatamål, sjekk utkastet mot det målet før jeg
+  sender — ikke bare mot om innholdet er sant.** Alt jeg skrev var korrekt; det
+  var mengden som brøt kontrakten, og korrekthet skjuler den feilen for meg.
+- **[tilby-valgene-brukeren-faktisk-har]** Jeg spurte «vil du at jeg legger dem
+  i `TODO.md` nå, eller tar vi dem ved faseslutt?». Begge alternativene var
+  varianter av *før dem ned*; BK ville ha dem *fikset* («ut av verden») og måtte
+  formulere det tredje alternativet selv. Spørsmålet var entydig — feilen var at
+  alternativsettet ikke dekket den mest nærliggende handlingen. **Regelen: før
+  jeg tilbyr et valg, sjekk at alternativene spenner over det brukeren
+  realistisk kan ville — særlig at «gjør det ferdig nå» er med når posten er
+  liten nok til det.**
+
+**Promoteringsforslag — sjette runde, står fortsatt:**
+
+`[proev-forslaget-mot-prosjektets-egne-laerdommer]` har nå overlevd seks
+påfølgende faseslutt og er fulgt uoppfordret i hver av dem. Ratchet-en sier tre.
+Forslaget er uendret: inn i `CLAUDE.md` under «Målinger og språk», ut av STATUS.
+**Krever BKs klarsignal — aldri automatisk.**
+
 ## 2026-08-25 (kveld) — Alle tre fulgt igjen; men jeg spurte et spørsmål som ikke kunne besvares entydig, og talte omtaler som forekomster
 
 **Evaluering av forrige økts tre punkter — alle fulgt:**

@@ -19,8 +19,9 @@ Rapporter **avvik, ikke gjennomføring**. Et steg som ikke fant noe får ingen e
 seksjon — det nevnes med noen få ord i åpningslinja, eller ikke i det hele tatt.
 Et steg som fant noe får den plassen funnet trenger.
 
-Normaltilfellet — alt rent — er én linje: «Faseflyt 0.4.1 kjørende og installert,
-forrige økt avsluttet, plan lest.» Så rett på nåsituasjon og neste steg (steg 5).
+Normaltilfellet — alt rent — er én linje: «Faseflyt <versjon> kjørende og
+installert, forrige økt avsluttet, plan lest.» Så rett på nåsituasjon og neste
+steg (steg 5).
 
 Dette gjelder utskriften, ikke arbeidet: hvert steg kjøres som før.
 

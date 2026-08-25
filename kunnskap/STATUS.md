@@ -8,54 +8,51 @@ resonnement. Merkelappen `kjent-før-test` = bevisst utsatt.
 **FRIST: samlingen er 14. september 2026.** Tre uker. Seks grupper, deltakernes
 egne maskiner, satt opp på forhånd av BK (Mac + ARM + x86_64).
 
-**Fase:** **tørrkjøringen er avsluttet** — fase 0, 1 og 2 verifisert, tre
-faseslutt, fase 3 bevisst ikke kjørt. **LEVERT 2026-08-25 (kveld), på
-`VPC-5CG3433WMH`:** seks utgivelser — `faseflyt` **0.5.0** (utdatakontrakt:
-rapporter avvik, ikke gjennomføring), **0.5.1** (scope-vakten hardet), **0.5.2**
-(`.claude/settings.json` som kjent falsk positiv), **0.5.3** (selvvurderingen
-leses ikke opp), og `web-prototype` **0.1.1** (`<ds-button>`) + **0.1.2** (DS
-feiler stille på ukjente attributtnavn). Renhetsporten kjørt foran hver push.
-Arbeidstreet er rent.
+**Fase:** tørrkjøringen er avsluttet (fase 0/1/2 verifisert, fase 3 bevisst ikke
+kjørt). **LEVERT 2026-08-25 (sent kveld), på `VPC-5CG3433WMH`:** `faseflyt`
+**0.5.4** (oppstartens egne kall skal ikke koste godkjenninger) og **0.5.5** (to
+småposter ut av verden). Renhetsporten kjørt foran push. Arbeidstreet er rent.
 
-**Læringssløyfen er nå målt i begge retninger, også utenfor dette repoet:**
-`[pakkekilde-foer-referanse]` overlevde strykningen i tørrkjøringens faseslutt
-tre og telles mot promotering (to av tre). Den posten har stått åpen siden 0.3.0.
-**Alle tre rytmevakter er målt**, og verifiseringsporten holdt tre av tre.
+**Første økt som kjørte 0.5.3 i drift.** Funnet: én fase-start kostet fem
+godkjenningsdialoger — tre `Read` skrevet med absolutt brukersti mot
+tilde-matchere, og steg 0s to git-kommandoer kjedet med `&&`. Steg 2s
+git-kommandoer var dessuten aldri allowlistet. Alt rettet i 0.5.4.
+
+**Avklart, ikke lenger umålt:** `Read(~/...)` i en permission-matcher **virker** —
+men bare når kallet også skrives med tilde. Direkte observert i begge retninger,
+samme fil. At `&&`-kjeding bryter matchingen er *sluttet*, ikke isolert.
 
 ## Neste — start her
 
 **1. `/plugin marketplace update claude-code-skills` i terminalen + omstart.**
-Sperren er over — tørrkjøringen er ferdig. Økten som skrev dette kjørte 0.4.1
-mens repoet står på 0.5.3, så ingenting av dagens arbeid er prøvd i drift ennå.
+0.5.5 ligger på `main`; økten som skrev dette kjørte 0.5.3, så SKILL.md-endringene
+er ikke prøvd i drift. Neste `/fase-start` etter omstart er første måling av dem.
 
 **2. Mac-pre-flight (helt urørt, plattformen flest er på) og ARM-pre-flight**
 (kontor-PC, Snapdragon). `kollegatest.md` har alle bokser tomme. Dette er
-kritisk vei for samlingen; fase 3 i tørrkjøringen var det ikke.
-
-**3. `data-size`-posten er lukket.** Målingen ble bekreftet i tørrkjøringen, og
-funnet landet som `web-prototype` 0.1.2 framfor som issue — se loggen for hvorfor
-et måleobjekt ikke skal opprette issues i pakkerepoet.
+kritisk vei for samlingen. Rekkefølgen for ARM står i `TODO.md` under
+«Maskinstatus»: `git -C ~/.claude pull` FØRST, så `/plugin marketplace add`.
 
 ## Arbeidsmåte neste økt
 
-- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** *(femte runde — se
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** *(sjette runde — se
   promoteringsforslag)* Før et råd om tilgang, regler eller konfigurasjon: søk i
   `plan.md`, `TODO.md` og `logg.md` etter om det alt er målt eller avgjort.
-- **[still-spoersmaal-som-tar-ja-som-svar]** *(ny)* Jeg formulerer spørsmål slik
-  at «ja» bare kan bety én ting. «Juster ordlyden!» kunne bety både *rediger fila*
-  og *endre forslaget* — fordi jeg spurte «si fra hvis den skal justeres».
-- **[tell-forekomster-ikke-omtaler]** *(ny)* Teller jeg belegg, teller jeg
-  hendelser. Jeg meldte «tre forekomster» der det var to prosjekter; den tredje
-  var samme fil nevnt om igjen.
+- **[foelg-kontrakten-du-selv-leser]** *(ny)* Oppgir en skill jeg kjører et
+  konkret utdatamål, sjekker jeg utkastet mot det målet før jeg sender — ikke
+  bare mot om innholdet er sant. Alt kan være korrekt og likevel bryte kontrakten.
+- **[tilby-valgene-brukeren-faktisk-har]** *(ny)* Før jeg tilbyr et valg: spenner
+  alternativene over det brukeren realistisk kan ville? «Gjør det ferdig nå» skal
+  være med når posten er liten nok til det.
 
 ## Det en ny økt må vite
 
-- **PROMOTERINGSFORSLAG VENTER, femte runde:**
+- **PROMOTERINGSFORSLAG VENTER, sjette runde:**
   `[proev-forslaget-mot-prosjektets-egne-laerdommer]` inn i `CLAUDE.md` under
   «Målinger og språk», ut av STATUS. **Krever BKs klarsignal — aldri automatisk.**
-- **Umålt hypotese:** virker `Read(~/...)` i en permission-matcher? Neste
-  fase-start er testen — leses manifestene uten prompt, virker tilde-formen.
-  Feiler den, er konsekvensen bare en forespørsel.
+- **Skriv dine egne kall slik allowlisten ser dem:** tilde-form, aldri absolutt
+  brukersti, og ett kall per kommando — `&&`/`;`-kjeder matcher ingen oppføring.
+  Står nå som eget avsnitt i `fase-start/SKILL.md`.
 - **Ingen automatisk port finnes.** Diffen er eneste port. Renhetsporten kjøres
   fra Bash ETTER `git add`, alltid med én positiv kontroll, og
   `claude plugin validate .` ved siden av.

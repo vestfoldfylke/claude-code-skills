@@ -4,6 +4,29 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.5.0 — 2026-08-25
+
+`faseflyt` 0.5.0. Skillene rapporterer avvik framfor gjennomføring.
+
+- **`fase-start` og `fase-slutt` fikk en utdatakontrakt.** Et steg som gikk rent
+  får én linje i en samlelinje; et steg som fant noe får plassen funnet trenger.
+  Bakgrunn (BK, fra bruk 2026-08-25): utdataet hadde vokst til ~60 linjer per
+  fasestart, og det meste av det rapporterte at ingenting var galt. Ingen steg og
+  ingen sjekk er fjernet — dette gjelder utskriften, ikke arbeidet.
+- **Unntaket er `fase-slutt` steg 5 og 6.** Kvalitets- og sikkerhetsrapporten er
+  selve belegget for at sjekken ble kjørt, og skal alltid si hva som ble kjørt og
+  hva som skjedde. Å stryke den ville vært «formelt på plass, reelt borte» —
+  mønsteret pakken har navngitt fem ganger — så den er komprimert, ikke fjernet.
+- **`fase-start` gjengir ikke lenger per-økt-påminnelser som fast liste.** Den
+  relevante nevnes der den gjelder; behandler prosjektet persondata og neste steg
+  rører data, sies det der og da. Utskriften gjentok en fil brukeren selv skrev.
+  Dagens steg 8 renummerert til 7.
+- **`fase-slutt` skriver fallback-oppstartsmeldingen kun på forespørsel** — den
+  er forsikring for økter i verktøy uten skillen, og kostet en kodeblokk hver
+  eneste faseslutt.
+- **Kvitteringen i `fase-start` steg 6 er strammet** til én linje per punkt,
+  maks tre. Forpliktelsen er poenget, ikke utbroderingen.
+
 ## 0.4.1 — 2026-08-24
 
 `faseflyt` 0.4.1. Én linje om hvorfor arbeidsflyten ikke kan måle seg selv.

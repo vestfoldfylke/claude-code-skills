@@ -26,6 +26,18 @@ porten er nådd, foreslå kommandoen og vent. Ikke utfør stegene «for hånd» 
 kjørte helt gjennom og committet uten å spørre), så behandle det som en kjent
 felle: er du i tvil, spør før du gjør noe.
 
+## Hva du skriver i chatten
+
+Rapporter **avvik, ikke gjennomføring**. Et steg som gikk rent får én linje i en
+samlelinje, ikke egen seksjon; et steg som fant noe får plassen funnet trenger.
+
+**Unntaket er steg 5 og 6.** Der er rapporten selve belegget, og den skal alltid
+si hva som ble kjørt og hva som skjedde. Kort, men konkret: «`npm run check`: 0
+feil / 179 filer» framfor et avsnitt. Å stryke den rapporten er å gjøre sjekken
+formelt til stede og reelt borte.
+
+Dette gjelder utskriften, ikke arbeidet: hvert steg kjøres som før.
+
 Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
 
 1. **Logg:** Legg et datert innslag øverst i `kunnskap/logg.md`: hva som ble
@@ -146,8 +158,12 @@ Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
 
 8. **Avslutt** med: «FERDIG — klar for /clear. Start neste økt med
    /faseflyt:fase-start.» Er planens faser ferdige: foreslå å flytte
-   gjenstående punkter til `TODO.md`. Legg ved en oppstartsmelding i kodeblokk
-   som FALLBACK for økter i verktøy uten skillen (fyll inn konkret):
+   gjenstående punkter til `TODO.md`.
+
+   **Oppstartsmeldingen som fallback skrives bare når den trengs:** brukeren ber
+   om den, eller prosjektet skal fortsettes i et verktøy uten skillen. Den er
+   forsikring for et tilfelle som sjelden inntreffer, og koster en kodeblokk hver
+   eneste faseslutt. Blir den bedt om, fyll inn konkret:
 
    ```
    Les kunnskap/STATUS.md og planen i kunnskap/plan.md.

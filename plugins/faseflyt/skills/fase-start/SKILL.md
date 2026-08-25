@@ -13,6 +13,17 @@ description: >-
 Ny økt i et faseinndelt prosjekt. Brukerens tilleggsbeskjed (kan være tom, og
 overstyrer i så fall forslaget ditt i steg 5) følger med kallet.
 
+## Hva du skriver i chatten
+
+Rapporter **avvik, ikke gjennomføring**. Et steg som ikke fant noe får ingen egen
+seksjon — det nevnes med noen få ord i åpningslinja, eller ikke i det hele tatt.
+Et steg som fant noe får den plassen funnet trenger.
+
+Normaltilfellet — alt rent — er én linje: «Faseflyt 0.4.1 kjørende og installert,
+forrige økt avsluttet, plan lest.» Så rett på nåsituasjon og neste steg (steg 5).
+
+Dette gjelder utskriften, ikke arbeidet: hvert steg kjøres som før.
+
 Gjør følgende, i rekkefølge:
 
 0. **Sjekk at pakken er oppdatert — raskt, og aldri blokkerende.** Tre
@@ -91,16 +102,18 @@ Gjør følgende, i rekkefølge:
    ETT konkret neste steg (inkludert valg som allerede er tatt — ikke gjenåpne
    dem). Har brukeren gitt en tilleggsbeskjed, er det den som gjelder.
 
+   **Per-økt-påminnelser fra STATUS («Det en ny økt må vite») og prosjektets
+   `CLAUDE.md` gjengis ikke som liste.** Du har lest dem, og brukeren skrev dem.
+   Nevn den ene som er relevant for steget du foreslår — behandler prosjektet
+   persondata og neste steg rører data, sier du det der og da. Ellers ingenting.
+
 6. **Kvitter på `## Arbeidsmåte neste økt`** i STATUS: gjenta hvert punkt som en
    konkret forpliktelse for denne økten («Denne økten: …»), ikke bare
-   gjengivelse. Dette er læringssløyfens andre halvdel — punktene ble skrevet av
-   forrige `fase-slutt` og evalueres av neste.
+   gjengivelse. **Én linje per punkt, maks tre** — forpliktelsen er poenget, ikke
+   utbroderingen. Dette er læringssløyfens andre halvdel — punktene ble skrevet
+   av forrige `fase-slutt` og evalueres av neste.
 
-7. Gjengi per-økt-påminnelser fra STATUS («Det en ny økt må vite») og
-   prosjektets `CLAUDE.md` — f.eks. personvern-arbeidsflyt eller
-   encoding-regler.
-
-8. VENT på klarsignal fra brukeren før du begynner på arbeidet — med mindre
+7. VENT på klarsignal fra brukeren før du begynner på arbeidet — med mindre
    tilleggsbeskjeden alt er en klar arbeidsordre; da setter du i gang med den.
 
 ## Eldre prosjekter (tåles alltid)

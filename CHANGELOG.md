@@ -17,6 +17,40 @@ skal ellers alltid tåle eldre struktur.
   auto-generert fra `digdir/designsystemet`, så håndskrevet tekst der forsvinner
   ved neste regenerering.
 
+## 0.5.9 — 2026-08-25
+
+`faseflyt` 0.5.9. Regelen om tilde-form i Bash var motbevist, og
+versjonssjekkens tredje ledd kunne ikke gjøres billig.
+
+- **En sti i et `Bash`-prefiks matcher ikke — 0.5.7-regelen sa det motsatte.**
+  `fase-start` instruerte om tilde-form (`Bash(git -C ~/... rev-parse:*)`) og
+  begrunnet det med at matchere er tekstlige. Målt 2026-08-25 på
+  `VPC-5CG3433WMH`: det kallet ga dialog, mens samme kall og samme oppføring i
+  full sti gikk gjennom — isolert mot en kontrollinje som bekreftet at
+  `settings.local.json` leses midt i en økt. Målingen fra 0.5.7 skilte aldri
+  form fra lasting, fordi oppføringen den gangen kom inn via dialogens egen
+  knapp. Funnet står nå som **grense 10** i `maler.md`, som gjelder `allow` like
+  mye som `deny`. `Read` oppfører seg annerledes, målt samme dag: der matcher
+  tilde og full sti likt, og `**` dekker mellomliggende ledd.
+- **Versjonssjekkens org-ledd er tatt ut** av steg 0 i både `fase-start` og
+  `nytt-prosjekt`. Formen som virker bærer brukernavnet og kan derfor aldri stå
+  i en delt `settings.json` eller i en mal, så leddet kostet to
+  godkjenningsdialoger i hver økt hos hver bruker — for et varsel, ikke en port.
+  Ledd 1 og 2 står igjen og fanger feilen som faktisk har rammet: installert
+  nyere enn kjørende, altså «start Claude Code på nytt». Oppdatering av pakken
+  er dokumentert i README under «Vanlige spørsmål».
+- **Allowlisten virker først etter omstart — nå sagt der den skrives.**
+  `.claude/settings.json` leses ved oppstart og ikke på nytt midt i en økt:
+  samme oppføring, samme kall og samme økt ga dialog fra den delte fila og
+  ingen dialog fra `settings.local.json`. Målt 2026-08-25 på `VPC-5CG3433WMH`.
+  `nytt-prosjekt` skriver fila i steg 6 og skal nå si det, ellers møter
+  brukeren dialoger malen nettopp har lovet er dekket. Funnet forklarer
+  samtidig hvorfor 0.5.7-målingen konkluderte som den gjorde.
+- **Allowlisten i malen er fire oppføringer, ikke seks.** De to
+  `git -C ~/...`-linjene fra 0.5.7 er fjernet — de var dødvekt, og en oppføring
+  som ser ut som en tillatelse uten å være det er verre enn ingen. Eksisterende
+  prosjekter kan la sine to stå; de gjør ingen skade.
+
 ## 0.5.8 — 2026-08-25
 
 `faseflyt` 0.5.8. Faseslutten sa hva stegene gjorde, men ikke hva økten leverte.

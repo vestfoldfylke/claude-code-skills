@@ -9,6 +9,48 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-25 (dag) — Punktet fra i natt bar hele økten; men omfanget vokste to ganger etter godkjenning, og én måling målte ingenting
+
+**Evaluering av forrige økts tre punkter:**
+
+- **[ikke-rapporter-utfall-du-ikke-kan-se]** — **fulgt, og strykes.** Belegg, og
+  det avgjorde økten: fem ganger stilte jeg spørsmålet «kom det dialog?» framfor
+  å slutte meg til svaret. Hver av dagens tre målinger hviler på et svar bare BK
+  kunne gi. Punktet ble skrevet i natt etter at jeg meldte «null dialoger» om en
+  oppstart med fire — i dag var det forskjellen på en måling og en gjetning.
+- **[flytt-regelen-dit-den-leses]** — **fulgt, og strykes.** Belegg: jeg skrev
+  «README og `hjelp` sier når» i `fase-start`, søkte etter `marketplace update` i
+  repoet, og fant at `hjelp` ikke nevner oppdatering i det hele tatt. Pekeren ble
+  rettet til README, som faktisk har teksten. Samme kriterium avgjorde hvor
+  grense 10 skulle bo.
+- **[skriv-forbud-som-treffer-bare-det-du-mener]** — **ikke aktualisert.** Ingen
+  forbud ble skrevet denne økten, så punktet ble verken fulgt eller brutt. Føres
+  som ubrukt, ikke som innarbeidet, og videreføres ikke — det er ingen gjenganger.
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, åttende
+  påfølgende runde**, selv om den bor i «Det en ny økt må vite» og ikke i
+  arbeidsmåte-lista. Belegg: søk på `marketplace update` og på `seks` før
+  forslagene, begge ga treff som endret omfanget. **Promoteringsforslaget står
+  fortsatt og venter på BKs klarsignal.**
+
+**Nye punkter:**
+
+- **[tell-forekomstene-for-du-lover-omfanget]** To ganger denne økten la jeg fram
+  et endringsomfang, fikk klarsignal, og oppdaget så en forekomst til: org-sjekken
+  i `nytt-prosjekt` steg 0 (funnet ved søk på `marketplace update`) og «seks
+  oppføringer» i steg 6 (funnet ved søk på `seks`). Begge kostet BK en ekstra
+  klarsignal-runde, og den andre ville gjort 0.5.9 internt motstridende hvis den
+  ikke var fanget. **Regelen: søk opp alle forekomster av teksten, tallet eller
+  regelen du vil endre FØR du legger fram omfanget — ikke etter at det er
+  godkjent.**
+- **[maal-en-variabel-om-gangen]** Jeg la inn
+  `Read(.../faseflyt/*/.claude-plugin/**)` for å teste `*` mot 0.5.3, og lot
+  0.4.1 være kontrollen som bare `**`-linja skulle dekke. Men `*`-linja dekket
+  0.4.1 like godt, så begge gikk gjennom og runden skilte ingenting. BK svarte på
+  et spørsmål som ikke kunne gi informasjon. Beslektet med `[hypotese-vs-funn]`,
+  men på en ny kant: feilen lå i oppsettet, ikke i tolkningen. **Regelen: før du
+  ber brukeren måle, sjekk at hver variant treffes av nøyaktig én oppføring — en
+  test der to regler dekker samme kall måler ingenting.**
+
 ## 2026-08-25 (natt) — Alle tre fulgt; men jeg rapporterte et utfall bare brukeren kunne se, og skrev et forbud som traff prosjektets eget ord
 
 **Evaluering av forrige økts tre punkter — alle fulgt:**

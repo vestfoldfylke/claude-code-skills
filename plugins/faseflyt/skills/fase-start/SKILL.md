@@ -30,20 +30,23 @@ Dette gjelder utskriften, ikke arbeidet: hvert steg kjøres som før.
 Steg 0 og 2 er de eneste stegene som leser utenfor prosjektmappa eller kaller
 git, og de kjøres i hver eneste økt. To skrivemåter gjør dem dyre for brukeren:
 
-- **Bruk tilde-form** (`~/.claude/...`), aldri absolutt brukersti
-  (`C:\Users\<navn>\...`). Permission-matchere er tekstlige — en tilde-matcher
-  treffer ikke det samme kallet skrevet absolutt, selv om det er samme fil.
+- **Bruk tilde-form** (`~/.claude/...`) i `Read`. Full brukersti matcher like
+  godt, men kan ikke stå i en delt `settings.json` — den bærer brukernavnet.
 - **Ett kall per kommando.** To allowlistede kommandoer slått sammen med `&&`
   eller `;` matcher ingen av dem.
+- **Aldri en sti i et `Bash`-prefiks.** `Bash(git status:*)` matcher;
+  `Bash(git -C ~/... rev-parse:*)` gjør det ikke, og formen som virker bærer
+  brukernavnet. Trenger du git mot en annen katalog, koster det en godkjenning
+  — derfor gjør stegene under det ikke.
 
-Målt 2026-08-25 på `VPC-5CG3433WMH`: begge feilene i én oppstart ga fem
-godkjenningsdialoger i et prosjekt der allowlisten dekket kallene.
+Målt 2026-08-25 på `VPC-5CG3433WMH`, hver form isolert mot en kontrollinje som
+skulle gå gjennom. Teksten som sto her sa at tilde-form var påkrevd også i
+Bash; det er motbevist, ikke utelatt.
 
 Gjør følgende, i rekkefølge:
 
-0. **Sjekk at pakken er oppdatert — raskt, og aldri blokkerende.** Tre
-   versjoner kan sprike: den økten kjører, den som er installert, og den som
-   ligger i org-repoet.
+0. **Sjekk at pakken er oppdatert — raskt, og aldri blokkerende.** To
+   versjoner kan sprike: den økten kjører, og den som er installert.
    - *Kjørende:* les `version` i `.claude-plugin/plugin.json` to nivåer over
      denne skillens basekatalog (katalogen står i kallet). **Basekatalogen
      oppgis absolutt** — skriv den om til tilde-form
@@ -51,19 +54,19 @@ Gjør følgende, i rekkefølge:
      godkjenning selv når allowlisten dekker fila.
    - *Installert:* les `version` i
      `~/.claude/plugins/marketplaces/claude-code-skills/plugins/faseflyt/.claude-plugin/plugin.json`.
-   - *Org-repoet:* sammenlign `git -C
-     ~/.claude/plugins/marketplaces/claude-code-skills rev-parse HEAD` med
-     `git -C <samme mappe> ls-remote origin main`.
 
    Er installert nyere enn kjørende: si det, og be brukeren lukke og starte
    Claude Code på nytt når økten er ferdig — en kjørende prosess beholder
-   versjonen den startet med. Er org-repoet nyere enn installert: foreslå
-   `/plugin marketplace update claude-code-skills` i terminalen (ikke i VS
-   Code-chatten), og omstart etterpå. Får du ikke lest en fil eller nådd
-   nettet: si det i én setning og fortsett — sjekken skal aldri stoppe en økt.
-   Den sammenligner versjonsnummer og commit, ikke innhold — den er et varsel,
-   ikke en port. (Cache-oppbygningen den leser er observert på våre maskiner,
-   ikke dokumentert kontrakt — derfor den myke feilingen.)
+   versjonen den startet med. Får du ikke lest en fil: si det i én setning og
+   fortsett — sjekken skal aldri stoppe en økt. Den sammenligner
+   versjonsnummer, ikke innhold — den er et varsel, ikke en port.
+   (Cache-oppbygningen den leser er observert på våre maskiner, ikke
+   dokumentert kontrakt — derfor den myke feilingen.)
+
+   **Org-repoet sjekkes ikke herfra.** Det krever git mot en annen katalog, og
+   den formen koster en godkjenning i hver økt hos hver bruker (se over).
+   `/plugin marketplace update claude-code-skills` kjøres i terminalen ved
+   behov — README svarer på hvordan under «Vanlige spørsmål».
 
 1. Les `kunnskap/STATUS.md`. Finnes den ikke: IKKE gjett — si fra og spør om
    prosjektet skal settes opp med fase-arbeidsflyten (`nytt-prosjekt`-skillen).

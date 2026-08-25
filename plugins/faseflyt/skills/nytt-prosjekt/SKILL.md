@@ -128,16 +128,13 @@ regel om hva du skriver her, ikke bare om hva du sier.
    i `.claude-plugin/plugin.json` to nivåer over denne skillens basekatalog
    (kjørende versjon) og i
    `~/.claude/plugins/marketplaces/claude-code-skills/plugins/faseflyt/.claude-plugin/plugin.json`
-   (installert versjon), og sammenlign `git -C
-   ~/.claude/plugins/marketplaces/claude-code-skills rev-parse HEAD` med
-   `git -C <samme mappe> ls-remote origin main` (org-repoet). Er installert
-   nyere enn kjørende: si det, og tilby å ta oppsettet etter at brukeren har
-   lukket og startet Claude Code på nytt — en kjørende prosess beholder
-   versjonen den startet med, og et oppsett kjørt på gammel versjon bruker
-   gamle maler. Er org-repoet nyere: foreslå `/plugin marketplace update
-   claude-code-skills` i terminalen (ikke i VS Code-chatten), og omstart
-   etterpå. Får du ikke lest en fil eller nådd nettet: si det i én setning og
-   fortsett — sjekken er et varsel, ikke en port.
+   (installert versjon). Er installert nyere enn kjørende: si det, og tilby å ta
+   oppsettet etter at brukeren har lukket og startet Claude Code på nytt — en
+   kjørende prosess beholder versjonen den startet med, og et oppsett kjørt på
+   gammel versjon bruker gamle maler. Får du ikke lest en fil: si det i én
+   setning og fortsett — sjekken er et varsel, ikke en port. Org-repoet sjekkes
+   ikke: det krever git mot en annen katalog, og den formen matcher ingen
+   oppføring som kan stå i en delt fil (se `references/maler.md`, grense 10).
 
 1. **Nytt eller eksisterende prosjekt?** I et eksisterende prosjekt: opprett kun
    det som mangler, hopp over `git init` når repo finnes, og UTVID eksisterende
@@ -187,7 +184,7 @@ regel om hva du skriver her, ikke bare om hva du sier.
    prosjektet bruker FINT.
    **Pakken eier bare tre ting i denne fila:**
    `extraKnownMarketplaces.claude-code-skills`, oppføringene i
-   `enabledPlugins` som slutter på `@claude-code-skills`, og de seks
+   `enabledPlugins` som slutter på `@claude-code-skills`, og de fire
    `permissions.allow`-oppføringene i malen — de dekker `fase-start` sine egne
    kall, og uten dem koster hver oppstart fire godkjenningsdialoger. Finnes
    `.claude/settings.json` fra før: legg KUN disse nøklene til, og rør
@@ -197,6 +194,8 @@ regel om hva du skriver her, ikke bare om hva du sier.
    **vent på klarsignal før du skriver**. **Etterkontroll (obligatorisk når
    fila fantes):** les den skrevne fila og bekreft at hver nøkkel som fantes
    før, finnes igjen med samme verdi — mangler én, rett det FØR du går videre.
+   **Si fra at allowlisten først virker etter omstart** — fila leses ved
+   oppstart, ikke midt i en økt (se `references/maler.md`).
    Behandler prosjektet persondata: tilby deny-settet
    for prosjekttypen (se maler.md) — som tillegg til en eksisterende
    `deny`-liste, aldri som erstatning — men **skriv aldri en `permissions`-blokk uten

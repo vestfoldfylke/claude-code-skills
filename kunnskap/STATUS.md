@@ -9,26 +9,26 @@ resonnement. Merkelappen `kjent-før-test` = bevisst utsatt.
 egne maskiner, satt opp på forhånd av BK (Mac + ARM + x86_64).
 
 **Fase:** tørrkjøringen er avsluttet (fase 0/1/2 verifisert, fase 3 bevisst ikke
-kjørt). **LEVERT 2026-08-25 (natt), på `VPC-5CG3433WMH`:** `faseflyt` **0.5.6**
-(steg 0 lukker godkjenningshullet), **0.5.7** (allowlist inn i malen) og **0.5.8**
-(faseslutten sier hva økten leverte). Renhetssjekken og
-`claude plugin validate .` kjørt foran hver push.
+kjørt). **LEVERT 2026-08-25 (dag), på `VPC-5CG3433WMH`:** `faseflyt` **0.5.9** —
+permission-formene er målt, org-leddet er ute av steg 0 i begge skillene, og
+grense 10 er ny i `maler.md`.
 
-**Kjørende er 0.5.7, installert er 0.5.8** — 0.5.8 ble skrevet etter omstarten.
-Neste økt kjører den først etter `/plugin marketplace update` + ny omstart.
+**Kjørende er 0.5.8, repoet står på 0.5.9.** Neste økt kjører den først etter
+`/plugin marketplace update claude-code-skills` + omstart.
 
-**Målt og avgjort:** kolon-prefiksformen matcher der eksakt-form ikke gjør det.
-Samme `ls-remote`-kall ga dialog i eksakt-form og ingen dialog etter omleggingen,
-i samme økt. Tilde-form er like påkrevd som før — og gjelder også stier skillen
-selv oppgir absolutt.
+**Motbevist 2026-08-25 (dag) — ikke gjenopprett:** teksten om at tilde-form er
+påkrevd i Bash. **En sti i et `Bash`-prefiks matcher ikke i det hele tatt.** Full
+sti virker, men bærer brukernavnet og kan derfor aldri stå i en mal eller i en
+delt `settings.json`. `Read` er motsatt: tilde, full sti og `**` matcher alle.
+**Og `.claude/settings.json` leses ikke på nytt midt i en økt** — bare
+`settings.local.json` gjør det. Belegg og metode: `logg.md` samme dato.
 
 ## Neste — start her
 
-**1. Tørrkjør allowlisten i en tom mappe utenfor dette repoet.** 0.5.7 la seks
-lesende oppføringer i `.claude/settings.json`-malen. At `nytt-prosjekt` skriver
-dem riktig, og at oppstarten i det nye prosjektet så går uten dialoger, er
-**skrevet, ikke målt**. Dette er den ene endringen som treffer alle seks
-gruppene, så den bør måles før samlingen.
+**1. Tørrkjør allowlisten i en tom mappe utenfor dette repoet.** Fortsatt umålt,
+og nå med to nye ting å se etter: at malens fire oppføringer skrives riktig, og
+at `nytt-prosjekt` faktisk sier fra at de først virker etter omstart. Den ene
+endringen som treffer alle seks gruppene.
 
 **2. Mac-pre-flight (helt urørt, plattformen flest er på) og ARM-pre-flight**
 (kontor-PC, Snapdragon). `kollegatest.md` har alle bokser tomme. Kritisk vei.
@@ -36,31 +36,28 @@ Rekkefølgen for ARM står i `TODO.md` under «Maskinstatus»: `git -C ~/.claude
 pull` FØRST, så `/plugin marketplace add`. Denne maskinen er AMD64 — ingen av de
 to kan gjøres herfra.
 
-**3. `fase-slutt`s utdatakontrakt — LUKKET i 0.5.8, men umålt.** Skillen krever
-nå en kort «levert i denne runden»-del før stegrapporteringen, og at stegene
-kommer i sin egen rekkefølge. Teksten er skrevet etter tre observasjoner, men
-**aldri kjørt** — første måling er neste faseslutt som kjører 0.5.8.
+**3. Åpent spørsmål, ingen fiks gjort:** Read-dialogen på `0.5.8/plugin.json` i
+oppstarten lot seg ikke gjenskape senere i samme økt. At det var øktens første
+kall er en gjetning. Dukker den opp igjen, er den verdt å isolere.
 
 ## Arbeidsmåte neste økt
 
-- **[ikke-rapporter-utfall-du-ikke-kan-se]** *(ny)* Rapporter bare det
-  verktøysvarene faktisk viser. Utfall bare brukeren kan se — dialoger, hva
-  skjermen viste — spørres om eller utelates.
-- **[flytt-regelen-dit-den-leses]** *(ny)* Foreslår jeg en regel: sjekk i samme
-  åndedrag om den lastes der den skal virke. Er svaret nei, er plasseringen
-  fiksen — ikke teksten.
-- **[skriv-forbud-som-treffer-bare-det-du-mener]** *(ny)* Et forbud rettes mot
-  betydningen, ikke bokstavene. Søk om ordet har en annen bruk i prosjektet som
-  skal beholdes.
+- **[tell-forekomstene-for-du-lover-omfanget]** *(ny)* Søk opp alle forekomster
+  av teksten, tallet eller regelen du vil endre FØR du legger fram omfanget —
+  ikke etter at det er godkjent.
+- **[maal-en-variabel-om-gangen]** *(ny)* Før du ber brukeren måle: sjekk at hver
+  variant treffes av nøyaktig én oppføring. En test der to regler dekker samme
+  kall måler ingenting.
 
 ## Det en ny økt må vite
 
-- **PROMOTERINGSFORSLAG VENTER, sjuende runde:**
+- **PROMOTERINGSFORSLAG VENTER, åttende runde:**
   `[proev-forslaget-mot-prosjektets-egne-laerdommer]` inn i `CLAUDE.md` under
   `## Målinger`, ut av STATUS. **Krever BKs klarsignal — aldri automatisk.**
-- **Språkreglene står nå i `CLAUDE.md` som tekst, ikke som henvisning.** De
-  gjelder chatten og teksten som følger hvert verktøykall, ikke bare filene.
-  `port` er beholdt som repoets ord om det som må passeres før `main`.
+- **Dette repoets allowlist ble utvidet samme dag:** lesende sjekker som gjentas
+  hver faseslutt står i `.claude/settings.json`, de to org-kallene i full sti i
+  `.claude/settings.local.json` (gitignorert, per maskin). `commit` og `push`
+  spør fortsatt — det er bevisst.
 - **Ingen automatisk sjekk finnes.** Diffen er eneste port. Renhetssjekken kjøres
   fra Bash ETTER `git add`, alltid med ett kontrollsøk som skal gi treff, og
   `claude plugin validate .` ved siden av.

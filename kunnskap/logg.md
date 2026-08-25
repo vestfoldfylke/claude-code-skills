@@ -2,6 +2,81 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-25 (dag) — Tilde-regelen fra 0.5.7 var feil, og allowlisten virker ikke i økten den skrives
+
+Maskin `VPC-5CG3433WMH` (hjemmekontor, AMD64 — ikke ARM-maskinen). Én utgivelse:
+`faseflyt` **0.5.9**. Renhetssjekken (11 søk, 0 feil) og `claude plugin validate .`
+kjørt etter `git add`, to ganger — én gang midtveis og én før commit. Første økt
+som kjørte 0.5.8 i drift.
+
+Utgangspunktet var BKs observasjon: tre godkjenningsdialoger igjen i oppstarten,
+med skjermbilder, og at faseslutten spør om lesende sjekker som gjentas hver gang.
+Skjermbildene lot seg holde mot de seks kallene oppstarten faktisk gjorde, og ga
+et rent skille å måle på.
+
+### Funn: en sti i et `Bash`-prefiks matcher ikke — og 0.5.7 påla nettopp den formen
+
+**Observert, isolert.** `Bash(git -C ~/.claude/.../rev-parse:*)` sto i den delte
+`settings.json`; kallet skrevet med nøyaktig samme tilde-sti ga dialog. Samme
+kall og samme oppføring i full sti (`/c/Users/<navn>/...`, i
+`settings.local.json`) ga ingen dialog, i samme økt. `Bash(whoami)` ble lagt inn
+samtidig som kontrollinje og gikk gjennom — den utelukker at den lokale fila
+ikke var lest, så de to utfallene er sammenlignbare.
+
+Dette **motbeviser** teksten 0.5.7 la i `fase-start`: «Bruk tilde-form, aldri
+absolutt brukersti … en tilde-matcher treffer ikke det samme kallet skrevet
+absolutt.» Regelen var ikke bare unyttig — den lærte kollegaer den formen som
+ikke virker. Årsaken til feilmålingen er nå kjent, se funnet om lasting under.
+
+**Konsekvensen er strukturell:** formen som virker bærer brukernavnet, så den kan
+aldri stå i en mal eller i en delt `settings.json` — renhetssjekken forbyr den
+til og med i vår egen. Står nå som **grense 10** i `maler.md`, som gjelder
+`allow` like mye som `deny`.
+
+### Funn: `Read` oppfører seg motsatt av `Bash`
+
+**Observert, seks lesninger.** Eksakt sti, tilde, `*` og `**` over versjonsleddet
+i cache-stien gikk alle gjennom. Read-linjene i malen var altså aldri problemet,
+og tilde er der den riktige formen — den er den eneste som kan stå i en delt fil.
+
+### Funn: `.claude/settings.json` leses ikke på nytt midt i en økt
+
+**Observert, og det med lengst rekkevidde.** `Bash(claude plugin validate:*)` ble
+lagt i den delte fila og kallet kjørt: dialog. Samme oppføring flyttet til
+`settings.local.json`, samme kall, samme økt: ingen dialog. Den lokale fila leses
+underveis, den delte ikke.
+
+Det treffer `nytt-prosjekt` direkte: skillen skriver allowlisten i steg 6, og
+oppføringene virker først etter omstart. En kollega som kjører oppsettet og
+jobber videre i samme økt, møter dialoger malen nettopp har lovet er dekket.
+Forklarer samtidig 0.5.7-målingen: den oppføringen kom inn via dialogens egen
+knapp midt i økten, så det som ble målt var ikke den håndskrevne linja.
+
+### Åpent, og skal stå som åpent
+
+Read-dialogen på `0.5.8/plugin.json` i oppstarten lot seg **ikke gjenskape**
+senere i økten — samme fil, samme linje, ingen dialog. At det var øktens aller
+første kall er en nærliggende gjetning og ingenting mer. Ingen fiks er gjort på
+grunnlag av den.
+
+### Beslutninger
+
+- **Beslutning (BK, org-leddet i steg 0):** ut av både `fase-start` og
+  `nytt-prosjekt`. Begrunnelse: de to git-kallene er de eneste i oppstarten som
+  ikke lar seg dekke av noen mal, så prisen er to dialoger i hver økt hos hver
+  bruker — for et varsel, ikke en port. Ledd 1 og 2 står igjen og fanger feilen
+  som faktisk har rammet («installert nyere enn kjørende, start på nytt»).
+  Frekvensen var feil, ikke sjekken. Oppdatering er dokumentert i README.
+- **Beslutning (BK, omstart-funnet inn i 0.5.9):** tas med framfor å utsettes.
+  Begrunnelse: utgivelsen handler nettopp om at allowlist-formen er målt, og å
+  slippe den uten å si at lista ikke virker før omstart er den halve sannheten
+  prosjektet har tre navngitte lærdommer om.
+- **Beslutning (BK, dette repoets egne sjekker):** lesende kall som gjentas hver
+  faseslutt — `claude plugin validate`, `git ls-files`, `git grep`, `git diff` —
+  inn i `.claude/settings.json`; `commit` og `push` blir stående bak et trykk.
+  De to org-kallene i full sti ligger i `settings.local.json`, som er gitignorert
+  og per maskin.
+
 ## 2026-08-25 (natt) — Fire godkjenninger igjen, og språkregelen som lå bak en henvisning
 
 Maskin `VPC-5CG3433WMH` (hjemmekontor, AMD64 — ikke ARM-maskinen). To utgivelser:

@@ -310,8 +310,6 @@ webapp-typen og `"fint-graphql@claude-code-skills": true` når prosjektet bruker
     "allow": [
       "Read(~/.claude/plugins/cache/claude-code-skills/**/.claude-plugin/**)",
       "Read(~/.claude/plugins/marketplaces/claude-code-skills/**/.claude-plugin/**)",
-      "Bash(git -C ~/.claude/plugins/marketplaces/claude-code-skills rev-parse:*)",
-      "Bash(git -C ~/.claude/plugins/marketplaces/claude-code-skills ls-remote:*)",
       "Bash(git status:*)",
       "Bash(git log:*)"
     ]
@@ -319,27 +317,32 @@ webapp-typen og `"fint-graphql@claude-code-skills": true` når prosjektet bruker
 }
 ```
 
-**Hva `allow`-settet er, og hva det ikke er.** De seks oppføringene dekker
+**Hva `allow`-settet er, og hva det ikke er.** De fire oppføringene dekker
 `fase-start` sine egne kall: versjonssjekken (steg 0) leser pakkens to
-manifester og spør org-repoet om siste commit, og sjekken av om forrige økt ble
-avsluttet (steg 2) kjører `git status` og `git log`. Uten dem koster hver
-oppstart fire godkjenningsdialoger før brukeren har gjort noe. Alle seks er
-**lesende** — de rører ikke prosjektets data og kan ikke skrive noe. Merk
-likevel at pakken her *utvider* hva Claude får gjøre uten å spørre, i motsetning
-til deny-settet lenger ned, og at de to siste er brede: all `git status` og all
-`git log`, ikke bare oppstartens egne.
+manifester, og sjekken av om forrige økt ble avsluttet (steg 2) kjører
+`git status` og `git log`. Uten dem koster hver oppstart fire
+godkjenningsdialoger før brukeren har gjort noe. Alle fire er **lesende** — de
+rører ikke prosjektets data og kan ikke skrive noe. Merk likevel at pakken her
+*utvider* hva Claude får gjøre uten å spørre, i motsetning til deny-settet
+lenger ned, og at de to siste er brede: all `git status` og all `git log`, ikke
+bare oppstartens egne.
 
-**Formen er målt, ikke valgt.** Kolon-prefiks (`rev-parse:*`) matcher;
-eksakt-form med hele kommandoen gjør det ikke. Målt 2026-08-25 på
-`VPC-5CG3433WMH`: to oppføringer i eksakt-form ga dialog i samme oppstart der
-`Bash(git status:*)` og `Bash(git log:*)` ikke gjorde det, og omleggingen til
-kolon-form fjernet den. Tilde-form er like påkrevd — en tilde-matcher treffer
-ikke det samme kallet skrevet som full brukersti.
+**Formen er målt, ikke valgt.** Kolon-prefiks (`git status:*`) matcher.
+Oppføringer med en sti i prefikset gjør det ikke, uansett kolon — se grense 10.
+Derfor står det ingen `git -C <sti>`-oppføring her, og derfor sjekker steg 0
+ikke org-repoet.
+
+**Oppføringene virker først etter omstart.** `.claude/settings.json` leses ved
+oppstart, ikke på nytt midt i en økt. Målt 2026-08-25 på `VPC-5CG3433WMH`:
+samme oppføring, samme kall og samme økt ga dialog fra den delte fila og ingen
+dialog fra `settings.local.json`, som leses underveis. Skriver du fila i et
+oppsett, si det — ellers møter brukeren dialoger malen nettopp har lovet er
+dekket.
 
 **Finnes `.claude/settings.json` fra før, er dokumentet over IKKE malen —
 flettingen er det.** Pakken eier bare tre ting:
 `extraKnownMarketplaces.claude-code-skills`, `enabledPlugins`-oppføringene som
-slutter på `@claude-code-skills`, og de seks `permissions.allow`-oppføringene
+slutter på `@claude-code-skills`, og de fire `permissions.allow`-oppføringene
 over. De legges til — en eksisterende `allow`-liste utvides, aldri erstattes — og
 alt annet i fila står urørt, også nøkler du ikke kjenner. Vis endringen
 som før/etter, vent på klarsignal før du skriver, og etterkontroller: hver
@@ -433,7 +436,7 @@ nettverksstakken feiler på manglende tilkobling.
 lager dem, og slett dem etterpå. En glemt `data/`-katalog med en dummy i ser ekte
 ut for neste person som åpner prosjektet.
 
-### Deny-settets grenser (målt 2026-08-17/18)
+### Deny-settets grenser (målt 2026-08-17/18, grense 10 lagt til 2026-08-25)
 
 **Målt å virke:**
 
@@ -498,6 +501,19 @@ ut for neste person som åpner prosjektet.
    `Start-BitsTransfer`, `[IO.File]::ReadAllText()` — og indirekte kall
    (`$c='irm'; & $c`), der navnet først finnes ved kjøring. Listen blir aldri
    uttømmende; ikke lat som den er det.
+10. **En sti i et `Bash`-prefiks matcher ikke.** Gjelder `allow` like mye som
+    `deny`. `Bash(git status:*)` matcher, mens
+    `Bash(git -C ~/.claude/... rev-parse:*)` ikke gjorde det for kallet skrevet
+    med nøyaktig samme tilde-sti. Samme kall og samme matcher i full sti
+    (`/c/Users/<navn>/...`) matchet. Målt 2026-08-25 på `VPC-5CG3433WMH`, med en
+    kontrollinje i samme runde som bekreftet at `settings.local.json` leses midt
+    i en økt — så de to utfallene er sammenlignbare.
+    **Konsekvensen er praktisk:** formen som virker bærer brukernavnet og kan
+    aldri stå i en delt `settings.json` eller i en mal. Trenger et prosjekt en
+    git-kommando mot en annen katalog uten dialog, hører linja i
+    `settings.local.json`, som er per maskin og gitignorert.
+    **`Read` oppfører seg annerledes:** der matcher tilde og full sti likt, og
+    `**` dekker mellomliggende ledd — begge deler målt samme dag.
 
 **Hva dette betyr for løftet i CLAUDE.md:** deny-settet er ETT lag
 risikoreduksjon, ikke en sandkasse. Regelen i CLAUDE.md («Claude forbereder

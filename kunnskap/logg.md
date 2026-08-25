@@ -105,11 +105,45 @@ konsekvensen en permission-forespørsel og ingenting annet. **Testen som avgjør
 neste `/faseflyt:fase-start` i dette repoet — leses manifestene uten prompt,
 virker formen.
 
-### Tørrkjøringen: fase 2 verifisert
+### Tørrkjøringen: fase 2 verifisert, og faseslutt nummer tre kjørt
 
 BK verifiserte i nettleseren: utlån, retur, F5, to-fane-vernet mot dobbeltutlån og
-nullstilling. Faseslutt nummer tre gjenstår, og med den ratchet-ens vanskelige
-halvdel. **Fase 3 skal ikke kjøres** — se beslutningen over.
+nullstilling. **Fase 3 ble ikke kjørt** — se beslutningen over. Faseslutt nummer
+tre er gjennomført; sluttmeldingen referert hit av BK, jeg kjørte ikke den økten.
+`npm run check`: 179 filer, 0 feil. `npm run build`: bygger.
+
+**Ratchet-ens vanskelige halvdel er målt — posten som har stått åpen siden
+0.3.0.** `[pakkekilde-foer-referanse]` **overlevde strykningen**: den ble
+presisert framfor strøket eller promotert, og står som to av tre mot terskelen.
+Til nå har sløyfen bare vist den lette halvdelen — at et fulgt punkt strykes — og
+uten den vanskelige tømmer den bare lista si hver runde uten at noe blir en varig
+regel. Nå er den demonstrert **utenfor** dette repoet også. Presiseringen ble den
+vi anbefalte: referansefila først, pakkens CSS når fila ikke svarer.
+
+**`[les-regelen-foer-flagget]` ført som «uavgjort, ikke læring».** Begrunnelsen
+var den riktige og ble gitt uoppfordret: ingen policy avviste noe, og det er ikke
+fordi oppførselen sitter — repoet ligger på `bkaarstein`, uten regelsamling på
+`main`, så situasjonen kunne ikke oppstå. Anledningen forsvant med flyttingen.
+Punktet ble derfor ikke ført som innarbeidet.
+
+**Funn (observert av BK, referert hit) — et strøket punkt kom tilbake i smalere
+form.** Det nye punktet `[attributt-paa-klassen]` meldes som **tilbakefall**:
+`[verdi-kontroll]` ble strøket som innarbeidet i fase 1, men var bare fulgt for
+*verdier*, ikke for *attributtnavn*. Begge feiler stille. Dette er et funn om
+ratchet-ens **strykningskriterium**, ikke om prototypen: «fulgt» kan være sant i
+en smalere forstand enn punktet dekket, og da er strykningen for tidlig. Ingen
+endring gjort på det — det trenger flere forekomster før vi vet om det er
+mønster eller enkelttilfelle.
+
+**Issue-forslaget fra tørrkjøringen ble avvist, med vilje.** Økten tilbød
+`gh issue create` for DS-funnet, som steg 2e ber den om. Riktig oppførsel av
+skillen — men `TODO.md` sier at issue-mekanismen finnes for kollegaer som ikke
+kan redigere pakken selv, og `test-utstyrskapet` er et måleobjekt, ikke et
+kollegaprosjekt. Et issue derfra ville lagt et simulert opphav inn i backloggen.
+Innholdet var reelt og landet i stedet som `web-prototype` 0.1.2.
+
+**Verifiseringsporten holdt tre av tre**, denne gangen under formuleringen «testet
+ok» — den som gikk galt to ganger i tidligere test.
 
 ## 2026-08-25 (natt) — Tørrkjøringen nådde suksesskriteriet, og sikkerhetsrøyktesten viste seg å mangle sin egen kontroll
 

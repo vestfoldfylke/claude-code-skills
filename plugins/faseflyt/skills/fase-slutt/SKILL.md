@@ -65,8 +65,11 @@ Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
       stikkordsetikett (`[explore-delegering]`-stil) og konkret belegg — dekk
       både prosess/token-bruk og kodekvalitet/framgangsmåte. «Kunne vært mer
       effektiv» er ikke et punkt.
-   d. Før alt som datert innslag øverst i `kunnskap/laering.md`, legg de aktive
-      punktene i STATUS (maks 3), og vis dem i chatten.
+   d. Før alt som datert innslag øverst i `kunnskap/laering.md`, og legg de
+      aktive punktene i STATUS (maks 3). **Ikke gjengi dem i chatten** — de
+      skrives til fil nettopp for å overleve `/clear`, og en opplesning i
+      tillegg er samme tekst to ganger. Én linje om hvor de ble ført, og hva
+      som ble strøket eller promotert, holder.
    e. **Gjelder et punkt arbeidsflyten selv** (skillene, ikke prosjektet):
       tilby å opprette et issue i `vestfoldfylke/claude-code-skills`
       (`gh issue create`). Issue-teksten skal beskrive arbeidsflytproblemet og

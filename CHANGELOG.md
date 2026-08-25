@@ -4,6 +4,29 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## web-prototype 0.1.2 — 2026-08-25
+
+- **Designsystemet feiler stille på ukjente attributtnavn — nå advart om i
+  SKILL.md.** Et attributt klassen ikke kjenner blir ignorert, elementet rendres
+  ustilt, og `svelte-check` melder ingenting. To målte tilfeller i tørrkjøringen:
+  `data-size` utenfor `.ds-heading`/`.ds-paragraph`/`.ds-avatar`/`.ds-spinner`,
+  og `data-variant="primary"` på `.ds-button`, der primær er basisstilen uten
+  attributt. Samtidig presisert at `data-size` ikke er universell — linja om
+  `font-size` antydet at den gjaldt generelt.
+- **Advarselen ligger i `SKILL.md`, ikke i `components.md`.** Referansefila er
+  auto-generert fra `digdir/designsystemet`, så håndskrevet tekst der forsvinner
+  ved neste regenerering.
+
+## 0.5.3 — 2026-08-25
+
+`faseflyt` 0.5.3. Selvvurderingen skrives, men leses ikke opp.
+
+- **`fase-slutt` steg 2d gjengir ikke lenger punktene i chatten.** Poenget med
+  selvvurderingen er at den skrives til `laering.md` og STATUS for å overleve
+  `/clear`; en opplesning i tillegg er samme tekst to ganger, og det var den
+  største gjenværende utdatakilden etter 0.5.0. Én linje om hvor punktene ble
+  ført, og hva som ble strøket eller promotert, erstatter den.
+
 ## 0.5.2 — 2026-08-25
 
 `faseflyt` 0.5.2. Steg 2 kjenner igjen sin vanligste falske positiv.

@@ -518,3 +518,10 @@ prosjekt — pluss dataregime-spørsmålet.
 som eneste nye spørsmål» som retning? Sies ja, følger tre leveranser: produksjonsgap-
 fila, artefaktreglene over, og en gjennomgang av hva som skal ut av kollegaenes
 prosjekter og inn i vedlikeholderdokumentasjonen.
+
+**Halvveis besvart 2026-08-25:** «mindre maskineri» fikk et konkret svar i
+`faseflyt` 0.5.0 og 0.5.3 — skillene rapporterer avvik framfor gjennomføring, og
+selvvurderingen skrives uten å leses opp, uten at noe steg eller noen sjekk ble
+fjernet (se `logg.md` 2026-08-25 kveld, CHANGELOG 0.5.0/0.5.3). Svaret kom fra
+bruk, ikke fra analyse. **Dataregime-spørsmålet står fortsatt ubesvart**, og de
+tre leveransene over er ikke bestilt.

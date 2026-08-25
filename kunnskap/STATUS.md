@@ -8,34 +8,33 @@ resonnement. Merkelappen `kjent-før-test` = bevisst utsatt.
 **FRIST: samlingen er 14. september 2026.** Tre uker. Seks grupper, deltakernes
 egne maskiner, satt opp på forhånd av BK (Mac + ARM + x86_64).
 
-**Fase:** pakken er testbar og tørrkjøringen har passert suksesskriteriet.
-**LEVERT 2026-08-25 (kveld), på `VPC-5CG3433WMH`:** fire utgivelser —
-`faseflyt` **0.5.0** (utdatakontrakt: rapporter avvik, ikke gjennomføring),
-**0.5.1** (scope-vakten hardet), **0.5.2** (`.claude/settings.json` som kjent
-falsk positiv) og `web-prototype` **0.1.1** (`<ds-button>`-motsigelsen).
-Renhetsporten kjørt foran hver push: 11 søk · 0 feil, positiv kontroll.
-Arbeidstreet er rent. **Alle tre rytmevakter er nå målt.**
+**Fase:** **tørrkjøringen er avsluttet** — fase 0, 1 og 2 verifisert, tre
+faseslutt, fase 3 bevisst ikke kjørt. **LEVERT 2026-08-25 (kveld), på
+`VPC-5CG3433WMH`:** seks utgivelser — `faseflyt` **0.5.0** (utdatakontrakt:
+rapporter avvik, ikke gjennomføring), **0.5.1** (scope-vakten hardet), **0.5.2**
+(`.claude/settings.json` som kjent falsk positiv), **0.5.3** (selvvurderingen
+leses ikke opp), og `web-prototype` **0.1.1** (`<ds-button>`) + **0.1.2** (DS
+feiler stille på ukjente attributtnavn). Renhetsporten kjørt foran hver push.
+Arbeidstreet er rent.
+
+**Læringssløyfen er nå målt i begge retninger, også utenfor dette repoet:**
+`[pakkekilde-foer-referanse]` overlevde strykningen i tørrkjøringens faseslutt
+tre og telles mot promotering (to av tre). Den posten har stått åpen siden 0.3.0.
+**Alle tre rytmevakter er målt**, og verifiseringsporten holdt tre av tre.
 
 ## Neste — start her
 
-**1. Tørrkjøringens faseslutt nummer tre** (`C:\dev\test-utstyrskapet`, egen økt).
-Fase 2 er verifisert i nettleseren. **Fase 3 skal ikke kjøres** — beslutning BK.
-Ved selvvurderingen der: `[pakkekilde-foer-referanse]` skal **presiseres**, ikke
-strykes og ikke promoteres («referansefila først; pakkens CSS når fila ikke
-svarer») — belegget er `data-variant`-episoden i loggen. Og
-`[les-regelen-foer-flagget]`: si eksplisitt om den strykes fordi oppførselen
-sitter, eller fordi org-regelsamlingen forsvant med flyttingen til `bkaarstein`.
+**1. `/plugin marketplace update claude-code-skills` i terminalen + omstart.**
+Sperren er over — tørrkjøringen er ferdig. Økten som skrev dette kjørte 0.4.1
+mens repoet står på 0.5.3, så ingenting av dagens arbeid er prøvd i drift ennå.
 
-**2. Etterpå: `/plugin marketplace update claude-code-skills` i terminalen +
-omstart.** Sperren gjaldt kun til faseslutt tre var i havn. Merk at
-scope-vakt-hardningen ikke når prosjekter som alt er scaffoldet.
-
-**3. Mac-pre-flight (helt urørt, plattformen flest er på) og ARM-pre-flight**
+**2. Mac-pre-flight (helt urørt, plattformen flest er på) og ARM-pre-flight**
 (kontor-PC, Snapdragon). `kollegatest.md` har alle bokser tomme. Dette er
 kritisk vei for samlingen; fase 3 i tørrkjøringen var det ikke.
 
-**4. `data-size`-premisset** er fortsatt umålt i
-`node_modules/@digdir/designsystemet-css/dist`. Ikke skriv issuet før det.
+**3. `data-size`-posten er lukket.** Målingen ble bekreftet i tørrkjøringen, og
+funnet landet som `web-prototype` 0.1.2 framfor som issue — se loggen for hvorfor
+et måleobjekt ikke skal opprette issues i pakkerepoet.
 
 ## Arbeidsmåte neste økt
 

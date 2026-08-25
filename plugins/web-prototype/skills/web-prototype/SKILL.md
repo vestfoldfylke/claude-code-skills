@@ -224,8 +224,9 @@ Ensure `tsconfig.json` targets modern TypeScript 6 features:
 - **No custom color variables** — never define `--color-*` or `--brand-*` in `:root`. Use DS tokens.
 - **No hardcoded hex/rgb colors** — no `#3b82f6`, `rgba(0,0,0,0.5)`, etc. Use DS color tokens instead.
 - **No `font-family` declarations in component styles** — it's already inherited from `:root` via `--ds-font-family`. Every repeated declaration is noise.
-- **No custom `font-size` for text** — use `data-size` on `.ds-heading` / `.ds-paragraph` instead.
+- **No custom `font-size` for text** — use `data-size` on `.ds-heading` / `.ds-paragraph` instead. `data-size` is not universal: it works on `.ds-heading`, `.ds-paragraph`, `.ds-avatar` and `.ds-spinner`, and on a container to set the inherited size mode. Anywhere else it does nothing.
 - **No custom button, card, alert, tag, or tab styling** — use the DS components.
+- **Never guess an attribute name — Designsystemet fails silently.** An attribute the class does not know is ignored, the element renders unstyled, and `svelte-check` reports nothing. Two measured cases: `data-size` outside the four classes above, and `data-variant="primary"` on `.ds-button`, where primary is the base style and has no attribute at all. Check `references/components.md` first — it documents the attributes per class — and the class's own CSS in `node_modules/@digdir/designsystemet-css/dist/src` when the reference does not answer or seems to contradict what you observe.
 
 ### Custom `<style>` blocks are for layout only
 

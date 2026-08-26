@@ -204,10 +204,20 @@ issue-mekanismen finnes for kollegaer som ikke kan redigere pakken selv.
   installasjonsoppskriften. Verifisert før commit at alle ni har en ekvivalent i
   pakken; retrospektivet er destillert til `fallgruver.md` og originalen ligger i
   git-historikken.
-- **Kontor-PC-en (Snapdragon/ARM) har fortsatt gammelt oppsett.** Rekkefølgen der:
-  `git -C ~/.claude pull` FØRST (fjerner de gamle kopiene som ellers skygger for
-  plugin-versjonen), deretter `/plugin marketplace add` + installer de tre user
-  scope. **Noter underveis — dette ER ARM-pre-flighten** for samlingen.
+- **Kontor-PC-en (Snapdragon/ARM): pluginene er på plass, resten av pre-flighten
+  er uverifisert.** Observert 2026-08-26 på `VPC-8WD9VC4` (Snapdragon X Elite):
+  alle tre ligger i `plugins/cache/` i gjeldende versjoner — `faseflyt` 0.5.9,
+  `fint-graphql` 0.1.0, `web-prototype` 0.1.2 — marketplace-klonen finnes, og
+  skillen kjørte. Punktet sa tidligere «har fortsatt gammelt oppsett»; det
+  stemmer ikke lenger.
+  **Umålt, og skal stå som umålt:** om `git -C ~/.claude pull` faktisk ble kjørt,
+  om de gamle kopiene som ellers skygger for plugin-versjonen er borte, og om de
+  tre er installert user scope. Rekkefølgen som skulle følges var
+  `git -C ~/.claude pull` FØRST, deretter `/plugin marketplace add` + installer
+  de tre user scope.
+  **Noter underveis — dette ER ARM-pre-flighten** for samlingen; den er
+  påbegynt, ikke gjennomført. Første måling gjort på maskinen ga funnet om at
+  `.claude/settings.json` er inert — se `logg.md` 2026-08-26.
 
 ## Deny-runden — LUKKET 2026-08-19 (kveld). Ikke gjenåpne.
 

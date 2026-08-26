@@ -2,6 +2,81 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-26 — Første måling på ARM: `settings.json` er inert, `settings.local.json` virker, og formen var aldri problemet
+
+Maskin `VPC-8WD9VC4` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.
+**Første måling gjort på ARM-maskinen i det hele tatt.** Ingen utgivelse — økten
+målte, den endret ingen pakkefil.
+
+Utgangspunktet var BKs observasjon i oppstarten: tre godkjenningsdialoger, med
+skjermbilde. Alle tre på `plugin.json`-filer som `.claude/settings.json` linje
+6–7 dekker.
+
+**Observert samtidig, uten at noen kommando ble kjørt for det:** `faseflyt`
+0.5.9 ligger både i `plugins/cache/` og `plugins/marketplaces/` på denne
+maskinen, og skillen kjørte. `.claude/settings.local.json` fantes ikke her —
+den er gitignorert og per maskin, så STATUS' omtale av org-kallene i den gjaldt
+den andre maskinen.
+
+### Funn: variabelen er hvilken fil oppføringen står i, ikke formen
+
+**Observert, fire kall.**
+
+| Kall | Oppføring bor i | Utfall |
+|---|---|---|
+| Tre `plugin.json` i oppstarten | `settings.json` linje 6–7 | Dialog ×3 |
+| `cache/claude-code-skills/fint-graphql/0.1.0/.claude-plugin/plugin.json` | `settings.json` linje 6 | Dialog |
+| `git rev-parse --abbrev-ref HEAD` | `settings.local.json` | Ingen dialog |
+| `cache/claude-code-skills/web-prototype/0.1.2/.claude-plugin/plugin.json` | `settings.local.json` | Ingen dialog |
+| `claude plugin validate .` | `settings.json` linje 13 | Dialog |
+
+**Det gjelder `Bash` like mye som `Read`.** Siste linje i tabellen ble kjørt som
+del av faseslutten, ikke som måling, og ga dialog på en kommando `settings.json`
+dekker med `Bash(claude plugin validate:*)`. Fila er altså inert for begge
+verktøytypene — ikke bare for Read-linjene.
+
+De to `settings.local.json`-oppføringene ble skrevet mens økten kjørte og virket
+uten omstart.
+Den siste bruker **nøyaktig samme tilde-form med `**`** som linje 6 i
+`settings.json` — samme form, samme sti-type, ulik fil, motsatt utfall.
+
+`git rev-parse` var lastekontrollen, kjørt alene før de andre: den utelukker at
+den lokale fila ikke var lest.
+
+**Konsekvensen treffer malen direkte:** `nytt-prosjekt` steg 6 skriver
+allowlisten til `.claude/settings.json`. Er den fila inert hos kollegaene, gir
+allowlisten ingenting — tre dialoger per økt per person, seks grupper på
+samlingen.
+
+### Avkreftet: dialogen i oppstarten skyldtes ikke at det var øktens første kall
+
+`fint-graphql`-kallet kom midt i økten, på en fil `settings.json` dekker eksakt,
+og ga dialog. Den åpne posten fra 2026-08-25 er dermed lukket — gjetningen var
+feil, og det var ikke noe med oppstartsøyeblikket.
+
+### Utilstrekkelig: «allowlisten virker ikke i økten den skrives»
+
+Forklaringen fra 2026-08-25 forutsier at en ny økt går rent. `settings.json` lå
+her ved oppstart, hentet via `git pull`, og er likevel inert — mens
+`settings.local.json`, skrevet midt i denne økten, virket med én gang.
+Forklaringen er ikke motbevist om det den målte, men den dekker ikke dette.
+
+### Ugyldig, og skal ikke bygges på
+
+Første runde testet tre former (tilde med `**`, tilde med eksakt sti, full sti
+med `**`) mot filer i `claude-plugins-official`. Alle tre gikk gjennom — men BK
+opplyste etterpå at instruksen om å trykke «No» ikke ble lest i tide, så
+utfallene kan være egne godkjenninger. **Rundens tre resultater er kastet.**
+Funnet over hviler ikke på dem: det er målt på nytt med ett kall mot en urørt
+fil.
+
+### Åpent, og skal stå som åpent
+
+- **Hvorfor `settings.json` er inert er ikke målt.** Godkjenningstilstand for
+  prosjektinnstillinger, VS Code-utvidelsen og ARM er tre uprøvde forklaringer.
+- Om det samme gjelder på `VPC-5CG3433WMH` eller i terminal-CLI-en.
+- Om skråstrek-retningen har noe å si — bare `/` er prøvd, aldri `\`.
+
 ## 2026-08-25 (dag) — Tilde-regelen fra 0.5.7 var feil, og allowlisten virker ikke i økten den skrives
 
 Maskin `VPC-5CG3433WMH` (hjemmekontor, AMD64 — ikke ARM-maskinen). Én utgivelse:

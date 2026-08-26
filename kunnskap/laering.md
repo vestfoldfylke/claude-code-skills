@@ -9,6 +9,49 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-26 — Begge punktene fulgt, og designet var riktig; men jeg konstruerte bort den variabelen som viste seg å være svaret, og la instruksen brukeren måtte følge på feil sted
+
+**Evaluering av forrige økts to punkter:**
+
+- **[tell-forekomstene-for-du-lover-omfanget]** — **fulgt, og strykes.** Belegg:
+  da BK meldte tre dialoger, leste jeg `.claude/settings.json` og
+  `settings.local.json` FØR jeg sa noe om årsaken, i stedet for å svare ut fra
+  STATUS' beskrivelse av allowlisten. Det var avgjørende: STATUS sier at
+  org-kallene bor i `settings.local.json`, og den fila fantes ikke på denne
+  maskinen. Hadde jeg svart fra STATUS, ville forklaringen vært feil fra første
+  setning.
+- **[maal-en-variabel-om-gangen]** — **fulgt, og strykes.** Belegg: jeg flyttet
+  målfilene ut av `claude-code-skills` og over i `claude-plugins-official`
+  nettopp fordi de to brede oppføringene i `settings.json` ellers ville dekket
+  alle tre variantene, og jeg holdt `faseflyt`-filene utenfor fordi
+  engangsgodkjenningene fra oppstarten ville gitt falsk bestått. Regelen ble
+  fulgt. Feilen som likevel oppsto er av en ny familie — se punktene under.
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, niende
+  påfølgende runde.** Belegg: måledesignet ble bygget på metoden fra 2026-08-25
+  (én form isolert om gangen, mot en kontrollinje som skal gå gjennom) framfor
+  på min egen første innskytelse, og lastekontrollen `git rev-parse` er direkte
+  arvet fra `Bash(whoami)`-kontrollen den dagen. **Promoteringsforslaget står
+  fortsatt og venter på BKs klarsignal.**
+
+**Nye punkter:**
+
+- **[hold-en-arm-pa-variabelen-du-neytraliserer]** Jeg fjernet `settings.json`
+  sin dekning fra målingen med vilje, for at de tre formvariantene skulle stå
+  alene — og nøyaktig den variabelen jeg konstruerte bort var svaret. Runden
+  kostet fire kall og tre av dem endte ugyldige, mens ett eneste kall mot en fil
+  `settings.json` dekker (`fint-graphql` i cachen) avgjorde saken. Jeg hadde til
+  og med skrevet «den variabelen jeg designet meg bort fra» i min egen
+  oppsummering uten å se det. **Regelen: nøytraliserer du en variabel for å
+  isolere andre, gjør du den samtidig uobserverbar — behold én arm som fortsatt
+  tester den, eller mål den først.**
+- **[sett-brukerinstruksen-rett-for-kallet]** Målingen hvilte på at BK trykket
+  «No», og den instruksen sto i et avsnitt over en tabell, med to andre avsnitt
+  etter seg. Tre varianter ble ugyldige fordi den ikke ble lest i tide — BKs
+  egne ord: «Fikk ikke lest instruksen godt nok.» Andre runde la instruksen på
+  egen linje umiddelbart før kallet, og da virket den. **Regelen: er brukerens
+  tastetrykk selve måleresultatet, står instruksen på egen linje rett før
+  verktøykallet — ikke i innledningen, ikke etter en tabell, og bare ett sted.**
+
 ## 2026-08-25 (dag) — Punktet fra i natt bar hele økten; men omfanget vokste to ganger etter godkjenning, og én måling målte ingenting
 
 **Evaluering av forrige økts tre punkter:**

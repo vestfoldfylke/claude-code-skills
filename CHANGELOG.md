@@ -4,6 +4,15 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.5.11 — 2026-08-27
+
+- **`fase-slutt` steg 6 krever nå ett kontrollsøk som skal gi treff.** Fire søk
+  som alle gir null treff er ikke skillbare fra fire søk som ikke virker, og
+  steget hadde ikke noe krav om å vise at søkene faktisk treffer. Observert i
+  tørrkjøringen av 0.4.1 (2026-08-24): samme skill kjørte kontrollen uoppfordret
+  i én fase og ikke i den neste. Ærlighetsklausulen følger med — kontrollen viser
+  at søket virker i katalogen, ikke at mønstrene er de riktige. Issue #16.
+
 ## 0.5.10 — 2026-08-27
 
 - **Påstanden om at allowlisten fjerner oppstartsdialogene er tatt ut av

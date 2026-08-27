@@ -153,6 +153,17 @@ Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
    - Skal noe av dette ut som issue i org-repoet (steg 2), beskriv
      arbeidsflytproblemet — aldri prosjektets data.
 
+   **Ett kontrollsøk som skal gi treff, i samme runde.** Fire søk som alle gir null
+   treff er ikke skillbare fra fire søk som ikke virker — en regex som aldri kan
+   matche, et `git grep` kjørt fra feil katalog, eller et tomt tracked-sett gir
+   samme utfall som et rent prosjekt. Kjør derfor ett søk du vet skal treffe, for
+   eksempel `git grep -c` etter et ord som finnes i en tracked fil, og meld
+   treffantallet sammen med nullsvarene.
+
+   Vær ærlig om hva kontrollen dekker: den viser at søket virker i denne katalogen,
+   ikke at mønstrene er de riktige. En regex kan være gal og likevel bestå
+   kontrollen.
+
    **Meld hva du kjørte og hva du fant**, ikke «sjekk utført»: brukeren skal kunne
    se hvilke søk som faktisk ble gjort. Skaler etter prosjekttype — for
    dokumentasjonsprosjekter er persondata-sjekken hovedsaken. Utenfor git: samme

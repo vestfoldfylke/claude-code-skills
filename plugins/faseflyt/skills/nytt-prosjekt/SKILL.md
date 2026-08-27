@@ -186,7 +186,10 @@ regel om hva du skriver her, ikke bare om hva du sier.
    `extraKnownMarketplaces.claude-code-skills`, oppføringene i
    `enabledPlugins` som slutter på `@claude-code-skills`, og de fire
    `permissions.allow`-oppføringene i malen — de dekker `fase-start` sine egne
-   kall, og uten dem koster hver oppstart fire godkjenningsdialoger. Finnes
+   kall. **Lov aldri at de fjerner dialogene:** målt 2026-08-27 ga oppføringer
+   som matcher ordrett likevel dialog, mens kall uten oppføring gikk gjennom, så
+   allowlisten er ikke alene om å avgjøre. Si i stedet at oppstarten kan koste
+   noen godkjenninger, og at «allow for this project» gjør valget varig. Finnes
    `.claude/settings.json` fra før: legg KUN disse nøklene til, og rør
    ingenting annet — en eksisterende `allow`-liste utvides og aldri erstattes,
    brukerens `deny`-liste røres ikke, og heller ikke andre marketplaces

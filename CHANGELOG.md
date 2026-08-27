@@ -4,6 +4,16 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.5.10 — 2026-08-27
+
+- **Påstanden om at allowlisten fjerner oppstartsdialogene er tatt ut av
+  `nytt-prosjekt` steg 6.** Målt 2026-08-27 på ARM: oppføringer som matcher
+  ordrett ga likevel dialog, mens kall uten oppføring gikk gjennom — allowlisten
+  er ikke alene om å avgjøre. Steget sier nå at oppstarten kan koste noen
+  godkjenninger, og at «allow for this project» gjør valget varig.
+- **README svarer på maset.** Ny post under «Vanlige spørsmål»: dialogene gjelder
+  å kjøre noe, ikke å lese, og en hel `/faseflyt:fase-slutt` ga fire.
+
 ## web-prototype 0.1.2 — 2026-08-25
 
 - **Designsystemet feiler stille på ukjente attributtnavn — nå advart om i

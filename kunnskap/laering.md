@@ -9,6 +9,63 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-27 (hjemmekontor, kveld) — Måledisiplinen holdt for første gang mot en anledning jeg faktisk måtte avstå fra; men språkregelen ble brukt på arvet ordlyd og ikke på mine egne ord, og BK måtte fange det
+
+**Evaluering av forrige økts tre punkter:**
+
+- **[en-maaling-per-tur]** — **fulgt, med reelt press for første gang.
+  Videreføres én siste runde.** Belegg: turen som bar sammenligningskallet
+  inneholdt bare kallet — skriptet ble skrevet i turen før. Og da `.in_use`-funnet
+  dukket opp, fantes en billig tilleggsmåling rett foran meg (er 39156 en levende
+  prosess?); den ble avstått og hvorfor sagt i samme melding. Det er første runde
+  der punktet stoppet noe jeg ellers hadde gjort. Men målingen var moderat, ikke
+  en rigg med armer å rote bort, så tørrkjøringen i morgen er fortsatt den harde
+  testen. Holder den, strykes punktet neste runde.
+- **[foer-verdien-maa-fanges-foer-handlingen]** — **fulgt, og strykes som
+  innarbeidet.** Belegg: skriptet har en `== FOER-VERDIER ==`-blokk som kjøres
+  først og skriver alle tre versjonene, og den blokka er grunnen til at målingen
+  kunne meldes som ren innholdssammenligning: den viste at alle tre sto på 0.5.11,
+  så ingen `marketplace update` ble gjort, og det finnes ingen handling utfallet
+  kan tilskrives feilaktig. Grunnen til å stryke er at regelen ikke lenger hviler
+  på at jeg husker den — den er bakt inn i to mekanismer som kjøres uansett:
+  skriptets egen før-blokk, og steg 0 i `fase-start`, som leser versjonene før
+  noe annet skjer. Hentes tilbake om en måling gjøres uten begge.
+- **[arvet-ordlyd-maa-vaskes-foer-den-limes-inn]** — **ikke prøvd som skrevet,
+  men nabofeilen inntraff.** Ingen arvet ordlyd gikk inn i noen fil denne økten.
+  Samtidig innførte jeg selv «derisker» tre ganger uten forklaring, og BK fanget
+  det. Punktet dekker ordlyd som *kommer utenfra*; ord jeg lager selv faller
+  utenfor det. Gapet er reelt nok til å bli et eget punkt framfor en utvidelse av
+  dette — kilden er ulik, og dermed også stedet kontrollen må stå.
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, trettende
+  påfølgende runde.** Belegg: to forslag i økten ble stoppet av prosjektets egne
+  regler før de ble handlinger — å legge måleskriptet i repoet, og å føre
+  «derisker»-raden inn i klarspråktabellen. Begge ble meldt som forslag med
+  konsekvensen sagt (den siste er en pakkeendring: bump av begge manifestene og
+  `CHANGELOG.md`), ingen av dem utført. **Promoteringsforslaget står fortsatt og
+  venter på BKs klarsignal, trettende gang.**
+
+**Nye punkter:**
+
+- **[ord-jeg-selv-innfoerer-maa-holdes-mot-tabellen]** Klarspråkregelen ble brukt
+  på ordlyd som kom utenfra, og ikke på ordene jeg selv lagde i samme økt. Belegg:
+  «derisker» sto i en overskrift og i begrunnelsen for neste steg, tre
+  forekomster, ingen forklaring — og BK fanget det, ikke jeg. Ordet står ikke i
+  klarspråktabellen, så tabellen kunne aldri fange det; det er regelen bak den som
+  gjelder, og den gjelder chatten like mye som filene. **Regelen: et uvanlig ord
+  eller et lån får bare passere hvis det står i tabellen, eller forklares i samme
+  setning, eller byttes til vanlig norsk — og kontrollen gjelder også overskrifter
+  og den korte teksten som følger et verktøykall, som er der det lakk.**
+- **[skriv-maaleskriptet-der-det-kan-gjenbrukes]** En måling som skal gjentas på
+  en annen maskin må ha kommandoen sin et sted den maskinen kan nå. Belegg:
+  `sammenlign-cache-repo.ps1` ble lagt i scratchpad, som er øktspesifikt, mens
+  nøyaktig samme måling er den åpne posten på kontormaskinen i morgen — så
+  skriptet må skrives om der framfor kjøres. Oppskriften ble ført i STATUS som
+  nødløsning, men prosa er ikke et skript, og en omskrevet måling er ikke samme
+  måling. **Regelen: før et måleskript skrives, avgjør om målingen skal gjentas
+  andre steder. Skal den det, tilby å legge skriptet i repoet FØR det kjøres —
+  ikke etterpå, når resultatet alt er i hånda og filendringen føles som
+  ekstraarbeid.**
+
 ## 2026-08-27 (natt) — En økt uten en eneste måling, så to av tre punkter kunne ikke prøves; det som reddet runden var å prøve en arvet ordlyd mot repoets egne regler
 
 **Evaluering av forrige økts tre punkter:**

@@ -2,6 +2,66 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-27 (hjemmekontor, kveld) — 0.5.11 er identisk i cache og repo på x86-maskinen, tredje gang; og et ord jeg selv innførte slapp gjennom språkregelen
+
+Maskin `VPC-5CG3433WMH` (hjemmekontor, x86_64). Kort økt: maskinen var åtte
+commits bak, og den ene posten i STATUS som kunne gjøres herfra ble gjort.
+
+**Levert:** ingen utgivelse. `git pull` (`b2ef202` → `a0b27a2`, åtte commits), én
+måling, ett språkfunn. Kontormaskinen og Mac-posten er urørt — de kan ikke gjøres
+fra denne maskinen.
+
+**`git pull` ble blokkert av en lokal linje i `.claude/settings.json`.**
+Godkjenningsdialogen for `git pull` hadde lagt `PowerShell(git pull)` i
+allowlisten, og innhentingen rørte samme linjer (den la `Bash(claude plugin *)`,
+`Bash(git commit *)`, `Bash(gh issue *)`). Linjen ble lagt i stash, innhentingen
+gikk som fast-forward, og stashen ble deretter kastet.
+**Beslutning (BK, den lokale allowlist-linjen):** kastes framfor å committes.
+Begrunnelse: allowlist-saken er lukket — sammenhengen mellom `settings.json` og
+oppstartsdialogene finnes ikke — så linjen kjøper ingenting, og fila følger med
+til alle som installerer pakken.
+
+**Funn, observert: cache og repo er identiske for 0.5.11 på denne maskinen.**
+Kjørt: `sammenlign-cache-repo.ps1` (scratchpad), som leser begge trærne, strippet
+BOM via `ReadAllText` og normaliserte CRLF til LF før SHA256. Utfall: **11 av 11
+filer identiske, 0 avvik.** Før-verdiene sto i utskriften før sammenligningen:
+cache 0.5.11, marketplace-klonen 0.5.11, repoets arbeidstre 0.5.11 — alle tre
+like, så `marketplace update` og omstart var ikke nødvendig, og målingen er ren
+innholdssammenligning uten handling foran seg. Tredje gang på denne maskinen
+(0.2.1, 0.4.0, nå 0.5.11), alle med 0 avvik.
+
+**Hva målingen ikke sier:** ingenting om kontormaskinen. ARM-leddet er fortsatt
+bare målt på versjonsnummer, ikke innhold, og står som umålt.
+
+**Funn, hypotese: cachen har to filer repoet ikke har.** `.in_use\39156` og
+`.in_use\4936` — filsettene spriker med to, alt annet er likt. Navnene er tall og
+mappa heter `.in_use`, så hypotesen er at Claude Code fører bok over hvilke
+prosesser som holder cache-versjonen i bruk, med prosess-ID som filnavn. **Ikke
+verifisert:** at tallene er levende prosess-ID-er ville krevd et eget kall, og
+turen skulle inneholde én måling. Testen som ville avgjort det: sjekk om 39156 og
+4936 finnes som kjørende prosesser. Konsekvens uansett utfall: framtidige
+sammenligninger må se bort fra `.in_use/`, ellers spriker filtellingen hver gang
+uten at noe er galt.
+
+**Funn, observert: «derisker» slapp gjennom språkregelen tre ganger, og BK fanget
+det.** Ordet er engelsk `de-risk` med norsk endelse, brukt i en overskrift og i
+begrunnelsen for neste steg, uten forklaring noe av gangene. Det står ikke i
+klarspråktabellen, så tabellen kunne ikke fange det — regelen bak den skulle:
+«bruk et fagord bare hvis du forklarer det i samme setning». Kontrasten til
+forrige økt er poenget: da ble en *arvet* ordlyd fra issue #16 holdt mot
+`CLAUDE.md` og vasket. Denne økten kom ordet fra meg selv, og da ble det ikke
+holdt mot noe. Rettet til «fjerner en usikkerhet».
+**Beslutning (BK, klarspråktabellen):** raden for «derisker» skal **ikke** inn —
+«radene kan bare stå». Ordet føres i læringsloggen i stedet. Merk for neste økt:
+ordlyden var kort, og tolkningen «la tabellen være urørt» er min — sies det noe
+annet, er raden fortsatt et åpent forslag (`CLAUDE.md` her, og den fulle tabellen
+i `nytt-prosjekt/SKILL.md`, som er en pakkeendring).
+
+**Måleskriptet overlever ikke økten.** Det ligger i scratchpad, som er
+øktspesifikt, så kontormaskinen kan ikke nå det i morgen. Oppskriften er derfor
+ført i STATUS i stedet, kort nok til å skrives om. Å legge scriptet i repoet ble
+tilbudt og ikke bestilt.
+
 ## 2026-08-27 (natt) — 0.5.11: pakken krever nå av kollegaene det den har krevd av seg selv, og køen viste seg å være tom bak frysen
 
 Maskin `VPC-8WD9VC4`. Tørrkjøringen ble flyttet til i morgen (28.08) på denne

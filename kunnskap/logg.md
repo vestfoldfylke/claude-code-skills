@@ -2,6 +2,54 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-27 (natt) — 0.5.11: pakken krever nå av kollegaene det den har krevd av seg selv, og køen viste seg å være tom bak frysen
+
+Maskin `VPC-8WD9VC4`. Tørrkjøringen ble flyttet til i morgen (28.08) på denne
+maskinen, sammen med en kollega, så økten gikk til køen i stedet.
+
+**Levert:** `faseflyt` **0.5.11** (`fd86599`, pushet), issue #16 lukket.
+`fase-slutt` steg 6 krever nå ett kontrollsøk som skal gi treff, meldt sammen med
+nullsvarene, med ærlighetsklausulen om at kontrollen viser at søket virker i
+katalogen — ikke at mønstrene er de riktige.
+
+**Saken:** steg 6 kjørte fire søk som normalt gir null treff, uten noe krav om å
+vise at søkene virker. Belegget i issuen var to faser i samme tørrkjøring av
+0.4.1 med samme instruks og ulikt utfall — kontrollen kjørt uoppfordret i den ene,
+ikke i den andre. Det er definisjonen på oppførsel teksten ikke sikrer. Asymmetrien
+som gjorde det verdt å rette: repoets egen `CLAUDE.md` har krevd kontrollsøket av
+renhetsporten hele tiden, mens steg 6 — det som kjøres i *alle* prosjekter, av folk
+som ikke nødvendigvis leser regexen — ikke krevde det.
+
+**Funn, observert: den ferdige ordlyden i issuen kunne ikke brukes.** Forslaget
+var skrevet med «positiv kontroll», og tittelen med «røyktest». Begge står i
+klarspråktabellen i `CLAUDE.md` som ord vi ikke bruker. Issuen ble skrevet
+2026-08-24; språkreglene ble skjerpet og flyttet inn i `CLAUDE.md` som tekst
+2026-08-25 (0.5.7). Ordlyden ble derfor vasket før den gikk inn. Hadde den blitt
+limt inn ordrett, ville pakken utgitt et brudd på sin egen språkregel i nøyaktig
+den teksten som skal håndheve kontrollen.
+
+**Funn, observert: «Lukker #16» i commit-meldingen lukket ikke issuen.** GitHub
+gjenkjenner `Closes`/`Fixes`/`Resolves`, ikke norske verb. Issuen ble lukket med
+`gh issue close 16` etterpå. Konsekvens for repoet: norske commit-meldinger kan
+ikke lukke issues automatisk, så lukkingen må gjøres som eget kall.
+
+**Køen er tom bak frysen — det var selve funnet i økten.** `gh issue list` ga sju
+åpne, og seks av dem bærer `kjent-før-test`: #15, #10, #9, #8, #7, #3. Merkelappen
+er MVP-frysen (BK 2026-08-19: «Ikke bygg mer før testen er gjort»). #16 var
+umerket og falt utenfor frysen — den var derfor den eneste saken økten kunne ta
+uten å bryte en beslutning som alt er tatt. Da den var lukket, fantes det ikke
+flere.
+
+**Sjekkene før push, alle observert:** `bash .github/renhet/sjekk.sh` → 11 søk, 0
+feil, 0 advarsler, med scriptets eget kontrollsøk på 38 treff. `claude plugin
+validate .` → passert. Eget kontrollsøk `git grep -c "kontrollsøk"` mot den
+endrede fila → 1 treff, som viser at søket traff i denne katalogen.
+
+**`.claude/settings.json` kom med i commiten, og ble sjekket framfor antatt.**
+Diffen var én linje: `Bash(gh issue *)`, lagt til av godkjenningen `gh issue list`
+utløste tidligere i økten. Ingen brukersti. Den kjente falske positiven i
+`fase-start` steg 2, denne gangen bekreftet ved å lese diffen.
+
 ## 2026-08-27 (sent kveld) — 0.5.10 når ARM-maskinen: alle tre ledd målt, og økten kjører teksten den nettopp utgav
 
 Maskin `VPC-8WD9VC4` (Snapdragon X Elite, ARM64, VS Code-utvidelsen). Kort økt med

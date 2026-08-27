@@ -9,6 +9,54 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-27 (natt) — En økt uten en eneste måling, så to av tre punkter kunne ikke prøves; det som reddet runden var å prøve en arvet ordlyd mot repoets egne regler
+
+**Evaluering av forrige økts tre punkter:**
+
+- **[en-maaling-per-tur]** — **ikke prøvd, videreføres uendret.** Økten inneholdt
+  ingen måling: den redigerte tekst, bumpet manifester og kjørte sjekker med kjent
+  utfall. En sjekk som skal gå grønt er ikke en måling, og å telle den som
+  «fulgt» ville vært å gi punktet en seier det ikke vant. Tredje runde uten
+  skikkelig press; tørrkjøringen i morgen er anledningen.
+- **[foer-verdien-maa-fanges-foer-handlingen]** — **ikke prøvd, videreføres
+  uendret.** Samme grunn: ingen handling i økten skulle bevises av en måling.
+  Nærmeste var å lese diffen på `.claude/settings.json` før commit framfor å anta
+  at den var den kjente falske positiven — riktig instinkt, men det er
+  etterprøving av en antakelse, ikke en før-verdi.
+- **[sett-brukerinstruksen-rett-for-kallet]** — **ikke prøvd, tredje runde.**
+  Ingen kall i økten krevde at brukeren gjorde noe. Punktet har nå overlevd tre
+  faseslutt uten å bli hverken fulgt eller brutt. Det er ikke en gjenganger i
+  ratchet-ens forstand — den teller punkter som *gjentar seg fordi de ikke
+  følges* — så det skal ikke promoteres. Det faller ut av de aktive tre denne
+  gangen og hentes tilbake når en måling faktisk krever brukerhandling.
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, tolvte
+  påfølgende runde, og denne gangen med det klareste belegget så langt.** Issue
+  #16 kom med en ferdigskrevet ordlyd. I stedet for å lime den inn holdt jeg den
+  mot `CLAUDE.md` og fant to ord som står i klarspråktabellen. Det var prosjektets
+  egen lærdom som stoppet prosjektets eget forslag. **Promoteringsforslaget står
+  fortsatt og venter på BKs klarsignal, tolvte gang.**
+
+**Nye punkter:**
+
+- **[arvet-ordlyd-maa-vaskes-foer-den-limes-inn]** En ferdig ordlyd fra en issue,
+  et eldre notat eller en tidligere økt er skrevet under de reglene som gjaldt da,
+  ikke de som gjelder nå. Belegg: ordlyd-forslaget i issue #16 (skrevet 2026-08-24)
+  brukte «positiv kontroll», og tittelen «røyktest» — begge ble forbudte da
+  språkreglene ble flyttet inn i `CLAUDE.md` som tekst 2026-08-25. Limt inn
+  ordrett ville pakken utgitt et brudd på sin egen språkregel i selve teksten som
+  skal håndheve kontrollen. **Regelen: en arvet ordlyd holdes mot gjeldende regler
+  før den går inn, og avviket meldes til brukeren — ikke rettes stille, for
+  brukeren skrev originalen og skal se hva som ble endret.**
+- **[sjekk-hva-som-er-parkert-foer-du-foreslaar-arbeid]** Når brukeren spør etter
+  «andre åpne punkter», er svaret ikke lista over åpne saker, men lista minus det
+  som er parkert av en beslutning brukeren selv har tatt. Belegg: seks av sju åpne
+  issues bar `kjent-før-test`, som er MVP-frysen fra 2026-08-19 («Ikke bygg mer
+  før testen er gjort»). Uten å lese merkelappene ville #15 eller #3 sett ut som
+  små, greie oppgaver å ta — og å ta dem ville vært å bygge mer dagen før testen.
+  **Regelen: les merkelappene og frysebeslutningene før du rangerer køen, og si
+  til brukeren hva som er parkert og av hvilken beslutning — så de kan velge å
+  oppheve den framfor å oppdage bruddet etterpå.**
+
 ## 2026-08-27 (sent kveld) — Måledisiplinen holdt gjennom en hel post, men den ble prøvd mot en lett måling; og jeg oppdaget at et målekall også laster instruksene sine
 
 **Evaluering av forrige økts tre punkter:**

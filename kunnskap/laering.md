@@ -9,6 +9,51 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-27 (sent kveld) — Måledisiplinen holdt gjennom en hel post, men den ble prøvd mot en lett måling; og jeg oppdaget at et målekall også laster instruksene sine
+
+**Evaluering av forrige økts tre punkter:**
+
+- **[en-maaling-per-tur]** — **fulgt, men prøvd mot en lett måling. Videreføres én
+  runde.** Belegg: versjonslesingene sto i én tur, `hjelp`-kallet i en egen, og jeg
+  la ingen filskriving eller begrunnelse i turen som bar kallet. Anledningen til å
+  bryte den fantes — de to kunne vært slått sammen — så evidensen er reell. Men
+  ingen av turene var en rigg med armer å rote bort, og punktet er derfor ikke
+  presset. Neste økt er tørrkjøringen, som vil presse den skikkelig.
+- **[nullresultat-maa-ha-en-entydig-aarsak]** — **fulgt, og strykes.** Belegg: begge
+  utfall sto skrevet før kallet gikk («sier den 0.5.10, kan punktet lukkes; sier den
+  0.5.9, har ikke omstarten tatt — og det er i seg selv et funn»), sammen med hvorfor
+  årsaken var entydig: basekatalogen skillen laster fra er den kjørende versjonen, og
+  ingen annen mekanisme kan sette den. Det var nettopp den regelen som fikk meg til å
+  velge `hjelp`-kallet framfor å slutte fra disk-tilstanden, som ville hatt to
+  forklaringer.
+- **[sett-brukerinstruksen-rett-for-kallet]** — **ikke prøvd, videreføres uendret.**
+  Ingen av kallene i økten krevde at brukeren gjorde noe («trykk No»), så det fantes
+  ikke anledning til å følge eller bryte punktet.
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, elvte påfølgende
+  runde.** Belegg: valget av `hjelp`-kallet som måleinstrument kom av pakkens eget
+  steg 0 — den mekanismen som oppgir basekatalogen — og nektelsen av å påstå
+  «økten kjører 0.5.10» ut fra disk-tilstanden er arvet direkte fra prosjektets
+  hypotese-mot-funn-krav. **Promoteringsforslaget står fortsatt og venter på BKs
+  klarsignal.**
+
+**Nye punkter:**
+
+- **[maalekallet-laster-ogsaa-instruksen]** Å bruke et skill-kall som måleinstrument
+  laster samtidig skillens instrukser, og de ber om noe brukeren ikke spurte om.
+  Belegg: `/faseflyt:hjelp` ble kalt for å lese basekatalogen, og teksten som kom
+  tilbake ba meg gjengi hele flyten og kommandotabellen til en bruker som har
+  vedlikeholdt pakken i to uker. Jeg lot det være og sa hvorfor. **Regelen: når en
+  skill kalles som instrument, si i samme melding hvilken del av instruksen du
+  bevisst ikke følger — ellers ser utskriften ut som at du overså den, og neste økt
+  kan ikke vite hva som var valg og hva som var glipp.**
+- **[foer-verdien-maa-fanges-foer-handlingen]** En måling som skal bevise at en
+  handling virket, trenger en verdi målt *før* handlingen. Belegg: at 0.5.10 nådde
+  maskinen kunne bare påstås fordi steg 0 tilfeldigvis hadde lest 0.5.9 begge steder
+  først. Startet økten etter oppdateringen, ville «0.5.10 begge steder» vært like
+  forenlig med «den sto der alt». Den ble fanget av rutinen, ikke av design.
+  **Regelen: før en handling som skal måles, skriv ned dagens verdi — også når
+  handlingen føles opplagt nok til å hoppe over det.**
+
 ## 2026-08-27 — Begge punktene fulgt, og det holdt tre kall rene; men jeg pakket det fjerde inn i en filskriving og et avsnitt måledesign, og mistet utfallet
 
 **Evaluering av forrige økts to punkter:**

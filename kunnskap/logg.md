@@ -2,6 +2,39 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-27 (sent kveld) — 0.5.10 når ARM-maskinen: alle tre ledd målt, og økten kjører teksten den nettopp utgav
+
+Maskin `VPC-8WD9VC4` (Snapdragon X Elite, ARM64, VS Code-utvidelsen). Kort økt med
+én post å lukke: at `faseflyt` 0.5.10 faktisk kommer fram til denne maskinen.
+
+**Observert, alle tre ledd:**
+
+| Ledd | Målt hvordan | Utfall |
+|---|---|---|
+| Før handlingen | versjonssjekkens steg 0 | kjørende 0.5.9, installert 0.5.9, repoet 0.5.10 |
+| Etter `/plugin marketplace update` + omstart | `Read` av marketplace-klonens `plugin.json`, `Glob` over cachen | klonen 0.5.10, cachen har egen `0.5.10`-katalog |
+| Kjørende versjon | `/faseflyt:hjelp` oppga basekatalogen `…\faseflyt\0.5.10\skills\hjelp` | 0.5.10 |
+
+Basekatalogen er entydig belegg: den katalogen skillen laster fra **er** den
+kjørende versjonen, så utfallet har ingen annen forklaring. Det var derfor kallet
+ble valgt framfor å slutte fra disk-tilstanden.
+
+**Rekkefølgen var det som gjorde målingen mulig.** Før-verdien (0.5.9 begge steder)
+kom gratis fordi steg 0 kjørte før oppdateringen. Hadde økten startet etterpå,
+ville «0.5.10 begge steder» ikke kunnet skille «oppdateringen virket» fra «den sto
+der alt».
+
+**Sideobservasjon:** oppdateringen legger til framfor å rydde. Cachen har nå
+`0.2.1`, `0.5.9` og `0.5.10` side om side. Ikke et avvik, men verdt å vite for den
+som måler cache-innhold senere.
+
+**Observasjon om pakken selv, ikke handlet på:** versjonssjekkens steg 0
+sammenligner to tall — kjørende mot installert. I *dette* repoet finnes et tredje,
+`plugins/faseflyt/.claude-plugin/plugin.json`, og det var det tredje som bar
+nyheten. Steg 0 meldte korrekt «ingen omstart trengs» mens den reelle tilstanden
+var «oppdateringen har ikke nådd maskinen». Gjelder bare pakkerepoet — i et
+kollegaprosjekt finnes de to tallene steget beskriver. Ingen endring foreslått.
+
 ## 2026-08-27 (kveld) — Allowlisten er ikke det som bestemmer, og saken lukkes med en beslutning framfor en ny måling
 
 Maskin `VPC-8WD9VC4`. Belegget kom av seg selv: faseslutten i innslaget under

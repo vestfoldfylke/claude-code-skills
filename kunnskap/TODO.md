@@ -93,6 +93,10 @@ ferdig app.
   **Gjentatt 2026-08-24 (kveld) mot 0.4.0 (`5f0f1aa`), hjemme-PC-en: 11 filer,
   0 avvik, alle tre ledd kjørt.** Posten står fortsatt åpen — ARM-leddet
   (kontor-PC-en) er umålt.
+  **ARM-leddet delvis målt 2026-08-27 på `VPC-8WD9VC4`:** alle tre ledd kjørt mot
+  0.5.10, og kjørende versjon bekreftet via basekatalogen `/faseflyt:hjelp` oppga.
+  Innholdssammenligningen fil-for-fil er *ikke* gjort på denne maskinen. Belegg:
+  `logg.md` 2026-08-27 (sent kveld).
 - **Tørrkjøringen skal skje i en blank økt i en tom mappe utenfor dette repoet.**
   En økt som har lest `plan.md`/`TODO.md` kjenner pakkens svake punkter og måler
   derfor seg selv med fasit i hånda.
@@ -206,7 +210,8 @@ issue-mekanismen finnes for kollegaer som ikke kan redigere pakken selv.
   git-historikken.
 - **Kontor-PC-en (Snapdragon/ARM): pluginene er på plass, resten av pre-flighten
   er uverifisert.** Observert 2026-08-26 på `VPC-8WD9VC4` (Snapdragon X Elite):
-  alle tre ligger i `plugins/cache/` i gjeldende versjoner — `faseflyt` 0.5.9,
+  alle tre ligger i `plugins/cache/` i gjeldende versjoner — `faseflyt` 0.5.10
+  (per 2026-08-27; sto på 0.5.9 da punktet ble skrevet),
   `fint-graphql` 0.1.0, `web-prototype` 0.1.2 — marketplace-klonen finnes, og
   skillen kjørte. Punktet sa tidligere «har fortsatt gammelt oppsett»; det
   stemmer ikke lenger.

@@ -9,71 +9,65 @@ resonnement. Merkelappen `kjent-før-test` = bevisst utsatt.
 deltakernes egne maskiner, satt opp på forhånd av BK (Mac + ARM + x86_64).
 
 **Fase:** tørrkjøringen er avsluttet (fase 0/1/2 verifisert, fase 3 bevisst ikke
-kjørt). Siste utgivelse er `faseflyt` **0.5.10** (2026-08-27, `a4cc111`) — den
-tok ut påstanden om at allowlisten fjerner oppstartsdialogene.
+kjørt). Siste utgivelse er `faseflyt` **0.5.10** (2026-08-27, `a4cc111`).
 
-## Allowlist-saken er LUKKET — ikke gjenåpne uten ny bestilling
+**Verifisert 2026-08-27 på `VPC-8WD9VC4` (kontor-PC, Snapdragon X Elite, ARM64,
+VS Code-utvidelsen): 0.5.10 kjører på ARM-maskinen.** Alle tre ledd observert —
+før-verdi 0.5.9 begge steder, `/plugin marketplace update` + omstart, og
+`/faseflyt:hjelp` oppga basekatalogen `…\faseflyt\0.5.10\…`. Belegg: `logg.md`
+2026-08-27 (sent kveld). Ikke gjenta denne målingen på denne maskinen.
 
-**Målt 2026-08-27 på `VPC-8WD9VC4` (kontor-PC, Snapdragon X Elite, ARM64, VS
-Code-utvidelsen). Belegg: `logg.md` 2026-08-27, begge innslag.**
-
-**Allowlisten er ikke det som bestemmer.** Tolv `Bash`-kall i én faseslutt, alle
-fire dialogene fotografert, så fraværet av dialog er like målt som treffene: to
-oppføringer som matcher ordrett ga dialog, mens `hostname` og `git push` — som
-ikke står i fila — gikk rett gjennom. Det setter Bash-funnet fra 2026-08-26 i
-tvil og svekker samtidig «`settings.json` er inert».
-
-**Beslutning (BK, godkjenninger ved oppstart):** noen få godkjenninger i
-oppstarten er greit og skal bare sies tydelig i dokumentasjonen. Det som ikke er
-greit er at lavterskel lesing maser gjennom hele økten — og det kriteriet er
-innfridd: samtlige `Read`-kall i økten gikk gjennom uten dialog, og dialogene kom
-for å kjøre et script, kjøre en binær, et grep med secret-ord i mønsteret, og
-`git commit`. Fire valg i en hel faseslutt.
-
-**Derfor utgår fil-mot-omstart-riggen** som sto her. Den var verdifull bare så
-lenge malens allowlist var eneste vern mot maset. **Umålt og skal stå som umålt:**
-hvorfor `Bash(bash .github/renhet/sjekk.sh)` og `Bash(claude plugin validate:*)`
-ikke matcher, og om `settings.json` er inert for `Read`.
+**Allowlist-saken er LUKKET — ikke gjenåpne uten ny bestilling.** Sammenhengen
+mellom `.claude/settings.json` og oppstartsdialogene finnes ikke; tolv `Bash`-kall
+med alle fire dialogene fotografert viste at ordrette treff ga dialog mens
+udekkede kall gikk gjennom. **Beslutning (BK, godkjenninger ved oppstart):** noen
+få valg i oppstarten er greit og skal bare sies tydelig i dokumentasjonen — og
+lavterskel lesing maser ikke, samtlige `Read`-kall gikk rene. Belegg: `logg.md`
+2026-08-27, begge innslag. **Umålt og skal stå som umålt:** hvorfor
+`Bash(bash .github/renhet/sjekk.sh)` og `Bash(claude plugin validate:*)` ikke
+matcher, og om `settings.json` er inert for `Read`.
 
 ## Neste — start her
 
-**1. Mac-pre-flight — viktigste umålte post før fristen.** Helt urørt, og
+**1. Tørrkjør i en tom mappe utenfor dette repoet.** Nå den billigste
+gjenstående. **Skal skje i en blank økt** — en økt som har lest
+`plan.md`/`TODO.md` måler seg selv med fasit i hånda, så åpne Claude Code i en
+tom scratch-mappe framfor å `/clear` her. Casen ligger som sitat i `TODO.md`
+(«Oppgave 5 — Utstyrsskapet»), avstemt ordrett mot websiden.
+
+**2. Mac-pre-flight — viktigste umålte post før fristen.** Helt urørt, og
 plattformen flest er på. `kollegatest.md` har alle bokser tomme. Kan ikke gjøres
 fra denne maskinen; krever en frivillig Mac.
 
-**2. Tørrkjør i en tom mappe utenfor dette repoet.** Fortsatt umålt. Henger ikke
-lenger på allowlisten — den er lukket. Skal skje i en blank økt: en økt som har
-lest `plan.md`/`TODO.md` måler seg selv med fasit i hånda.
-
-**3. Verifiser at 0.5.10 faktisk når cachen på denne maskinen.** Tre ledd:
-`/plugin marketplace update claude-code-skills` i terminalen → omstart → sjekk at
-steg 0 melder 0.5.10 begge steder. En kjørende prosess beholder versjonen den
-startet med.
-
-*`settings.local.json` er gitignorert, finnes bare på denne maskinen, og sto ved
-øktslutt med tre linjer. Den kan ryddes ved anledning; den måler ikke lenger noe.*
+*Cachen har nå `0.2.1`, `0.5.9` og `0.5.10` side om side — oppdateringen legger til
+framfor å rydde. Ikke et avvik. `settings.local.json` er gitignorert, finnes bare
+på denne maskinen, og kan ryddes ved anledning; den måler ikke lenger noe.*
 
 ## Arbeidsmåte neste økt
 
-- **[en-maaling-per-tur]** *(ny)* En måletur inneholder instruksen og kallet —
-  ingenting annet. Oppsett, filskriving og begrunnelse hører i turen før, og
-  brukeren får si fra når det er klart.
-- **[nullresultat-maa-ha-en-entydig-aarsak]** *(ny)* Før riggen kjøres: skriv ned
-  hva hvert mulige utfall kan tilskrives. Har «ingen dialog» to årsaker, er det
-  ingen måling — fjern en arm først.
-- **[sett-brukerinstruksen-rett-for-kallet]** *(videreført, utilstrekkelig alene)*
-  Instruksen står på egen linje rett før kallet — men plassering hjelper ikke hvis
-  turen også bærer annet arbeid.
+- **[en-maaling-per-tur]** *(videreført, ikke presset ennå)* En måletur inneholder
+  instruksen og kallet — ingenting annet. Oppsett, filskriving og begrunnelse hører
+  i turen før, og brukeren får si fra når det er klart.
+- **[foer-verdien-maa-fanges-foer-handlingen]** *(ny)* Før en handling som skal
+  måles: skriv ned dagens verdi — også når handlingen føles opplagt nok til å hoppe
+  over det. Uten før-verdi kan «virket» ikke skilles fra «sto der alt».
+- **[sett-brukerinstruksen-rett-for-kallet]** *(videreført, ikke prøvd i forrige
+  økt)* Instruksen står på egen linje rett før kallet — men plassering hjelper ikke
+  hvis turen også bærer annet arbeid.
 
 ## Det en ny økt må vite
 
-- **PROMOTERINGSFORSLAG VENTER, tiende runde:**
+- **PROMOTERINGSFORSLAG VENTER, elvte runde:**
   `[proev-forslaget-mot-prosjektets-egne-laerdommer]` inn i `CLAUDE.md` under
   `## Målinger`, ut av STATUS. **Krever BKs klarsignal — aldri automatisk.**
+- **Arkivert i `laering.md`, ikke i STATUS:**
+  `[maalekallet-laster-ogsaa-instruksen]` — bruker du et skill-kall som
+  måleinstrument, si hvilken del av instruksen du bevisst ikke følger. Falt ut på
+  maks-tre-grensen, så neste faseslutt teller den ikke.
 - **Engangsgodkjenninger brenner målfiler.** Trykker brukeren «Yes», går fila
   gjennom ut økten uansett form. Velg alltid en urørt fil som mål, og si «trykk
   No» rett før kallet. Godkjenninger gjelder én økt — etter omstart er alle
-  målemål friske igjen, også `hjelp/SKILL.md`, som ble brent 2026-08-27.
+  målemål friske igjen.
 - **Ingen automatisk sjekk finnes.** Diffen er eneste port. Renhetssjekken kjøres
   fra Bash ETTER `git add`, alltid med ett kontrollsøk som skal gi treff, og
   `claude plugin validate .` ved siden av.

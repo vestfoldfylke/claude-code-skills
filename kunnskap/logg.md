@@ -2,6 +2,79 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-27 (kveld) — Allowlisten er ikke det som bestemmer, og saken lukkes med en beslutning framfor en ny måling
+
+Maskin `VPC-8WD9VC4`. Belegget kom av seg selv: faseslutten i innslaget under
+kjørte tolv `Bash`-kall, og BK fotograferte **alle fire** dialogene som kom. Det
+gjør fraværet av dialog like målt som tilstedeværelsen — hele tabellen er
+observert, ikke bare treffene.
+
+| Kallet | Dekket av `settings.json`? | Utfall |
+|---|---|---|
+| `git status --porcelain` | ja, `git status:*` | Ingen dialog |
+| `git log -1 --format=%H -- …` | ja, `git log:*` | Ingen dialog |
+| `git log --oneline …` | ja | Ingen dialog |
+| `hostname` | **nei** | **Ingen dialog** |
+| `git add -A && git status --short` | begge ledd, men sammensatt | Ingen dialog |
+| `bash .github/renhet/sjekk.sh` | **ja, ordrett** | **Dialog** |
+| `claude plugin validate .` | **ja, `claude plugin validate:*`** | **Dialog** |
+| `git ls-files \| grep … \|\| echo …` | delvis, sammensatt | Ingen dialog |
+| `git diff --cached … \| grep … \|\| echo …` | delvis, sammensatt | **Dialog** |
+| `git log -1 --format=%B` | ja | Ingen dialog |
+| `git commit -F …` | **nei** | **Dialog** |
+| `git push` | **nei** | **Ingen dialog** |
+
+### Funn: sammenhengen mellom allowlist og dialog finnes ikke
+
+To oppføringer som matcher ordrett ga dialog. `hostname` og `git push`, som ikke
+står i fila i det hele tatt, gikk rett gjennom. **Ingen modell der
+`.claude/settings.json` styrer utfallet forklarer begge deler.**
+
+**Det setter Bash-funnet fra 2026-08-26 i tvil.** «`Bash`-oppføringene i
+`settings.json` virker» hvilte på at fem git-kall gikk gjennom — men `hostname`
+og `git push` gikk også gjennom uten oppføring, så git-kallene er ikke belegg for
+at allowlisten gjorde jobben. **Samtidig svekkes «fila er inert»:** en inert fil
+forklarer ikke at noe går gjennom uten oppføring.
+
+### Hypotese, ikke målt
+
+At Claude Code selv slipper gjennom kall den vurderer som ufarlige, og spør ved
+de som går ut av den rammen. Forklaringen brytes av to par, og står derfor som
+hypotese:
+
+- `git push` skriver til et nettverksmål og gikk gjennom; `git commit -F` skriver
+  lokalt og ga dialog.
+- `git ls-files | grep … || echo …` og `git diff --cached … | grep … || echo …`
+  har samme form og samme dekning. Den ene gikk gjennom, den andre ga dialog.
+  Eneste synlige forskjell er at den som ga dialog har ordene `password` og
+  `client_secret` i søkemønsteret — som peker mot at kommandostrengens *innhold*
+  vurderes, ikke bare formen.
+
+Testen som ville avgjort det: samme kommando kjørt to ganger, med og uten de
+ordene i mønsteret.
+
+### Beslutning (BK, godkjenninger ved oppstart): saken lukkes her
+
+Noen få godkjenninger i oppstarten er akseptabelt, og skal bare sies tydelig i
+dokumentasjonen. Det som ikke er akseptabelt er at **lavterskel lesing** maser
+gjennom hele økten.
+
+Det kriteriet er innfridd i det som er målt: **samtlige `Read`-kall i økten gikk
+gjennom uten dialog**, og det samme gjorde `hostname`, `git status`, `git log` og
+`git ls-files`. Dialogene kom for å kjøre et script, kjøre en binær, et grep med
+secret-ord i mønsteret, og `git commit` — fire valg i en hel faseslutt.
+
+**Konsekvensen: fil-mot-omstart-spørsmålet forfølges ikke videre.** Det var
+verdifullt bare så lenge malens allowlist var eneste vern mot maset, og målingene
+her viser at den ikke er den avgjørende mekanismen uansett. Riggen som sto klar i
+`STATUS.md` — omstart og ett kall mot `web-prototype` i marketplace-klonen —
+utgår.
+
+**Umålt, og skal stå som umålt:** hvorfor `Bash(bash .github/renhet/sjekk.sh)` og
+`Bash(claude plugin validate:*)` ikke matcher. Den første har en sti i prefikset,
+som er en kjent ikke-matchende form fra 2026-08-25; den andre har det ikke, og
+står uforklart.
+
 ## 2026-08-27 — Den brede `**`-formen er frikjent, men riggen kunne ikke skille fil fra omstart
 
 Maskin `VPC-8WD9VC4` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.

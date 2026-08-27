@@ -9,8 +9,8 @@ resonnement. Merkelappen `kjent-før-test` = bevisst utsatt.
 deltakernes egne maskiner, satt opp på forhånd av BK (Mac + ARM + x86_64).
 
 **Fase:** tørrkjøringen er avsluttet (fase 0/1/2 verifisert, fase 3 bevisst ikke
-kjørt). Siste utgivelse er `faseflyt` **0.5.9** (2026-08-25). **Øktene 26. og
-27. august ga ingen utgivelse — de målte.**
+kjørt). Siste utgivelse er `faseflyt` **0.5.10** (2026-08-27, `a4cc111`) — den
+tok ut påstanden om at allowlisten fjerner oppstartsdialogene.
 
 ## Allowlist-saken er LUKKET — ikke gjenåpne uten ny bestilling
 
@@ -37,17 +37,18 @@ ikke matcher, og om `settings.json` er inert for `Read`.
 
 ## Neste — start her
 
-**1. Ordlyd-forslag til BK: si i dokumentasjonen at oppstarten koster noen
-godkjenninger.** Eneste pakkeendring beslutningen over medfører — README under
-«Vanlige spørsmål» og `nytt-prosjekt` steg 6. Poenget som skal fram: noen
-dialoger kommer, valget «allow for this project» gjør dem varige, og lesing maser
-ikke. **Krever klarsignal før noen fil endres.**
+**1. Mac-pre-flight — viktigste umålte post før fristen.** Helt urørt, og
+plattformen flest er på. `kollegatest.md` har alle bokser tomme. Kan ikke gjøres
+fra denne maskinen; krever en frivillig Mac.
 
-**2. Mac-pre-flight** (helt urørt, plattformen flest er på, og fristen er nær).
-`kollegatest.md` har alle bokser tomme. Kan ikke gjøres fra denne maskinen.
+**2. Tørrkjør i en tom mappe utenfor dette repoet.** Fortsatt umålt. Henger ikke
+lenger på allowlisten — den er lukket. Skal skje i en blank økt: en økt som har
+lest `plan.md`/`TODO.md` måler seg selv med fasit i hånda.
 
-**3. Tørrkjør i en tom mappe utenfor dette repoet.** Fortsatt umålt. Henger ikke
-lenger på allowlisten — den er lukket.
+**3. Verifiser at 0.5.10 faktisk når cachen på denne maskinen.** Tre ledd:
+`/plugin marketplace update claude-code-skills` i terminalen → omstart → sjekk at
+steg 0 melder 0.5.10 begge steder. En kjørende prosess beholder versjonen den
+startet med.
 
 *`settings.local.json` er gitignorert, finnes bare på denne maskinen, og sto ved
 øktslutt med tre linjer. Den kan ryddes ved anledning; den måler ikke lenger noe.*

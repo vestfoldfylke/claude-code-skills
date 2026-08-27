@@ -75,6 +75,26 @@ utgår.
 som er en kjent ikke-matchende form fra 2026-08-25; den andre har det ikke, og
 står uforklart.
 
+### Spor i formspørsmålet: Claude Code skriver en annen form enn malen bruker
+
+BK valgte «allow for this project» på to av dialogene, og Claude Code skrev da
+selv inn i `.claude/settings.json`:
+
+```
+"Bash(claude plugin *)",
+"Bash(git commit *)"
+```
+
+**Formen er `<kommando> *`, ikke `<kommando>:*`** — og den ble skrevet selv om
+`Bash(claude plugin validate:*)` alt sto i fila to linjer over. At verktøyet
+legger til en ny oppføring framfor å se den eksisterende som dekkende, er et
+spor om at kolon-formen ikke matchet det kallet.
+
+**Kandidat, ikke bestilt:** bytte malens `:*`-form mot mellomrom-formen for
+flerords-kommandoer. Ikke gjort — det krever en måling som isolerer de to
+formene mot samme kall, og allowlist-saken er lukket. Føres her så sporet ikke
+går tapt.
+
 ## 2026-08-27 — Den brede `**`-formen er frikjent, men riggen kunne ikke skille fil fra omstart
 
 Maskin `VPC-8WD9VC4` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.

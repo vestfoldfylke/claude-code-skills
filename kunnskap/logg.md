@@ -2,7 +2,150 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
-## 2026-08-26 — Første måling på ARM: `settings.json` er inert, `settings.local.json` virker, og formen var aldri problemet
+## 2026-08-27 — Den brede `**`-formen er frikjent, men riggen kunne ikke skille fil fra omstart
+
+Maskin `VPC-8WD9VC4` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.
+Ingen utgivelse og ingen pakkeendring — økten målte, og målte ikke ferdig.
+
+Riggen kom fra innslaget under: den brede formen lagt inn i
+`settings.local.json` ved siden av den spesifikke, mens `.claude/settings.json`
+sto urørt med de samme to brede linjene.
+
+### Funn: den brede `**`-formen virker
+
+**Observert, tre kall, alle uten dialog** — utfallet meldt av BK:
+
+| Fil som ble lest | Utfall |
+|---|---|
+| `cache/…/faseflyt/0.5.9/.claude-plugin/plugin.json` | Ingen dialog |
+| `marketplaces/…/plugins/faseflyt/.claude-plugin/plugin.json` | Ingen dialog |
+| `cache/…/fint-graphql/0.1.0/.claude-plugin/plugin.json` | Ingen dialog |
+
+Den siste avgjør: `fint-graphql` var urørt i økten, og den har ingen egen
+spesifikk linje slik `web-prototype` har — den dekkes kun av den brede formen.
+**Det avliver forklaringen om at gårsdagens Yes-godkjenninger bar kallene**, og
+det motbeviser samtidig hypotesen fra innslaget under om at den brede
+`**`-formen er variabelen. Formen matcher.
+
+### Men riggen kunne ikke svare på det den var satt opp for
+
+Den skulle skille fil fra form. Den brede formen sto samtidig i **begge** filene,
+så «ingen dialog» har to årsaker som ikke lar seg skille:
+
+- `settings.local.json` gjør jobben, og `.claude/settings.json` er inert for `Read`.
+- `.claude/settings.json` virker, og det som manglet 2026-08-26 var en omstart.
+
+Formuleringen i forrige STATUS — at omstarten «nøytraliserer samtidig hypotesen
+om at en oppføring ikke virker i økten den skrives» — er derfor for sterk.
+Omstarten nøytraliserer ikke den hypotesen; den fletter den sammen med
+filhypotesen.
+
+**Umålt, og skal stå som umålt:** om Claude Code faktisk ble startet på nytt før
+økten. Spørsmålet ble stilt tre ganger uten å bli besvart, og svaret er
+nødvendig for å tolke utfallet.
+
+### Målingen som mislyktes, og hvorfor
+
+Et fjerde kall skulle avgjøre om en endring i `settings.local.json` slår inn midt
+i en økt: `cache/…/faseflyt/0.5.9/skills/hjelp/SKILL.md`, en fil ingen linje i
+`settings.json` dekker, med en fersk linje for seg i `settings.local.json`.
+**Utfallet er ukjent** — BKs ord: «Skjedde for mye samtidig.» Turen inneholdt en
+filskriving, et avsnitt med måledesign og selve kallet. Fila er brent som
+målemål for økten, men fri igjen etter omstart.
+
+`settings.local.json` ble redigert to ganger under målingen og er tilbakestilt
+til de tre linjene den hadde ved øktstart. Fila er gitignorert og finnes bare på
+denne maskinen.
+
+### Riggen som avgjør, til neste økt
+
+Ett kall, i en økt som er startet på nytt, med `settings.local.json` uten de to
+brede linjene — bare den spesifikke `web-prototype`-linja igjen:
+
+`marketplaces/…/plugins/web-prototype/.claude-plugin/plugin.json` — urørt i alle
+måleøktene, og dekket kun av marketplaces-linja i `.claude/settings.json`.
+
+Dialog = `settings.json` er inert for `Read`, og `nytt-prosjekt` steg 6 må skrive
+Read-linjene et annet sted. Ingen dialog = `settings.json` virker, omstart var
+det som manglet, og malen står — men README må si at en ny oppføring krever
+omstart.
+
+## 2026-08-26 (kveld) — `settings.json` er ikke inert: `Bash`-armen var feilmålt, og `Read`-armen har to variabler i seg
+
+Maskin `VPC-8WD9VC4` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.
+Samme maskin som innslaget under. Ingen utgivelse — økten målte.
+
+Utgangspunktet var BKs observasjon i oppstarten: **to** dialoger, med
+skjermbilde, på de to `plugin.json`-filene steg 0 leser. Økten kom av `/clear`,
+ikke av en omstart, så prosessen var den samme som gjorde målingen tidligere på
+dagen. Alle tre armene under lå i samme økt, med de to dialogene som
+sammenligningsgrunnlag.
+
+### Funn: `Bash`-oppføringer i `settings.json` virker
+
+**Observert, tre kall.**
+
+| Oppføring | Bor i | Utfall |
+|---|---|---|
+| `Read(…/cache/claude-code-skills/**/.claude-plugin/**)` | `settings.json` linje 6 | Dialog |
+| `Read(…/marketplaces/claude-code-skills/**/.claude-plugin/**)` | `settings.json` linje 7 | Dialog |
+| `Bash(git status:*)`, `Bash(git log:*)` ×2 | `settings.json` linje 8–9 | Ingen dialog |
+| `Read(…/cache/claude-code-skills/web-prototype/**/.claude-plugin/**)` | `settings.local.json` | Ingen dialog |
+
+Git-kallene var øktens **første** Bash-kall, så de kan ikke være egne
+godkjenninger fra tidligere i økten. Dialogene på Read-linjene i samme fil viser
+samtidig at engangsgodkjenningene fra formiddagens økt ikke fulgte med gjennom
+`/clear`.
+
+**Det motbeviser «det gjelder `Bash` like mye som `Read`»** fra innslaget under.
+Den påstanden hvilte på ett kall: `claude plugin validate .`, kjørt som del av
+faseslutten og ikke som måling.
+
+**Hypotese for det kallet, ikke målt:** `CLAUDE.md` foreskriver
+`~/.local/bin/claude.exe plugin validate .` når `claude` ikke er på PATH. Den
+formen dekkes ikke av `Bash(claude plugin validate:*)`, og den bærer en sti i
+prefikset — nøyaktig formen 2026-08-25 målte som ikke-matchende. Hvilken av de to
+formene som faktisk ble kjørt, står ikke i loggen, så dette er en forklaring som
+passer, ikke et funn.
+
+### Read-armen kan ikke avgjøres ennå: to variabler skifter samtidig
+
+De to oppføringene som ga dialog og den ene som gikk gjennom skiller seg på
+**to** ting, ikke én:
+
+- **hvilken fil** de står i, og
+- **mønsterformen**: den som virket har et literalt ledd (`web-prototype`) før
+  `**`; de to som feilet har `**` rett etter `claude-code-skills` og spenner to
+  nivåer.
+
+Formuleringen «variabelen er hvilken fil oppføringen står i — ikke formen» i
+innslaget under er derfor for sterk for Read. Den hvilte på et par der formen ble
+regnet som identisk; de er like i *tilde og `**`*, men ikke i hvor `**` står.
+
+Kostnaden ved de to forklaringene er svært ulik: er formen variabelen, er
+pakkefiksen et mer spesifikt mønster i malen. Er fila variabelen, gir malens
+allowlist ingenting for `Read` hos kollegaene.
+
+**Målingen som skiller, satt opp i denne økten:** den brede formen lagt inn i
+`settings.local.json` ved siden av den spesifikke, deretter omstart og
+`/faseflyt:fase-start`. Borte dialoger = fila er variabelen. Dialoger igjen =
+den brede formen er variabelen. Omstarten nøytraliserer samtidig hypotesen om at
+en oppføring ikke virker i økten den skrives. Utfallet står i neste innslag.
+
+De to målfilene i cachen er brent for denne økten — BK trykket Yes på begge — så
+de kunne ikke måles om her. `cache/…/fint-graphql/0.1.0/…` ble brent i
+formiddagens økt og er fri igjen.
+
+### Uendret fra innslaget under
+
+At `settings.local.json` virker, og at malen skriver allowlisten til
+`.claude/settings.json`. Konsekvensen for samlingen står som den sto til
+Read-armen er avgjort.
+
+## 2026-08-26 (formiddag) — Første måling på ARM: `settings.json` er inert, `settings.local.json` virker, og formen var aldri problemet
+
+*Rettet samme dag, se innslaget over: `Bash`-halvdelen av funnet er motbevist, og
+Read-halvdelen har en variabel til i seg enn den sier.*
 
 Maskin `VPC-8WD9VC4` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.
 **Første måling gjort på ARM-maskinen i det hele tatt.** Ingen utgivelse — økten

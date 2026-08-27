@@ -9,6 +9,48 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-27 — Begge punktene fulgt, og det holdt tre kall rene; men jeg pakket det fjerde inn i en filskriving og et avsnitt måledesign, og mistet utfallet
+
+**Evaluering av forrige økts to punkter:**
+
+- **[hold-en-arm-pa-variabelen-du-neytraliserer]** — **fulgt, og strykes.**
+  Belegg: da tre kall hadde gått gjennom uten dialog, nektet jeg å skrive
+  konklusjonen «fila er variabelen» som forrige STATUS hadde satt opp som
+  forventet utfall, fordi `.claude/settings.json` fortsatt bar det samme
+  mønsteret. Armen var beholdt — og det var nettopp derfor utfallet ikke kunne
+  tilskrives noen av dem. Punktet virket etter hensikten og avdekket samtidig
+  sin egen grense, som står som nytt punkt under.
+- **[sett-brukerinstruksen-rett-for-kallet]** — **fulgt, men utilstrekkelig.
+  Videreføres i skjerpet form.** Belegg: instruksen «trykk No» sto på egen linje
+  umiddelbart før både `fint-graphql`-kallet og `hjelp`-kallet. Det første ble
+  lest og målt. Det andre gikk tapt likevel, fordi turen rundt instruksen
+  inneholdt en filskriving og et avsnitt med måledesign. Plasseringen var
+  riktig; mengden var feil.
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, tiende
+  påfølgende runde.** Belegg: valget av `fint-graphql` som målemål kom direkte
+  av prosjektets egen lærdom om at engangsgodkjenninger brenner målfiler, og
+  kontrollkallet mot `hjelp/SKILL.md` var arvet fra kontrollinje-metoden fra
+  2026-08-25. **Promoteringsforslaget står fortsatt og venter på BKs
+  klarsignal.**
+
+**Nye punkter:**
+
+- **[en-maaling-per-tur]** Kallet mot `hjelp/SKILL.md` var designet riktig og ble
+  ugyldig av innpakningen: samme tur inneholdt en `Write`, et avsnitt som
+  forklarte hvorfor kontrollen trengtes, og selve kallet. BKs ord: «Skjedde for
+  mye samtidig.» Runden kostet to kall og en tilbakestilling av
+  `settings.local.json`, og ga null data. **Regelen: en måletur inneholder
+  instruksen og kallet — ingenting annet. Oppsett, filskriving og begrunnelse
+  hører i turen før, og brukeren får si fra når det er klart.**
+- **[nullresultat-maa-ha-en-entydig-aarsak]** Riggen la den brede formen i
+  `settings.local.json` *ved siden av* den som alt sto i `settings.json`, og
+  kalte det å isolere fila. Da alle tre kallene gikk rene, kunne utfallet
+  tilskrives to ting samtidig — fila eller omstarten — og økten endte uten svar
+  på spørsmålet den var satt opp for. Feilen lå i designet, ikke i
+  gjennomføringen. **Regelen: før riggen kjøres, skriv ned hva hvert mulige
+  utfall kan tilskrives. Har «ingen dialog» to årsaker, er det ingen måling —
+  fjern en arm først.**
+
 ## 2026-08-26 — Begge punktene fulgt, og designet var riktig; men jeg konstruerte bort den variabelen som viste seg å være svaret, og la instruksen brukeren måtte følge på feil sted
 
 **Evaluering av forrige økts to punkter:**

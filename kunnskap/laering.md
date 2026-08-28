@@ -9,6 +9,83 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-28 (formiddag) — Måledisiplinen ble endelig prøvd mot en flertrinnsmåling og holdt; men før-verdi-punktets anledning gikk tapt mellom øktene, ikke i en
+
+**Evaluering av forrige økts tre punkter:**
+
+- **[en-maaling-per-tur]** — **fulgt, og denne gangen med reelt press. Videreføres
+  én runde.** Belegg: innholdssammenligningen ble delt i fire turer med ett trinn
+  hver — rammer, filliste, innhold, kontroll — og alle fire kunne vært slått sammen
+  til ett kall uten at noe gikk tapt teknisk. Anledningen til å bryte var altså
+  reell, og fjerde tur (kontrollen) er den som lettest hadde blitt limt på
+  tredje. Ærlig nyanse: første tur bar tre kommandoer (`$COMPUTERNAME` + `ls` på
+  to kataloger), men alle tjente samme trinn — å fange rammene — så det er ikke
+  regnet som brudd. Fjerde runde. Videreføres fordi tørrkjøringen er en større rigg
+  enn dette, med flere armer å rote bort.
+- **[foer-verdien-maa-fanges-foer-handlingen]** — **evalueringen min var basert på
+  en utdatert STATUS; punktet var alt strøket.** Jeg førte det først som
+  «anledningen gikk tapt utenfor en økt, videreføres tredje runde». Det var galt:
+  hjemme-økten kvelden før hadde fulgt punktet (før-verdiene sto først: cache,
+  marketplace-klone og repo alle på 0.5.11) og **strøket det som innarbeidet** —
+  steg 0 og måleskriptets før-blokk bærer det nå. Jeg leste en STATUS som var
+  overskrevet på remote, og forpliktet meg på en korrigering som ikke lenger var
+  aktiv. Punktet står som strøket. Det som *er* verdt å beholde av min
+  opprinnelige observasjon: et punkt som peker på én bestemt handling dør hvis
+  handlingen skjer utenfor en økt — her ble `marketplace update` gjort mellom
+  øktene.
+- **[arvet-ordlyd-maa-vaskes-foer-den-limes-inn]** — **ikke prøvd. Arkiveres her,
+  ut av de aktive tre.** Ingen arvet ordlyd gikk inn i noen fil i økten. Grunnen
+  til at den ikke bare videreføres: neste økt er tørrkjøringen, og den ordlyden
+  som skal limes inn der — sitatet «Oppgave 5 — Utstyrsskapet» i `TODO.md` — er
+  **unntaket fra regelen**. Det er avstemt ordrett mot websiden 2026-08-21 og er
+  fasit for målingen; vaskes det, måler tørrkjøringen en annen bestilling enn den
+  deltakerne får. Punktet hentes tilbake når en arvet ordlyd skal inn i *pakken*.
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, trettende
+  påfølgende runde.** Belegg: kontrollen i fjerde tur ble kjørt uoppfordret.
+  `fase-slutt` steg 6 krever kontrollsøk for sikkerhetssjekkens nullsvar, og
+  repoets `CLAUDE.md` krever det av renhetsporten — ingen av dem gjelder en
+  innholdssammenligning. Regelen ble altså generalisert fra teksten den står i til
+  en måling teksten ikke dekker, dagen etter at den ble skrevet.
+  **Promoteringsforslaget står fortsatt og venter på BKs klarsignal, trettende
+  gang.**
+
+**Nye punkter:**
+
+- **[nullavvik-krever-samme-kontroll-som-nullsvar]** «0 avvik» fra en
+  sammenligning er ikke skillbart fra en sammenligning som ikke sammenligner.
+  Belegg: innholdssammenligningen ga 0 avvik på 11 filer, og minst tre feil ville
+  gitt identisk utskrift — feil stivariabel, tom filliste, eller `sha256sum` som
+  leser samme fil på begge sider. Kontrollen (`hjelp/SKILL.md` mot
+  `grill-me/SKILL.md` gjennom samme logikk → AVVIK) skilte de tilfellene fra et
+  reelt likhetsfunn. **Regelen: enhver måling som konkluderer med «ingen
+  forskjell», «ingen treff» eller «ingenting å rapportere» kjører ett tilfelle som
+  skal gi utslag, i samme runde, og melder begge. Og den sier hva kontrollen
+  dekker: at instrumentet skiller i denne katalogen — ikke at kriteriet er det
+  riktige.**
+- **[status-post-kan-vaere-utdatert-i-positiv-retning]** En post i STATUS kan være
+  foreldet fordi arbeidet *er gjort*, ikke bare fordi det står åpent. Belegg:
+  STATUS' post 1 instruerte i å kjøre `/plugin marketplace update` fordi maskinen
+  sto på 0.5.10; begge versjonslesingene i `fase-start` steg 0 ga 0.5.11. Hadde
+  økten fulgt posten framfor å lese tilstanden, ville den kjørt en unødvendig
+  update og — verre — kunnet melde «gjort» for noe en annen økt gjorde.
+  **Regelen: en STATUS-post som beskriver en tilstand leses mot tilstanden før den
+  utføres, og avviket meldes som avvik — også når det er i vår favør.**
+  **Kraftig forsterket belegg, funnet ved push i samme økt:** STATUS var ikke bare
+  utdatert på ett punkt — hele fila var overskrevet på remote av hjemme-øktens
+  faseslutt kvelden før. `git push` ble avvist, og `fase-start` steg 2 kunne ikke
+  ha sett det: begge spørsmålene det stiller er lokale (ucommittet arbeid, commits
+  etter siste logg-commit). Jeg kvitterte altså på tre korrigeringer der én var
+  strøket og to var usett.
+
+**Punkt fra hjemme-økten jeg brøt uten å kjenne det:**
+
+- **[skriv-maaleskriptet-der-det-kan-gjenbrukes]** — **brutt.** Punktet ble skrevet
+  kvelden før, i den STATUS jeg ikke hadde. Jeg kjørte hele innholdssammenligningen
+  ad-hoc i fire Bash-kall og la ingenting i repoet, så Mac-målingen må skrives fra
+  bunnen en tredje gang. Ført her fordi bruddet er reelt selv om årsaken var en
+  utdatert STATUS — og fordi det gjør punktet mer verdt å beholde aktivt, ikke
+  mindre: to av tre maskiner er nå målt med hvert sitt engangsskript.
+
 ## 2026-08-27 (hjemmekontor, kveld) — Måledisiplinen holdt for første gang mot en anledning jeg faktisk måtte avstå fra; men språkregelen ble brukt på arvet ordlyd og ikke på mine egne ord, og BK måtte fange det
 
 **Evaluering av forrige økts tre punkter:**

@@ -13,7 +13,11 @@
       "Bash(claude plugin validate:*)",
       "Bash(claude plugin *)",
       "Bash(git commit *)",
-      "Bash(gh issue *)"
+      "Bash(gh issue *)",
+      "Bash(echo \"--- exit: $? ---\")",
+      "Bash(echo \"--- treff over? exit $? ---\")",
+      "Bash(grep -icE '\\\\.\\(docx|xlsx|csv|json\\)$')",
+      "Bash(grep -iE '\\\\.\\(docx|xlsx|csv|json\\)$')"
     ]
   }
 }

@@ -79,24 +79,14 @@ ferdig app.
   designsporets mekanikk (`list_projects`, `projectId`, token-overstyring i
   `app.css`) finnes i `claude-design-oppskrift.md` og ikke bare i fasilitatorens
   hode.
-- **Før tørrkjøringen:** verifiser at installert pakke er identisk med repoet.
-  Cachen kan være foreldet, og da måles en annen pakke enn du tror.
-  **Gjort på hjemme-PC-en 2026-08-20** (`0.2.1`, `784f039`, 0 avvik). Cachen *var*
-  foreldet — den sto på 0.1.0 med 9 reelle innholdsavvik, så bekymringen var
-  berettiget. Posten står fortsatt åpen fordi målingen gjelder én maskin: skjer
-  tørrkjøringen på kontor-PC-en, må den gjøres om der. Mål med linjeskift
-  normalisert — cachen er CRLF, repoet LF, og byte-hashing gir ellers falske avvik.
-  **Utvidet 2026-08-21: målingen er nå TRE ledd** — `marketplace update` →
-  **omstart Claude Code** → mål om (mot 0.2.3, `156dd94`). Målt samme dag: en
-  kjørende prosess beholder versjonen den startet med, så disk-målingen alene
-  garanterer ikke hva økten kjører. Versjonssjekkens steg 0 melder dette selv.
-  **Gjentatt 2026-08-24 (kveld) mot 0.4.0 (`5f0f1aa`), hjemme-PC-en: 11 filer,
-  0 avvik, alle tre ledd kjørt.** Posten står fortsatt åpen — ARM-leddet
-  (kontor-PC-en) er umålt.
-  **ARM-leddet delvis målt 2026-08-27 på `VPC-8WD9VC4`:** alle tre ledd kjørt mot
-  0.5.10, og kjørende versjon bekreftet via basekatalogen `/faseflyt:hjelp` oppga.
-  Innholdssammenligningen fil-for-fil er *ikke* gjort på denne maskinen. Belegg:
-  `logg.md` 2026-08-27 (sent kveld).
+- **~~Før tørrkjøringen: verifiser at installert pakke er identisk med repoet~~**
+  — **LUKKET for `VPC-8WD9VC4` 2026-08-28.** Målingen er tre ledd
+  (`marketplace update` → omstart → mål om), og linjeskift må normaliseres
+  (cache CRLF, repo LF) eller byte-sammenligning gir falske avvik. Belegg:
+  `logg.md` 2026-08-20 (hjemme-PC, 0.2.1 — cachen *var* foreldet, 9 avvik),
+  2026-08-24 (0.4.0, 11 filer, 0 avvik), 2026-08-27 sent kveld (ARM, tre ledd)
+  og 2026-08-28 (ARM, innhold fil-for-fil, 11 filer, 0 avvik). Gjelder én maskin
+  om gangen: skjer tørrkjøringen på en annen, må den gjøres om der.
 - **Tørrkjøringen skal skje i en blank økt i en tom mappe utenfor dette repoet.**
   En økt som har lest `plan.md`/`TODO.md` kjenner pakkens svake punkter og måler
   derfor seg selv med fasit i hånda.

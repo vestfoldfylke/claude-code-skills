@@ -2,6 +2,79 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-28 (formiddag) — ARM-leddet er komplett: innholdet i cachen er målt fil-for-fil på denne maskinen, og «0 avvik» ble etterprøvd framfor trodd
+
+Maskin `VPC-8WD9VC4` (Snapdragon X Elite, ARM64, VS Code-utvidelsen). Kort økt med
+én post: innholdssammenligning cache mot repo, som var aldri gjort på denne
+maskinen. Ingen pakkeendring, ingen ny versjon.
+
+**Levert:** posten er lukket. `faseflyt` 0.5.11, **11 pakkefiler, 0 avvik**,
+linjeskift normalisert (`tr -d '\r'` før `sha256sum`).
+
+**Observert, i fire turer med ett trinn hver:**
+
+| Trinn | Målt hvordan | Utfall |
+|---|---|---|
+| Rammer | `$COMPUTERNAME` + `ls` på begge sider | `VPC-8WD9VC4`, `skills/` på hver side |
+| Filliste | `find . -type f` begge sider, `diff` på listene | 11 pakkefiler likt; cachen har i tillegg `.in_use/13932` |
+| Innhold | `tr -d '\r' \| sha256sum` per fil, 11 par | 0 avvik |
+| Kontroll | `hjelp/SKILL.md` mot `grill-me/SKILL.md`, samme logikk | AVVIK som forventet |
+
+`.in_use/13932` ble holdt utenfor sammenligningen. **Hypotese, ikke verifisert:**
+tallet er en prosess-ID og mappa er Claude Codes bokføring over prosesser som
+holder versjonen i bruk. Det ble ikke sjekket om 13932 faktisk er en kjørende
+prosess, så «låsfil» er en slutning fra navnet. Samme hypotese ble ført uavhengig
+på hjemme-PC-en samme dag; den avgjøres av å liste prosesser mens en økt kjører.
+
+**Grense i normaliseringen, verdt å vite før neste gang:** her ble bare CR
+strippet (`tr -d '\r'`). BOM ble ikke strippet — hjemme-PC-ens måling brukte
+`[IO.File]::ReadAllText`, som gjør begge. Det slo ikke ut her, siden alle 11 par
+var like, men en BOM-forskjell alene ville gitt falskt avvik i denne formen.
+
+**Funn, observert: cachen sto alt på 0.5.11 ved øktstart.** STATUS' post 1 sa
+«maskinen kjører 0.5.10; kjør `/plugin marketplace update` og start på nytt, fang
+før-verdien først». Begge versjonslesingene i `fase-start` steg 0 ga 0.5.11, altså
+var updaten gjort mellom øktene. Konsekvensen er at før-verdien for *den* målingen
+ikke lenger kan fanges — anledningen kom og gikk utenfor en økt. En STATUS-post kan
+altså være utdatert i retning «allerede gjort», ikke bare «fortsatt åpent», og en
+økt som følger den blindt melder gjennomføring for noe en annen økt gjorde.
+
+**Kontrollen er tatt med fordi et nullresultat ellers ikke er skillbart fra et
+instrument som ikke virker.** Samme resonnement som `fase-slutt` steg 6 fikk i
+0.5.11 i går, her anvendt på en sammenligning — der teksten ikke krever det. Et
+script med feil stivariabel, en tom filliste eller en `sha256sum` som leser samme
+fil to ganger gir alle utskriften «0 avvik». Kontrollen viser at logikken skiller
+to filer som *er* ulike; den viser ikke at normaliseringen er den riktige.
+
+**Grensen på målingen, meldt sammen med tallet:** den sammenligner cachen mot
+arbeidskopien i `plugins/faseflyt/`, ikke mot `main` på GitHub. For pakkefilene er
+arbeidskopien lik HEAD — eneste ucommittede endring var `.claude/settings.json`,
+som ikke ligger i pakken.
+
+**Funn, observert ved push: maskinen var én commit bak remote, og samme måling ble
+gjort to steder samme dag.** `git push` ble avvist (non-fast-forward). `git fetch`
+viste `b03622a` — en faseslutt fra hjemmekontoret kvelden før, som gjorde samme
+innholdssammenligning på x86 (`VPC-5CG3433WMH`, 0.5.11, 11 filer, 0 avvik, tredje
+gang der). De to målingene er komplementære, ikke dobbeltarbeid: x86 og ARM er
+ulike ledd i pre-flighten, og begge sto som umålt mot 0.5.11.
+
+Men koordineringsfunnet er reelt: **STATUS på disk var overskrevet på remote før
+denne økten begynte, og `fase-start` steg 2 kan ikke se det.** Steget spør om
+ucommittet arbeid og om commits etter siste logg-commit — begge lokale spørsmål.
+Ingen av dem oppdager at remote har gått videre. Den STATUS jeg leste og kvitterte
+på var altså ikke den gjeldende, og to av korrigeringene jeg forpliktet meg på var
+utdaterte: `[foer-verdien-maa-fanges-foer-handlingen]` var strøket som innarbeidet
+i hjemme-økten, og to nye punkter fra den var usett.
+Fletting: logg og læringslogg beholder begge innslag (nyeste øverst), STATUS er
+skrevet på nytt så den dekker både x86- og ARM-leddet, `TODO.md` var urørt av
+hjemme-økten. **Hypotese om tiltaket, ikke bestilt:** `fase-start` steg 2 kunne
+gjort `git fetch` og sammenlignet med `origin/main`. Det koster et nettverkskall i
+hver økt hos hver bruker, så avveiningen er BKs — ført som hypotese, ikke som
+foreslått pakkeendring.
+
+**`.claude/settings.json`: fire linjer, lest framfor antatt.** Godkjenninger fra
+forrige økt la til to `echo`-mønstre og to `grep`-mønstre. Ingen brukersti. Kjent
+falsk positiv i `fase-start` steg 2, bekreftet ved å lese diffen.
 ## 2026-08-27 (hjemmekontor, kveld) — 0.5.11 er identisk i cache og repo på x86-maskinen, tredje gang; og et ord jeg selv innførte slapp gjennom språkregelen
 
 Maskin `VPC-5CG3433WMH` (hjemmekontor, x86_64). Kort økt: maskinen var åtte

@@ -8,6 +8,30 @@ blokkerer ikke testen — `TODO.md` (535 linjer) + `plan.md` (605) er utredning,
 mens pakken alt er testbar. «Helhetsvurdering»-spørsmålet lenger ned besvares
 av to reelle brukere, ikke av mer analyse.
 
+## Token-vekten i rutineskillene (BK-bestilt 2026-08-30, bevisst unntak fra frysen)
+
+**Målingen:** Usage-avlesning 2026-08-30 på `VPC-5CG3433WMH` (hjemmekontor,
+siste 24 t, omtrentlig, radene er uavhengige egenskaper — ikke et regnskap):
+`fase-slutt` 11 % av forbruket, `fase-start` 7 %, pluginen faseflyt samlet 20 %,
+75 % av forbruket over 150k kontekst. Lite og atypisk utvalg — døgnet besto i
+stor grad av én økt som leste to testrepoer.
+
+**Gjort i 0.5.12 (samme dag):** `model: sonnet` på begge rutineskillene, og
+`fase-slutt` samler turene (steg 6-søkene som parallelle kall i samme melding,
+filskrivingene i steg 1–3 samlet). Se CHANGELOG.
+
+**Åpne poster:**
+
+- **Hypotese: fase-start på 7 % skyldes at planfiler ikke har størrelsesgrense**
+  slik STATUS har (~30 linjer). Avgjøres av: les forbruket til én konkret
+  fase-start-økt (Usage rett før og etter øktstart) før noe endres i skillen.
+- **Effekten av 0.5.12 er umålt.** Avgjøres av: nye Usage-avlesninger på begge
+  maskinene etter noen økter på 0.5.12 — datert, med maskinnavn, holdt mot
+  tallene over.
+- **Alternativ hvis turene i steg 6 ikke monner:** sikkerhetssjekken som skript
+  i prosjektmalen (à la `.github/renhet/sjekk.sh`) — større mal-endring, gir én
+  stabil kommando som kan allowlistes én gang per prosjekt.
+
 ## ~~VURDERINGSPUNKT — installasjon skal ikke overskrive noe~~ — LUKKET 2026-08-21
 
 Alle fire spørsmålene besluttet av BK og implementert i faseflyt **0.2.3**

@@ -9,6 +9,67 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-08-30 (hjemmekontor, kveld) — Økten som handlet om token-vekt leste 700 linjer fremmed repo rett inn i hovedtråden, og skrev en ny regel uten å avgrense den mot den den ligner på
+
+**Evaluering av forrige økts punkter:**
+
+- **[en-maaling-per-tur]** — **ikke satt på prøve, videreføres sjette runde.**
+  Økten gjorde ingen flertrinnsmåling: Usage-tallene kom fra BK og ikke fra kall
+  jeg kjørte, og sjekkene i steg 5–6 er uavhengige søk, ikke trinn der utfallet
+  styrer det neste. Ærlig nyanse som likevel hører hit: fillistingen av de to
+  testrepoene slo `Get-ChildItem` og `git log` for begge repoer sammen i ett kall.
+  Det ligner på det punktet advarer mot, men ingen av delene var en måling med et
+  utfall som skulle tolkes. **Videreføres med en ny grunn enn sist:** 0.5.12 skrev
+  en instruks som kan leses som punktets motsetning — se nytt punkt under.
+- **[ord-jeg-selv-innfoerer-maa-holdes-mot-tabellen]** — **prøvd for første gang,
+  og delvis brutt. Videreføres.** Økten skrev logg, CHANGELOG, TODO, planfil og
+  commit-melding. Bruddet: **«frontmatter» står uforklart i CHANGELOG**
+  («`model: sonnet` i frontmatter»), og CHANGELOG er den mest kollegavendte fila i
+  repoet. Ordet står ikke i klarspråktabellen, og regelen bak tabellen krever da
+  at det forklares i samme setning — «i toppfeltet av skill-fila» ville kostet
+  fire ord. At ordet er etablert internt (renhetssjekken skriver
+  «Skill-frontmatter») er nettopp fella: interne ord kjennes ikke fremmede for
+  den som skrev dem.
+- **[skriv-maaleskriptet-der-det-kan-gjenbrukes]** — **ikke prøvd, videreføres.**
+  Ingen måling i økten krevde skript. Punktet er nå skrevet inn i STATUS' Mac-post
+  som en konkret instruks framfor bare en arbeidsmåte, slik at neste maskin ikke
+  blir det tredje engangsskriptet.
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, fjortende
+  påfølgende runde.** Belegg: Usage-påstanden ble holdt mot repoets egne
+  måleregler før den fikk styre noe — forbeholdene (24 t, én maskin, uavhengige
+  egenskaper) ført i både CHANGELOG og TODO, modellpåstanden avvist fordi tallene
+  ikke måler modell, og effekten av endringen ført som umålt med måleoppskrift
+  framfor som forbedring. **Promoteringsforslaget står fortsatt og venter på BKs
+  klarsignal, fjortende gang.**
+- **[nullavvik-krever-samme-kontroll-som-nullsvar]** *(kandidaten fra sist,
+  ikke aktiv)* — **fulgt uoppfordret.** Sikkerhetssjekkens nullsvar fikk
+  renhetsscriptets innebygde kontrollsøk, og endringen fikk i tillegg sitt eget:
+  `git grep --cached -c "model: sonnet"` → 1 treff i hver fil. Uten det siste
+  ville et staget innhold uten feltet gitt samme pene utskrift.
+
+**Nye punkter:**
+
+- **[deleger-lesing-av-fremmede-repoer]** Klon og les et fremmed repo gjennom en
+  Explore-subagent, ikke i hovedtråden. Belegg: de to testrepoene ble klonet,
+  listet rekursivt (~60 linjer filnavn med full absolutt sti gjentatt, inkludert 25
+  SVG-filer ingen spurte om) og deretter lest med fire `Read` av `logg.md`,
+  `laering.md` og `STATUS.md` — til sammen rundt 700 linjer inn i en hovedtråd som
+  alt var lang. Funnene som skulle videre var rundt 15 linjer. BKs globale
+  `CLAUDE.md` sier nettopp at utforskning delegeres og bare konklusjonen går inn i
+  hovedtråden. **Skjerpende:** øktens tema var token-vekten i skillene. Motargumentet
+  jeg faktisk hadde — at funnene skulle siteres presist i loggen — holder ikke:
+  en Explore-agent kan bes om ordrette sitater for de funnene som skal føres.
+- **[ny-regel-maa-avgrenses-mot-den-den-ligner-paa]** Skriver du en ny instruks i
+  pakken som ligner på en disiplin som alt gjelder, si i teksten hva som skiller
+  dem. Belegg: 0.5.12 la «alle søkene kjøres som parallelle kall i samme melding»
+  inn i `fase-slutt` steg 6, mens `[en-maaling-per-tur]` har stått som aktiv
+  arbeidsmåte i fem runder og sier nesten det motsatte. De er forenlige — steg
+  6-søkene er uavhengige med forhåndsbestemte mønstre, mens en måletur er trinnvis
+  fordi utfallet av ett trinn avgjør hva det neste skal være — men **ingen av de to
+  tekstene sier det**, og en økt som møter den nye ordlyden kan lese den som en
+  oppheving av måledisiplinen. Teksten er distribuert til alle som installerer
+  pakken, så feillesingen skjer i økter ingen av oss ser.
+
 ## 2026-08-28 (formiddag) — Måledisiplinen ble endelig prøvd mot en flertrinnsmåling og holdt; men før-verdi-punktets anledning gikk tapt mellom øktene, ikke i en
 
 **Evaluering av forrige økts tre punkter:**

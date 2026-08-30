@@ -2,6 +2,128 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-08-30 (hjemmekontor, kveld) — 0.5.12: rutineskillene kjører på Sonnet, og fase-slutt samler turene der konteksten er størst
+
+Maskin `VPC-5CG3433WMH` (hjemmekontor, x86_64). Utgivelse `faseflyt` **0.5.12**
+(`703ef89`), planlagt i planmodus og godkjent av BK samme dag.
+
+**Bakgrunnen er en Usage-avlesning BK la fram, ikke en måling jeg kjørte.**
+Tallene: `fase-slutt` 11 % av forbruket, `fase-start` 7 %, pluginen faseflyt
+samlet 20 %, 75 % av forbruket over 150k kontekst, siste 24 t, kun denne
+maskinen, «omtrentlig» og med radene beskrevet som uavhengige egenskaper — ikke
+et regnskap som summerer. Utvalget er lite og atypisk: døgnet besto i stor grad
+av én økt som klonet og leste to testrepoer.
+
+**Funn, observert i pakken: ingen av skillene satte modell.** `Get-ChildItem`
+over `plugins/faseflyt` + lesing av frontmatter i begge rutineskillene viste at
+`model:` manglet, så de arvet øktens modell. Kjøres faseslutt i en økt på
+tyngste modell, kjører hele den mekaniske rutinen der — i strid med
+modellmiks-regelen i BKs egen `CLAUDE.md`.
+
+**Påstanden i Usage-teksten ble ikke tatt for pålydende.** «Konsekvent for
+heftige modeller til simpel bruk» kan ikke leses ut av tallene: de viser andeler
+per skill og plugin, ingenting om hvilken modell som kjørte. Setningene om
+billigere modell er generiske råd som følger visningen. Det som *var* etterprøvbart
+— at feltet manglet — ble sjekket i pakken og ble grunnlaget for endringen.
+
+**Observert (dokumentasjonsoppslag før skriving, ikke antatt):** `model` finnes i
+skill-frontmatter, tar aliaser som `sonnet`, og overstyringen **gjelder ut turen**
+— øktens modell er tilbake ved neste brukermelding. En verdi som er sperret av
+organisasjonens modell-liste ignoreres stille, og økten beholder sin modell. Det
+avgjorde to ting: feltet kan ikke nedgradere planarbeid ellers i økten, og det er
+trygt å distribuere til kolleger med annen modelltilgang. (`context: fork` finnes
+som eget felt for å kjøre en skill i egen kontekst — ikke tatt i bruk.)
+
+**Beslutning (BK, modellvalg):** begge rutineskillene på `sonnet`, ikke bare
+fase-slutt og ikke haiku. Alternativene som ble lagt fram var kun fase-slutt
+(treffer den dyreste posten, men lar fase-start beholde tung modell), begge på
+haiku (maks besparelse, merkbart høyere risiko for slurv i filene arbeidsflyten
+hviler på) og ingen endring nå. Kjent avveining, ført i CHANGELOG:
+selvvurderingen i læringsloggen skrives nå av Sonnet — reverseres i en senere
+versjon om kvaliteten faller.
+
+**Beslutning (Claude, turer framfor tekstkutt):** de to andre endringene kutter
+antall turer, ikke antall steg eller ord. Begrunnelse: `fase-slutt` kjører per
+definisjon når konteksten er størst, og hver tur sender hele konteksten på nytt —
+steg 6 var 4–5 separate søkekall. Å fjerne steg eller sjekker ville spart det
+samme og kostet det pakken er til for. Steg 6 sier nå at søkene sendes som
+parallelle kall i samme melding (hvert kall fortsatt én enkelt kommando, så
+allowlist-matchingen er uendret), og steg 1–3 skriver de tre uavhengige filene
+samlet.
+
+**Sjekker kjørt før push:** `bash .github/renhet/sjekk.sh` → 11 søk, 0 feil, 0
+advarsler, med scriptets eget kontrollsøk på 38 treff. `claude plugin validate .`
+→ «Validation passed». Eget kontrollsøk rettet mot endringen:
+`git grep --cached -c "model: sonnet"` → 1 treff i hver av de to skillene, som
+viser at søket faktisk leser det staget innholdet. Diffen lest linje for linje mot
+planens ordlyd før commit.
+
+**Umålt, og skal stå som umålt:** om 0.5.12 faktisk flytter tallene. Avgjøres av
+nye Usage-avlesninger på begge maskinene etter noen økter på versjonen, datert og
+med maskinnavn, holdt mot tallene over. Måleoppskriften står i `TODO.md`.
+**Merk også:** denne økten kjørte 0.5.11 fra cachen hele veien — en kjørende
+prosess beholder versjonen den startet med — så faseslutten som skrev dette
+innslaget gikk på øktens egen modell, ikke på Sonnet.
+
+## 2026-08-30 (hjemmekontor) — Tørrkjøringene er gjennomført i to eksterne repoer; funnene hentet hjem til loggen
+
+Maskin `VPC-5CG3433WMH` (hjemmekontor, x86_64). Ingen pakkeendring. Innslaget
+fører hjem funn fra to testrepoer BK pekte på. Observasjonene under er gjort i
+de øktene og sitert fra repoenes egne `kunnskap/`-logger — ikke kjørt på nytt
+her, så de står som siterte funn, ikke som denne øktens målinger.
+
+**Tørrkjøring-posten i STATUS lukkes.** Begge kjøringene skjedde utenfor dette
+repoet, slik planen krevde:
+
+- `bkaarstein/test-utstyrskapet` (denne maskinen, 24.–25. august): den interne
+  tørrkjøringen som STATUS alt omtalte som avsluttet. Fase 0/1/2 verifisert,
+  fase 3 bevisst uåpnet. Verifiseringsporten holdt tre av tre ganger — det var
+  suksesskriteriet.
+- `bkaarstein/test-oppgave-samling` (ARM-maskinen `VPC-8WD9VC4`, logget
+  2026-08-28): nytt prosjekt satt opp fra bunnen med `nytt-prosjekt` på faseflyt
+  0.5.11 — en Donald Pocket-boksamling med tegnede omslag. Tre faseslutt, alle
+  verifisert av BK; porten holdt der også. Dette dekker «kjør flyten fra blank
+  økt på ARM-maskinen», men med egen case: «Oppgave 5»-sitatet fra `TODO.md` ble
+  ikke brukt, og økten målte dermed ikke deltaker-friksjon mot fasit. Om det
+  gjenstår som egen post, er BKs valg — ikke ført som åpen post her.
+
+**Funn i testrepoene som angår pakkene i dette repoet** (sitert fra
+`test-oppgave-samling/kunnskap/logg.md` og `laering.md`, alle datert 2026-08-28
+på ARM-maskinen, der ikke annet står):
+
+- **`web-prototype` er utdatert på to punkter.** `npx sv create` (Svelte CLI
+  0.17.0) genererer ikke lenger `svelte.config.js` — adapter og
+  compiler-innstillinger ligger i `vite.config.ts`, mens skillen beskriver den
+  gamle strukturen. Og hovedfargen kan ikke byttes med én token-overstyring:
+  skalaen er 16 hardkodede hex-verdier uten basefarge-variabel, og løsningen som
+  virket var Designsystemets eget tokens-verktøy
+  (`npx @digdir/designsystemet tokens create/build`).
+- **`.claude/settings.json` slik oppsettet skrev den:** rett etter prosjektstart
+  var `extraKnownMarketplaces` og `enabledPlugins` borte fra fila etter noen
+  godkjenninger; fila ble flettet tilbake for hånd. En senere kontrollert
+  gjentakelse i samme repo viste nøklene bevart, men flyttet nederst — så tapet
+  første gang har en annen, ukjent forklaring. I tillegg lå fire `Read()`-regler
+  med absolutt brukersti i fila fra oppsettsøkten; de følger med alle som
+  kloner. Beslektet med den lukkede allowlist-saken her, men andre
+  observasjoner — lagt fram for BK 2026-08-30, ingen bestilling.
+- **To feller som kandidater til malenes fallgruvefil:** `Grep`-verktøyet gir
+  falskt nullsvar på mønstre som starter med `--` (CSS-variabler) fordi
+  prefikset tolkes som flagg; og `git grep` uten `--untracked` er blind for nye
+  filer i sikkerhetssøkene — kontrollsøket som skal gi treff fanget akkurat det
+  i praksis, i fase 0 av Donald Pocket-testen.
+- **Fra `test-utstyrskapet` (denne maskinen, 25. august):**
+  `references/components.md` i `web-prototype` besvarte primærknapp-spørsmålet
+  på definisjonslinja (linje 205) — oppslaget gikk likevel til pakkens CSS
+  først. Presiseringen som ble stående der: referansefila først, pakkens CSS når
+  fila ikke svarer eller ser ut til å motsi det du observerer.
+
+Alle skill- og malendringer over er pakkeendringer: de venter på ordlyd-forslag
+og klarsignal, og er ikke gjort i denne økten.
+
+**Konsekvens for køen:** Mac-pre-flighten rykker opp som viktigste umålte post
+før 14. september. STATUS er oppdatert tilsvarende utenom faseslutt, med BKs
+klarsignal 2026-08-30.
+
 ## 2026-08-28 (formiddag) — ARM-leddet er komplett: innholdet i cachen er målt fil-for-fil på denne maskinen, og «0 avvik» ble etterprøvd framfor trodd
 
 Maskin `VPC-8WD9VC4` (Snapdragon X Elite, ARM64, VS Code-utvidelsen). Kort økt med

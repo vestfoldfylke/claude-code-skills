@@ -1,5 +1,6 @@
 ---
 name: fase-slutt
+model: sonnet
 description: >-
   Avslutter en fase eller økt i et faseinndelt prosjekt: oppdaterer logg og
   STATUS, skriver selvvurdering til læringsloggen, sjekker at prosjektet fortsatt
@@ -48,6 +49,11 @@ formelt til stede og reelt borte.
 Dette gjelder utskriften, ikke arbeidet: hvert steg kjøres som før.
 
 Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
+
+Rekkefølgen gjelder tenkingen, ikke turene: loggen (steg 1), læringsloggen
+(steg 2d) og STATUS (steg 3) er uavhengige filer, så når innholdet i alle tre er
+bestemt, sendes filskrivingene i samme melding — én tur i stedet for tre, på det
+punktet i økten der hver tur koster mest.
 
 1. **Logg:** Legg et datert innslag øverst i `kunnskap/logg.md`: hva som ble
    implementert/verifisert, beslutninger med hvorfor
@@ -163,6 +169,12 @@ Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
    Vær ærlig om hva kontrollen dekker: den viser at søket virker i denne katalogen,
    ikke at mønstrene er de riktige. En regex kan være gal og likevel bestå
    kontrollen.
+
+   **Alle søkene kjøres som parallelle kall i samme melding** — ls-files-sjekkene,
+   grep-søkene og kontrollsøket sendes samlet, ikke som en tur per søk. Hvert kall
+   er fortsatt én enkelt kommando (kombinerte kommandoer matcher ingen
+   allowlist-oppføring). Dette er samme søk til samme pris i godkjenninger, men
+   én tur i stedet for fem på det punktet i økten der hver tur koster mest.
 
    **Meld hva du kjørte og hva du fant**, ikke «sjekk utført»: brukeren skal kunne
    se hvilke søk som faktisk ble gjort. Skaler etter prosjekttype — for

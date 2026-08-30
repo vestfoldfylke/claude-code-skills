@@ -4,6 +4,23 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.5.12 — 2026-08-30
+
+- **`fase-slutt` og `fase-start` kjører nå på Sonnet** (`model: sonnet` i
+  frontmatter). Bakgrunn: Usage-avlesning 2026-08-30 på `VPC-5CG3433WMH` viste
+  `fase-slutt` på 11 % og `fase-start` på 7 % av forbruket — mekaniske rutiner
+  som arvet øktens modell, også når den var tyngste. Feltet gjelder per tur:
+  pauser skillen for en brukeravklaring (f.eks. steg 4 i fase-slutt), kjører
+  resten på øktens modell igjen. Er verdien sperret av organisasjonens
+  modell-liste, ignoreres feltet stille. Kjent avveining: selvvurderingen i
+  læringsloggen skrives nå av Sonnet — reverseres i en senere versjon om
+  kvaliteten faller.
+- **`fase-slutt` samler turene der konteksten er størst.** Steg 6 sender alle
+  sikkerhetssøkene som parallelle kall i samme melding (hvert kall fortsatt én
+  enkelt kommando, så allowlist-matching er uendret), og filskrivingene i steg
+  1–3 sendes samlet når innholdet er bestemt. Samme arbeid, færre turer som
+  sender hele konteksten på nytt.
+
 ## 0.5.11 — 2026-08-27
 
 - **`fase-slutt` steg 6 krever nå ett kontrollsøk som skal gi treff.** Fire søk

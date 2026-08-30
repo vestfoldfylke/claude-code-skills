@@ -1,5 +1,6 @@
 ---
 name: fase-start
+model: sonnet
 description: >-
   Starter en ny økt i et faseinndelt prosjekt: leser STATUS og plan, kvitterer
   på arbeidsmåte-korrigeringer, oppsummerer nåsituasjonen og foreslår neste

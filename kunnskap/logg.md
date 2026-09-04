@@ -2,6 +2,61 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-04 (hjemmekontor, `VPC-5CG3433WMH`) — faseflyt 0.6.1: funn fra første tørrkjøring av 0.6.0 rettet
+
+**Levert:** `faseflyt` **0.6.1** — bump av begge manifestene, ikke committet
+før dette fase-slutt-kallet. Elleve filer endret: fem `SKILL.md`, fire
+referansefiler under `nytt-prosjekt`, `CHANGELOG.md`, `kunnskap/TODO.md`,
+begge manifestene.
+
+**Grunnlag:** BK kjørte en fullstendig tørrkjøring av 0.6.0 i et separat
+scratch-prosjekt (`klengenavn`, webapp) — `/faseflyt:nytt-prosjekt` på Fable
+5.1, fase 0/fase-slutt/fase-start på Sonnet — og limte inn skjermbilder og
+filinnhold underveis. Funnene ble ført fortløpende i et arbeidsnotat utenfor
+repoet før noe ble skrevet inn her.
+
+**Beslutning (BK, Windows-snutt):** fulgte anbefalingen om å flytte
+encoding-/PowerShell-snutten fra STATUS til CLAUDE.md, framfor å lappe
+fase-slutt til å bevare den i STATUS. STATUS overskrives per design ved hver
+faseslutt, og observert 2026-09-04 i `klengenavn`: nettopp dét skjedde — en
+falsk peker til `laering.md` erstattet tre reelle regler.
+
+**Beslutning (BK, CHANGELOG):** rette maskinnavnet i 0.6.0-innslaget til
+`VPC-8WD9VC4`, i samme runde som 0.6.1. `hostname` kjørt før noe maskinnavn
+ble skrevet i denne økten (`VPC-5CG3433WMH`, bekreftet før bruk).
+
+**Funn rettet i 0.6.1** (fullt utdrag i CHANGELOG.md):
+1. STATUS-overskrivingen mistet Windows-reglene mot en falsk peker → snutten
+   flyttet til CLAUDE.md; fase-slutt krever nå at en peker faktisk er lest før
+   et punkt tas ut av STATUS.
+2. fase-slutt tilbød ikke issue for punkter som navngav `web-prototype` →
+   koblet til at et punkt nevner en skill/oppskrift ved navn, med egen linje i
+   stegrapporten.
+3. Et logginnslag skrevet underveis i fasen havnet nederst, usett av
+   toppen-lesingen i en senere økt → fase-slutt søker nå etter fasens
+   overskrift før den skriver.
+4. Modellmiks ble ikke foreslått etter godkjent plan (kjent gap, TODO.md siden
+   2026-08-18) → CLAUDE.md-avsnittet, nytt-prosjekt og fase-start sier det nå.
+
+**To hypoteser strøket før forslaget ble skrevet ned**, fordi pakketeksten
+selv ble sjekket i stedet for antatt: «nyeste versjon» og «sjekkpunkt» for
+commit viste seg begge å være modellens ordvalg på Sonnet, ikke tekst fra
+pakken (grep mot `nytt-prosjekt/SKILL.md` og `fase-slutt/SKILL.md`).
+
+**Observert:** `bash .github/renhet/sjekk.sh` → 11 søk, 0 feil, 0 advarsler,
+kontrollsøket traff 39 ganger på «faseflyt». `claude plugin validate .` →
+Validation passed. Kjørt to ganger, andre gang etter to tilleggsrettelser i
+`fallgruver.md` og `prosjekttyper.md` som en full lesing av diffen avdekket —
+begge nevnte fortsatt STATUS som stedet for Windows-regelen, etter at
+hovedforslaget hadde flyttet den til CLAUDE.md.
+
+**Umålt, står som umålt:** at `/model sonnet` (aliaset) virker på alle
+kollegaers oppsett — avgjøres av at noen faktisk bruker det.
+
+**Ikke gjort i denne runden (bevisst):** `web-prototype` sitt tredje kjente
+avvik (`sv create` overskriver `.gitignore`, observert i `klengenavn`) er
+egen plugin og egen pakkesak — se «Neste» i STATUS.
+
 ## 2026-09-04 (kontor-PC) — faseflyt 0.6.0 ute; CHANGELOG navngir feil maskin
 
 Maskin `VPC-8WD9VC4` (kontor-PC). `uname -m` her ga `x86_64` — det avviker fra

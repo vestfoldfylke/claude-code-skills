@@ -19,7 +19,7 @@ webapp > script > dokumentasjon) og suppler manuelt.
 
 **Plattform er en egen akse, ikke en egenskap ved typen.** Reglene i `windows.md`
 gjelder der prosjektet faktisk utvikles — ikke alle er på Windows. Avklar det før
-du skriver noe plattformspesifikt i STATUS.
+du skriver noe plattformspesifikt i CLAUDE.md.
 
 ## Hva en fase er, per type
 

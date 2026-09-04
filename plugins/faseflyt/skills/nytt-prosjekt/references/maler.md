@@ -102,8 +102,8 @@ regel i CLAUDE.md og ta punktet ut herfra. Tom seksjon er lov.>
 ## Det en ny økt må vite
 
 <3–6 punkter: ikke-opplagte beslutninger, kritiske filer, fallgruver som IKKE
-fremgår av å lese koden. På Windows-prosjekter skal encoding-regelen stå her
-(se references/windows.md) til den ev. promoteres til CLAUDE.md.>
+fremgår av å lese koden. På Windows-prosjekter står encoding-regelen i
+CLAUDE.md (se references/windows.md), ikke her — STATUS overskrives.>
 ```
 
 ## `kunnskap/logg.md`
@@ -226,6 +226,11 @@ faseslutt og foreslå et nytt snitt for de gjenstående fasene.
 **`/compact` brukes bare midt i en fase som ikke rekker å bli ferdig.** Ellers
 er veien alltid `/faseflyt:fase-slutt` → `/clear`: en frisk økt med skarp
 STATUS slår en lang tråd.
+
+**Modellvalg:** planlegging, arkitektur og sikkerhetskritiske valg gjøres med
+den tyngste modellen. Fasene i planen er mekanisk arbeid og går på Sonnet:
+`/model sonnet` før fase 0, og tilbake til tyngste modell før planen endres.
+Claude sier fra når en fase ikke er mekanisk, i stedet for å bytte i stillhet.
 
 **Rytmevakter (stående regler for Claude).** Alle tre er varslingsregler: vakten
 sier fra og venter. Ingen av dem er en fullmakt til å utføre det den foreslår.

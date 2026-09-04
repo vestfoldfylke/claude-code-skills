@@ -412,12 +412,12 @@ og CHANGELOG 0.5.7.
   ikke-utvikler faktisk møter — er den ene kanalen faseflyt ikke går i.
   **Umålt og skal stå som umålt:** Desktop-appen har filsystem og kunne vært veien
   for denne gruppen; den er aldri testet.
-- **Tokeneffektivitet og modellmiks:** modellmiksen står i `nytt-prosjekt`s
-  innledning — en skill som lastes én gang, ved oppsett. Explore-delegeringen står
-  i CLAUDE.md-avsnittet, som er aktivt hele tiden. Samme strukturfeil vi alt har
-  betalt for to ganger (deny-regler, rytmevakter): en regel som skal virke alltid,
-  må ligge der den alltid lastes. Gjelder dobbelt for noen som ikke velger modell
-  selv. **Merk motsetningen:** ordrett-kravet fra 0.2.1 koster tokens (observert:
+- **Tokeneffektivitet og modellmiks:** modellmiksen er LØST i faseflyt 0.6.1
+  (2026-09-04): CLAUDE.md-malen fikk avsnittet «Modellvalg», nytt-prosjekt sier
+  det etter godkjent plan, fase-start per fase. Begrunnelsen (en regel som skal
+  virke alltid må ligge der den alltid lastes) står i CHANGELOG 0.6.1 og logg
+  2026-09-04. Umålt: at `/model sonnet` virker i alle oppsett. **Merk
+  motsetningen (fortsatt åpen):** ordrett-kravet fra 0.2.1 koster tokens (observert:
   måleøkten lå på ~21k under oppsettet, uten `/compact`). For en ikke-utvikler
   vinner pålitelighet over tokenpris; for en maintainer er avveiningen åpen. Malen
   bør si hvilken vei den har valgt, og hvorfor.

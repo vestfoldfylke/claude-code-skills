@@ -76,6 +76,13 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
    påstå mer enn forbeholdene under den tillater. (Samme belegg-krav som
    `laering.md` har.)
 
+   **Søk før du skriver:** `Grep` etter fasens overskrift i `logg.md`
+   («Fase <N>»). Finnes et innslag alt — skrevet underveis i fasen — oppdateres
+   det og flyttes øverst; det legges ikke et nytt. Søket gjør noe annet enn
+   toppen-lesingen over: den sparer tokens, søket hindrer dobbeltføring.
+   Observert 2026-09-04: fasen skrev innslaget selv og la det nederst;
+   fase-slutt fant det bare fordi samme økt hadde skrevet det.
+
 2. **Selvvurdering** (læringssløyfen — skrives til fil, ikke bare chat):
    a. **Evaluer forrige økts punkter** i STATUS `## Arbeidsmåte neste økt`:
       ble hvert punkt fulgt? Innarbeidede punkter strykes; punkter som ikke ble
@@ -105,12 +112,18 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
       skrives til fil nettopp for å overleve `/clear`, og en opplesning i
       tillegg er samme tekst to ganger. Én linje om hvor de ble ført, og hva
       som ble strøket eller promotert, holder.
-   e. **Gjelder et punkt arbeidsflyten selv** (skillene, ikke prosjektet):
-      tilby å opprette et issue i `vestfoldfylke/claude-code-skills`
-      (`gh issue create`). Issue-teksten skal beskrive arbeidsflytproblemet og
-      ALDRI prosjektets data — ingen persondata, secrets, interne URL-er eller
-      sensitive prosjektdetaljer — og brukeren skal se og godkjenne teksten før
-      kommandoen kjøres.
+   e. **Gjelder et punkt arbeidsflyten selv** — det navngir en skill eller
+      oppskrift (`web-prototype`, `fase-slutt`, `nytt-prosjekt`, …) eller sier
+      at en instruks var feil eller utdatert: tilby å opprette et issue i
+      `vestfoldfylke/claude-code-skills` (`gh issue create`). Issue-teksten skal
+      beskrive arbeidsflytproblemet og ALDRI prosjektets data — ingen
+      persondata, secrets, interne URL-er eller sensitive prosjektdetaljer — og
+      brukeren skal se og godkjenne teksten før kommandoen kjøres.
+      Stegrapporten i chatten får alltid en egen linje: «Issue til pakkerepoet:
+      tilbudt» eller «Issue til pakkerepoet: ikke aktuelt». Uten linjen er et
+      manglende tilbud usynlig. Observert 2026-09-04 på Sonnet: to punkter
+      navngav `web-prototype`-oppskriften, ingen tilbud kom, og rapporten viste
+      det ikke.
 
 3. **STATUS:** Overskriv `kunnskap/STATUS.md` (maks ~30 linjer): fase og
    tilstand, hva som er verifisert, gjenstående med konkret neste steg,
@@ -119,6 +132,16 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
    for `fase-start`: `**Plan:** kunnskap/plan.md` rett under tittelen, peker
    til `TODO.md`, per-økt-påminnelser i STATUS eller prosjektets CLAUDE.md.
    Hold den skarp — historikk hører hjemme i loggen.
+
+   **Et punkt under `## Det en ny økt må vite` tas ut bare med en peker til der
+   teksten faktisk står nå — og du har lest at den står der.** Observert
+   2026-09-04: encoding-regelen, commit-F-regelen og PowerShell 5.1-manglene
+   ble byttet mot «står i `laering.md`», og `laering.md` hadde dem ikke.
+
+   **Står Windows-snutten fra `windows.md` i STATUS** (prosjekt satt opp før
+   0.6.1), følger den med ordrett i hver overskriving og teller ikke mot
+   ~30-linjersgrensen — eller flyttes til CLAUDE.md med brukerens klarsignal,
+   én gang. Nye prosjekter får den i CLAUDE.md fra oppsettet.
    (Mangler `kunnskap/` eller `kunnskap/plan.md`: opprett mappen/filene; en
    godkjent plan som bare finnes under `~/.claude/plans/` kopieres inn som
    `kunnskap/plan.md` NÅ — den originale er en engangsartikkel.)

@@ -156,6 +156,11 @@ hva som sjekkes, og at alt var rent.
    økten skal ende i, og det brukeren skal se før fasen kan avsluttes — begge
    skal vite det før arbeidet starter.
 
+   **Si i én linje hvilken modell fasen fortjener**, ut fra planens beskrivelse
+   av den: mekanisk implementering → Sonnet (`/model sonnet`); planendring,
+   arkitektur eller sikkerhetskritisk → tyngste modell. Ingen begrunnelse.
+   Skillen kan ikke bytte for brukeren — bare si det.
+
    **Per-økt-påminnelser fra STATUS («Det en ny økt må vite») og prosjektets
    `CLAUDE.md` gjengis ikke som liste.** Du har lest dem, og brukeren skrev dem.
    Nevn den ene som er relevant for steget du foreslår — behandler prosjektet
@@ -173,7 +178,9 @@ hva som sjekkes, og at alt var rent.
 ## Eldre prosjekter (tåles alltid)
 
 Prosjekter satt opp med tidligere versjoner kan mangle `laering.md`,
-`## Arbeidsmåte neste økt` og relativ planpeker. Håndter det uten å feile:
-mangler en seksjon, hopp over det tilhørende steget. Tilby ÉN gang å oppgradere
-(opprett `laering.md`, flytt planen til `kunnskap/plan.md`, legg til
-STATUS-seksjonene) — aldri automatisk; brukeren bestemmer.
+`## Arbeidsmåte neste økt` og relativ planpeker, og på Windows kan
+encoding-snutten stå i STATUS i stedet for CLAUDE.md (flyttet i 0.6.1). Håndter
+det uten å feile: mangler en seksjon, hopp over det tilhørende steget. Tilby ÉN
+gang å oppgradere (opprett `laering.md`, flytt planen til `kunnskap/plan.md`,
+legg til STATUS-seksjonene, flytt Windows-snutten til CLAUDE.md) — aldri
+automatisk; brukeren bestemmer.

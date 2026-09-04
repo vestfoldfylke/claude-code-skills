@@ -181,9 +181,11 @@ regel om hva du skriver her, ikke bare om hva du sier.
    fra dag 1 — også tom. Malenes forklarende topptekster og krav (belegg-kravet i
    logg-malen, etikett- og handlingsbarhetskravet i læringsmalen) er en del av
    malen og følger med — de er det som gjør at filene brukes riktig senere.
-   På Windows: kopier **STATUS-snutten** fra `references/windows.md` inn i STATUS
-   under «Det en ny økt må vite», ordrett og i sin helhet, FØR første filskript
-   skrives. **Begge halvdelene av encoding-regelen må følge med** — BOM uønsket i
+   På Windows: snutten fra `references/windows.md` går IKKE i STATUS — STATUS
+   overskrives ved hver faseslutt, og snutten forsvant slik 2026-09-04. Den
+   skrives i steg 8, inn i `CLAUDE.md` rett etter fase-arbeidsflyt-avsnittet,
+   ordrett og i sin helhet, FØR første filskript skrives. **Begge halvdelene av
+   encoding-regelen må følge med** — BOM uønsket i
    filer scriptet produserer, BOM påkrevd i `.ps1`-kildekode med æøå: den ene lest
    alene leses som en motsigelse av den andre, og et script som mangler den andre
    halvdelen mojibaker ved første kjøring.
@@ -247,7 +249,9 @@ regel om hva du skriver her, ikke bare om hva du sier.
    framtid i prosjektet, og det er nettopp det som er målt: fase-slutt-vakten
    utførte rutinen i stedet for å foreslå den. Behandler prosjektet persondata, følger
    personvern-avsnittet med — også det ordrett, inkludert setningene om hva
-   deny-settet IKKE dekker.
+   deny-settet IKKE dekker. På Windows følger CLAUDE.md-snutten fra
+   `references/windows.md` med, ordrett og i sin helhet, rett etter avsnittet
+   (se steg 5).
    **Etterkontroll (obligatorisk her):** sammenlign den skrevne CLAUDE.md mot
    malblokken punkt for punkt — alle tre vaktene til stede, «foreslå … og vent på
    klarsignal» og porttesten i vakt 2 ordrett, ingen setning slått sammen med en
@@ -257,7 +261,9 @@ regel om hva du skriver her, ikke bare om hva du sier.
 9. **Forklar fase-rytmen kort**, slik at den er avtalt fra dag 1:
    `/faseflyt:fase-start` som første handling i hver økt → implementer fasen →
    brukeren verifiserer → `/faseflyt:fase-slutt` → `/clear`. `/compact` brukes
-   kun midt i en fase som ikke rekker å fullføres.
+   kun midt i en fase som ikke rekker å fullføres. Si også at planen ble
+   skrevet med den tyngste modellen og at fasene er mekaniske: «bytt til Sonnet
+   med `/model sonnet` før fase 0, og tilbake før planen endres».
 
 ## Referanser — les ved behov
 

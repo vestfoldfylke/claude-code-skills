@@ -45,8 +45,9 @@ skjedd og er loggført.
 - **Windows-encoding-fella oppdages alltid for sent.** `Get-Content` uten
   `-Encoding utf8` mojibaker æøå — stille. Og motsatt vei: en `.ps1` med æøå
   lagret UTEN BOM mojibaker sine egne litteraler i 5.1. De to reglene ser ut som
-  motsetninger og må derfor leses sammen. Inn i STATUS FØR første filskript, ikke
-  etter første hendelse. (Se `windows.md`.)
+  motsetninger og må derfor leses sammen. Inn i CLAUDE.md FØR første filskript,
+  ikke etter første hendelse — og ikke i STATUS, som overskrives ved hver
+  faseslutt. (Se `windows.md`.)
 - **Kopierte skills råtner.** En skill som kopieres inn i et prosjektrepo «så
   andre kan overta» drifter fra originalen i stillhet. Deklarér org-skills i
   `.claude/settings.json`; kopier aldri. (Derfor steg 6.)

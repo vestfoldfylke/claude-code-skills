@@ -4,12 +4,55 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.6.1 — 2026-09-04
+
+`faseflyt` 0.6.1. Funn fra første tørrkjøring av 0.6.0: `klengenavn` (webapp)
+fra tom mappe gjennom fase 0, fase-slutt og fase-start, på `VPC-5CG3433WMH`
+(hostname kjørt); oppsettet på Fable 5.1, resten på Sonnet.
+
+- **Windows-snutten bor i CLAUDE.md, ikke i STATUS.** fase-slutt overskrev
+  STATUS og byttet encoding-regelen, commit-F-regelen og PowerShell
+  5.1-manglene mot en peker til `laering.md`, som ikke hadde dem. Samme lærdom
+  0.6.0 brukte på tre arbeidsflytregler: en regel som skal gjelde alltid,
+  ligger der den alltid lastes, og STATUS overskrives per design. Forskjellen
+  er at denne er plattformspesifikk — bare Windows-prosjekter får den (~19
+  linjer per økt). `nytt-prosjekt` skriver snutten i steg 8, `windows.md` og
+  STATUS-malen peker dit. fase-slutt: et punkt tas ut av STATUS bare med en
+  peker som er lest; står snutten i STATUS i et eldre prosjekt, følger den med
+  ordrett eller flyttes med klarsignal, én gang. fase-start tåler begge.
+- **fase-slutt tilbyr issue når et punkt navngir en skill eller oppskrift**
+  eller sier at en instruks var feil, og stegrapporten sier alltid om tilbudet
+  kom. Observert: to punkter navngav `web-prototype`, ingen tilbud, og
+  rapporten viste det ikke.
+- **fase-slutt søker etter fasens overskrift i loggen før den skriver.** Et
+  innslag skrevet underveis i fasen lå nederst; toppen-lesingen fra 0.6.0 ser
+  det ikke i en ny økt. Søket hindrer dobbeltføring, lesingen sparer tokens.
+- **Modellvalg i laget som lastes hver økt:** CLAUDE.md-avsnittet sier at
+  fasene går på Sonnet og planarbeid på tyngste modell; `nytt-prosjekt` sier
+  det etter godkjent plan, `fase-start` per fase. Gjelder øktens hovedmodell,
+  ikke Explore-subagenter (lagt på vent av BK 2026-09-04). Skillene kan ikke
+  bytte for brukeren, bare si det. Posten sto i `TODO.md`. **Umålt:** at
+  `/model sonnet` virker i alle oppsett.
+- **Rettet i 0.6.0-innslaget:** maskinnavnet for målingene var
+  `VPC-5CG3433WMH`; riktig er `VPC-8WD9VC4` (BK 2026-09-04).
+- **Bekreftet i tørrkjøringen, på Sonnet:** forklaringssetning før hver
+  kommando (også midt i fasen), rundetall i STATUS, verifiseringslinjen
+  gjengitt ordrett i fasen, i STATUS og i fase-start, kvittering på tre
+  punkter, porten holdt, ett ✅-innslag. **Fortsatt umålt:** `limit` på Read av
+  loggen — drukner i utskriften.
+- **Sett og ikke gjort:** Sonnet forsøkte brukerens verifisering selv
+  (nettleserautomasjon) før den stoppet; læringssløyfen fanget det som eget
+  punkt, første runde. Ingen regel før det gjentar seg.
+
+Ikke brytende. Windows-prosjekter satt opp før 0.6.1 kan flytte snutten fra
+STATUS til CLAUDE.md for hånd, eller si ja når fase-slutt tilbyr det.
+
 ## 0.6.0 — 2026-09-04
 
 `faseflyt` 0.6.0. Kvalitetsheving før samlingen 14. september, bestilt av BK som
 bevisst unntak fra MVP-frysen. Grunnlaget er en gjennomgang av pakken mot de tre
 formålene — dele oppdrag i små biter, være brukbar for ikke-utviklere, og holde
-øktene korte — med filstørrelser målt 2026-09-04 på `VPC-5CG3433WMH`.
+øktene korte — med filstørrelser målt 2026-09-04 på `VPC-8WD9VC4`.
 
 - **`fase-slutt` leser bare toppen av `logg.md` og `laering.md`.** Begge får
   nye innslag øverst og vokser for hver faseslutt; for å legge inn et innslag

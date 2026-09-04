@@ -9,6 +9,40 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-04 (hjemmekontor, `VPC-5CG3433WMH`) — 0.6.1 rettet fra første tørrkjøring; alle tre punkter fra i går fulgt
+
+**Evaluering av forrige økts punkter:**
+
+- **[ny-regel-maa-avgrenses-mot-den-den-ligner-paa]** (2. runde) — **fulgt,
+  strøket.** Belegg: CHANGELOG 0.6.1 sier eksplisitt hva som skiller
+  Windows-snutt-flyttingen fra 0.6.0-flyttingen av fasesnitt/`/compact`/
+  sjekk-forklaring — «denne er plattformspesifikk», ikke bare «samme lærdom».
+- **[maskinnavn-antatt-ikke-sjekket]** (1. runde) — **fulgt, strøket.**
+  Belegg: `hostname` kjørt før noe maskinnavn ble skrevet (`VPC-5CG3433WMH`),
+  og feilen i 0.6.0-innslaget rettet til `VPC-8WD9VC4` i samme runde.
+- **[full-diff-fanger-det-enkelt-edit-ikke-viser]** (1. runde) — **fulgt,
+  strøket.** Belegg: `git diff --cached` etter batch-redigeringen fanget to
+  gjenværende STATUS-referanser i `fallgruver.md` og `prosjekttyper.md` som
+  ingen av de enkelte editene hadde vist — nøyaktig situasjonen punktet ble
+  skrevet for.
+
+**Nye punkter:**
+
+- **[hypotese-mot-pakketekst-foer-forslag]** Før et observert avvik føres som
+  et pakke-funn, sjekk selve pakketeksten (`grep`) om ordlyden faktisk står
+  der. To hypoteser under tørrkjøringen («nyeste versjon», «sjekkpunkt» for
+  commit) viste seg å være Sonnets ordvalg, ikke pakkens — strøket før
+  0.6.1-forslaget ble skrevet, i stedet for etter.
+- **[grep-hele-pakken-etter-flytting]** Flyttes en regel fra én fil til en
+  annen (STATUS → CLAUDE.md), søk gjennom HELE pakken etter den forrige
+  plasseringen, ikke bare filene forslaget selv nevner. To referansefiler
+  utenfor forslaget (`fallgruver.md`, `prosjekttyper.md`) omtalte fortsatt
+  STATUS, og ble bare funnet av diff-lesingen — ikke av forslagsarbeidet.
+
+**Fasesnitt:** hele 0.6.1-runden (funnsamling under tørrkjøringen, ordlyd,
+klarsignal, innskriving, sjekk, denne faseslutten) fikk plass i én økt uten
+`/compact`. Godt snitt.
+
 ## 2026-09-04 (kontor-PC, `VPC-8WD9VC4`) — Kvalitetsheving levert og pushet, men et maskinnavn ble antatt i CHANGELOG uten å sjekke hostname
 
 **Evaluering av forrige økts punkter:**

@@ -1,11 +1,13 @@
 # Windows- og PowerShell-feller
 
 Gjelder ALLE prosjekter som utvikles på Windows. Snutten under legges inn i
-`kunnskap/STATUS.md` under «Det en ny økt må vite» FØR første filskript skrives —
-ikke etter første mojibake-hendelse. Resten av fila er referanse for den som
-setter opp prosjektet, og kopieres ikke.
+prosjektets `CLAUDE.md`, rett etter fase-arbeidsflyt-avsnittet, FØR første
+filskript skrives — ikke etter første mojibake-hendelse, og ikke i STATUS:
+STATUS overskrives ved hver faseslutt, og snutten forsvant slik 2026-09-04
+(flyttet hit i 0.6.1). Resten av fila er referanse for den som setter opp
+prosjektet, og kopieres ikke.
 
-## STATUS-snutt — kopieres ORDRETT og i sin helhet
+## CLAUDE.md-snutt — kopieres ORDRETT og i sin helhet
 
 Begge kulepunktene i encoding-regelen må følge med. Den ene lest alene leses som
 en motsigelse av den andre, og et script som mangler den andre halvdelen mojibaker

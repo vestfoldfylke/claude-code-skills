@@ -2,6 +2,65 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-04 (kontor-PC) — faseflyt 0.6.0 ute; CHANGELOG navngir feil maskin
+
+Maskin `VPC-8WD9VC4` (kontor-PC). `uname -m` her ga `x86_64` — det avviker fra
+tidligere loggførte funn om samme maskinnavn som ARM64/Snapdragon X Elite.
+**Hypotese, ikke undersøkt:** Git Bash kjører som en x86_64-emulert binær på
+denne maskinen (kjent mønster for Git for Windows på ARM), så `uname -m`
+rapporterer binærens arkitektur, ikke vertens. Hele dagens arbeid — planlegging,
+implementering, commit, push — skjedde på denne maskinen, ikke på
+hjemmekontor-PC-en, i motsetning til det CHANGELOG-teksten under sier.
+
+**Levert:** `faseflyt` **0.6.0** (commit `7061125`, pushet — `git log` og
+`git status -sb` bekrefter at `main` og `origin/main` er like). Elleve filer
+endret: fem `SKILL.md`, to referansefiler under `nytt-prosjekt`, `README.md`,
+begge manifestene, `CHANGELOG.md`. Innhold: kvalitetsheving av `faseflyt` mot
+de tre uttalte formålene (dele oppdrag i små biter, brukbar for ikke-utviklere,
+korte økter), bestilt av BK 2026-09-04 som bevisst unntak fra MVP-frysen.
+Full plan med ordlyd-forslag ligger i `~/.claude/plans/mellow-rolling-gadget.md`
+(maskinlokal, ikke kopiert til `kunnskap/plan.md` — se begrunnelse under).
+
+**Beslutninger (BK, 2026-09-04):**
+- **Frysen:** kvalitetsheving før samlingen går foran MVP-frysen for denne
+  runden.
+- **Sjekk-forklaring:** hver sjekk skal forklares i vanlig språk før den
+  kjøres, uansett tillatelsesmodus (godkjenning eller automatisk) — begrunnelse:
+  trygghet for brukere som ikke forstår kommandoene.
+- **Dataregime:** minimalversjonen av oppfølgingsspørsmålet (persondata inn i
+  selve løsningen, eller bare lest via brukeren) tas inn nå; full variant med
+  tre svar og artefaktregler venter fortsatt.
+- **Subagent-modell og trimming av begrunnelsestekst i skillene:** vurdert og
+  IKKE tatt med — se planfilen for begrunnelsen på hver.
+- **Git og CLAUDE.md som standard i `nytt-prosjekt`** (fjerner to spørsmål fra
+  oppsettet): godkjent som del av hele planen.
+
+**Observert, med belegg:**
+- Renhetssjekk (`sjekk.sh`) kjørt tre ganger i økten: 11 søk / 0 feil hver
+  gang, kontrollsøket «faseflyt» i `plugins/` ga 39 treff siste gang.
+- `claude plugin validate .`: «Validation passed» hver gang, begge
+  manifestene på 0.6.0.
+- Sikkerhetssjekk ved faseslutt: `git ls-files` viser ingen env-filer og ingen
+  trackede bilder; `git grep` etter `@vestfoldfylke.no` ga null treff;
+  kontrollsøket «Vestfold fylkeskommune» ga treff i 9 filer.
+- Full `git diff --cached` lest mot planens ordlyd før commit fanget to
+  duplikate/overlappende formuleringer (i `fase-start` og `nytt-prosjekt`) som
+  ingen av de enkelte `Edit`-bekreftelsene viste. Rettet før commit.
+
+**Feil oppdaget ved faseslutt, IKKE rettet:** `CHANGELOG.md` sier
+«filstørrelser målt 2026-09-04 på `VPC-5CG3433WMH`» (hjemmekontor-maskinen).
+Det er feil — `hostname` kjørt nå viser at hele økten kjørte på `VPC-8WD9VC4`.
+Maskinnavnet ble aldri sjekket under selve arbeidet i dag; det ble antatt fra
+hvilken maskin som vanligvis gjør denne typen målinger i dette repoet, i strid
+med CLAUDE.md-regelen om at målinger navngir maskinen. **Ikke rettet i denne
+faseslutten** — en pakkefil-endring krever klarsignal, og det er ikke
+innhentet for denne rettingen. Forslag lagt fram i chatten.
+
+**Umålt, som planen selv sier det skal stå:** om 0.6.0 faktisk senker
+arkivlesingen i `fase-slutt` og `fase-start`. Avgjøres av Usage-tall etter noen
+faseslutt på 0.6.0, og av at neste `fase-start`-økt faktisk bruker
+`Grep`/`offset` på lange planfiler i stedet for å lese dem i sin helhet.
+
 ## 2026-08-30 (hjemmekontor, kveld) — 0.5.12: rutineskillene kjører på Sonnet, og fase-slutt samler turene der konteksten er størst
 
 Maskin `VPC-5CG3433WMH` (hjemmekontor, x86_64). Utgivelse `faseflyt` **0.5.12**

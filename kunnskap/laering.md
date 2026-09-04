@@ -9,6 +9,62 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-04 (kontor-PC, `VPC-8WD9VC4`) — Kvalitetsheving levert og pushet, men et maskinnavn ble antatt i CHANGELOG uten å sjekke hostname
+
+**Evaluering av forrige økts punkter:**
+
+- **[deleger-lesing-av-fremmede-repoer]** — **ikke aktualisert, andre runde.**
+  Ingen fremmed-repo-lesing i denne økten. Faller ut av de aktive tre; hentes
+  tilbake når en fremmed-repo-lesing faktisk skjer.
+- **[ny-regel-maa-avgrenses-mot-den-den-ligner-paa]** — **ikke fullt fulgt,
+  videreføres.** Belegg: CLAUDE.md-malens nye «Fasesnittet»-avsnitt gjenbruker
+  fasedimensjoneringen fra plan-malen, uten å si i teksten hva som skiller
+  oppsett-tidspunktet (planen skrives) fra det løpende sjekkpunktet (hver
+  faseslutt) — nøyaktig samme mangel punktet ble skrevet for i går.
+- **[ord-jeg-selv-innfoerer-maa-holdes-mot-tabellen]** — **brutt tredje
+  påfølgende runde.** Belegg: «fasesnittet», et ord jeg selv innførte i dag,
+  brukes to steder i CHANGELOG.md; første forekomst forklares i parentes,
+  andre forekomst («`fase-slutt` spør om fasesnittet i selvvurderingen») gjør
+  det ikke. Ordet er ikke et etablert arbeidsflytord med unntak for «forklar
+  bare første gang». **Se promoteringsforslag under.**
+- **[proev-forslaget-mot-prosjektets-egne-laerdommer]** — **fulgt, femtende
+  runde.** Belegg: forslaget om «hver sjekk forklares» ble lagt inn under
+  «Snakk norsk» i stedet for en ny seksjon, samme struktur-lærdom som
+  `[flytt-regelen-dit-den-leses]`; og alle seks «vurdert og ikke tatt med»-
+  punktene ble holdt mot MVP-frysen, dataregime-parkeringen og «ikke
+  nedgrader innholdet»-instruksen før noe ble avgjort.
+
+**Nye punkter:**
+
+- **[maskinnavn-antatt-ikke-sjekket]** `CHANGELOG.md` 0.6.0 sier «målt … på
+  `VPC-5CG3433WMH`». `hostname` kjørt ved faseslutt viser at hele økten kjørte
+  på `VPC-8WD9VC4` — maskinnavnet ble aldri sjekket under arbeidet, bare
+  antatt fra hvilken maskin som vanligvis gjør denne typen målinger i dette
+  repoet. CLAUDE.md sier «målinger dateres og navngir maskinen»; regelen ble
+  ikke brutt i ordlyden jeg skrev, men i praksisen bak den. **Regel: kjør
+  `hostname` FØR et maskinnavn skrives inn i en pakkefil — ikke etterpå, og
+  ikke fra vane om hvilken maskin som «vanligvis» måler.**
+- **[full-diff-fanger-det-enkelt-edit-ikke-viser]** En `Edit`-bekreftelse sier
+  bare at strengen ble byttet, ikke at resultatet er sammenhengende. Belegg:
+  etter en runde med rundt 25 parallelle redigeringer i sju filer fanget en
+  full lesing av `git diff --cached` mot planens ordlyd to duplikate/
+  overlappende formuleringer (i `fase-start` og `nytt-prosjekt`) som ingen av
+  de enkelte `Edit`-bekreftelsene viste. Uten den lesingen hadde begge blitt
+  pushet. **Regel: etter en batch med mange samtidige redigeringer, les hele
+  diffen mot det som var avtalt — stol ikke på at hvert enkelt kall lyktes.**
+
+**Promoteringsforslag (nytt, tredje brutte runde):**
+`[ord-jeg-selv-innfoerer-maa-holdes-mot-tabellen]` har nå gått igjen tre
+ganger: introdusert 2026-08-27 med «derisker», brutt 2026-08-30 med
+«frontmatter» i CHANGELOG, brutt igjen i dag med «fasesnittet» i CHANGELOG —
+alle tre i den mest kollegavendte fila i repoet. Den generelle regelen står
+allerede i CLAUDE.md («møter du et fagord som ikke står i tabellen … bruk det
+bare hvis du forklarer det i samme setning»), så det som mangler er ikke
+prinsippet, men et konkret sjekkpunkt i «Sjekkene før hver push»: skann diffen
+for ord du selv har skrevet inn nylig, og hold hvert av dem mot tabellen — ikke
+bare gjenta prinsippet abstrakt. Ordlyd ikke skrevet inn. **Krever BKs
+klarsignal — aldri automatisk.**
+
 ## 2026-08-30 (hjemmekontor, kveld) — Økten som handlet om token-vekt leste 700 linjer fremmed repo rett inn i hovedtråden, og skrev en ny regel uten å avgrense den mot den den ligner på
 
 **Evaluering av forrige økts punkter:**

@@ -2,88 +2,57 @@
 
 *Overskrives ved faseslutt. Historikk: `logg.md`. Selvvurdering: `laering.md`.*
 **Plan:** `kunnskap/plan.md` **TODO:** `kunnskap/TODO.md`
-**Køen bor i GitHub issues** — `gh issue list`. `TODO.md` bærer beslutninger og
-resonnement. Merkelappen `kjent-før-test` = bevisst utsatt.
-
-**FRIST: samlingen er 14. september 2026.** To uker. Seks grupper, deltakernes
-egne maskiner, satt opp på forhånd av BK (Mac + ARM + x86_64).
+**Køen bor i GitHub issues** — `gh issue list`. Merkelappen `kjent-før-test` =
+bevisst utsatt av MVP-frysen 2026-08-19.
 
 **TO MASKINER SKRIVER TIL DETTE REPOET.** Kjør `git fetch` og sammenlign med
-`origin/main` før du stoler på denne fila — `fase-start` steg 2 stiller bare
-lokale spørsmål og ser ikke at remote har gått videre. Observert 2026-08-28: push
-avvist, STATUS var overskrevet av en faseslutt fra den andre maskinen.
+`origin/main` før du stoler på denne fila.
 
-**Fase:** siste utgivelse er `faseflyt` **0.5.12** (2026-08-30, `703ef89`):
-`model: sonnet` på fase-slutt og fase-start, og fase-slutt samler turene (steg
-6-søkene parallelt, filskrivingene i steg 1–3 samlet). **Effekten er umålt.**
+**Fase:** `faseflyt` **0.6.0** pushet 2026-09-04 fra `VPC-8WD9VC4` (`7061125`)
+— kvalitetsheving før samlingen 14. september, bevisst unntak fra frysen.
 **Begge maskinene må kjøre `/plugin marketplace update claude-code-skills` +
-omstart** før versjonen virker — en kjørende prosess beholder sin versjon.
+omstart** før 0.6.0 virker der — en kjørende prosess beholder sin versjon.
 
-**Tørrkjøringene er gjennomført**, i to repoer utenfor dette:
-`bkaarstein/test-utstyrskapet` (x86, 24.–25.08) og
-`bkaarstein/test-oppgave-samling` (ARM, 28.08 — nytt prosjekt fra bunnen på
-0.5.11, tre verifiserte faseslutt). Verifiseringsporten holdt i begge. Funnene som
-angår pakkene: logg 2026-08-30. **Køen er ellers tom bak MVP-frysen** — seks av
-sju åpne issues bærer `kjent-før-test`. Å ta en av dem er å oppheve frysen: BKs
-valg, ikke en oppgave å plukke.
+**Feil i CHANGELOG, uavklart:** 0.6.0-innslaget navngir feil maskin
+(`VPC-5CG3433WMH` — skal være `VPC-8WD9VC4`). Forslag lagt fram, venter på
+klarsignal. Se `logg.md` 2026-09-04.
 
 ## Neste — start her
 
-**1. Mac-pre-flight — viktigste umålte post før fristen.** Helt urørt, og
-plattformen flest er på. `kollegatest.md` har alle bokser tomme. Krever en
-frivillig Mac; kan ikke gjøres fra en Windows-maskin. **Måleoppskrift:**
-sammenlign `~/.claude/plugins/cache/claude-code-skills/faseflyt/<versjon>/` mot
-`plugins/faseflyt/`, fil for fil, med **CRLF→LF og BOM strippet** før hashing, og
-**se bort fra `.in_use/`** (hypotese: Claude Codes bokføring over prosesser som
-holder versjonen i bruk — ikke verifisert på noen maskin). **Legg skriptet i
-repoet før det kjøres** — to maskiner er alt målt med hvert sitt engangsskript.
-
-**2. Venter på BK — ikke oppgaver å plukke:** ordlyd-forslag for to utdaterte
-punkter i `web-prototype` (logg 2026-08-30); fortetting av de gjennomførte
-tørrkjøring-postene i `TODO.md` (forslag lagt fram 2026-08-30, ikke utført); og
-om «Oppgave 5»-sitatet fortsatt skal måles mot fasit i en blank økt — ARM-økten
-dekket flyten, men ikke deltaker-friksjonen.
+1. **Tørrkjør 0.6.0**, etter marketplace-update + omstart: `/faseflyt:nytt-
+   prosjekt` (webapp) i tom mappe, én fase, `/faseflyt:fase-slutt`. Sjekk at
+   sjekk-forklaringene faktisk kommer i chatten, rundetall-formatet, og at
+   arkivlesingen i fase-slutt bruker `limit`. Full liste: `logg.md` 2026-09-04.
+2. **Mac-pre-flight** — fortsatt viktigste umålte post, urørt.
+3. **`web-prototype` er utdatert på to punkter** (logg 2026-08-30) — neste
+   pakkesak etter tørrkjøringen av 0.6.0.
 
 ## Arbeidsmåte neste økt
 
-- **[deleger-lesing-av-fremmede-repoer]** *(ny)* Klon og les et fremmed repo
-  gjennom en Explore-subagent, ikke i hovedtråden. Trengs ordrette sitater til
-  loggen, be agenten om dem.
-- **[ny-regel-maa-avgrenses-mot-den-den-ligner-paa]** *(ny)* Skriver du en ny
-  instruks i pakken som ligner på en disiplin som alt gjelder, si i teksten hva
-  som skiller dem — leseren er en økt ingen av oss ser.
-- **[ord-jeg-selv-innfoerer-maa-holdes-mot-tabellen]** *(videreført — brutt
-  2026-08-30 med «frontmatter» uforklart i CHANGELOG)* Et uvanlig ord eller et lån
-  passerer bare hvis det står i klarspråktabellen, forklares i samme setning,
-  eller byttes til vanlig norsk.
+- `[ny-regel-maa-avgrenses-mot-den-den-ligner-paa]` (2. runde) Skriver du en
+  ny instruks som ligner en disiplin som alt gjelder, si i teksten hva som
+  skiller dem.
+- `[maskinnavn-antatt-ikke-sjekket]` Kjør `hostname` FØR et maskinnavn skrives
+  inn i en pakkefil.
+- `[full-diff-fanger-det-enkelt-edit-ikke-viser]` Etter en batch med mange
+  samtidige redigeringer, les hele diffen mot det som var avtalt.
 
 ## Det en ny økt må vite
 
-- **PROMOTERINGSFORSLAG VENTER, fjortende runde:**
-  `[proev-forslaget-mot-prosjektets-egne-laerdommer]` inn i `CLAUDE.md` under
-  `## Målinger`, ut av STATUS. **Krever BKs klarsignal — aldri automatisk.**
-  Samme sted venter `[nullavvik-krever-samme-kontroll-som-nullsvar]`: enhver
-  måling som konkluderer «ingen forskjell» eller «ingen treff» kjører ett tilfelle
-  som skal gi utslag, i samme runde.
-- **`[en-maaling-per-tur]` er arkivert som aktivt punkt, ikke opphevet.** Sjette
-  runde uten å bli satt på prøve. Gjelder fortsatt en flertrinnsmåling der
-  utfallet av ett trinn avgjør det neste — det er noe annet enn de parallelle
-  søkene 0.5.12 innførte i `fase-slutt` steg 6.
-- **Norske commit-meldinger lukker ikke issues.** GitHub kjenner
-  `Closes`/`Fixes`/`Resolves`. Bruk `gh issue close` som eget kall.
-- **Engangsgodkjenninger brenner målfiler.** Trykker brukeren «Yes», går fila
-  gjennom ut økten uansett form. Velg alltid en urørt fil som mål, og si «trykk
-  No» rett før kallet. Godkjenninger gjelder én økt.
-- **Allowlist-saken er LUKKET.** Sammenhengen mellom `.claude/settings.json` og
-  oppstartsdialogene finnes ikke. Ikke gjenåpne uten ny bestilling. Fila er
-  tracket og endres av hver godkjenning — kjent falsk positiv i `fase-start`
-  steg 2. Les diffen framfor å anta; en absolutt brukersti der havner hos alle.
-- **Ingen automatisk sjekk finnes.** Diffen er eneste port. Renhetssjekken kjøres
-  fra Bash ETTER `git add`, alltid med ett kontrollsøk som skal gi treff, og
-  `claude plugin validate .` ved siden av.
-- **Beskrevet omfang er avtalt omfang:** ingen pakke-/mal-/dokumentfil endres
-  uten ordlyd-forslag og klarsignal. Pakkeendring = bump BEGGE manifestene +
-  `CHANGELOG.md`. Målinger dateres og navngir maskinen.
+- **To promoteringsforslag venter på BKs klarsignal:**
+  `[proev-forslaget-mot-prosjektets-egne-laerdommer]` (femtende runde) og NY
+  `[ord-jeg-selv-innfoerer-maa-holdes-mot-tabellen]` (tredje brutte runde,
+  konkret forslag i `laering.md` 2026-09-04) — begge inn i `CLAUDE.md`.
+- `[nullavvik-krever-samme-kontroll-som-nullsvar]` og `[en-maaling-per-tur]`
+  arkivert som aktive, ikke opphevet — sjuende runde uten å bli satt på prøve.
+- Norske commit-meldinger lukker ikke issues — `gh issue close` er eget kall.
+- Engangsgodkjenninger brenner målfiler — velg alltid en urørt fil som mål.
+- Allowlist-saken er LUKKET. Ikke gjenåpne.
+- Ingen automatisk sjekk finnes. Diffen er eneste port; `sjekk.sh` +
+  `claude plugin validate .` kjøres fra Bash ETTER `git add`.
+- Beskrevet omfang er avtalt omfang. Pakkeendring = bump BEGGE manifestene +
+  `CHANGELOG.md`. Målinger dateres og navngir maskinen — verifisert med
+  `hostname`, ikke antatt (se punktet over).
 - `kunnskap/` har også `kollegatest.md`, `testplan.md`, `selvbaerende-test.md`.
-- `/plugin` og `/permissions` kun i terminalen — ikke i VS Code-utvidelsen.
+- `/plugin` og `/permissions` kun i terminalen.
 - Flerlinjede commit-meldinger: meldingsfil + `git commit -F`.

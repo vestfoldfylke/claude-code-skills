@@ -55,6 +55,14 @@ Rekkefølgen gjelder tenkingen, ikke turene: loggen (steg 1), læringsloggen
 bestemt, sendes filskrivingene i samme melding — én tur i stedet for tre, på det
 punktet i økten der hver tur koster mest.
 
+**Les toppen, ikke arkivet.** `logg.md` og `laering.md` får nye innslag øverst
+og vokser for hver faseslutt. For å legge inn et innslag trenger du bare de
+første ~15 linjene (`Read` med `limit`) — der står overskriften og det forrige
+innslagets dato, som er alt du trenger som ankerpunkt. Å lese hele fila koster
+like mye som fila er lang, i den turen der konteksten alt er størst, og
+ingenting i stegene under trenger innholdet lenger ned. Gjentakelser telles i
+STATUS (steg 2b), ikke ved å lese læringsloggen.
+
 1. **Logg:** Legg et datert innslag øverst i `kunnskap/logg.md`: hva som ble
    implementert/verifisert, beslutninger med hvorfor
    (`**Beslutning (<beslutningstaker>, <tema>):**` + begrunnelse — personen som
@@ -72,16 +80,28 @@ punktet i økten der hver tur koster mest.
    a. **Evaluer forrige økts punkter** i STATUS `## Arbeidsmåte neste økt`:
       ble hvert punkt fulgt? Innarbeidede punkter strykes; punkter som ikke ble
       fulgt videreføres.
-   b. Tell gjentakelser via stikkordsetikettene i `kunnskap/laering.md`: et
-      punkt som har stått i **tre påfølgende faseslutt** er en manglende regel —
-      foreslå å skrive den permanent inn i prosjektets `CLAUDE.md` og fjerne
-      den fra STATUS.
+   b. **Tell rundene i STATUS**, ikke i læringsloggen: hvert punkt i
+      `## Arbeidsmåte neste økt` bærer et rundetall (`(2. runde)`). Et punkt som
+      videreføres får tallet økt; et nytt punkt starter uten tall; et punkt uten
+      tall i et eldre prosjekt regnes som første runde. Står et punkt i **tredje
+      runde**, er det en manglende regel — foreslå å skrive det permanent inn i
+      prosjektets `CLAUDE.md` og ta det ut av STATUS. Mangler prosjektet en
+      `CLAUDE.md`, tilby å opprette den med punktet som eneste innhold.
+      **Forslaget legges fram én gang.** Sier brukeren nei eller «ikke nå»,
+      føres svaret i `laering.md`, punktet tas ut av STATUS, og forslaget
+      gjentas ikke.
    c. Skriv 1–3 **nye** handlingsbare punkter, hver med stabil
       stikkordsetikett (`[explore-delegering]`-stil) og konkret belegg — dekk
-      både prosess/token-bruk og kodekvalitet/framgangsmåte. «Kunne vært mer
-      effektiv» er ikke et punkt.
+      både prosess/token-bruk og kodekvalitet/framgangsmåte. **Svar alltid på
+      ett spørsmål om fasesnittet:** fikk fasen plass i én økt uten `/compact`?
+      Hvis ikke, var fasen for stor — foreslå hvordan de gjenstående fasene bør
+      deles, og legg det inn i `kunnskap/plan.md` når brukeren sier ja. «Kunne
+      vært mer effektiv» er ikke et punkt.
    d. Før alt som datert innslag øverst i `kunnskap/laering.md`, og legg de
-      aktive punktene i STATUS (maks 3). **Ikke gjengi dem i chatten** — de
+      aktive punktene i STATUS (maks 3). Innslaget er kort: én linje per
+      evaluert punkt, to–tre linjer per nytt punkt, belegget som én setning. Et
+      innslag på over ~20 linjer er et tegn på at det skrives arkiv framfor
+      korrigering. **Ikke gjengi dem i chatten** — de
       skrives til fil nettopp for å overleve `/clear`, og en opplesning i
       tillegg er samme tekst to ganger. Én linje om hvor de ble ført, og hva
       som ble strøket eller promotert, holder.
@@ -126,6 +146,10 @@ punktet i økten der hver tur koster mest.
    loggen hva du kjørte og hva som skjedde — det er det som gjør at «fase X ✅»
    betyr noe.
 
+   Si først i vanlig språk hva sjekken er og hva et godt utfall betyr — «jeg
+   kjører prosjektets egen test, som sier om koden fortsatt henger sammen; alt
+   grønt betyr at ingenting er brukket» — og først deretter kommandoen.
+
    **Let bredt før du melder at ingen sjekk finnes.** En sjekk er alt som kan
    svare ja/nei på om prosjektet henger sammen, ikke bare et byggverktøy: tester
    og typesjekk (`npm test`, `npm run build`, `pytest`), men også validering av
@@ -141,7 +165,14 @@ punktet i økten der hver tur koster mest.
 
 6. **Rask sikkerhetssjekk.** Rask er nøkkelordet: dette fanger de grove tabbene,
    det er ikke en gjennomgang. Full gjennomgang er `/security-review`, en egen
-   jobb. I git-prosjekter:
+   jobb.
+
+   Før søkene: én setning om hva de leter etter og hvorfor — «jeg søker gjennom
+   filene som lagres i git etter fødselsnummer, passord og nøkler; null treff er
+   riktig, og ett av søkene skal treffe med vilje, så vi vet at søkingen
+   virker.»
+
+   I git-prosjekter:
    - `git ls-files` skal ikke vise andre env-filer enn `.env.example`
    - `git grep` etter 11-sifrede tall (fødselsnummer) og `client_secret` i
      tracked filer — kjente eksempelverdier i dokumentasjon er OK
@@ -186,10 +217,18 @@ punktet i økten der hver tur koster mest.
    prosjektet persondata, er `.gitignore` og deny-settet førstelinjen; denne
    sjekken er et nett under, ikke i stedet for.
 
-7. **Commit og push** med beskrivende melding. Flerlinjet melding → skriv
-   meldingsfil og bruk `git commit -F <fil>`. (Ikke-git-prosjekter: hopp over,
-   men si det.) Dette steget forutsetter porten øverst: at brukeren kalte
-   skillen. Kom du hit uten det, stopp og spør.
+7. **Commit og push** med beskrivende melding. Si det før du gjør det: «Nå
+   lagrer jeg et sjekkpunkt i git og sender det til GitHub, så arbeidet ikke kan
+   gå tapt.» Flerlinjet melding → skriv meldingsfil og bruk
+   `git commit -F <fil>`. (Ikke-git-prosjekter: hopp over, men si det.)
+
+   Feiler push — ingen remote, ikke innlogget, avvist — er commiten trygg
+   lokalt. Si det i vanlig språk («arbeidet er lagret her, men ikke sendt til
+   GitHub»), si hva som må til, og ikke prøv å løse det selv: ingen `--force`,
+   ingen endring av remote, ingen innlogging på brukerens vegne.
+
+   Dette steget forutsetter porten øverst: at brukeren kalte skillen. Kom du hit
+   uten det, stopp og spør.
 
 8. **Avslutt** med: «FERDIG — klar for /clear. Start neste økt med
    /faseflyt:fase-start.» Er planens faser ferdige: foreslå å flytte

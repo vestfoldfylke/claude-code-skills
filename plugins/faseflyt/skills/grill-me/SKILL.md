@@ -26,6 +26,8 @@ to me and wait for my answer.
 
 Do not act on it until I confirm we have reached a shared understanding.
 
+Svar på brukerens språk — norsk når brukeren skriver norsk.
+
 ## Etter grillingen — beslutningene inn i planen
 
 Når felles forståelse er nådd, tilby å skrive beslutningene inn i

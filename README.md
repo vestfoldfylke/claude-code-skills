@@ -201,8 +201,10 @@ mangler og rører ikke eksisterende filer.
 
 **Claude spør om lov til å kjøre ting — kommer den til å mase hele tiden?**
 Nei. Dialogene gjelder å *kjøre* noe: et script, et program, en `git commit`.
-Å lese filer spør den normalt ikke om. Velger du «allow for this project» i
-dialogen, står valget der og kommer ikke igjen. Til sammenligning: en hel
+Å lese filer spør den normalt ikke om. Før hver sjekk sier Claude i én setning
+hva den gjør og hvorfor, så du vet hva du godkjenner — også når den ikke spør.
+Velger du «allow for this project» i dialogen, står valget der og kommer ikke
+igjen. Til sammenligning: en hel
 `/faseflyt:fase-slutt` ga fire dialoger da det ble målt 27. august 2026.
 
 **Hva er forskjellen på `/clear` og `/compact`?**

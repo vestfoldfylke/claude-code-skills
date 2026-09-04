@@ -46,6 +46,12 @@ Bash; det er motbevist, ikke utelatt.
 
 Gjør følgende, i rekkefølge:
 
+Før kallene i steg 0 og 2: én linje til brukeren om hva som kommer — «Først to
+raske sjekker: at pakken er oppdatert, og at forrige økt ble avsluttet ordentlig.
+Det er noen lesekommandoer mot git; ingen av dem endrer noe.» Deretter kommer
+resultatlinja fra utdatakontrakten over. Normaltilfellet er altså to linjer:
+hva som sjekkes, og at alt var rent.
+
 0. **Sjekk at pakken er oppdatert — raskt, og aldri blokkerende.** To
    versjoner kan sprike: den økten kjører, og den som er installert.
    - *Kjørende:* les `version` i `.claude-plugin/plugin.json` to nivåer over
@@ -75,7 +81,7 @@ Gjør følgende, i rekkefølge:
 2. **Ble forrige økt avsluttet?** STATUS beskriver den økten som sist kjørte
    `fase-slutt`. Ble en økt avbrutt — lukket lokk, møte, glemt — beskriver STATUS
    en eldre tilstand enn den du står i, og stegene under stoler blindt på den.
-   I et prosjekt med git, spør om to ting:
+   I et prosjekt med git, spør om tre ting:
 
    - *Ucommittet arbeid:* `git status --porcelain`. Ikke tomt = det ligger
      endringer her STATUS ikke vet om.
@@ -90,10 +96,19 @@ Gjør følgende, i rekkefølge:
      `fase-slutt` skriver logg og committer i samme runde, så alt etter den
      commiten er arbeid som ikke er loggført.
 
-   Gir én av dem treff: si det tydelig — «det ligger arbeid her som STATUS ikke
-   vet om, så forrige økt ble trolig ikke avsluttet med `fase-slutt`» — og tilby
-   å oppsummere hva som faktisk er gjort, fra endringene og de commitene, før
-   økten fortsetter. **Aldri automatisk opprydding, commit eller `git checkout`**
+   - *Har noen pushet siden sist?* Finnes en remote: `git fetch`, deretter
+     `git rev-list --count HEAD..@{u}`. Er tallet over 0, har en annen maskin
+     eller person pushet etter din siste økt, og STATUS på disk kan være
+     foreldet — si det, og tilby `git pull` FØR du leser videre. Feiler
+     kommandoene (ingen remote, ingen nett, ingen upstream): si det i én
+     setning og fortsett. Observert 2026-08-28 på `VPC-8WD9VC4`: STATUS var
+     overskrevet på remote før økten begynte, og de to spørsmålene over er
+     lokale og kunne ikke se det.
+
+   Gir ett av de to første treff: si det tydelig — «det ligger arbeid her som
+   STATUS ikke vet om, så forrige økt ble trolig ikke avsluttet med `fase-slutt`»
+   — og tilby å oppsummere hva som faktisk er gjort, fra endringene og de
+   commitene, før økten fortsetter. **Aldri automatisk opprydding, commit eller `git checkout`**
    — brukeren bestemmer hva som skjer med det ucommittede.
 
    **Kjent falsk positiv: `.claude/settings.json`.** Fila er tracket — pakken
@@ -118,12 +133,16 @@ Gjør følgende, i rekkefølge:
    - Ikke et git-prosjekt, eller ingen `kunnskap/logg.md`: hopp over steget i
      stillhet.
 
-3. Les `kunnskap/plan.md`. Finnes den ikke, følg `**Plan:**`-linjen i STATUS.
-   Peker den på en fil som ikke finnes (typisk en gammel
-   `~/.claude/plans/`-sti): si det tydelig og tilby å rekonstruere
-   `kunnskap/plan.md` fra STATUS + logg — ikke lat som planen finnes. Les også
-   `TODO.md` hvis den finnes. `logg.md` og `laering.md` leses KUN hvis STATUS
-   er uklar om noe du trenger akkurat nå.
+3. Les `kunnskap/plan.md`. **Er den lang (over ~150 linjer), les ikke hele:**
+   finn fasene med `Grep` etter `### Fase`, og les `## Avklarte beslutninger` og
+   fasene fra gjeldende fase og utover med `Read` og `offset`. Kontekst og
+   ferdige faser står i loggen om de trengs. Finnes ikke planen, følg
+   `**Plan:**`-linjen i STATUS. Peker den på en fil som ikke finnes (typisk en
+   gammel `~/.claude/plans/`-sti): si det tydelig og tilby å rekonstruere
+   `kunnskap/plan.md` fra STATUS + logg — ikke lat som planen finnes.
+   `TODO.md` leses bare når STATUS peker dit for neste steg, eller når planens
+   faser er ferdige — ikke som rutine. `logg.md` og `laering.md` leses KUN hvis
+   STATUS er uklar om noe du trenger akkurat nå.
 
 4. IKKE utforsk kodebasen for ting STATUS/planen allerede svarer på. Trengs
    utforskning senere i økten: deleger til Explore-subagent — bare konklusjonen
@@ -132,6 +151,10 @@ Gjør følgende, i rekkefølge:
 5. Oppsummer kort i chatten: fase/tilstand, hva som er verifisert, og foreslå
    ETT konkret neste steg (inkludert valg som allerede er tatt — ikke gjenåpne
    dem). Har brukeren gitt en tilleggsbeskjed, er det den som gjelder.
+
+   **Gjengi fasens `**Verifisering:**`-linje fra planen ordrett.** Det er det
+   økten skal ende i, og det brukeren skal se før fasen kan avsluttes — begge
+   skal vite det før arbeidet starter.
 
    **Per-økt-påminnelser fra STATUS («Det en ny økt må vite») og prosjektets
    `CLAUDE.md` gjengis ikke som liste.** Du har lest dem, og brukeren skrev dem.

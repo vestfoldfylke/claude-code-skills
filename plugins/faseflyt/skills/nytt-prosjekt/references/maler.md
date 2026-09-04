@@ -55,11 +55,15 @@ normalområdet. En fase som ikke kan verifiseres selvstendig er feil snitt.>
 
 ### Fase 0 — Oppsett, og bevis at det kjører
 <hva som settes opp>
-**Verifisering:** <hva brukeren gjør for å si ✅>
+**Verifisering:** <det brukeren GJØR og SER for å si ✅ — «åpne siden, se at
+listen viser tre rader». Ikke «kjør testene»: en kommando Claude kjører er ikke
+brukerens verifisering.>
 
 ### Fase 1 — <navn>
 <innhold>
-**Verifisering:** <hva brukeren gjør for å si ✅>
+**Verifisering:** <det brukeren GJØR og SER for å si ✅ — «åpne siden, se at
+listen viser tre rader». Ikke «kjør testene»: en kommando Claude kjører er ikke
+brukerens verifisering.>
 
 ## Kritiske filer
 
@@ -88,10 +92,12 @@ normalområdet. En fase som ikke kan verifiseres selvstendig er feil snitt.>
 
 ## Arbeidsmåte neste økt
 
-<maks 3 punkter fra siste selvvurdering, hver med stikkordsetikett — fjernes når
-innarbeidet, promoteres til CLAUDE.md ved tredje gjentakelse. Tom seksjon er lov.>
+<maks 3 punkter fra siste selvvurdering, hver med stikkordsetikett og rundetall.
+Nytt punkt: uten tall. Videreført: tallet økes. Tredje runde = foreslå permanent
+regel i CLAUDE.md og ta punktet ut herfra. Tom seksjon er lov.>
 
 - `[<etikett>]` <handlingsbar korrigering>
+- `[<etikett>]` (2. runde) <videreført korrigering>
 
 ## Det en ny økt må vite
 
@@ -145,6 +151,7 @@ Punktene skal være HANDLINGSBARE og ETTERPRØVBARE:
 - Ubrukelig: «kunne vært mer effektiv.»
 
 To kategorier dekkes per faseslutt: prosess/token-bruk og kodekvalitet/framgangsmåte.
+Innslagene er korte: én linje per evaluert punkt, to–tre per nytt punkt.
 
 ## <ÅÅÅÅ-MM-DD> — Fase <N>
 
@@ -210,6 +217,16 @@ Prosjektet kjøres i faser med verifiseringsport: plan i `kunnskap/plan.md` →
 Ny økt: les `kunnskap/STATUS.md` først — ikke utforsk kodebasen for ting den
 svarer på. Utforskning delegeres til Explore-subagent.
 
+**Fasesnittet:** én fase er noe brukeren kan se virke, i én økt. Verifiseringen
+i planen skrives som noe brukeren gjør og ser («åpne siden, se at listen viser
+tre rader»), ikke som en kommando Claude kjører («kjør testene»). Trengte fasen
+`/compact`, eller gikk den over flere økter, var den for stor — si det ved
+faseslutt og foreslå et nytt snitt for de gjenstående fasene.
+
+**`/compact` brukes bare midt i en fase som ikke rekker å bli ferdig.** Ellers
+er veien alltid `/faseflyt:fase-slutt` → `/clear`: en frisk økt med skarp
+STATUS slår en lang tråd.
+
 **Rytmevakter (stående regler for Claude).** Alle tre er varslingsregler: vakten
 sier fra og venter. Ingen av dem er en fullmakt til å utføre det den foreslår.
 
@@ -254,6 +271,14 @@ Vis til ting med navn, aldri med bokstav eller nummer fra en tidligere melding
 («A og B», «punkt 3») — brukeren skal ikke måtte bla opp for å se hva svaret
 gjelder. Dette gjelder også den korte teksten som følger hvert verktøykall:
 brukeren leser den mens du jobber.
+
+**Hver sjekk forklares før den kjøres.** Skal du kjøre en kommando, et skript
+eller et søk for å sjekke noe — at prosjektet virker, at ingen passord ligger i
+filene, at forrige økt ble avsluttet — si først i én setning hva den gjør,
+hvorfor, og hva et godt utfall ser ut som. Gjelder uansett om Claude Code spør
+om lov først eller ikke: uten dialog er setningen det eneste brukeren ser. Det
+samme gjelder commit og push: si at du lagrer et sjekkpunkt og sender det til
+GitHub før du gjør det.
 
 ## Kunnskapsfangst
 
@@ -320,8 +345,11 @@ webapp-typen og `"fint-graphql@claude-code-skills": true` når prosjektet bruker
 **Hva `allow`-settet er, og hva det ikke er.** De fire oppføringene dekker
 `fase-start` sine egne kall: versjonssjekken (steg 0) leser pakkens to
 manifester, og sjekken av om forrige økt ble avsluttet (steg 2) kjører
-`git status` og `git log`. Uten dem koster hver oppstart fire
-godkjenningsdialoger før brukeren har gjort noe. Alle fire er **lesende** — de
+`git status` og `git log` (remote-sjekken `git fetch` i samme steg er ikke tatt
+med, med vilje — målingen i neste setning sier hvorfor). Målt 2026-08-27 på ARM: oppføringer som matcher
+ordrett ga likevel dialog, og kall uten oppføring gikk gjennom — allowlisten er
+ikke alene om å avgjøre. Oppstarten kan derfor koste noen godkjenninger; «allow
+for this project» gjør valget varig. Alle fire er **lesende** — de
 rører ikke prosjektets data og kan ikke skrive noe. Merk likevel at pakken her
 *utvider* hva Claude får gjøre uten å spørre, i motsetning til deny-settet
 lenger ned, og at de to siste er brede: all `git status` og all `git log`, ikke

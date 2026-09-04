@@ -4,6 +4,80 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.6.0 — 2026-09-04
+
+`faseflyt` 0.6.0. Kvalitetsheving før samlingen 14. september, bestilt av BK som
+bevisst unntak fra MVP-frysen. Grunnlaget er en gjennomgang av pakken mot de tre
+formålene — dele oppdrag i små biter, være brukbar for ikke-utviklere, og holde
+øktene korte — med filstørrelser målt 2026-09-04 på `VPC-5CG3433WMH`.
+
+- **`fase-slutt` leser bare toppen av `logg.md` og `laering.md`.** Begge får
+  nye innslag øverst og vokser for hver faseslutt; for å legge inn et innslag
+  trengs bare de første ~15 linjene. Bakgrunn: Read-verktøyet leser inntil 2000
+  linjer og kapper på 25 000 tokens per fil, og i pakkerepoet er loggen 2508
+  linjer og læringsloggen 1418 — så én faseslutt der kan bære rundt 50 000
+  tokens i arkivlesing, i turen der konteksten alt er størst. **Hypotese, ikke
+  målt:** ingen faseslutt er inspisert kall for kall. Avgjøres av om `Read` på
+  `logg.md` bærer `limit` i neste faseslutt, og av Usage-tall før og etter.
+- **Læringssløyfen teller rundene i STATUS, ikke i læringsloggen.** Hvert punkt
+  i `## Arbeidsmåte neste økt` får et rundetall (`(2. runde)`); tredje runde
+  utløser forslaget om permanent regel i `CLAUDE.md`. **Forslaget legges fram
+  én gang** — sier brukeren nei, arkiveres punktet. Bakgrunn: i pakkerepoet er
+  samme forslag gjentatt i fjorten faseslutt. Innslagene får tak: én linje per
+  evaluert punkt, to–tre per nytt. Eldre STATUS uten rundetall leses som første
+  runde — ikke brytende.
+- **CLAUDE.md-malen fikk tre regler som manglet i det laget som er aktivt i
+  hver økt:** fasesnittet (én fase = noe brukeren kan se virke, i én økt;
+  verifisering skrives som en brukerhandling), `/compact` bare midt i en fase
+  som ikke rekker å bli ferdig, og **hver sjekk forklares i vanlig språk før
+  den kjøres** — uansett om Claude Code spør om lov først eller ikke (BKs
+  bestilling: uten dialog er setningen det eneste brukeren ser). Rundt 16
+  linjer, anslagsvis 250 tokens per økt. Alle tre sto til nå bare i tekst som
+  lastes ved oppsett; selvbærende-testen 2026-08-18 predikerte at
+  `/compact`-regelen faller bort.
+- **Sjekk-forklaringen er skrevet inn der sjekkene kjøres**, med setningen
+  skillen skal bruke: `fase-start` før steg 0 og 2, `fase-slutt` steg 5, 6 og 7,
+  kontrollkallet i `nytt-prosjekt` steg 6. README sier det under «Vanlige
+  spørsmål».
+- **Plan-malens `**Verifisering:**` krever noe brukeren gjør og ser**, ikke
+  «kjør testene». `prosjekttyper.md` fikk en tabell over hva en fase er per type
+  — for dokumentasjon er fase 0 disposisjon og ett ferdig avsnitt, ikke «noe
+  som kjører». Posten sto i TODO.md siden 2026-08-18.
+- **`fase-slutt` spør om fasesnittet** i selvvurderingen: fikk fasen plass i én
+  økt uten `/compact`? Og steg 7 sier hva som skjer når push feiler: commiten er
+  trygg lokalt, si det i vanlig språk, ikke løs det selv.
+- **`fase-start` sjekker om noen har pushet siden sist** (`git fetch` +
+  `git rev-list --count HEAD..@{u}`, myk feiling uten remote eller nett).
+  Observert 2026-08-28 på `VPC-8WD9VC4`: STATUS var overskrevet på remote før
+  økten begynte, og de lokale spørsmålene så det ikke. Ingen nye
+  allow-oppføringer — allowlist-saken er lukket. Sak nr. 8 lukkes for denne
+  delen.
+- **`fase-start` gjengir fasens verifiseringslinje**, leser ikke hele `plan.md`
+  når den er over ~150 linjer (finn fasene med `Grep`, les med `offset`), og
+  leser `TODO.md` bare når STATUS peker dit. Bakgrunn: i pakkerepoet er
+  `plan.md` 628 linjer og `TODO.md` 564, begge lest hver økt.
+- **`nytt-prosjekt` stiller oppsettsspørsmålene samlet**, gjør `git init` og
+  første commit uten å spørre (remote tilbys), og skriver CLAUDE.md-avsnittet
+  uten å tilby det som valg — uten det finnes ingen av rytmevaktene.
+  **Beslutning (BK, oppsett):** git og CLAUDE.md som standard, ikke tilbud.
+- **Oppfølgingsspørsmål når prosjektet behandler persondata:** skal reelle
+  persondata inn i selve løsningen, eller bare leses av brukeren underveis? Det
+  første er ikke en prototype lenger, og avklaringen skrives som første post i
+  `TODO.md`. **Beslutning (BK, dataregime):** minimalversjonen nå; full variant
+  venter.
+- **`hjelp` svarer på spørsmålet når det ikke gjelder flyten**, i stedet for å
+  gjengi flyten. `grill-me` svarer på brukerens språk.
+- **`maler.md` lover ikke lenger at allowlisten fjerner oppstartsdialogene** —
+  setningen sto igjen fra før 0.5.10.
+- **Vurdert og ikke gjort (BK 2026-09-04):** modellvalg for Explore-subagenter
+  i CLAUDE.md-malen venter til det er målt om en sperret modell ignoreres eller
+  feiler; begrunnelsestekst i skillene står; PreToolUse-hook er ikke på kritisk
+  vei.
+
+Ikke brytende. Eksisterende prosjekter kan lime de nye avsnittene i
+CLAUDE.md-malen («Fasesnittet», «`/compact`», «Hver sjekk forklares») inn i sin
+egen `CLAUDE.md` for hånd.
+
 ## 0.5.12 — 2026-08-30
 
 - **`fase-slutt` og `fase-start` kjører nå på Sonnet** (`model: sonnet` i

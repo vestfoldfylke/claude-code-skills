@@ -13,6 +13,10 @@ description: >-
 Noen har glemt hvordan flyten går, eller vet ikke hva neste steg er. Svar kort,
 i denne rekkefølgen, og ikke gjenta README — pek på den til slutt.
 
+Gjelder spørsmålet ikke flyten — en feilmelding, en kodelinje, noe i prosjektet
+— si det i én linje («dette er ikke et spørsmål om flyten») og svar på det
+brukeren faktisk spurte om. Resten av denne skillen brukes ikke da.
+
 ## 1. Si hvor brukeren står — men bare hvis du vet det
 
 Finnes `kunnskap/STATUS.md`: les den, og åpne svaret med tre linjer — hvilken

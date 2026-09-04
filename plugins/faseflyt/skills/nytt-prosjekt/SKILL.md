@@ -146,6 +146,19 @@ regel om hva du skriver her, ikke bare om hva du sier.
    (styrer deny-regler i steg 6)? Bruker det **FINT** (styrer skill-deklarasjon)?
    Og prosjektnavn/domene.
 
+   **Still spørsmålene samlet i én melding** — de er enkle, og fem turer for fem
+   svar er fire for mange. Har brukeren limt inn en oppgavetekst som alt svarer
+   på noe av det, gjenta svarene som antakelser og spør bare om det som mangler.
+
+   **Svarer brukeren ja på persondata, still ett oppfølgingsspørsmål:** skal
+   reelle persondata inn i selve løsningen, eller bare leses av brukeren
+   underveis (Claude forbereder spørringen, brukeren kjører den og limer inn
+   det som trengs, uten persondata)? Det siste er det oppsettet er laget for.
+   Det første er ikke en prototype lenger: si det rett ut — behandlingsgrunnlag
+   og vurdering hører til før koden, og avklares utenfor denne skillen. Sett
+   likevel opp prosjektet som for lesing via brukeren, og skriv avklaringen inn
+   som første post i `TODO.md`, så den ikke glemmes.
+
 3. **Tilby `/faseflyt:grill-me` før planen.** Grillingen låser beslutningene som
    ellers dukker opp midt i implementeringen. Beslutningene skrives inn i planens
    `## Avklarte beslutninger` med `**Beslutning (<beslutningstaker>, <tema>):**`
@@ -204,28 +217,35 @@ regel om hva du skriver her, ikke bare om hva du sier.
    `deny`-liste, aldri som erstatning — men **skriv aldri en `permissions`-blokk uten
    å levere kontrollkallet i samme endring** (`Bash(curl:*)` mot
    `http://127.0.0.1:9/`): en uverifisert nøkkel kan gjøre hele blokken stille
-   inaktiv, og et ubekreftet vern er verre enn ingen. Vær ærlig om grensene i
+   inaktiv, og et ubekreftet vern er verre enn ingen. Forklar kontrollkallet før
+   det kjøres: «jeg prøver med vilje en kommando som skal bli stoppet; blir den
+   stoppet, vet vi at sperren virker». Vær ærlig om grensene i
    samme åndedrag: matcherne er verktøy-scopet (på Windows dekkes ikke
    PowerShell-verktøyet), navnebaserte mønstre kan ikke bli komplette, og settet
    er risikoreduksjon — ikke sandkasse. Hovedvernet er regelen i CLAUDE.md
    («Claude forbereder kommandoen, brukeren kjører den og limer inn resultatet»);
    deny-settet støtter den, og de to hører alltid sammen.
 
-7. **Tilby privat git-repo** (med mindre repo finnes): `git init -b main` +
-   `.gitignore` (node_modules, `.env` unntatt `.env.example`, build-artefakter)
-   + første commit + `gh repo create <navn> --private --source . --push`.
-   Finnes en `.gitignore` fra før (uten at repo finnes): legg kun til linjene
-   som mangler — overskriv den ikke.
-   Commit-og-push hører deretter til hvert `/faseflyt:fase-slutt`.
+7. **Git fra dag 1.** Finnes ikke repo: `git init -b main` + `.gitignore`
+   (node_modules, `.env` unntatt `.env.example`, build-artefakter) + første
+   commit — si at du gjør det, og gjør det; det koster ingenting og gjør at
+   ingen fase kan gå tapt. **Tilby** deretter privat remote:
+   `gh repo create <navn> --private --source . --push`. Sier brukeren nei,
+   eller mangler `gh` eller GitHub-tilgang: si at arbeidet lagres lokalt ved
+   hver faseslutt, og at remote kan legges til senere. Finnes en `.gitignore`
+   fra før (uten at repo finnes): legg kun til linjene som mangler — overskriv
+   den ikke. Commit hører deretter til hvert `/faseflyt:fase-slutt`, og push
+   når remote finnes.
 
-8. **Tilby CLAUDE.md-avsnittet** fra maler.md, og kopier det **ORDRETT** når
-   brukeren sier ja — dette steget er det viktigste stedet regelen over gjelder.
+8. **Skriv CLAUDE.md-avsnittet** fra maler.md **ORDRETT** — si at du gjør det,
+   og gjør det. Det tilbys ikke som valg: det er den eneste teksten i prosjektet
+   som er aktiv i HVER økt, og uten den finnes ingen av rytmevaktene og ingen
+   språkregel. Dette steget er det viktigste stedet regelen over gjelder.
    Avsnittet inneholder kunnskapsfangst-regelen, de tre rytmevaktene (plan-vakt,
-   fase-slutt-vakt, scope-vakt) og regelen om deklarerte vs. prosjekteide skills,
-   og det er den eneste teksten i prosjektet som er aktiv i HVER økt — skills
-   lastes bare når de kalles. En parafrase her slår ut vaktene for all framtid i
-   prosjektet, og det er nettopp det som er målt: fase-slutt-vakten utførte
-   rutinen i stedet for å foreslå den. Behandler prosjektet persondata, følger
+   fase-slutt-vakt, scope-vakt) og regelen om deklarerte vs. prosjekteide skills
+   — skills lastes bare når de kalles. En parafrase her slår ut vaktene for all
+   framtid i prosjektet, og det er nettopp det som er målt: fase-slutt-vakten
+   utførte rutinen i stedet for å foreslå den. Behandler prosjektet persondata, følger
    personvern-avsnittet med — også det ordrett, inkludert setningene om hva
    deny-settet IKKE dekker.
    **Etterkontroll (obligatorisk her):** sammenlign den skrevne CLAUDE.md mot

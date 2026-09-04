@@ -21,6 +21,21 @@ webapp > script > dokumentasjon) og suppler manuelt.
 gjelder der prosjektet faktisk utvikles — ikke alle er på Windows. Avklar det før
 du skriver noe plattformspesifikt i STATUS.
 
+## Hva en fase er, per type
+
+Fasesnittet er det samme for alle typer — én ting brukeren kan se virke, i én
+økt — men hva «se virke» betyr, er ulikt. Bruk dette når planen skrives:
+
+| Type | En fase er typisk | Brukeren verifiserer ved å |
+|---|---|---|
+| Webapp/prototype | én side eller én brukerhandling fra start til slutt | åpne siden i nettleseren og gjøre handlingen |
+| Script/automatisering | ett script som gjør én ting mot testdata | kjøre scriptet selv og lese utskriften |
+| Dokumentasjon/utredning | ett kapittel eller én leveranse i ferdig form | lese teksten og godkjenne den |
+| API/backend | ett endepunkt eller én dataflyt som kan kalles | kalle endepunktet og se svaret |
+
+For dokumentasjon er fase 0 disposisjon pluss ett ferdig avsnitt brukeren leser
+— ikke «noe som kjører».
+
 ## Webapp / prototype
 
 SvelteKit + Designsystemet, ofte for brukertesting. `web-prototype`-skillen

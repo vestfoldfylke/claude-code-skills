@@ -9,6 +9,35 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Tilsyn med tørrkjøring av `klengenavn` (fase 0–4)
+
+**Evaluering av forrige økts punkter:**
+- **[faktisk-bruk-foran-pakkekildekode]** fulgt: hvert funn denne økten bygde
+  på faktisk å lese klengenavns STATUS/plan/logg/laering, ikke bare huske
+  brukerens gjenfortelling. Innarbeidet — strøket fra STATUS.
+- **[testprosjekt-er-forgjengelig]** fulgt: alle ni funn i `TODO.md` siterer
+  klengenavns egne linjer/klokkeslett direkte. Innarbeidet — strøket fra STATUS.
+
+**Nye punkter:**
+- **[tilsyn-oeker-todo-uten-fortetting]** TODO.md-punktet vokste med 273
+  linjer i denne ENE økten (`git diff --stat`) — selve punktet om å holde
+  kunnskapsfiler edruelige er nå det lengste i fila. Neste faseslutt her bør
+  fortette punktet til det som faktisk gjennomføres, ikke bære hele
+  tilsynshistorikken videre ubearbeidet.
+- **[ni-funn-krever-fase-oppdeling]** Ni pakkeendringer ble identifisert i én
+  tilsyns-økt, spredt på tre ulike filer (`fase-slutt`/`fase-start`
+  SKILL.md, `web-prototype` SKILL.md, `nytt-prosjekt` sin
+  `settings.json`-mal). Én «gjør alt»-fase bryter med planens eget krav om at
+  en fase er én ting brukeren kan verifisere — del i minst to.
+
+**Fasesnitt:** hele tilsynet (fem faseslutt fulgt, ni funn ført) fikk plass i
+én økt uten `/compact`. Godt snitt for en tilsynsøkt; selve
+implementeringen av funnene er en annen sak og skal deles som over.
+
+**Issue til pakkerepoet:** ikke aktuelt — BK er selv vedlikeholder av dette
+repoet, så funnene går rett i `TODO.md`/neste fase her, ikke via
+issue-køen som er ment for kollegaers tilbakemelding.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — web-prototype 0.1.3; forrige runde tom
 
 **Evaluering av forrige økts punkter:** ingen å evaluere — `## Arbeidsmåte

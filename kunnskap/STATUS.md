@@ -8,31 +8,38 @@ bevisst utsatt av MVP-frysen 2026-08-19.
 **TO MASKINER SKRIVER TIL DETTE REPOET.** Kjør `git fetch` og sammenlign med
 `origin/main` før du stoler på denne fila.
 
-**Fase:** `web-prototype` **0.1.3** pushet 2026-09-05 fra `VPC-5CG3433WMH`
-(hjemmekontor) — sv/Designsystemet-drift rettet i skillen og bekreftet mot
-testprosjektet `klengenavn`. **Begge maskinene må kjøre
-`/plugin marketplace update claude-code-skills` + omstart** før 0.1.3 virker der.
+**Fase:** Tørrkjøring av `klengenavn` (fase 0–4) er FULLFØRT og gjennomgått
+2026-09-05 fra `VPC-5CG3433WMH`. Ni pakkefunn er ført i `TODO.md` under «Hold
+kunnskapsfilene edruelige» — ikke implementert ennå. `web-prototype` 0.1.3 er
+uendret siden forrige faseslutt.
 
 ## Neste — start her
 
-1. **Fortsett tørrkjøringen** i `klengenavn` (kun på denne maskinen,
-   `C:\dev\claude-code-skills-testoppgave-0.6`, slettes når ferdig brukt): fase
-   1–4. Prøv samtidig web-prototype 0.1.3 sitt nye steg 9 (design-tokens) helt
-   gjennom — kun kjørt isolert i scratchpad så langt, ikke i et ekte prosjekt.
-   Se også om plan-malen bør si at Claude ikke skal forsøke brukerens
-   verifisering selv, og om `limit` på `Read` av `logg.md`/`laering.md` faktisk
-   brukes (umålt så langt).
-2. **Mac-pre-flight** — fortsatt viktigste umålte post, urørt.
-3. **Umålt:** at `/model sonnet` (0.6.1) virker på alle kollegaers oppsett.
+1. **Implementer de ni funnene i `kunnskap/TODO.md`** (punktet «Hold
+   kunnskapsfilene edruelige»), delt i minst to faser:
+   - `fase-slutt`/`fase-start`: tredje ratchet-utfall («ikke aktuelt lenger»),
+     modell-instruks som ubetinget siste linje (ikke påstand om øktmodell),
+     ordlekkasje-kontrollsøk, sikkerhetssøkets selvforurensning
+     (`client_secret` treffer egen logg), steg 5 hopper over gjentatt grønn
+     sjekk, issue-kriteriet utvides.
+   - `web-prototype`: Designsystemet er responsivt ut av boksen (si det),
+     deny-regel-forslag mot `npx playwright install`/`puppeteer` videre til
+     `nytt-prosjekt` sin mal.
+2. **`/model sonnet`-spørsmålet er delvis avgjort:** virker når BRUKEREN
+   skriver kommandoen, IKKE når skillen startes fra en trigger-frase i vanlig
+   tekst — da blir økten på øktmodellen uansett frontmatter. Gjenstår: verifisere
+   samme skille på kollegaers oppsett.
+3. **Mac-pre-flight** — fortsatt viktigste umålte post, urørt.
+4. `web-prototype` 0.1.3 steg 9 (design-tokens) — fortsatt bare kjørt i
+   scratchpad, ikke i et ekte prosjekt gjennom hele fase 4.
 
 ## Arbeidsmåte neste økt
 
-- **[faktisk-bruk-foran-pakkekildekode]** Har et pakke-funn et ekte
-  testprosjekt å sjekke mot: les PROSJEKTETS logg/filer før forslaget skrives
-  ferdig, ikke bare pakkens egen kildekode/`--help`.
-- **[testprosjekt-er-forgjengelig]** Siter konkrete funn (kommandoer,
-  filinnhold) direkte i STATUS/logg — ikke bare pek til testprosjektets sti;
-  den kan være borte eller lokal til én maskin.
+- **[tilsyn-oeker-todo-uten-fortetting]** Fortett TODO.md-punktet til det som
+  faktisk gjennomføres når fasen over er ferdig — ikke bær tilsynshistorikken
+  videre ubearbeidet.
+- **[ni-funn-krever-fase-oppdeling]** Del implementeringen i minst to faser
+  (se punkt 1 over) — én «gjør alt niende funn»-fase er feil snitt.
 
 ## Det en ny økt må vite
 

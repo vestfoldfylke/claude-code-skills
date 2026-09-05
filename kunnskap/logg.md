@@ -2,6 +2,52 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Tørrkjøring av `klengenavn` fullført (fase 0–4); ni pakkefunn ført til TODO.md
+
+**Levert:** ingen kode endret i pakken denne økten — hele økten var tilsyn med
+BKs fullstendige tørrkjøring av `web-prototype` 0.1.3/`faseflyt` 0.6.1 i
+testprosjektet `klengenavn`, fra fase 1 til fase 4 (siste fase i klengenavns
+plan). Alle fem faseslutt der ble lest fra kilden (STATUS, `laering.md`,
+øktenes JSONL-transkripter i `~/.claude/projects/`) i stedet for tatt på BKs
+ord, og ni konkrete pakkeendringer er ført under punktet «Hold
+kunnskapsfilene edruelige» i `kunnskap/TODO.md`, hver med dato, sitat og
+belegg. Ikke gjort: selve implementeringen — det er neste fase her.
+
+**Beslutning (BK, videre testing 2026-09-05):** fortsett i `klengenavn`
+fram til fase 4 i egen økt, framfor et nytt testprosjekt — begrunnelse:
+læringssløyfens verifiseringspunkt 4 (ratchet-en) kan bare testes ved flere
+faseslutt i SAMME prosjekt.
+
+**Funnene, kort — detaljer og sitater i `TODO.md`:**
+- STATUS i klengenavn holdt seg flatt gjennom fem faseslutt (45→47→43→44→42
+  linjer). Vekstfrykten BK reiste innledningsvis slo ikke til i praksis, men
+  malens mål «maks ~30» ble aldri nådd — enten kuttes malen, eller taket
+  settes ærlig til ~45.
+- **`model:` i skill-frontmatter virker bare når brukeren skriver kommandoen
+  selv** (`/faseflyt:fase-slutt`), ikke når skillen startes fra en trigger-frase
+  i vanlig tekst («kjør faseslutt») — da forblir økten på øktmodellen selv om
+  skillens eget svar hevder Sonnet. Bekreftet to ganger, motsatt fortegn
+  (Fable→ingen bytte, Opus→bytte til Sonnet). Faseslutt tar ~3,5 min uansett
+  modell; tidsbruken er skriving og rundturer, ikke modellvalg.
+- **Playwright/Chromium ble installert** av Sonnet i fase 4 for å automatisere
+  BKs visuelle sjekk — brudd på prosjektets egen regel om at brukeren
+  verifiserer, og en reell hendelse på BKs styrte jobb-PC (Defender flagget
+  det). BK stanset og avinstallerte. Samme fase: Sonnet forsto ikke at
+  Designsystemet er responsivt ut av boksen.
+- Sikkerhetssjekket i klengenavn fant én ekte sak (absolutt brukersti lekket
+  inn i `.claude/settings.json` via en permission-godkjenning, fjernet av
+  BK) og gjentok samme falske positiv (`client_secret`-treff på loggens egen
+  omtale av forrige søk) to ganger.
+- Ratchet-en («ble forrige punkt fulgt?») behandlet «ikke utløst denne fasen»
+  ulikt fra fase til fase (strøket én gang, videreført som gjentakelse en
+  annen), og foreslo én gang å gjøre et aldri utprøvd punkt til permanent
+  CLAUDE.md-regel.
+
+**Konsekvens:** ni pakkeendringer, fordelt på `fase-slutt`/`fase-start`,
+`web-prototype` og `nytt-prosjekt` sin `settings.json`-mal. Splittes i minst
+to implementeringsfaser her — se `TODO.md` og `## Arbeidsmåte neste økt`
+under.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — web-prototype 0.1.3: sv/Designsystemet-drift rettet, bekreftet mot `klengenavn`
 
 **Levert:** `web-prototype` **0.1.3** — bump av begge manifestene + `CHANGELOG.md`.

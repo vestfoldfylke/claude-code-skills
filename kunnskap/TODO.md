@@ -25,9 +25,10 @@ filskrivingene i steg 1–3 samlet). Se CHANGELOG.
 - **Hypotese: fase-start på 7 % skyldes at planfiler ikke har størrelsesgrense**
   slik STATUS har (~30 linjer). Avgjøres av: les forbruket til én konkret
   fase-start-økt (Usage rett før og etter øktstart) før noe endres i skillen.
-- **Effekten av 0.5.12 er umålt.** Avgjøres av: nye Usage-avlesninger på begge
-  maskinene etter noen økter på 0.5.12 — datert, med maskinnavn, holdt mot
-  tallene over.
+- ~~**Effekten av 0.5.12 er umålt.**~~ **Delvis avgjort 2026-09-05** (øktlogg,
+  ikke Usage): `model: sonnet` virker bare når brukeren skriver kommandoen
+  selv, og faseslutt tar ~3,5 min uansett modell — se «Hold kunnskapsfilene
+  edruelige» under. Gjenstår kun Usage-tall for kommandoformen over flere økter.
 - **Alternativ hvis turene i steg 6 ikke monner:** sikkerhetssjekken som skript
   i prosjektmalen (à la `.github/renhet/sjekk.sh`) — større mal-endring, gir én
   stabil kommando som kan allowlistes én gang per prosjekt.

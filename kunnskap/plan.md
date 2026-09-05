@@ -556,26 +556,7 @@ til intern bruk i Vestfold fylkeskommune holder.
 
 ## Fase 7 ✅ 2026-09-05 — `fase-slutt` får ærlig ratchet og turplan; `faseflyt` 0.8.0–0.8.2. Målt 37k tokens/7+ min → 12k/2:40. Detaljer i logg.
 
-## Fase 8 — `fase-start`, `hjelp` og README: kort utdata, instruks sist
-
-- **Modell-instruksen** står alene på siste linje, uthevet, som handling:
-  «**Skriv `/model sonnet` nå, før du gir klarsignal.**» (eller tyngste modell
-  ved plan/arkitektur). Skillen påstår aldri hva økten kjører på — den kan ikke
-  vite det. Belegg: linja sto midt i teksten og ble ikke handlet på; én gang
-  påsto den «Sonnet» mens økten sto på Opus.
-- **Fasebeskrivelsen til én linje** — planen har resten. Tak ~10 linjer for det
-  rene tilfellet, målt i neste tørrkjøring (0.6.1 lå på ~15).
-- **Kommandoformen er den som gir Sonnet.** `hjelp`, README og `fase-start` sier
-  at `/faseflyt:fase-slutt` skrevet av brukeren kjører på skillens modell, mens
-  en trigger-frase i vanlig tekst gir øktmodellen. Belegg: to øktlogger
-  2026-09-05, motsatt fortegn, samme konklusjon.
-- **README sier hvem pakken er for:** bruk `/nytt-prosjekt` når prosjektet skal
-  overleve `/clear` minst én gang; et script på én ettermiddag trenger ikke
-  læringssløyfen.
-
-**Verifisering:** du kjører `/faseflyt:fase-start` i et testprosjekt i det rene
-tilfellet og teller: høyst ti linjer, og den siste er modell-instruksen alene.
-`/faseflyt:hjelp` nevner kommandoformen. Modell: Sonnet (`/model sonnet`).
+## Fase 8 ✅ 2026-09-05 — kort utdata i fase-start (tak ti linjer, modell-instruks alene sist), kommandoform vs. frase i vanlig tekst dokumentert i fase-start/hjelp/README; faseflyt 0.8.3. Detaljer i logg.
 
 ## Etterpå (utenfor denne planen, avklares med deg)
 

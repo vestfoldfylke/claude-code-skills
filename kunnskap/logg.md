@@ -2,6 +2,41 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 8 levert og verifisert: `fase-start`/`hjelp`/README kort utdata, kommandoform-modell dokumentert; `faseflyt` 0.8.3
+
+**Levert** (`9574b99`, pushet til `main`):
+- `fase-start`: modell-instruksen står alene som siste linje i svaret, uthevet
+  og formulert som handling («Skriv `/model sonnet` nå, før du gir
+  klarsignal.»); fasebeskrivelsen kuttet til én linje (planen har resten); tak
+  på ti linjer for det rene tilfellet.
+- `hjelp`, README og `fase-start`: kommandoform vs. frase i vanlig tekst
+  dokumentert — skrevet kommando kjører skillen på dens `model: sonnet`-felt,
+  en frase i vanlig tekst kjører på øktens modell.
+- README: «hvem pakken er for» skjerpet til ett kriterium (overlever `/clear`
+  minst én gang, ellers ikke) — lukker punkt 4 i «Hold kunnskapsfilene
+  edruelige» (se `TODO.md`).
+
+**Verifisert** i `test-faseflyt` (dry run, samme maskin): `/faseflyt:fase-start`
+i det rene tilfellet ga 5 innholdslinjer (under taket på ti), siste linje
+modell-instruksen alene; `/faseflyt:hjelp` nevnte kommandoformen ordrett. Begge
+planens verifiseringspunkter bekreftet.
+
+**Funn:** første tørrkjøring viste fortsatt 0.8.2 selv etter lokal versjonsbump
+— `test-faseflyt` sin `.claude/settings.json` peker på GitHub-repoet
+(`extraKnownMarketplaces` → `source: github`), ikke på den lokale
+arbeidsmappa. `/plugin marketplace update` endret ingenting før endringen
+faktisk var committet og pushet. Se `laering.md`.
+
+**Ordlekkasje funnet og rettet i egne tekster:** «trigger-frase» (banned:
+«trigg», se klarspråktabellen i `CLAUDE.md`) i denne loggens eget utkast og i
+`fase-start/SKILL.md` — skrevet om til «frase i vanlig tekst» begge steder,
+før commit.
+
+**Kvalitetsport:** `claude plugin validate .` — 0 feil (kjørt på nytt etter
+ordlekkasje-rettelsen). **Rask sikkerhetssjekk:** env-filer 0,
+fødselsnummer-mønster 0, nøkkel-mønster 0, kontrollsøk 24 treff (`faseflyt` i
+README.md). **STATUS:** 45 linjer. **fase-slutt: 14:30–14:41, 11 min.**
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 7 levert og verifisert: `fase-slutt` får ærlig ratchet og turplan; `faseflyt` 0.8.0 → 0.8.2
 
 **Levert i tre trinn**, hver pushet rett til `main` og målt i det midlertidige

@@ -174,8 +174,8 @@ hva som sjekkes, og at alt var rent.
    **Kommandoformen er den som gir Sonnet.** Skriver brukeren
    `/faseflyt:fase-start` direkte, kjører *denne skillen* på sitt eget
    `model: sonnet`-felt, uansett hva økten ellers står på. Slås skillen i
-   stedet inn av en trigger-frase i vanlig tekst («start økten», «ny økt» …),
-   kjører den på øktens gjeldende modell. Det er derfor instruksen over aldri
+   stedet inn av en frase i vanlig tekst («start økten», «ny økt» …), kjører
+   den på øktens gjeldende modell. Det er derfor instruksen over aldri
    kan påstå hva som skjer etterpå — den vet i beste fall om seg selv, ikke om
    økten som fortsetter etter den.
 

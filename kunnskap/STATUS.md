@@ -8,20 +8,23 @@ bevisst utsatt av MVP-frysen 2026-08-19.
 **TO MASKINER SKRIVER TIL DETTE REPOET.** Kjør `git fetch` og sammenlign med
 `origin/main` før du stoler på denne fila.
 
-**Fase:** Fase 7 av planens fase 6–8 er levert og verifisert. `faseflyt` 0.8.2
-(commits `865c5cb`, `36735fb`, `73b910c`). Tre tørrkjøringer i det midlertidige
-testprosjektet `test-faseflyt` (økt 9–11): 37k tokens/7+ min → 18k/3:40 →
-12k/2:40. Alle seks punktene i planens verifiseringslinje er bekreftet.
+**Fase:** Fase 8 av planens fase 0–8 er levert og verifisert. `faseflyt` 0.8.3
+(commit `9574b99`). Tørrkjøring i `test-faseflyt`: fase-start ga 5
+innholdslinjer (tak ti), modell-instruksen alene sist; `hjelp` nevnte
+kommandoformen ordrett. Begge planens verifiseringspunkter bekreftet.
 
 ## Neste — start her
 
-Fase 8 — `fase-start`, `hjelp` og README: kort utdata, instruks sist (se
-`plan.md`). Modell: Sonnet (`/model sonnet`).
+Planens nummererte faser (0–8) er ferdige. Gjenstår: planens `##
+Verifisering`-liste (11 punkter, `plan.md`) — avklar med brukeren hvilke som
+alt er dekket før du fortsetter. Modell: avklaring/vurdering → tyngste modell.
 
 ## Arbeidsmåte neste økt
 
-- **[hypotese-skrevet-som-fakta]** Verifiser påstander om verktøyoppførsel
-  (npm/npx, CLI-flagg) før de skrives i pakken — merk som hypotese hvis utestet.
+- **[hypotese-skrevet-som-fakta]** Verifiser påstander om verktøyoppførsel før
+  de skrives i pakken — ikke utløst i fase 7/8, videreføres uendret.
+- **[dry-kjoering-krever-push-foerst]** Testprosjekt via GitHub-marketplace
+  tester alltid forrige pushede versjon — commit+push før du stoler på det.
 
 ## Det en ny økt må vite
 

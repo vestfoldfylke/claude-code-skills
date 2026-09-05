@@ -39,7 +39,8 @@ Bekymringen (BK, 2026-09-05) og målingen (STATUS/plan/logg-lengder på tvers av
 dette repoet og `klengenavn`) er arkivert i git-historikken. «Fire grep»-lista:
 punkt 1–3 gjort i `faseflyt` 0.8.0 (STATUS telles mot tak 45, én adresse per
 regel, planen kollapser ferdige faser) — se `CHANGELOG.md`. Punkt 4 (README
-sier hvem pakken er for) står i `plan.md` fase 8. De tre pakkeendringene
+sier hvem pakken er for) gjort i `faseflyt` 0.8.3 (fase 8) — se
+`CHANGELOG.md` og `logg.md` 2026-09-05. De tre pakkeendringene
 (encoding, ordlekkasje-søk, tredje utfall i ratchet-en) er alle gjort, se
 `CHANGELOG.md` 0.7.0/0.8.0 og `logg.md` 2026-09-05.
 

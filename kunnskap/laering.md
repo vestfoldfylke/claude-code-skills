@@ -9,6 +9,24 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 8: fase-start/hjelp/README kort utdata
+
+**Evaluering av forrige økts punkter:**
+- **[hypotese-skrevet-som-fakta]** Ikke utløst denne fasen heller — ingen nye
+  påstander om verktøyoppførsel ble skrevet inn i pakken. Videreføres uendret:
+  gjenstående punkter i planens `## Verifisering`-liste kan fortsatt utløse den.
+
+**Nytt punkt:**
+- **[dry-kjoering-krever-push-foerst]** Et testprosjekt som henter pakken via
+  `extraKnownMarketplaces` med `source: github` leser fra GitHub, ikke fra
+  lokal arbeidskatalog — en tørrkjøring før commit+push tester alltid forrige
+  pushede versjon. Belegg: `test-faseflyt` rapporterte 0.8.2 to ganger (én gang
+  før `/plugin marketplace update`, én gang etter) inntil 0.8.3 faktisk var
+  pushet.
+
+Issue til pakkerepoet: ikke aktuelt (dette prosjektet ER pakkerepoet).
+Fasesnitt: fase 8 fikk plass i én økt uten `/compact`.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 7: fase-slutt får ærlig ratchet og turplan
 
 **Evaluering av forrige økts punkter:**

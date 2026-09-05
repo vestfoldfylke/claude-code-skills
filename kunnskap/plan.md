@@ -641,7 +641,12 @@ løfte. Modell: tyngste (instruksdesign).
 kommando): fire av seks holdt. Søkeordet ble sitert tross instruksen, og «ikke
 utløst» ble hedget til et fjerde utfall. 6 min / over 37k tokens. 0.8.1 la til
 turplan (sju turer), 0–3 nye punkter, ordrett rapportlinje og
-`<command-name>`-taggen som portbevis — uprøvd til neste tørrkjøring.
+`<command-name>`-taggen som portbevis.
+
+**Målt igjen samme dag** (økt 10, 0.8.1): fem av seks holdt — linjetallet ble
+målt men ikke skrevet, fordi turplanens tur 4 ikke nevnte det. 3 min / 18k
+tokens. 0.8.2 retter ordet og legger `kvalitetsport` i ordlekkasje-lista —
+uprøvd til neste tørrkjøring.
 
 ## Fase 8 — `fase-start`, `hjelp` og README: kort utdata, instruks sist
 

@@ -66,7 +66,8 @@ svaret fra et annet får egen tur; alt annet deler tur. Sju turer er normalen:
 3. `wc -l` på STATUS, ordlekkasje-søket, alle sikkerhetssøkene med kontrollsøk,
    sjekken (eller avgjørelsen om å hoppe over den) og `date` igjen — alt i
    samme melding.
-4. Rette treff fra tur 3, tidslinja inn i logginnslaget, meldingsfila.
+4. Rette treff fra tur 3, tidslinja **og STATUS-linjetallet** inn i
+   logginnslaget, meldingsfila.
 5. `git add`.
 6. `git commit -F`.
 7. Push, så FERDIG.
@@ -196,10 +197,11 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
    `kunnskap/plan.md` NÅ — den originale er en engangsartikkel.)
 
    **Ordlekkasje-søk i det du nettopp skrev.** Ett `Grep` i `STATUS.md`,
-   `laering.md` og loggen etter `skaffold|scaffold|trigg|probe|harness|røyktest`
-   — ordene som er *observert* lekket fra Claude Codes eget vokabular inn i
-   prosjektfiler. Treff skrives om til vanlig norsk (sette opp, slår inn,
-   kontrollkall, Claude Code selv, rask sjekk) før commit. Lista vokser bare
+   `laering.md` og loggen etter
+   `skaffold|scaffold|trigg|probe|harness|røyktest|kvalitetsport` — ordene som
+   er *observert* lekket fra Claude Codes eget vokabular inn i prosjektfiler.
+   Treff skrives om til vanlig norsk (sette opp, slår inn, kontrollkall, Claude
+   Code selv, rask sjekk, sjekk) før commit. Lista vokser bare
    med ord som faktisk er sett i et prosjekts filer, ikke med ord som kunne
    lekke.
 

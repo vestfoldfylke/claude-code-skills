@@ -4,6 +4,18 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.8.2 — 2026-09-05
+
+`faseflyt` 0.8.2. Etter tørrkjøring av 0.8.1 i `test-faseflyt` økt 10
+(`VPC-5CG3433WMH`, hostname kjørt; Sonnet via kommandoformen): fem av seks
+holdt, 3 min / 18k tokens — halvert fra 0.8.0 av turplanen alene.
+
+- **Turplanens tur 4 nevner STATUS-linjetallet.** Observert: `wc -l` ble kjørt
+  i tur 3 og tallet aldri skrevet — tur 4 sa bare «tidslinja inn i
+  logginnslaget». Modellen fulgte turplanen; turplanen manglet ordet.
+- **`kvalitetsport` i ordlekkasje-lista.** Observert som overskrift i to
+  logginnslag på rad, arvet fra en STATUS skrevet av en eldre versjon.
+
 ## 0.8.1 — 2026-09-05
 
 `faseflyt` 0.8.1. Rettelser etter tørrkjøring av 0.8.0 i `test-faseflyt` økt 9

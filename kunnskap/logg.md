@@ -2,6 +2,45 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — web-prototype 0.1.3: sv/Designsystemet-drift rettet, bekreftet mot `klengenavn`
+
+**Levert:** `web-prototype` **0.1.3** — bump av begge manifestene + `CHANGELOG.md`.
+Fire funn rettet i skillens `SKILL.md`: (1) `.gitignore` overskrives stille av
+`sv create` i en ikke-tom mappe, (2) `svelte.config.js` finnes ikke lenger i det
+`sv` genererer, (3) favicon-lenken i `app.html` pekte på en fil `sv` ikke lenger
+lager, (4) hovedfarge skal settes med Designsystemets tokens-verktøy, ikke én
+CSS-variabel — nytt steg 9.
+
+**Grunnlag:** dokumentgransking av npm-pakkene `sv` 0.17.0 og
+`@digdir/designsystemet` 1.21.0 (kildekode + `--help`, hentet til scratchpad),
+deretter bekreftet mot BKs faktiske testprosjekt `klengenavn`
+(`C:\dev\claude-code-skills-testoppgave-0.6`).
+
+**Beslutning (BK, testprosjekter):** `klengenavn` og lignende testprosjekter
+slettes når arbeidet med dem er ferdig, og finnes kun på hjemmekontor-maskinen
+— ikke en varig referanse for andre økter eller maskiner.
+
+**Funn som rettet ordlyden:** klengenavns egen `kunnskap/logg.md` viste at det
+faktiske kjørbare kallet var
+`npx sv@latest create --template minimal --types ts --no-add-ons --no-dir-check --install npm .`
+— ikke det interaktive `sv create .` første forslag antok. `--no-dir-check` er
+også det som gjør overskrivingen av `.gitignore` stille (ingen «Directory not
+empty»-spørsmål). Lest fra prosjektets logg, ikke gjettet fra `sv` sin kildekode.
+
+**Verifisert mot klengenavns faktiske filer** (lest, ikke antatt):
+`vite.config.ts` uten `svelte.config.js` — stemmer; favicon importert fra
+`$lib/assets/favicon.svg` og lenket fra layout — stemmer; `.gitignore` mistet
+kommentarer og `dist/`-linjen og ble gjenopprettet for hånd — stemmer.
+
+**Ikke verifisert:** steg 9 (design-tokens) er kun kjørt isolert i scratchpad
+(`tokens create`/`tokens build` mot en prøvekonfig), ikke satt inn i et ekte
+SvelteKit-prosjekt og bygget. Neste tørrkjøring bør prøve det helt gjennom.
+
+**Observert:** `bash .github/renhet/sjekk.sh` → 11 søk, 0 feil, kontrollsøket
+gikk fra 41 til 42 treff på «faseflyt». `claude plugin validate .` → Validation
+passed, kjørt to ganger etter to rettelser i selve teksten (uklar begrunnelse i
+fargepunktet, unøyaktig omtale av det opprinnelige forslaget).
+
 ## 2026-09-04 (hjemmekontor, `VPC-5CG3433WMH`) — faseflyt 0.6.1: funn fra første tørrkjøring av 0.6.0 rettet
 
 **Levert:** `faseflyt` **0.6.1** — bump av begge manifestene, ikke committet

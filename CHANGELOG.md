@@ -4,6 +4,38 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## web-prototype 0.1.3 — 2026-09-05
+
+`web-prototype` 0.1.3. Skillen oppdatert til det Svelte CLI (`sv`) 0.17.0 og
+Designsystemet 1.21.0 faktisk gjør, målt 2026-09-04/05 på `VPC-5CG3433WMH` (hostname kjørt)
+ved å lese npm-pakkene og kjøre tokens-verktøyet i en scratch-mappe; bekrefter
+tørrkjøringsfunnene fra 2026-08-30 (`test-oppgave-samling`, ARM-maskinen) og
+2026-09-04 (`klengenavn`).
+
+- **`.gitignore` overlever `sv create` i et eksisterende prosjekt.** `sv create`
+  kopierer malens `.gitignore` rett over prosjektets, og med `--no-dir-check`
+  (flagget som gjør kommandoen kjørbar fra Claude Code) skjer det uten spørsmål.
+  Observert i `klengenavn`: den committede fila mistet kommentarene og
+  `dist/`-linjen og ble gjenopprettet for hånd. Steg 1 skiller nå tom mappe fra
+  eksisterende prosjekt, viser kommandoen slik den faktisk ble kjørt, og krever
+  at `.gitignore` leses før og flettes etter, med før/etter vist. Nevnt der også:
+  tom-mappe-sjekken i `sv` ser bort fra alt som begynner med `.git`, så en mappe
+  med bare `.git` og `.gitignore` får ingen advarsel selv med spørsmålet på.
+- **`svelte.config.js` finnes ikke lenger i det `sv` skriver.** Adapter og
+  `compilerOptions` sendes til `sveltekit()` i `vite.config.ts`. Prosjektstruktur
+  og steg 4 viser fila slik `sv` genererer den, adapter-byttet for statisk deploy
+  på samme sted, og én linje om eldre prosjekter som fortsatt har `svelte.config.js`.
+- **Hovedfarge byttes med Designsystemets tokens-verktøy, ikke med én variabel.**
+  Fargeskalaen er 16 hardkodede verdier uten basefarge (funn 2026-08-30). Nytt
+  steg 9: `designsystemet.config.json` + `tokens create` + `tokens build`, og
+  `design-tokens-build/theme.css` erstatter `@digdir/designsystemet-css/theme` i
+  layouten. Kommandoflaggene for farger er avviklet til fordel for config-fila
+  (målt mot `--help` 1.21.0). Fargeregelen under «What you must NEVER do» peker dit.
+- **Favicon:** `sv` legger ikonet i `src/lib/assets/favicon.svg` og lenker det
+  fra layouten; skillens `app.html` pekte på `static/favicon.png`, som ikke
+  finnes lenger. Lenken er flyttet til layout-malen i steg 7.
+- Malnavnet i steg 1 rettet fra «Skeleton project» til «SvelteKit minimal».
+
 ## 0.6.1 — 2026-09-04
 
 `faseflyt` 0.6.1. Funn fra første tørrkjøring av 0.6.0: `klengenavn` (webapp)

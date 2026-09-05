@@ -9,6 +9,33 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — web-prototype 0.1.3; forrige runde tom
+
+**Evaluering av forrige økts punkter:** ingen å evaluere — `## Arbeidsmåte
+neste økt` var tom ved denne øktens start (alle tre forrige punkter fulgt og
+strøket i går, se innslaget under).
+
+**Nye punkter:**
+
+- **[faktisk-bruk-foran-pakkekildekode]** Et forslag bygget på å lese `sv` sin
+  egen kildekode traff mekanismen riktig (tom-mappe-sjekk, `.gitignore`-
+  kopiering) men gjettet feil på hvilket kall en bruker faktisk kjører.
+  Klengenavns egen logg viste et konkret flaggsett (`--no-dir-check` m.fl.) som
+  kildekode-lesingen aldri antydet var i bruk. Har et pakke-funn et ekte
+  testprosjekt å sjekke mot: les PROSJEKTETS logg/filer før forslaget skrives
+  ferdig, ikke bare pakkens egen kilde/`--help`.
+- **[testprosjekt-er-forgjengelig]** BK opplyste at testprosjekter som
+  `klengenavn` slettes når de er ferdig brukt og finnes kun på én maskin.
+  STATUS/logg skal derfor sitere de konkrete funnene (kommandoer, filinnhold)
+  direkte, ikke bare peke til prosjektets sti — stien kan være borte eller
+  utilgjengelig for en økt på en annen maskin.
+
+**Fasesnitt:** denne runden (pakkefiks + bekreftelse mot klengenavn) fikk plass
+i én økt, ingen `/compact`.
+
+Aktive punkter i STATUS. Issue til pakkerepoet: ikke aktuelt — denne økten
+jobber direkte i pakkerepoet, så funnet er rettet, ikke meldt videre.
+
 ## 2026-09-04 (hjemmekontor, `VPC-5CG3433WMH`) — 0.6.1 rettet fra første tørrkjøring; alle tre punkter fra i går fulgt
 
 **Evaluering av forrige økts punkter:**

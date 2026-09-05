@@ -8,31 +8,37 @@ bevisst utsatt av MVP-frysen 2026-08-19.
 **TO MASKINER SKRIVER TIL DETTE REPOET.** Kjør `git fetch` og sammenlign med
 `origin/main` før du stoler på denne fila.
 
-**Fase:** `faseflyt` **0.6.1** pushet 2026-09-04 fra `VPC-5CG3433WMH`
-(hjemmekontor) — funn fra første fulle tørrkjøring av 0.6.0 (`klengenavn`,
-webapp-scratch). **Begge maskinene må kjøre
-`/plugin marketplace update claude-code-skills` + omstart** før 0.6.1 virker
-der.
+**Fase:** `web-prototype` **0.1.3** pushet 2026-09-05 fra `VPC-5CG3433WMH`
+(hjemmekontor) — sv/Designsystemet-drift rettet i skillen og bekreftet mot
+testprosjektet `klengenavn`. **Begge maskinene må kjøre
+`/plugin marketplace update claude-code-skills` + omstart** før 0.1.3 virker der.
 
 ## Neste — start her
 
-1. **`web-prototype` pakkesak** (egen plugin, egen versjon): `sv create`
-   overskriver `.gitignore` i ikke-tom mappe (nytt, `klengenavn` 2026-09-04);
-   `svelte.config.js`-avviket fra 2026-08-30 bekreftet på nytt. Se logg
-   2026-08-30 og 2026-09-04.
-2. **Fortsett tørrkjøringen** i `klengenavn`: fase 1–4. Se særlig om
-   plan-malen bør si at Claude ikke skal forsøke brukerens verifisering selv
-   (observert i fase 0, første runde i prosjektets egen læringslogg der), og
-   om `limit` på `Read` av `logg.md`/`laering.md` faktisk brukes (umålt så langt).
-3. **Mac-pre-flight** — fortsatt viktigste umålte post, urørt.
-4. **Umålt:** at `/model sonnet` (0.6.1) virker på alle kollegaers oppsett.
+1. **Fortsett tørrkjøringen** i `klengenavn` (kun på denne maskinen,
+   `C:\dev\claude-code-skills-testoppgave-0.6`, slettes når ferdig brukt): fase
+   1–4. Prøv samtidig web-prototype 0.1.3 sitt nye steg 9 (design-tokens) helt
+   gjennom — kun kjørt isolert i scratchpad så langt, ikke i et ekte prosjekt.
+   Se også om plan-malen bør si at Claude ikke skal forsøke brukerens
+   verifisering selv, og om `limit` på `Read` av `logg.md`/`laering.md` faktisk
+   brukes (umålt så langt).
+2. **Mac-pre-flight** — fortsatt viktigste umålte post, urørt.
+3. **Umålt:** at `/model sonnet` (0.6.1) virker på alle kollegaers oppsett.
 
 ## Arbeidsmåte neste økt
 
-*(tom — alle tre punkter fra forrige runde ble fulgt og strøket, se `laering.md`)*
+- **[faktisk-bruk-foran-pakkekildekode]** Har et pakke-funn et ekte
+  testprosjekt å sjekke mot: les PROSJEKTETS logg/filer før forslaget skrives
+  ferdig, ikke bare pakkens egen kildekode/`--help`.
+- **[testprosjekt-er-forgjengelig]** Siter konkrete funn (kommandoer,
+  filinnhold) direkte i STATUS/logg — ikke bare pek til testprosjektets sti;
+  den kan være borte eller lokal til én maskin.
 
 ## Det en ny økt må vite
 
+- **Testprosjekter er midlertidige og lokale** (BK, 2026-09-05): `klengenavn`
+  m.fl. slettes når ferdig brukt og finnes kun på hjemmekontor-maskinen — ikke
+  en varig referanse for andre økter/maskiner.
 - **To promoteringsforslag venter fortsatt på BKs klarsignal:**
   `[proev-forslaget-mot-prosjektets-egne-laerdommer]` og
   `[ord-jeg-selv-innfoerer-maa-holdes-mot-tabellen]` — begge inn i `CLAUDE.md`.

@@ -547,10 +547,11 @@ til intern bruk i Vestfold fylkeskommune holder.
 
 ## Etterpå (utenfor denne planen, avklares med deg)
 
-`nytt-prosjekt` finnes i to drevne kopier — `~/.claude/skills/nytt-prosjekt/` og
-`c:\dev\fint-samtykke\.claude\skills\nytt-prosjekt\`. Når pakken er ferdig bør
-begge erstattes av den installerte pluginen, og whitelist-oppføringene i
-`claude-global-config` ryddes. Gjøres ikke uten din bekreftelse.
+Skill-kopiene er fjernet: `~/.claude/skills/nytt-prosjekt/` fantes ikke lenger
+da denne runden sjekket, og `fint-samtykke`s kopi mistet `SKILL.md` +
+oppskriften 2026-09-05 (retrospektivet ligger igjen til BK flytter det).
+Gjenstår: rydde whitelist-oppføringene i `claude-global-config` — ikke gjort
+her, utenfor dette repoet.
 
 ## Verifisering
 

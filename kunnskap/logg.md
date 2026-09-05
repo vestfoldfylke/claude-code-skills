@@ -2,6 +2,48 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fryse-runde før 1.0: verifiseringslista gjennomgått, `nytt-prosjekt` tørrkjørt tre ganger, `faseflyt` 0.9.0
+
+**Levert** (`89acdd6`, ikke pushet ennå — se steg 7 under):
+- Org-katalogen droppet som distribusjonskanal. **Beslutning (BK, distribusjon):**
+  kun plugin-repo — README, `docs/installasjon.md` og `plan.md` rettet; «org-skills»
+  heter nå «felles skills til bruk i Vestfold» i `nytt-prosjekt`.
+- Verifiseringslistens 11 punkter gjennomgått med BK, én for én: 5/9/10/11
+  DROPPET (bakoverkompat, README-test, org-opplasting, overtakelsestest —
+  premissene var enten alt avgjort eller motbevist av tidligere målinger),
+  3/4/6/7/8 bekreftet DEKKET fra før, punkt 1 lest strukturelt (målingen
+  gjenstår i gruppeleder-prepen før samlingen 14.09), punkt 2 DEKKET nå.
+- `nytt-prosjekt` tørrkjørt (tre isolerte agenter i egne worktrees, mot 0.8.3)
+  for dokumentasjons- og API-typen og i et eksisterende ikke-tomt prosjekt —
+  alle sjekkpunkter grønne. Ti rettelser i skillens egne instrukser: foreldet
+  STATUS-henvisning for encoding-reglene, Windows-snuttens plassering fikk
+  egen overskrift og entydig sted, kontrollkall-regelen skiller nå
+  script/dokumentasjon fra webapp/API ærlig, eksempelbeslutningen «AB» i
+  plan-malen ble plassholder, m.fl. — full liste i `CHANGELOG.md` 0.9.0.
+- Fire issues lukket som forkastet: #3 (modellmiks, løst i 0.6.1), #9
+  (web-prototype-eierskap, org-kanalen borte), #10 (PreToolUse-hook, samme
+  uverifiserbare-port-argument som pre-push-hooken), #15 (fase-start bør liste
+  kunnskap/).
+- To promoteringsforslag avgjort: `[ord-jeg-selv-innfoerer-maa-holdes-mot-tabellen]`
+  inn i `CLAUDE.md` som sjekkpunkt før push (tredje brudd);
+  `[proev-forslaget-mot-prosjektets-egne-laerdommer]` arkivert uten promotering
+  — overlapper med «beskrevet omfang er avtalt omfang».
+- Utenfor pakken: skill-kopien i `fint-samtykke/.claude/skills/nytt-prosjekt/`
+  mistet `SKILL.md` og oppskriften (retrospektivet ligger igjen til BK flytter det).
+
+**Beslutning (BK, versjon):** denne runden merkes 0.9.0, ikke 1.0 — 1.0
+avgjøres av samlingen 14. september, slik planen selv definerer den
+(`plan.md`, «Verifisering»).
+
+**Sjekk:** `claude plugin validate .` og `.github/renhet/sjekk.sh` kjørt grønt
+før commit `89acdd6` (11 søk / 0 feil, kontrollsøk 44 treff). Ingen kodefiler
+endret siden.
+
+Rask sikkerhetssjekk: env-filer 0, fødselsnummer-mønster 0, nøkkel-mønster 0,
+kontrollsøk 23 treff. STATUS: 45 linjer (tak 45). Issue #17 opprettet
+(beslutninger tatt utenfor fase-slutt skrives ikke tilbake til planen).
+fase-slutt: 15:40–15:48, 8 min til sjekkene var ferdige; commit og push etterpå.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 8 levert og verifisert: `fase-start`/`hjelp`/README kort utdata, kommandoform-modell dokumentert; `faseflyt` 0.8.3
 
 **Levert** (`9574b99`, pushet til `main`):

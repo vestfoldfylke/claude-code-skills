@@ -6,7 +6,10 @@
 før testen er gjort. Nesten alt under denne linjen er vedlikeholderklasse og
 blokkerer ikke testen — `TODO.md` (535 linjer) + `plan.md` (605) er utredning,
 mens pakken alt er testbar. «Helhetsvurdering»-spørsmålet lenger ned besvares
-av to reelle brukere, ikke av mer analyse.
+av to reelle brukere, ikke av mer analyse. Kollegatesting (README-test) er
+droppet 2026-09-05 (BK) — «Helhetsvurdering»-spørsmålet lenger ned står fortsatt
+åpent og er IKKE besvart av denne rundens gjennomgang; den dekket bare
+verifiseringslistens 11 punkter, ikke det større spørsmålet om hvem pakken er for.
 
 ## Token-vekten i rutineskillene (BK-bestilt 2026-08-30, bevisst unntak fra frysen)
 

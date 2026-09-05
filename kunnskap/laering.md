@@ -9,6 +9,32 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fryse-runde: instruks-funn fra tre tørrkjøringer rettet trygt, men en avgjørelse fra tre uker tidligere hadde aldri blitt skrevet tilbake til planen
+
+**Evaluering av forrige økts punkter:**
+- `[hypotese-skrevet-som-fakta]` **fulgt.** Tre dry-run-agenter kjørte og leste
+  `nytt-prosjekt`s faktiske oppførsel før ti instruksrettelser ble skrevet,
+  framfor å anta. Strykes som innarbeidet.
+- `[dry-kjoering-krever-push-foerst]` **ikke utløst.** Ingen tørrkjøring via
+  GitHub-marketplace denne runden — agentene brukte Skill-verktøyet direkte i
+  isolerte worktrees. Videreføres uendret; utløses trolig i gruppeleder-prepen
+  før 14.09, som går via ekte installasjon.
+
+**Nye punkter:**
+- `[beslutning-uten-tilbakeskriving]` En beslutning ført i loggen uten å
+  skrives inn i `plan.md` samme runde er usynlig for neste økt. Belegg:
+  verifiseringspunkt 5 (bakoverkompatibilitet) ble droppet av BK 2026-08-21 og
+  stod i loggen — men `plan.md` viste punktet som åpent helt til denne runden
+  fant det via en frittstående kartleggingsagent, to uker senere. Regel: en
+  avgjørelse som endrer hva et punkt i planen betyr, skrives inn i planen i
+  samme redigering den tas, ikke bare i loggen. **Tilbudt som issue til
+  pakkerepoet, se rapport.**
+
+**Fasesnitt:** denne runden var ikke en av planens nummererte faser (0–8 var
+alt ferdige) — en fryse-runde over hele verifiseringslista. Den fikk plass i
+økten uten `/compact` ved å delegere kartlegging og alle tre tørrkjøringene til
+bakgrunnsagenter; hovedtråden leste bare konklusjonene.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 8: fase-start/hjelp/README kort utdata
 
 **Evaluering av forrige økts punkter:**

@@ -4,6 +4,25 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.8.3 — 2026-09-05
+
+`faseflyt` 0.8.3 (fase 8: `fase-start`, `hjelp` og README, kort utdata,
+instruks sist).
+
+- **Modell-instruksen i `fase-start` står nå alene som siste linje**, uthevet
+  og formulert som handling («Skriv `/model sonnet` nå, før du gir
+  klarsignal.»). Skillen påstår aldri hva økten kjører på. Belegg: linja lå
+  tidligere midt i teksten og ble ikke handlet på; én gang påsto den «Sonnet»
+  mens økten sto på Opus.
+- **Tak på ti linjer for `fase-start`s rene tilfelle**, fasebeskrivelsen kuttet
+  til én linje — planen har resten. Målt: 0.6.1 lå på ~15 linjer.
+- **Kommandoform vs. trigger-frase dokumentert** i `fase-start`, `hjelp` og
+  README: skrevet kommando kjører skillen på dens `model: sonnet`-felt,
+  trigger-frase i vanlig tekst kjører på øktens modell.
+- **README sier hvem pakken er for:** `/faseflyt:nytt-prosjekt` når prosjektet
+  skal overleve `/clear` minst én gang — et script på én ettermiddag trenger
+  ikke læringssløyfen.
+
 ## 0.8.2 — 2026-09-05
 
 `faseflyt` 0.8.2. Etter tørrkjøring av 0.8.1 i `test-faseflyt` økt 10

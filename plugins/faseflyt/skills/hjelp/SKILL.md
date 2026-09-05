@@ -59,6 +59,12 @@ Gjengi den slik. Forklar ordene i setningen de står i — ikke som ordliste:
 | `/faseflyt:fase-slutt` | Logg, STATUS, sjekk, commit | Når du har sett en fase virke |
 | `/faseflyt:hjelp` | Denne | Når du har glemt flyten |
 
+**Kommandoformen styrer modellen.** Skriver du en av kommandoene over direkte,
+kjører skillen alltid på Sonnet — det står i skillens egen definisjon,
+uavhengig av hva økten ellers står på. Sier du i stedet noe som bare *ligner*
+på kommandoen («start økten», «avslutt fasen» …), kjører skillen på øktens
+gjeldende modell.
+
 ## 4. Pek videre, og stopp
 
 Én linje: resten står i README-en i pakkerepoet

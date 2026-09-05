@@ -64,14 +64,15 @@ krever filsystem og git og finnes derfor kun i Claude Code.
 
 ## Trenger du alt dette?
 
-Nei. Skal du lage en liten prototype på et par timer, hopp over faseflyten:
-installer `web-prototype`, beskriv hva du vil ha, og bygg. Vil du tenke gjennom
-valgene først, er `/faseflyt:grill-me` nyttig helt alene.
+Nei. Tommelfingerregel: bruk `/faseflyt:nytt-prosjekt` når prosjektet skal
+overleve `/clear` **minst én gang**. Et script du skriver ferdig på én
+ettermiddag trenger ikke læringssløyfen — installer heller `web-prototype`,
+beskriv hva du vil ha, og bygg. Vil du tenke gjennom valgene først, er
+`/faseflyt:grill-me` nyttig helt alene.
 
-Fase-opplegget lønner seg når prosjektet er stort nok til å gå over flere økter
-— når du ellers ville brukt første halvtime på «hva var det vi holdt på med?».
-Vokser prototypen til noe sånt, kjører du `/faseflyt:nytt-prosjekt` i mappa som
-allerede finnes: den oppretter bare det som mangler, og rører ikke det du har.
+Vokser prototypen til noe som går over flere økter, kjører du
+`/faseflyt:nytt-prosjekt` i mappa som allerede finnes: den oppretter bare det
+som mangler, og rører ikke det du har.
 
 ## Kom i gang: ditt første prosjekt
 
@@ -215,6 +216,14 @@ som ikke rekker å fullføres).
 **Hvorfor heter kommandoene `/faseflyt:fase-start` og ikke `/fase-start`?**
 Skills fra en plugin får pluginnavnet som prefiks. Det hindrer navnekollisjoner
 med dine egne skills.
+
+**Hvorfor kjører `/faseflyt:fase-start` noen ganger på en annen modell enn jeg har valgt?**
+Skriver du kommandoen direkte (`/faseflyt:fase-start`), kjører skillen alltid
+på Sonnet — det står i skillens egen definisjon, uavhengig av hva økten ellers
+står på. Sier du i stedet noe som bare *ligner* på kommandoen («start økten»,
+«ny økt»), kjører skillen på øktens gjeldende modell i stedet. Det er derfor
+`fase-start` aldri påstår hva resten av økten kjører på, og alltid ber deg
+skrive `/model` selv.
 
 **Hvordan oppdaterer jeg pakken?**
 `/plugin marketplace update claude-code-skills`. Endringer står i

@@ -24,6 +24,10 @@ Normaltilfellet — alt rent — er én linje: «Faseflyt <versjon> kjørende og
 installert, forrige økt avsluttet, plan lest.» Så rett på nåsituasjon og neste
 steg (steg 5).
 
+**Tak: høyst ti linjer i det rene tilfellet, telles i tørrkjøringen — ikke
+anslås.** Planen har detaljene, gjenta dem ikke. Målt: 0.6.1 lå på ~15 linjer
+for samme tilfelle.
+
 Dette gjelder utskriften, ikke arbeidet: hvert steg kjøres som før.
 
 ## Kall som ikke skal koste en godkjenning
@@ -148,18 +152,32 @@ hva som sjekkes, og at alt var rent.
    utforskning senere i økten: deleger til Explore-subagent — bare konklusjonen
    inn i hovedtråden.
 
-5. Oppsummer kort i chatten: fase/tilstand, hva som er verifisert, og foreslå
-   ETT konkret neste steg (inkludert valg som allerede er tatt — ikke gjenåpne
-   dem). Har brukeren gitt en tilleggsbeskjed, er det den som gjelder.
+5. Oppsummer fase/tilstand i **én linje** — navn og status, ikke gjenfortalt
+   innhold, planen har resten — hva som er verifisert, og foreslå ETT konkret
+   neste steg (inkludert valg som allerede er tatt — ikke gjenåpne dem). Har
+   brukeren gitt en tilleggsbeskjed, er det den som gjelder.
 
    **Gjengi fasens `**Verifisering:**`-linje fra planen ordrett.** Det er det
    økten skal ende i, og det brukeren skal se før fasen kan avsluttes — begge
    skal vite det før arbeidet starter.
 
-   **Si i én linje hvilken modell fasen fortjener**, ut fra planens beskrivelse
-   av den: mekanisk implementering → Sonnet (`/model sonnet`); planendring,
-   arkitektur eller sikkerhetskritisk → tyngste modell. Ingen begrunnelse.
-   Skillen kan ikke bytte for brukeren — bare si det.
+   **Modell-instruksen står alene som siste linje i svaret, uthevet og
+   formulert som handling** — aldri en påstand om hva økten kjører på. Ut fra
+   planens beskrivelse av fasen: mekanisk implementering → «**Skriv `/model
+   sonnet` nå, før du gir klarsignal.**»; planendring, arkitektur eller
+   sikkerhetskritisk → samme setning med tyngste modell. Ingen begrunnelse,
+   ingen linjer etter denne. Skillen kan ikke bytte for brukeren, og kan ikke
+   vite hva økten faktisk kjører på — bare en instruks plassert som siste
+   handling blir fulgt. Belegg: linja lå tidligere midt i teksten og ble ikke
+   handlet på; én gang påsto den «Sonnet» mens økten sto på Opus.
+
+   **Kommandoformen er den som gir Sonnet.** Skriver brukeren
+   `/faseflyt:fase-start` direkte, kjører *denne skillen* på sitt eget
+   `model: sonnet`-felt, uansett hva økten ellers står på. Slås skillen i
+   stedet inn av en trigger-frase i vanlig tekst («start økten», «ny økt» …),
+   kjører den på øktens gjeldende modell. Det er derfor instruksen over aldri
+   kan påstå hva som skjer etterpå — den vet i beste fall om seg selv, ikke om
+   økten som fortsetter etter den.
 
    **Per-økt-påminnelser fra STATUS («Det en ny økt må vite») og prosjektets
    `CLAUDE.md` gjengis ikke som liste.** Du har lest dem, og brukeren skrev dem.

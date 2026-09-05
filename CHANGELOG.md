@@ -4,6 +4,40 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.8.0 — 2026-09-05
+
+`faseflyt` 0.8.0. Fase 7 i planen: `fase-slutt` får ærlig ratchet og færre
+rundturer. Belegget er fem faseslutt i `klengenavn` og to i dette repoet
+(2026-09-04/05, `VPC-5CG3433WMH`, hostname kjørt). Ingen tørrkjøring av 0.8.0
+ennå — den er fasens verifisering.
+
+- **Tredje utfall i ratchet-en (steg 2a/2b).** *Fulgt* strykes, *brutt igjen*
+  videreføres med rundetall +1, *ikke utløst* videreføres uten tall eller
+  strykes hvis ingen gjenstående fase kan utløse det. Bare «brutt igjen» teller
+  mot tredje runde. Observert: et punkt nådde «3. runde» uten å ha blitt prøvd
+  én gang. STATUS-malen i `maler.md` sier det samme.
+- **Én adresse per regel.** Et punkt bor i STATUS *eller* i prosjektets
+  `CLAUDE.md`. Promoteres det, tas det ut av STATUS i samme redigering; hvert
+  «må vite»-punkt sjekkes mot `CLAUDE.md` før det skrives. Observert: fire av
+  tolv punkter i dette repoets STATUS sto begge steder.
+- **STATUS telles, ikke anslås:** tak 45 linjer, `wc -l` etter skriving, tallet
+  i loggen. Målt: 42–47 over fem faseslutt; «~30» var uoppnåelig.
+- **Issue-kriteriet (steg 2e) utvidet** med «pakken kunne ha vernet mot det i
+  neste prosjekt». Observert: nettleser-forsøket ble avvist som «ikke pakkens
+  sak» fordi det kom fra en generell skill — og ble 0.7.0 likevel.
+- **Steg 5 hopper over sjekken** når den var grønn i samme økt etter siste
+  kodeendring, og sier det med klokkeslett. Målt: 51 s på en sjekk som var
+  grønn åtte minutter tidligere.
+- **Steg 6 omtaler søket uten å sitere søkeordet.** Observert: loggens egen
+  setning var eneste treff, to faseslutt på rad.
+- **Ordlekkasje-søk** etter steg 1–3 i det skillen selv skrev, mot en liste som
+  bare vokser med observerte ord.
+- **Planen kollapser ferdige faser** til én linje med klarsignal, og et endret
+  verifiseringspunkt endres i `plan.md`, ikke bare i STATUS.
+- **Tid fra kommando til FERDIG føres** via `date` ved porten og før commit.
+  Koster to kall og én `Edit` per faseslutt — målingen er prisen verdt til
+  tallet foreligger.
+
 ## 0.7.1 — 2026-09-05
 
 `faseflyt` 0.7.1. Rettelse etter tørrkjøring av 0.7.0 i `faseflyt-0.7-test`

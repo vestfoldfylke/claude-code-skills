@@ -27,6 +27,10 @@ porten er nådd, foreslå kommandoen og vent. Ikke utfør stegene «for hånd» 
 kjørte helt gjennom og committet uten å spørre), så behandle det som en kjent
 felle: er du i tvil, spør før du gjør noe.
 
+**Ta klokkeslett når porten er passert:** `date +%H:%M`, ett kall. Skillen har
+ingen klokke ellers, og tiden fra kommando til «FERDIG» er en måling av skillen
+selv — den føres i steg 7.
+
 ## Hva du skriver i chatten
 
 **Start med hva økten leverte.** «Avvik, ikke gjennomføring» under gjelder
@@ -84,16 +88,24 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
    fase-slutt fant det bare fordi samme økt hadde skrevet det.
 
 2. **Selvvurdering** (læringssløyfen — skrives til fil, ikke bare chat):
-   a. **Evaluer forrige økts punkter** i STATUS `## Arbeidsmåte neste økt`:
-      ble hvert punkt fulgt? Innarbeidede punkter strykes; punkter som ikke ble
-      fulgt videreføres.
-   b. **Tell rundene i STATUS**, ikke i læringsloggen: hvert punkt i
-      `## Arbeidsmåte neste økt` bærer et rundetall (`(2. runde)`). Et punkt som
-      videreføres får tallet økt; et nytt punkt starter uten tall; et punkt uten
-      tall i et eldre prosjekt regnes som første runde. Står et punkt i **tredje
-      runde**, er det en manglende regel — foreslå å skrive det permanent inn i
-      prosjektets `CLAUDE.md` og ta det ut av STATUS. Mangler prosjektet en
-      `CLAUDE.md`, tilby å opprette den med punktet som eneste innhold.
+   a. **Evaluer forrige økts punkter** i STATUS `## Arbeidsmåte neste økt`.
+      Hvert punkt får ett av tre utfall, og situasjonen avgjør hvilket:
+      - *Fulgt* — situasjonen punktet gjelder oppsto, og punktet ble fulgt:
+        strykes som innarbeidet.
+      - *Brutt igjen* — situasjonen oppsto, punktet ble ikke fulgt: videreføres,
+        rundetallet øker.
+      - *Ikke utløst* — situasjonen oppsto ikke i fasen. Kan en gjenstående fase
+        utløse den? Ja: videreføres, rundetallet står. Nei: strykes, med peker
+        til logginnslaget. Et punkt som aldri ble satt på prøve har ikke hatt en
+        runde. Belegg: et punkt nådde «3. runde» uten å ha blitt prøvd én gang.
+   b. **Tell rundene i STATUS**, ikke i læringsloggen: hvert punkt bærer et
+      rundetall (`(2. runde)`). Bare «brutt igjen» øker tallet; et nytt punkt
+      starter uten tall; et punkt uten tall i et eldre prosjekt regnes som
+      første runde. Står et punkt i **tredje runde**, er det en manglende regel
+      — foreslå å skrive det inn i prosjektets `CLAUDE.md` og ta det ut av
+      STATUS **i samme redigering**: et punkt bor på én adresse, aldri begge.
+      Mangler prosjektet en `CLAUDE.md`, tilby å opprette den med punktet som
+      eneste innhold.
       **Forslaget legges fram én gang.** Sier brukeren nei eller «ikke nå»,
       føres svaret i `laering.md`, punktet tas ut av STATUS, og forslaget
       gjentas ikke.
@@ -113,8 +125,9 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
       tillegg er samme tekst to ganger. Én linje om hvor de ble ført, og hva
       som ble strøket eller promotert, holder.
    e. **Gjelder et punkt arbeidsflyten selv** — det navngir en skill eller
-      oppskrift (`web-prototype`, `fase-slutt`, `nytt-prosjekt`, …) eller sier
-      at en instruks var feil eller utdatert: tilby å opprette et issue i
+      oppskrift (`web-prototype`, `fase-slutt`, `nytt-prosjekt`, …), sier at en
+      instruks var feil eller utdatert, **eller pakken kunne ha vernet mot det i
+      neste prosjekt**: tilby å opprette et issue i
       `vestfoldfylke/claude-code-skills` (`gh issue create`). Issue-teksten skal
       beskrive arbeidsflytproblemet og ALDRI prosjektets data — ingen
       persondata, secrets, interne URL-er eller sensitive prosjektdetaljer — og
@@ -123,15 +136,30 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
       tilbudt» eller «Issue til pakkerepoet: ikke aktuelt». Uten linjen er et
       manglende tilbud usynlig. Observert 2026-09-04 på Sonnet: to punkter
       navngav `web-prototype`-oppskriften, ingen tilbud kom, og rapporten viste
-      det ikke.
+      det ikke. Observert 2026-09-05: et forsøk på å installere en nettleser ble
+      avvist som «ikke pakkens sak» fordi impulsen kom fra en generell skill —
+      og pakken fikk vernet i neste versjon likevel.
 
-3. **STATUS:** Overskriv `kunnskap/STATUS.md` (maks ~30 linjer): fase og
-   tilstand, hva som er verifisert, gjenstående med konkret neste steg,
-   kritiske filer, `## Arbeidsmåte neste økt` (fra steg 2), og det en ny økt MÅ
-   vite for å fortsette uten å utforske kodebasen. STATUS skal være SELVBÆRENDE
+3. **STATUS:** Overskriv `kunnskap/STATUS.md` (tak 45 linjer — telles, ikke
+   anslås): fase og tilstand, hva som er verifisert, gjenstående med konkret
+   neste steg, kritiske filer, `## Arbeidsmåte neste økt` (fra steg 2), og det
+   en ny økt MÅ vite for å fortsette uten å utforske kodebasen. STATUS skal
+   være SELVBÆRENDE
    for `fase-start`: `**Plan:** kunnskap/plan.md` rett under tittelen, peker
    til `TODO.md`, per-økt-påminnelser i STATUS eller prosjektets CLAUDE.md.
    Hold den skarp — historikk hører hjemme i loggen.
+
+   **Én adresse per regel.** Før hvert «må vite»-punkt skrives, sjekkes det mot
+   prosjektets `CLAUDE.md` (ett `Grep` etter et nøkkelord fra punktet). Står det
+   der, strykes det fra STATUS — `CLAUDE.md` leses i hver økt uansett, og to
+   adresser er det som får STATUS til å vokse. Belegg: fire av tolv punkter i
+   ett prosjekt sto begge steder.
+
+   **Tell etter skriving:** `wc -l kunnskap/STATUS.md`, eller siste linjenummer
+   i `Read`. Over 45 kuttes før commit — historikk til loggen, dobbeltadresser
+   strykes — og tallet føres i logginnslaget fra steg 1, så drift er synlig fra
+   faseslutt til faseslutt. Målt: fem faseslutt lå på 42–47; «~30» er
+   uoppnåelig med malens faste deler.
 
    **Et punkt under `## Det en ny økt må vite` tas ut bare med en peker til der
    teksten faktisk står nå — og du har lest at den står der.** Observert
@@ -140,13 +168,32 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
 
    **Står Windows-snutten fra `windows.md` i STATUS** (prosjekt satt opp før
    0.6.1), følger den med ordrett i hver overskriving og teller ikke mot
-   ~30-linjersgrensen — eller flyttes til CLAUDE.md med brukerens klarsignal,
+   taket på 45 — eller flyttes til CLAUDE.md med brukerens klarsignal,
    én gang. Nye prosjekter får den i CLAUDE.md fra oppsettet.
    (Mangler `kunnskap/` eller `kunnskap/plan.md`: opprett mappen/filene; en
    godkjent plan som bare finnes under `~/.claude/plans/` kopieres inn som
    `kunnskap/plan.md` NÅ — den originale er en engangsartikkel.)
 
-4. **Er noe i `TODO.md` avklart av det som ble gjort nå?** Finnes `TODO.md`,
+   **Ordlekkasje-søk i det du nettopp skrev.** Ett `Grep` i `STATUS.md`,
+   `laering.md` og loggen etter `skaffold|scaffold|trigg|probe|harness` — ordene
+   som er *observert* lekket fra Claude Codes eget vokabular inn i
+   prosjektfiler. Treff skrives om til vanlig norsk (sette opp, slår inn,
+   kontrollkall, Claude Code selv) før commit. Lista vokser bare med ord som
+   faktisk er sett i et prosjekts filer, ikke med ord som kunne lekke.
+
+4. **Plan og `TODO.md`.**
+
+   **Er fasen verifisert ✅, kollapser den i `kunnskap/plan.md`** til én linje:
+   «Fase N ✅ <dato> — detaljer i logg». Vis før/etter og vent på klarsignal. En
+   fase avsluttet uten verifisering kollapses ikke. Planen skal holde seg rundt
+   100–150 linjer; det den mister, står i loggen.
+
+   **Endret økten hva verifiseringen av en fase betyr** — et punkt ble tatt ut,
+   lagt til eller formulert om — endres `**Verifisering:**`-linja i `plan.md`,
+   ikke bare STATUS eller `laering.md`. `fase-start` gjengir planens linje
+   ordrett; en linje som bare er rettet i STATUS er rettet for én økt.
+
+   **Er noe i `TODO.md` avklart av det som ble gjort nå?** Finnes `TODO.md`,
    sammenlign det økten faktisk leverte — loggen fra steg 1, commitene, issues
    som ble lukket — mot punktene fila beskriver som åpne.
 
@@ -168,6 +215,13 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
 5. **Virker prosjektet fortsatt?** Kjør sjekken prosjektet selv har, og skriv i
    loggen hva du kjørte og hva som skjedde — det er det som gjør at «fase X ✅»
    betyr noe.
+
+   **Kjørte sjekken grønt i denne økten, etter siste endring i kodefiler, kjøres
+   den ikke igjen.** Rapporten i chatten og loggen sier det i stedet — «sjekken
+   kjørt grønt kl. 14:32, etterpå bare `kunnskap/`-filer» — med klokkeslett når
+   du har det, ellers med hva som skjedde imellom. Er du usikker på om noe ble
+   endret etterpå, kjør den. Belegg: 51 sekunder på en sjekk som var grønn åtte
+   minutter tidligere.
 
    Si først i vanlig språk hva sjekken er og hva et godt utfall betyr — «jeg
    kjører prosjektets egen test, som sier om koden fortsatt henger sammen; alt
@@ -224,6 +278,11 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
    ikke at mønstrene er de riktige. En regex kan være gal og likevel bestå
    kontrollen.
 
+   **Omtal søket uten å sitere søkeordet** — i chatten og i loggen. «Søk etter
+   nøkkelord for hemmeligheter: 0 treff», ikke ordet selv. Skrives ordet i
+   loggen, er loggens egen setning neste faseslutts eneste treff, og nullsvaret
+   er borte. Belegg: to faseslutt på rad.
+
    **Alle søkene kjøres som parallelle kall i samme melding** — ls-files-sjekkene,
    grep-søkene og kontrollsøket sendes samlet, ikke som en tur per søk. Hvert kall
    er fortsatt én enkelt kommando (kombinerte kommandoer matcher ingen
@@ -240,7 +299,10 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
    prosjektet persondata, er `.gitignore` og deny-settet førstelinjen; denne
    sjekken er et nett under, ikke i stedet for.
 
-7. **Commit og push** med beskrivende melding. Si det før du gjør det: «Nå
+7. **Commit og push** med beskrivende melding. Først: `date +%H:%M` igjen, og
+   differansen fra klokkeslettet ved porten inn i logginnslaget som én linje —
+   «fase-slutt: 14:20–14:31, 11 min». Det er en måling, ikke et løfte; målet
+   på ett minutt nås ikke av instruksene alene. Si så hva som skjer: «Nå
    lagrer jeg et sjekkpunkt i git og sender det til GitHub, så arbeidet ikke kan
    gå tapt.» Flerlinjet melding → skriv meldingsfil og bruk
    `git commit -F <fil>`. (Ikke-git-prosjekter: hopp over, men si det.)

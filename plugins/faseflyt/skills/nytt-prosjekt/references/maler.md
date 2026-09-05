@@ -97,8 +97,10 @@ vindu».>
 ## Arbeidsmåte neste økt
 
 <maks 3 punkter fra siste selvvurdering, hver med stikkordsetikett og rundetall.
-Nytt punkt: uten tall. Videreført: tallet økes. Tredje runde = foreslå permanent
-regel i CLAUDE.md og ta punktet ut herfra. Tom seksjon er lov.>
+Nytt punkt: uten tall. Brutt igjen: tallet økes. Ikke utløst: står uendret, eller
+strykes hvis ingen gjenstående fase kan utløse det. Tredje runde = foreslå
+permanent regel i CLAUDE.md og ta punktet ut herfra i samme redigering. Tom
+seksjon er lov.>
 
 - `[<etikett>]` <handlingsbar korrigering>
 - `[<etikett>]` (2. runde) <videreført korrigering>

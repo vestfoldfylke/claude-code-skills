@@ -49,8 +49,8 @@ skjedd og er loggført.
   ikke etter første hendelse — og ikke i STATUS, som overskrives ved hver
   faseslutt. (Se `windows.md`.)
 - **Kopierte skills råtner.** En skill som kopieres inn i et prosjektrepo «så
-  andre kan overta» drifter fra originalen i stillhet. Deklarér org-skills i
-  `.claude/settings.json`; kopier aldri. (Derfor steg 6.)
+  andre kan overta» drifter fra originalen i stillhet. Deklarér de felles
+  skillene i `.claude/settings.json`; kopier aldri. (Derfor steg 6.)
 - **Planpekere til `~/.claude/plans/` råtner.** Planmodus-filer har
   autogenererte navn og ryddes — en STATUS som peker dit feiler måneder senere.
   Kanonisk plan bor i `kunnskap/plan.md`. (Derfor steg 4.)

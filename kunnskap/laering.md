@@ -187,6 +187,8 @@ klarsignal, innskriving, sjekk, denne faseslutten) fikk plass i én økt uten
   `[flytt-regelen-dit-den-leses]`; og alle seks «vurdert og ikke tatt med»-
   punktene ble holdt mot MVP-frysen, dataregime-parkeringen og «ikke
   nedgrader innholdet»-instruksen før noe ble avgjort.
+  **Avgjort (BK, 2026-09-05): nei — arkivert.** Overlapper med regelen om at
+  beskrevet omfang er avtalt omfang; ikke promotert.
 
 **Nye punkter:**
 
@@ -218,6 +220,8 @@ prinsippet, men et konkret sjekkpunkt i «Sjekkene før hver push»: skann diffe
 for ord du selv har skrevet inn nylig, og hold hvert av dem mot tabellen — ikke
 bare gjenta prinsippet abstrakt. Ordlyd ikke skrevet inn. **Krever BKs
 klarsignal — aldri automatisk.**
+**Avgjort (BK, 2026-09-05): ja.** Promotert til `CLAUDE.md`, «Sjekkene før hver
+push», som eget sjekkpunkt etter kontrollsøket.
 
 ## 2026-08-30 (hjemmekontor, kveld) — Økten som handlet om token-vekt leste 700 linjer fremmed repo rett inn i hovedtråden, og skrev en ny regel uten å avgrense den mot den den ligner på
 

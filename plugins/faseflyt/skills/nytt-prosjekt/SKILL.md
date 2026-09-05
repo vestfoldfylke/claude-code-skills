@@ -144,7 +144,8 @@ regel om hva du skriver her, ikke bare om hva du sier.
    webapp/prototype, script/automatisering, dokumentasjon/utredning, eller
    API/backend-tjeneste. Spør samtidig: behandler prosjektet **persondata**
    (styrer persondata-deny-settet i steg 6)? Bruker det **FINT** (styrer skill-deklarasjon)?
-   Og prosjektnavn/domene.
+   Hvilken **plattform** utvikles det på — Windows, Mac eller Linux (styrer
+   encoding-snutten)? Og prosjektnavn/domene.
 
    **Still spørsmålene samlet i én melding** — de er enkle, og fem turer for fem
    svar er fire for mange. Har brukeren limt inn en oppgavetekst som alt svarer
@@ -177,14 +178,16 @@ regel om hva du skriver her, ikke bare om hva du sier.
 5. **Opprett filene** ved å kopiere malene i `references/maler.md` **ORDRETT**
    (se regelen over, inkludert etterkontrollen): `kunnskap/STATUS.md`,
    `kunnskap/logg.md`, `kunnskap/laering.md` og `kunnskap/sikkerhet.md` for alle
-   typer; `kunnskap/arkitektur.md` kun for kode-typene. `TODO.md` i rotkatalogen
-   fra dag 1 — også tom. Malenes forklarende topptekster og krav (belegg-kravet i
+   typer; `kunnskap/arkitektur.md` kun for kode-typene — for API/backend skriver
+   du inn i den at auth-grensen og dataflyten SKAL dokumenteres der. `TODO.md` i
+   rotkatalogen fra dag 1 — også tom. Malenes forklarende topptekster og krav (belegg-kravet i
    logg-malen, etikett- og handlingsbarhetskravet i læringsmalen) er en del av
    malen og følger med — de er det som gjør at filene brukes riktig senere.
    På Windows: snutten fra `references/windows.md` går IKKE i STATUS — STATUS
    overskrives ved hver faseslutt, og snutten forsvant slik 2026-09-04. Den
-   skrives i steg 8, inn i `CLAUDE.md` rett etter fase-arbeidsflyt-avsnittet,
-   ordrett og i sin helhet, FØR første filskript skrives. **Begge halvdelene av
+   skrives i steg 8, inn i `CLAUDE.md` rett etter hele CLAUDE.md-blokken fra
+   maler.md, under overskriften snutten selv har, ordrett og i sin helhet, FØR
+   første filskript skrives. **Begge halvdelene av
    encoding-regelen må følge med** — BOM uønsket i
    filer scriptet produserer, BOM påkrevd i `.ps1`-kildekode med æøå: den ene lest
    alene leses som en motsigelse av den andre, og et script som mangler den andre
@@ -193,7 +196,7 @@ regel om hva du skriver her, ikke bare om hva du sier.
 6. **Skriv `.claude/settings.json` og `.claude/skills/README.md`** fra malene —
    også her ordrett, med bare mappe- og filnavn tilpasset prosjektet:
    marketplace-deklarasjonen gjør at den som kloner prosjektet får
-   arbeidsflyt-skillene automatisk (regelen er: org-skills deklareres, aldri
+   arbeidsflyt-skillene automatisk (regelen er: felles skills deklareres, aldri
    kopieres; kun prosjektets egen domenekunnskap bor i `.claude/skills/`).
    Deklarer `web-prototype` kun for webapp-typen og `fint-graphql` kun når
    prosjektet bruker FINT.
@@ -207,8 +210,8 @@ regel om hva du skriver her, ikke bare om hva du sier.
    allowlisten er ikke alene om å avgjøre. Si i stedet at oppstarten kan koste
    noen godkjenninger, og at «allow for this project» gjør valget varig. Finnes
    `.claude/settings.json` fra før: legg KUN disse nøklene til, og rør
-   ingenting annet — eksisterende `allow`- og `deny`-lister utvides og aldri
-   erstattes, brukerens egne oppføringer røres ikke, og heller ikke andre marketplaces
+   ingenting annet — eksisterende `allow`- og `deny`-lister utvides (uten
+   duplikater) og aldri erstattes, brukerens egne oppføringer røres ikke, og heller ikke andre marketplaces
    eller plugins eller nøkler du ikke kjenner. Vis endringen som før/etter og
    **vent på klarsignal før du skriver**. **Etterkontroll (obligatorisk når
    fila fantes):** les den skrevne fila og bekreft at hver nøkkel som fantes
@@ -221,10 +224,13 @@ regel om hva du skriver her, ikke bare om hva du sier.
    laster ned nettlesere (se maler.md). Laget som testes er forbudet.
    Behandler prosjektet persondata: tilby i tillegg persondata-deny-settet
    for prosjekttypen (se maler.md) — som tillegg til en eksisterende
-   `deny`-liste, aldri som erstatning — men **skriv aldri en `permissions`-blokk uten
-   å levere kontrollkallet i samme endring** (`Bash(curl:*)` mot
-   `http://127.0.0.1:9/`): en uverifisert nøkkel kan gjøre hele blokken stille
-   inaktiv, og et ubekreftet vern er verre enn ingen. Forklar kontrollkallet før
+   `deny`-liste, aldri som erstatning — men **skriv aldri persondata-settet uten
+   å si hva som kan verifiseres**: for script- og dokumentasjonstypen leveres
+   kontrollkallet i samme endring (`Bash(curl:*)` mot `http://127.0.0.1:9/`);
+   for webapp- og API-typen, der `curl` ikke skal sperres, finnes ingen test med
+   bare én feilgrunn — si det rett ut, og at CLAUDE.md-regelen bærer vernet
+   alene der. En uverifisert nøkkel kan gjøre hele blokken stille inaktiv, og et
+   ubekreftet vern er verre enn ingen. Forklar kontrollkallet før
    det kjøres: «jeg prøver med vilje en kommando som skal bli stoppet; blir den
    stoppet, vet vi at sperren virker». Vær ærlig om grensene i
    samme åndedrag: matcherne er verktøy-scopet (på Windows dekkes ikke
@@ -240,8 +246,9 @@ regel om hva du skriver her, ikke bare om hva du sier.
    `gh repo create <navn> --private --source . --push`. Sier brukeren nei,
    eller mangler `gh` eller GitHub-tilgang: si at arbeidet lagres lokalt ved
    hver faseslutt, og at remote kan legges til senere. Finnes en `.gitignore`
-   fra før (uten at repo finnes): legg kun til linjene som mangler — overskriv
-   den ikke. Commit hører deretter til hvert `/faseflyt:fase-slutt`, og push
+   fra før — med eller uten repo: legg kun til linjene som mangler, overskriv
+   den ikke. Ta alltid med `.claude/settings.local.json` (per maskin, skal
+   ikke committes). Commit hører deretter til hvert `/faseflyt:fase-slutt`, og push
    når remote finnes.
 
 8. **Skriv CLAUDE.md-avsnittet** fra maler.md **ORDRETT** — si at du gjør det,
@@ -255,15 +262,16 @@ regel om hva du skriver her, ikke bare om hva du sier.
    utførte rutinen i stedet for å foreslå den. Behandler prosjektet persondata, følger
    personvern-avsnittet med — også det ordrett, inkludert setningene om hva
    deny-settet IKKE dekker. På Windows følger CLAUDE.md-snutten fra
-   `references/windows.md` med, ordrett og i sin helhet, rett etter avsnittet
-   (se steg 5). På Mac og Linux følger i stedet to-linjersformen fra samme fil
+   `references/windows.md` med, ordrett og i sin helhet, rett etter hele
+   blokken, under overskriften snutten selv har (se steg 5). På Mac og Linux
+   følger i stedet to-linjersformen fra samme fil
    — et Mac-prosjekt klones av en Windows-kollega.
    **Etterkontroll (obligatorisk her):** sammenlign den skrevne CLAUDE.md mot
    malblokken punkt for punkt — alle tre vaktene til stede, «foreslå … og vent på
    klarsignal» og porttesten i vakt 2 ordrett, forbudet mot å installere verktøy
    for å se resultatet til stede, ingen setning slått sammen med en annen.
-   Finnes CLAUDE.md fra før: legg avsnittet til, ikke overskriv — og la
-   prosjektets egne avsnitt stå urørt ved siden av.
+   Finnes CLAUDE.md fra før: legg avsnittet til UNDER prosjektets egne avsnitt,
+   ikke overskriv — de står urørt over.
 
 9. **Forklar fase-rytmen kort**, slik at den er avtalt fra dag 1:
    `/faseflyt:fase-start` som første handling i hver økt → implementer fasen →

@@ -124,11 +124,10 @@ trust-prompten.
 
 ## Gjenstår etter testene (fra planen)
 
-- **Full kollegatesting** — protokoll i `kunnskap/kollegatest.md` (1–2 kollegaer
-  med ulikt teknisk grunnlag; kjøres når test 1–3 over er grønne)
-- Org-opplasting: `grill-me` (pilot) → `fint-graphql`; web-prototype til slutt
-  (bytter master) — se `docs/installasjon.md`
-- Web-prototype-eierskapsavklaring + sjekk at lokal kopi == konsollversjon
-- Rydding av prosjekt-kopier: `fint-samtykke/.claude/skills/nytt-prosjekt/`
-  (~/.claude-kopiene ryddes alt mellom test 1 og 2)
-- Beslutning om branch-beskyttelse på repoet (PR-krav på main)
+Ingenting. Avgjort 2026-09-05 (BK): kollegatest, org-opplasting og
+konsollsjekken av web-prototype er droppet — pakken distribueres bare som
+plugin. Branch-beskyttelse ble slått av 2026-08-21. Skill-kopien i
+`fint-samtykke/.claude/skills/nytt-prosjekt/` er fjernet som skill samme dag
+(`SKILL.md` og oppskriften slettet; prosjektets egen retrospektiv ligger igjen
+til BK flytter den). Kollegaene møter pakken via gruppeleder-prepen før
+samlingen 14. september.

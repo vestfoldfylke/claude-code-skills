@@ -1,8 +1,9 @@
 # Windows- og PowerShell-feller
 
 Gjelder ALLE prosjekter som utvikles på Windows. Snutten under legges inn i
-prosjektets `CLAUDE.md`, rett etter fase-arbeidsflyt-avsnittet, FØR første
-filskript skrives — ikke etter første mojibake-hendelse, og ikke i STATUS:
+prosjektets `CLAUDE.md`, rett etter hele CLAUDE.md-blokken fra `maler.md` og
+under overskriften snutten selv har, FØR første filskript skrives — ikke etter
+første mojibake-hendelse, og ikke i STATUS:
 STATUS overskrives ved hver faseslutt, og snutten forsvant slik 2026-09-04
 (flyttet hit i 0.6.1). Prosjekter på Mac eller Linux får kortformen i seksjonen
 «Utenfor Windows». Resten av fila er referanse for den som setter opp
@@ -15,6 +16,8 @@ en motsigelse av den andre, og et script som mangler den andre halvdelen mojibak
 ved første kjøring:
 
 ```markdown
+## Windows og PowerShell
+
 - **Encoding på Windows PowerShell 5.1 — to halvdeler som hører sammen:** BOM er
   uønsket i filer scriptet PRODUSERER, og påkrevd i `.ps1`-KILDEKODE som
   inneholder æøå.
@@ -40,9 +43,11 @@ ved første kjøring:
 
 Et Mac- eller Linux-prosjekt klones av en Windows-kollega, og fellene over slår
 inn hos dem. Snutten over skrives ikke; disse to linjene skrives i stedet, på
-samme sted i `CLAUDE.md`:
+samme sted i `CLAUDE.md` og under samme overskrift:
 
 ```markdown
+## Windows og PowerShell
+
 - **Jobber du på Windows:** bruk Read/Write/Edit for filinnhold, ikke PowerShell.
   Må du bruke PowerShell 5.1, legg `-Encoding utf8` på `Get-Content`/`Set-Content`.
 ```

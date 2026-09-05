@@ -4,6 +4,47 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.9.0 — 2026-09-05
+
+`faseflyt` 0.9.0. Fryse-runden før samlingen 14. september: alle planens
+nummererte faser er levert, og verifiseringslista er gått gjennom punkt for
+punkt (BK). 1.0 avgjøres av samlingen, slik planen definerer den.
+
+- **Org-katalogen er droppet som kanal** (BK). Pakken distribueres bare som
+  plugin. README sier det rett ut til claude.ai-brukere; `docs/installasjon.md`
+  har mistet kanaltabellen, opplastingsseksjonen og PR-steget (repoet bestemmer
+  sin egen flyt). «Org-skills» heter nå «felles skills til bruk i Vestfold» i
+  `nytt-prosjekt`.
+- **`nytt-prosjekt` tørrkjørt for dokumentasjons- og API-typen og i et
+  eksisterende ikke-tomt prosjekt** (`VPC-5CG3433WMH`, hostname kjørt; mot
+  0.8.3 i isolerte scratch-kataloger). Alle sjekkpunkter grønne — ingen
+  `arkitektur.md` for dokumentasjon, påkrevd for API; `web-prototype` bare
+  deklarert for webapp; eksisterende `CLAUDE.md`, `settings.json` og
+  `.gitignore` utvidet uten at én nøkkel gikk tapt. Funnene i skillens egne
+  instrukser rettet her:
+  - `prosjekttyper.md` sa fortsatt «inn i STATUS» om encoding-reglene — rest
+    fra før 0.6.1; nå `CLAUDE.md`.
+  - Windows-snutten har fått egen overskrift (`## Windows og PowerShell`) og et
+    entydig sted: etter hele CLAUDE.md-blokken. «Rett etter
+    fase-arbeidsflyt-avsnittet» ble lest på to måter av tre uavhengige
+    kjøringer.
+  - Kontrollkall-regelen i steg 6 gjelder nå persondata-settet, og sier rett
+    ut at webapp- og API-typen ikke har en test med bare én feilgrunn — `curl`
+    skal ikke sperres der. Før krevde regelen noe `prosjekttyper.md` forbød.
+  - Eksempelbeslutningen «AB, git-remote» i plan-malen er en
+    `<...>`-plassholder — ordrett kopiering ga hvert prosjekt en fiktiv
+    beslutning.
+  - Læringsmalen sier at eksempelseksjonen er formatet og står til første
+    faseslutt; plattform-spørsmålet står i spørsmålsrunden i steg 2;
+    `.gitignore`-regelen dekker «repo og fil finnes» og tar med
+    `.claude/settings.local.json`; `allow`/`deny` utvides uten duplikater;
+    pakkens avsnitt legges UNDER eksisterende CLAUDE.md-avsnitt; API-typens
+    arkitekturkrav skrives inn i `arkitektur.md`.
+- **Opprydding utenfor pakken:** fire issues lukket som forkastet (#3, #9,
+  #10, #15); verifiseringspunktene 5, 9, 10 og 11 merket DROPPET i planen med
+  dato; to promoteringsforslag avgjort — ett inn i `CLAUDE.md` som sjekkpunkt
+  før push, ett arkivert.
+
 ## 0.8.3 — 2026-09-05
 
 `faseflyt` 0.8.3 (fase 8: `fase-start`, `hjelp` og README, kort utdata,

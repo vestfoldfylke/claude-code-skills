@@ -48,9 +48,8 @@ mappe og repo har samme navn — `skills-creation` slettes når det er gjort.
 
 ## Avklarte beslutninger
 
-- **Distribusjon:** org-skills *og* plugin-repo, samme kildefiler — men kanalvalg
-  per skill: faseflyt-trioen er CLI-only, kun `grill-me`/`fint-graphql`/`web-prototype`
-  går også i org-katalogen.
+- **Distribusjon:** kun plugin-repo. Org-katalogen droppet (BK, 2026-09-05) —
+  ingenting lastes opp noe sted. Kanalvalg-tabellen som sto her er fjernet.
 - **Planfil:** `kunnskap/plan.md` i prosjektrepoet er kanonisk.
 - **Regelbase:** skillene er selvbærende — ingen kollega må redigere sin `~/.claude/CLAUDE.md`.
 - **Innhold:** de fire kjernene + grill-me koblet inn i flyten + Windows/PowerShell-regler
@@ -163,19 +162,7 @@ Marketplace-navnet i `marketplace.json` settes **likt repo-navnet**
 kollegaer skal huske ett navn, ikke tre (repo, marketplace, plugin).
 
 **Merk:** plugin-skills navngis `/faseflyt:fase-start`, ikke `/fase-start`.
-Org-opplastede skills beholder sitt eget navn. Nevnes eksplisitt i README.
-
-**Kanalvalg per skill — ikke alt skal i org-katalogen.** Org-katalogen når
-claude.ai og Desktop-*chat*, som ikke har filsystem, git, plan mode eller `/clear`.
-Der er `nytt-prosjekt`/`fase-start`/`fase-slutt` meningsløse — en kollega som
-møter dem der først, opplever en pakke som ikke virker:
-
-| Skill | Plugin (CLI) | Org-katalog (claude.ai/Desktop-chat) |
-|---|---|---|
-| `nytt-prosjekt`, `fase-start`, `fase-slutt` | ✅ | ❌ CLI-only — krever filsystem/git |
-| `grill-me` | ✅ | ✅ ren intervjuteknikk, virker overalt |
-| `fint-graphql` | ✅ | ✅ ren kunnskap, virker overalt |
-| `web-prototype` | ✅ | ✅ ligger der allerede |
+Nevnes eksplisitt i README.
 
 ## Skills i prosjektrepoet: deklareres, ikke kopieres
 
@@ -567,17 +554,20 @@ begge erstattes av den installerte pluginen, og whitelist-oppføringene i
 
 ## Verifisering
 
-1. **Manifestene lastes:** `/plugin marketplace add ./` fra repoet lokalt, deretter
-   `/plugin install faseflyt@claude-code-skills`. Alle fire skills skal dukke opp
-   som `faseflyt:*`. Installer `web-prototype` og `fint-graphql` hver for seg, og
-   verifiser at `faseflyt` alene fungerer uten dem — pluginene skal være uavhengige.
-2. **Tørrkjøring av `nytt-prosjekt`** i en tom scratch-katalog, én gang per
-   prosjekttype: verifiser at webapp-typen deklarerer `web-prototype` i
-   `.claude/settings.json` og nevner DesignSync, at script-typen *ikke* gjør det,
-   at dokumentasjonstypen ikke oppretter `arkitektur.md`, og at Windows-reglene
-   havner i STATUS. Kjør i tillegg én gang i et **eksisterende, ikke-tomt prosjekt**:
-   ingenting skal overskrives, `git init` skal hoppes over, og eksisterende
-   `CLAUDE.md` skal utvides — ikke erstattes.
+1. **Manifestene lastes — DEKKET, uavhengigheten GJENNOMLEST** (2026-09-05).
+   Installasjon og alle skills observert 2026-08-17. At `faseflyt` virker alene
+   uten de to andre pluginene er ikke målt, men lest: `faseflyt` kaller aldri
+   de andre pluginenes skills, bare deklarerer dem i nye prosjekters
+   `settings.json` for typene som trenger dem. Målingen tas i
+   gruppeleder-prepen før samlingen 14. september.
+2. **Tørrkjøring av `nytt-prosjekt` — DEKKET** (2026-09-05, `VPC-5CG3433WMH`,
+   mot 0.8.3). Script og webapp var dekket fra før; dokumentasjons- og API-typen
+   tørrkjørt i scratch-kataloger, og én kjøring i et eksisterende ikke-tomt
+   prosjekt. Alle sjekkpunkter grønne: ingen `arkitektur.md` for dokumentasjon,
+   påkrevd for API; `web-prototype` bare deklarert for webapp; Windows-snutten i
+   `CLAUDE.md`, ikke STATUS (planen sa STATUS — foreldet siden 0.6.1);
+   `git init` hoppet over, eksisterende `CLAUDE.md`, `settings.json` og
+   `.gitignore` utvidet uten tap. Funn i skillens instrukser rettet i 0.9.0.
 3. **Rundtur:** kjør `/fase-slutt` i scratch-prosjektet, `/clear`, deretter
    `/fase-start` — STATUS + `kunnskap/plan.md` skal alene være nok til å gjenoppta
    uten kodeutforskning. **Rytmevaktene testes i samme rundtur:** be om vesentlig
@@ -587,12 +577,9 @@ begge erstattes av den installerte pluginen, og whitelist-oppføringene i
    handlingsbart punkt til `laering.md` + STATUS, og `/fase-start` etter `/clear`
    skal kvittere på nøyaktig de punktene. Kjør så en fase til: neste `/fase-slutt`
    skal evaluere om punktet ble fulgt, og stryke det hvis det er innarbeidet.
-5. **Bakoverkompatibilitet:** kjør `/fase-start` mot `ElevPC-fakturagrunnlag`
-   (gammel STATUS-form, intakt): den skal starte normalt, ikke kræsje på manglende
-   `laering.md`, og tilby oppgradering uten å gjøre den selv. Kjør deretter mot
-   `fint-samtykke`, der planpekeren peker på en slettet fil: skillen skal si det
-   tydelig og foreslå å rekonstruere `kunnskap/plan.md` fra STATUS/logg — ikke
-   feile eller late som planen finnes.
+5. **DROPPET** (BK, 2026-08-21) — bakoverkompatibilitetstest. Kollegaer har
+   ingen gamle prosjekter. Kravet om at `fase-start` skal tåle eldre struktur
+   står ved lag; bare den eksplisitte testen er droppet.
 6. **Selvbærende-test:** flytt `~/.claude/CLAUDE.md` midlertidig til side (den
    gjelder ellers alltid, så det finnes ingen annen måte å simulere en kollegas
    maskin på), kjør punkt 2–4 på nytt, og legg fila tilbake — flyten skal fungere
@@ -621,14 +608,12 @@ begge erstattes av den installerte pluginen, og whitelist-oppføringene i
    `gh repo view vestfoldfylke/claude-code-skills --json visibility,owner,defaultBranchRef`
    at repoet er `PRIVATE`, eid av `vestfoldfylke` (ikke en personlig konto), og at
    standardbranchen er `main`.
-9. **Overtakelsestest:** klon scratch-prosjektet fra Fase 1 til en ny mappe som om
-   du var en kollega, åpne det, og se at arbeidsflyt-skillene blir tilgjengelige via
-   `.claude/settings.json` uten manuell installasjon — og at ingen av dem er kopiert
-   inn i `.claude/skills/`.
-10. **README-test:** be en kollega som ikke kjenner arbeidsflyten følge «Kom i gang»
-    fra tom mappe til første `/fase-slutt`, uten å spørre deg underveis. Det som
-    krever oppklaring, mangler i README-en.
-11. **Org-opplasting** følger kanalvalg-tabellen: kun `grill-me` (pilot først) og
-    `fint-graphql` lastes opp — faseflyt-trioen er CLI-only og skal *ikke* i
-    org-katalogen. web-prototype oppdateres til slutt — det er den som bytter
-    master, og bør gjøres når resten er bekreftet å virke.
+9. **DROPPET** (BK, 2026-09-05) — overtakelsestest. Premisset er motbevist:
+   `.claude/settings.json` når ikke kollegaers økter (målt 2026-08-24), og
+   `extraKnownMarketplaces`/`enabledPlugins` forsvant fra fila etter noen
+   godkjenninger (målt 2026-08-30).
+10. **DROPPET** (BK, 2026-09-05) — README-test med kollega. README-en er god
+    nok som den er. `kunnskap/kollegatest.md` blir liggende som ubrukt protokoll.
+11. **DROPPET** (BK, 2026-09-05) — org-opplasting. Ingenting lastes opp;
+    plugin-installasjon er eneste kanal. Org-opplasting fungerer uansett bare
+    fra appen, ikke fra CLI (BKs erfaring, ikke målt her).

@@ -43,8 +43,9 @@ stikkordet du skanner etter. Begge kreves: temaordet gjør listen lesbar, men
 
 - **Beslutning (<beslutningstaker>, <tema>):** <valget> — <begrunnelsen, så den
   kan leses uker senere>
-- **Beslutning (AB, git-remote):** privat repo på organisasjonskontoen, ikke den
-  personlige — prosjektet skal kunne overtas av andre enn den som startet det
+- <Eksempel, slettes: **Beslutning (AB, git-remote):** privat repo på
+  organisasjonskontoen, ikke den personlige — prosjektet skal kunne overtas av
+  andre enn den som startet det>
 
 ## Faseplan
 
@@ -160,6 +161,8 @@ Punktene skal være HANDLINGSBARE og ETTERPRØVBARE:
 
 To kategorier dekkes per faseslutt: prosess/token-bruk og kodekvalitet/framgangsmåte.
 Innslagene er korte: én linje per evaluert punkt, to–tre per nytt punkt.
+Seksjonen under er formatet: den første ekte skrives av første faseslutt, og
+fram til da står den som den er.
 
 ## <ÅÅÅÅ-MM-DD> — Fase <N>
 
@@ -311,9 +314,9 @@ forsøkt og utfallet sett; ellers som hypotese med hva som ville avgjort den.
 
 ## Skills
 
-Org-skills (faseflyt m.fl.) deklareres i `.claude/settings.json` og hentes fra
-org-repoet — de kopieres ALDRI inn i dette repoet. Kun prosjektets egen
-domenekunnskap bor i `.claude/skills/`.
+Felles skills til bruk i Vestfold (faseflyt m.fl.) deklareres i
+`.claude/settings.json` og hentes fra fellesrepoet — de kopieres ALDRI inn i
+dette repoet. Kun prosjektets egen domenekunnskap bor i `.claude/skills/`.
 ```
 
 Behandler prosjektet persondata, legg også til (tilpass datakilden):
@@ -616,8 +619,8 @@ kjøretidsnavn: absolutt isolasjon krever sandbox eller container.
 ```markdown
 # Skills i dette prosjektet
 
-Org-skills (faseflyt, ev. web-prototype/fint-graphql) deklareres i
-`.claude/settings.json` og hentes automatisk fra
+Felles skills til bruk i Vestfold (faseflyt, ev. web-prototype/fint-graphql)
+deklareres i `.claude/settings.json` og hentes automatisk fra
 `vestfoldfylke/claude-code-skills` når du åpner prosjektet og godtar
 trust-prompten — de skal ALDRI kopieres hit (kopier råtner).
 

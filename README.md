@@ -57,10 +57,9 @@ enkelte CLI-kommandoer som menyvalg framfor slash-kommandoer (`/permissions` lig
 f.eks. under «Customize → Permissions»). Finner du ikke en kommando i chatten, se
 i kommandomenyen — og bruk terminal-CLI-en som fallback.
 
-**Bruker du claude.ai eller Claude Desktop-chat (ikke Claude Code)?**
-`grill-me`, `fint-graphql` og `web-prototype` finnes også i organisasjonens
-skill-katalog der. Selve faseflyt-en (`nytt-prosjekt`/`fase-start`/`fase-slutt`)
-krever filsystem og git og finnes derfor kun i Claude Code.
+**Bruker du claude.ai eller Claude Desktop-chat (ikke Claude Code)?** Da får du
+ikke disse skillene. Pakken distribueres kun som plugin i Claude Code — det
+finnes ingen versjon i skill-katalogen på claude.ai.
 
 ## Trenger du alt dette?
 
@@ -247,6 +246,6 @@ slettes eller beholdes som dokumentasjon.
 
 ## For administrator
 
-Sentral utrulling, org-katalog-opplasting og vedlikehold:
+Sentral utrulling og vedlikehold:
 [docs/installasjon.md](docs/installasjon.md). Tredjepartsattribusjon:
 [NOTICE.md](NOTICE.md).

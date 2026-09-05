@@ -33,6 +33,16 @@ filskrivingene i steg 1–3 samlet). Se CHANGELOG.
   i prosjektmalen (à la `.github/renhet/sjekk.sh`) — større mal-endring, gir én
   stabil kommando som kan allowlistes én gang per prosjekt.
 
+## Kontrollkall for webapp- og API-typens deny-sett — hypotese 2026-09-05
+
+Steg 6 i `nytt-prosjekt` sier nå rett ut at disse to typene ikke har en test med
+bare én feilgrunn, fordi `curl` ikke skal sperres. **Hypotese, ikke målt:** en
+smal oppføring `Bash(curl http://127.0.0.1:9/:*)` sperrer bare test-adressen og
+lar `localhost` ellers være åpen — da får også webapp og API et kontrollkall.
+Avgjøres av: skriv oppføringen i et testprosjekt, start Claude Code på nytt,
+kjør kallet og se om det stoppes; kjør så `curl` mot en annen port og se at det
+går gjennom.
+
 ## Hold kunnskapsfilene edruelige — GJENNOMFØRT 2026-09-05
 
 Bekymringen (BK, 2026-09-05) og målingen (STATUS/plan/logg-lengder på tvers av
@@ -369,10 +379,9 @@ språkvasket, men funnet under er et pakkefunn, ikke et arkfunn:
 - Tabellen er dermed bevist utilstrekkelig for målgruppen pakken sier den er for.
   Regelen bak den («fagord bare hvis du forklarer det i samme setning») holder;
   det er dekningen som er feil.
-- **Kandidat, ikke gjort:** utvid tabellen med arbeidsflytordene, og gi hvert av
-  dem en hverdagsforklaring framfor et synonym — `fase` har ikke noe synonym, den
-  trenger en setning. Ordlisten på Ark 2 i `kunnskap/lokalt/oppgavelapper.md` er et
-  førsteutkast på nøyaktig de forklaringene og kan høstes derfra.
+- **Gjort** (bekreftet 2026-09-05): tabellen er utvidet med arbeidsflytordene, hvert
+  med en hverdagsforklaring — ligger i `nytt-prosjekt/SKILL.md` under «Snakk norsk».
+  Sto feilaktig som «kandidat, ikke gjort» fram til i dag.
 - **Verdt å merke:** arket ble skrevet av denne arbeidsflyten, av maintaineren, og
   brøt maintainerens egen klarspråkregel på sju ord. Det er samme strukturfeil som
   er betalt for tre ganger før (deny-regler, rytmevakter, modellmiks): en regel som
@@ -419,11 +428,11 @@ og CHANGELOG 0.5.7.
 
 - **Prototyping** er best dekket: `web-prototype` er ferdig teknologivalg, og fase
   0 er alltid oppsett + røyktest. Flaskehalsen er distribusjon, ikke innhold.
-  **Målt:** `/plugin` finnes ikke i VS Code-utvidelsen. **Ved design:** faseflyt er
-  CLI-only fordi den trenger filsystem og git, så org-katalogen — kanalen en
-  ikke-utvikler faktisk møter — er den ene kanalen faseflyt ikke går i.
-  **Umålt og skal stå som umålt:** Desktop-appen har filsystem og kunne vært veien
-  for denne gruppen; den er aldri testet.
+  **Målt:** `/plugin` finnes ikke i VS Code-utvidelsen. **Ved design:** faseflyt
+  trenger filsystem og git, og finnes derfor bare i Claude Code — chat-flatene
+  en ikke-utvikler faktisk møter, kan ikke kjøre den. (Org-katalogen som kanal
+  er droppet, BK 2026-09-05.) **Umålt og skal stå som umålt:** Desktop-appen har
+  filsystem og kunne vært veien for denne gruppen; den er aldri testet.
 - **Tokeneffektivitet og modellmiks:** modellmiksen er LØST i faseflyt 0.6.1
   (2026-09-04): CLAUDE.md-malen fikk avsnittet «Modellvalg», nytt-prosjekt sier
   det etter godkjent plan, fase-start per fase. Begrunnelsen (en regel som skal

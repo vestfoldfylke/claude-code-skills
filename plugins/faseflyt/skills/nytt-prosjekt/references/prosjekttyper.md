@@ -52,7 +52,8 @@ treffer produksjonsvertene i stedet (se «Deny-settets grenser» i maler.md).
 
 Scripts (PowerShell, bash, tsx/node) mot API-er med reelle data. Ingen designdel.
 Utvikles scriptet på Windows, er encoding-reglene i `windows.md` kritiske her —
-inn i STATUS før første filskript. Skrives det på Mac eller Linux, gjelder de
+inn i `CLAUDE.md` før første filskript (ikke STATUS — den overskrives ved
+faseslutt). Skrives det på Mac eller Linux, gjelder de
 ikke; velg språk etter hvor scriptet skal KJØRE, ikke etter hvor det skrives.
 Behandler prosjektet persondata, er bredt nettverksdeny gratis her: Claude har
 ingen legitim grunn til å gjøre nettkall selv. Men merk grensen på Windows: det

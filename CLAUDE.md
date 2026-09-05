@@ -19,6 +19,10 @@ PATH ble satt, eller en maskin der binæren ikke er lagt inn — bruk
 `~/.local/bin/claude.exe plugin validate .` i stedet.
 Brytes en unntakslistet linje om, oppdateres unntakslisten i `.github/renhet/`
 i samme redigering. Alltid ett kontrollsøk som skal gi treff, i samme runde.
+Les så diffen én gang til, bare for ord du selv har skrevet inn i denne runden,
+og hold hvert av dem mot tabellen under «Språket i alt som skrives her».
+«Derisker», «frontmatter» og «fasesnittet» slapp gjennom tre ganger fordi
+prinsippet var kjent, men sjekkpunktet manglet.
 
 ## Pakkeendringer
 

@@ -3,27 +3,6 @@
 Vanlig installasjon for kollegaer står i [README.md](../README.md). Denne siden
 dekker det administrative.
 
-## Kanalene
-
-| Kanal | Når | Hva |
-|---|---|---|
-| Plugin (dette repoet) | Claude Code (CLI/VS Code) | Alle tre plugins |
-| Org-katalogen på claude.ai | claude.ai / Desktop-chat | Kun `grill-me`, `fint-graphql`, `web-prototype` |
-
-Faseflyt-trioen (`nytt-prosjekt`/`fase-start`/`fase-slutt`) skal **ikke** i
-org-katalogen — den krever filsystem, git og planmodus, som chat-flatene ikke
-har. En kollega som møter dem der først, opplever en pakke som ikke virker.
-
-## Org-katalogen (claude.ai admin-konsollet)
-
-Last opp hver skill-mappe for seg (mappen som inneholder `SKILL.md`):
-
-- `plugins/faseflyt/skills/grill-me/`
-- `plugins/fint-graphql/skills/fint-graphql/`
-- `plugins/web-prototype/skills/web-prototype/` — **dette repoet er master**
-  for web-prototype: konsollversjonen oppdateres FRA repoet ved endringer,
-  aldri motsatt.
-
 ## Sentral utrulling via managed settings (valgfritt)
 
 Som org-admin kan du gi alle kollegaer marketplacet uten at de kjører noen
@@ -63,19 +42,16 @@ GitHub-tilgang til dette repoet.
 
 ## Oppdatere pakken
 
-1. Gjør endringen på en branch, PR til `main`.
-2. Bump `version` i berørt `plugins/*/.claude-plugin/plugin.json` og
+1. Bump `version` i berørt `plugins/*/.claude-plugin/plugin.json` og
    `marketplace.json` (semver — brytende endringer i `kunnskap/`-strukturen
    markeres i CHANGELOG med migreringsnotat).
-3. **Verifiser at de to versjonene stemmer overens:** `claude plugin validate .`
+2. **Verifiser at de to versjonene stemmer overens:** `claude plugin validate .`
    fra repo-roten. Ved avvik vinner `plugin.json` ved installasjon, og
    `marketplace.json` ignoreres stille — kollegaer ser da feil versjon i
    `/plugin`-listen uten at noe feiler. Steget finnes fordi nettopp dette slapp
    gjennom i 0.2.1.
-4. Én linje i `CHANGELOG.md`.
-5. Endret `web-prototype`, `grill-me` eller `fint-graphql`: oppdater også
-   org-katalogen (last opp på nytt).
-6. Kollegaer henter med `/plugin marketplace update claude-code-skills` — kjørt i
+3. Én linje i `CHANGELOG.md`.
+4. Kollegaer henter med `/plugin marketplace update claude-code-skills` — kjørt i
    **terminal-CLI-en**. `/plugin` finnes ikke som slash-kommando i
    VS Code-utvidelsen; den eksponerer enkelte CLI-kommandoer som menyvalg i
    stedet (`/permissions` under «Customize → Permissions»). Si dette i

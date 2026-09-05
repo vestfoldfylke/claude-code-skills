@@ -10,6 +10,15 @@ skal ellers alltid tåle eldre struktur.
 nummererte faser er levert, og verifiseringslista er gått gjennom punkt for
 punkt (BK). 1.0 avgjøres av samlingen, slik planen definerer den.
 
+- **README strammet inn, ingen bump** (README endrer ikke hva en plugin gjør).
+  Installasjonen sier «i en terminal» først og skriver ut `claude plugin`-formene,
+  med `claude plugin list` som kvittering — formene observert i `--help` på
+  `VPC-5CG3433WMH` 2026-09-05. «Overta andres prosjekt» lovet at
+  `.claude/settings.json` gir et installasjonstilbud ved kloning; det er
+  motbevist i planens verifiseringspunkt 9, og seksjonen sier nå bare det som
+  er målt: klon, installer, `fase-start`. Samme løfte står fortsatt i
+  `nytt-prosjekt` steg 6 — måles på samlingen (`kunnskap/gruppeleder-sjekkliste.md`)
+  før skillen rettes. Tre FAQ-svar kortet ned.
 - **Org-katalogen er droppet som kanal** (BK). Pakken distribueres bare som
   plugin. README sier det rett ut til claude.ai-brukere; `docs/installasjon.md`
   har mistet kanaltabellen, opplastingsseksjonen og PR-steget (repoet bestemmer

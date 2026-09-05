@@ -28,34 +28,30 @@ GitHub CLI innlogget (`gh auth login`) med en konto som er **medlem av
 `vestfoldfylke` på GitHub** (tilgang til claude.ai er ikke det samme — spør
 IT om GitHub-medlemskap hvis du mangler det).
 
-I Claude Code:
+**Installasjonen gjøres i en terminal** (VS Codes innebygde terminal holder) —
+`/plugin` finnes ikke som slash-kommando i VS Code-utvidelsens chat. Kjør:
 
 ```
-/plugin marketplace add vestfoldfylke/claude-code-skills
-/plugin install faseflyt@claude-code-skills
+claude plugin marketplace add vestfoldfylke/claude-code-skills
+claude plugin install faseflyt@claude-code-skills
+claude plugin list
 ```
+
+Siste linje skal vise `faseflyt`. Foretrekker du den interaktive formen: start
+`claude` i terminalen og skriv `/plugin marketplace add …` og `/plugin install …`
+der — samme resultat. Utvidelsen plukker opp pluginene etterpå, siden begge
+leser samme `~/.claude`-konfigurasjon.
 
 Det er alt. `faseflyt` er den alle trenger. I tillegg, etter behov:
 
 ```
-/plugin install web-prototype@claude-code-skills   # bygger du webapper/prototyper
-/plugin install fint-graphql@claude-code-skills    # jobber du mot FINT
+claude plugin install web-prototype@claude-code-skills   # bygger du webapper/prototyper
+claude plugin install fint-graphql@claude-code-skills    # jobber du mot FINT
 ```
 
 Ingenting sendes til noen ekstern tjeneste — «marketplace add» kloner bare
 dette (private) repoet til din maskin. Oppdatere senere:
-`/plugin marketplace update claude-code-skills`.
-
-**Bruker du VS Code-utvidelsen: kjør installasjonen i terminalen, ikke i chatten.**
-`/plugin` finnes ikke som slash-kommando i utvidelsen («/plugin isn't available in
-this environment»). Åpne en terminal, start `claude` interaktivt (eller bruk
-`claude plugin ...`-subkommandoene), og gjør installasjonen der — utvidelsen
-plukker opp pluginene etterpå, siden begge leser samme `~/.claude`-konfigurasjon.
-
-Det er et generelt mønster, ikke noe `/plugin`-spesielt: utvidelsen eksponerer
-enkelte CLI-kommandoer som menyvalg framfor slash-kommandoer (`/permissions` ligger
-f.eks. under «Customize → Permissions»). Finner du ikke en kommando i chatten, se
-i kommandomenyen — og bruk terminal-CLI-en som fallback.
+`claude plugin marketplace update claude-code-skills`.
 
 **Bruker du claude.ai eller Claude Desktop-chat (ikke Claude Code)?** Da får du
 ikke disse skillene. Pakken distribueres kun som plugin i Claude Code — det
@@ -174,14 +170,12 @@ blir altså målbart bedre å jobbe i for hver fase — ikke bare større.
 
 ## Overta andres prosjekt
 
-Klon repoet, åpne det i Claude Code, godta trust-prompten. Prosjektets
-`.claude/settings.json` deklarerer hvilke skills det bruker, og Claude Code
-tilbyr å installere dem — i gjeldende versjon, rett fra dette repoet. Kjør så
-`/faseflyt:fase-start` og fortsett der forrige person slapp.
+Klon repoet, installer pakken med de to kommandoene over, åpne prosjektet og
+kjør `/faseflyt:fase-start` — så fortsetter du der forrige person slapp.
 
-Derfor skal du **aldri kopiere disse skillene inn i et prosjektrepo** — kopier
-råtner når pakken oppdateres. Prosjektets `.claude/skills/`-mappe er kun for
-prosjektets egen domenekunnskap (API-særegenheter o.l.).
+Kopier **aldri** disse skillene inn i prosjektrepoet: kopier råtner når pakken
+oppdateres. Prosjektets `.claude/skills/`-mappe er kun for prosjektets egen
+domenekunnskap (API-særegenheter o.l.).
 
 ## Gi tilbakemelding
 
@@ -201,11 +195,8 @@ mangler og rører ikke eksisterende filer.
 
 **Claude spør om lov til å kjøre ting — kommer den til å mase hele tiden?**
 Nei. Dialogene gjelder å *kjøre* noe: et script, et program, en `git commit`.
-Å lese filer spør den normalt ikke om. Før hver sjekk sier Claude i én setning
-hva den gjør og hvorfor, så du vet hva du godkjenner — også når den ikke spør.
-Velger du «allow for this project» i dialogen, står valget der og kommer ikke
-igjen. Til sammenligning: en hel
-`/faseflyt:fase-slutt` ga fire dialoger da det ble målt 27. august 2026.
+Å lese filer spør den normalt ikke om, og før hver sjekk sier den i én setning
+hva den gjør. Velger du «allow for this project», står valget og kommer ikke igjen.
 
 **Hva er forskjellen på `/clear` og `/compact`?**
 `/clear` tømmer samtalen helt (riktig etter `fase-slutt` — alt viktig ligger i
@@ -217,12 +208,9 @@ Skills fra en plugin får pluginnavnet som prefiks. Det hindrer navnekollisjoner
 med dine egne skills.
 
 **Hvorfor kjører `/faseflyt:fase-start` noen ganger på en annen modell enn jeg har valgt?**
-Skriver du kommandoen direkte (`/faseflyt:fase-start`), kjører skillen alltid
-på Sonnet — det står i skillens egen definisjon, uavhengig av hva økten ellers
-står på. Sier du i stedet noe som bare *ligner* på kommandoen («start økten»,
-«ny økt»), kjører skillen på øktens gjeldende modell i stedet. Det er derfor
-`fase-start` aldri påstår hva resten av økten kjører på, og alltid ber deg
-skrive `/model` selv.
+Skrevet som kommando kjører skillen alltid på Sonnet — det står i dens egen
+definisjon. Sagt i vanlig tekst («start økten») kjører den på øktens modell.
+Derfor ber `fase-start` deg alltid skrive `/model` selv.
 
 **Hvordan oppdaterer jeg pakken?**
 `/plugin marketplace update claude-code-skills`. Endringer står i
@@ -237,12 +225,8 @@ claude plugin uninstall faseflyt@claude-code-skills   # fjern pluginen
 claude plugin marketplace remove claude-code-skills   # fjern hele pakken
 ```
 
-Både `disable` og `uninstall` tar `--scope user|project|local`, så du velger om
-det gjelder overalt eller bare her. Er prosjektet satt opp med
-`/faseflyt:nytt-prosjekt`, står `faseflyt` også i prosjektets
-`.claude/settings.json` — fjern oppføringen der hvis prosjektet ikke skal bruke
-flyten videre. Filene i `kunnskap/` blir liggende: de er vanlig markdown, og kan
-slettes eller beholdes som dokumentasjon.
+Filene i `kunnskap/` blir liggende — vanlig markdown, slett eller behold dem
+som dokumentasjon.
 
 ## For administrator
 

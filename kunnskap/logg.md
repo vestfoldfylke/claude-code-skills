@@ -2,6 +2,38 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 6 levert og verifisert: nytt-prosjekt/web-prototype rettet mot tørrkjøringsfunn; `faseflyt` 0.7.1, `web-prototype` 0.1.4
+
+**Levert:** `plan.md` sin fase 6 (nytt-prosjekt/web-prototype) implementert som
+`faseflyt` 0.7.0 (commit `fa7f391`), rettet til 0.7.1 (commit `9742ce6`) etter
+tørrkjøring i det midlertidige testprosjektet `faseflyt-0.7-test`. Seks av de
+ni pakkefunnene i TODO.md er skrevet inn: deny mot nettleserinstallasjon i
+`settings.json`-grunnformen (alle prosjekttyper, uavhengig av persondata),
+forbud i CLAUDE.md-avsnittet, feilformen «layouten sjekkes på smal skjerm»
+rettet i plan-mal og Fasesnittet, encoding-snutt som skrives uansett maskin
+(full på Windows, to linjer ellers), STATUS-tak 45 linjer i malen, og
+`web-prototype` sitt designprinsipp 9 om at Designsystemet er responsivt ut av
+boksen.
+
+**Beslutning (BK, STATUS-tak):** 45 linjer og telling, ikke kutt av malen —
+`klengenavn` sine fem faseslutt lå flatt på 42–47 linjer, og veksten kommer av
+punkter på feil adresse (både STATUS og CLAUDE.md), ikke av antallet. Fase 7
+får i tillegg regelen «én adresse per regel».
+
+**Observert (`faseflyt-0.7-test`, 2026-09-05):** forbudet i CLAUDE.md holdt to
+ganger — først da Claude selv foreslo et alternativ til å installere
+Playwright, deretter i en NY økt mot en direkte ordre om å kjøre
+kontrollkallet `npx playwright --version`. Begge ganger ble installasjonen
+avslått med henvisning til regelen.
+
+**Funn og rettelse (0.7.1):** malens setning om at kontrollkallet var «trygt å
+prøve» var en uverifisert hypotese fremstilt som fakta — `playwright` laster
+ned nettlesere i sitt eget install-script, og et kall som slipper gjennom ville
+gjort nettopp det deny-settet skal hindre. Kontrollkallet er tatt ut av malen;
+deny-settet er dokumentert som uprøvd med vilje (formen målt tidligere via
+`Bash(curl:*)`, strengen `npx playwright` ikke), og forbudet er lagets faktiske
+test.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Tørrkjøring av `klengenavn` fullført (fase 0–4); ni pakkefunn ført til TODO.md
 
 **Levert:** ingen kode endret i pakken denne økten — hele økten var tilsyn med

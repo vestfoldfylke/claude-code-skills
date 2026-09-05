@@ -85,16 +85,8 @@ planfiler uten størrelsesgrense under «Token-vekten» over.
 **Tre pakkeendringer avgjort samme dag (BK), etter lesing av klengenavns
 `kunnskap/` og `CLAUDE.md`. Gjøres i neste fase:**
 
-- **Encoding-snutten: to linjer i `CLAUDE.md`, uansett maskin.** Observert i
-  `klengenavn`: loggen fra prosjektstart sier «encoding-regelen står i STATUS»;
-  etter faseslutt fase 0 peker STATUS til «`laering.md`/tidligere
-  STATUS-versjoner», og verken `laering.md` (44 linjer, lest) eller `CLAUDE.md`
-  har regelen. Den lever bare i git-historikken. Rettelsen: `nytt-prosjekt`
-  skriver snutten til `CLAUDE.md` *også* på Mac, formulert «Jobber du på
-  Windows: bruk Read/Write/Edit for filinnhold, ikke PowerShell; må du, legg på
-  `-Encoding utf8`» — et Mac-prosjekt klones av en Windows-kollega. Fella
-  gjelder kun PowerShell 5.1 `Get-Content`/`Set-Content`; Claude Codes egne
-  filverktøy er UTF-8-sikre.
+- **Encoding-snutten uansett maskin:** rettet i `faseflyt` 0.7.0, se
+  `CHANGELOG.md` og `windows.md`.
 - **Ordlekkasje: kontrollsøk i `fase-slutt`, ikke ny regel.** Observert:
   «skaffolding» står uforklart i klengenavns STATUS, `laering.md` og logg, selv
   om prosjektets `CLAUDE.md` har prinsippet «fagord forklares i samme setning».
@@ -209,49 +201,12 @@ planfiler uten størrelsesgrense under «Token-vekten» over.
     fått en absolutt brukersti fra en permission-godkjenning. BK fjernet
     linjene, committet. Steg 6 tjente inn seg selv — og fase-start-teksten om
     «kjent falsk positiv» bør nevne at samme fil også kan bære en ekte lekkasje.
-- **«Claude verifiserer selv» kom tilbake i fase 4 — som en installasjon.**
-  Observert av BK 2026-09-05: Claude ba om `npx playwright install chromium`
-  for å sjekke layout på smal skjerm. `[bruker-verifiserer-ikke-claude]` var
-  strøket som innarbeidet etter fase 1 (fulgt én gang, i en fase uten
-  utseende å se på). Planens fase 4-verifisering er brukerens (`npm run
-  preview`, mobil/smalt vindu), og prosjektets `CLAUDE.md` sier «verifisere =
-  at DU ser det». Verken punktet, regelen eller planteksten stoppet impulsen
-  når fasen inviterte til den. BK: «Spent på hva sikkerhet kommer til å ringe
-  om når Defender har tygd loggene mine» — styrt jobb-PC, nedlasting av en
-  nettleserbinær til brukerprofilen er nettopp det EDR flagger.
-  Konsekvens for pakken, to ting: (1) regelen hører i CLAUDE.md-avsnittet
-  `nytt-prosjekt` installerer, som forbud og ikke definisjon: «Claude
-  installerer aldri verktøy for å se resultatet selv — nettlesere,
-  skjermbilde-verktøy, `playwright`, `chromium-cli`. Verifiseringen er
-  brukerens.» (2) ratchet-en: et atferdspunkt som er «fulgt» i én fase der
-  situasjonen ikke oppsto, er ikke innarbeidet. Samme mangel som «ikke
-  utløst»-utfallet over, sett fra motsatt side.
-  **Samme dag, senere: det ble installert.** BK: «Sonnet er kreativ, og det
-  ble installert.» Chromium lastet ned til `%LOCALAPPDATA%\ms-playwright`,
-  Defender flagget kjøringen. Regelen i `CLAUDE.md` («verifisere = at DU ser
-  det») stoppet det ikke — samme funn som retrospektivet fra fint-samtykke:
-  bare regler Claude Code selv håndhever holder. **Konsekvens (3), viktigst:**
-  `nytt-prosjekt` sin `settings.json`-mal får deny-regler mot å installere
-  nettlesere/automasjon, uavhengig av prosjekttype og persondata:
-  `Bash(npx playwright install*)`, `Bash(npx playwright *)`,
-  `Bash(npx puppeteer*)`, `Bash(npm install*playwright*)`,
-  `Bash(npm install*puppeteer*)` — med samme ærlighet som deny-settet ellers:
-  mønstre kan omgås, så regelen i CLAUDE.md står i tillegg. Opprydding i
-  klengenavn: `npx playwright uninstall`, `npm uninstall playwright
-  @playwright/test`, sjekk `package.json`/lock og ev. `playwright.config.ts`
-  før neste commit. BK melder selv til sikkerhet. Stoppet og avinstallert av
-  BK samme dag.
-- **web-prototype: skillen sier ikke at Designsystemet skalerer selv.**
-  Observert av BK 2026-09-05, klengenavn fase 4: Sonnet «skjønte ikke at
-  designsystemet har skalering innebygd» og gikk løs på mobil-layout som noe
-  som måtte bygges og testes — det var det som ledet til Playwright. Rettelse
-  i `web-prototype`: én setning om at komponentene og typografien er
-  responsive ut av boksen, og at en «mobil/finpuss»-fase er brukerens sjekk i
-  et smalt vindu, ikke egne media queries eller testverktøy. Samme sak i
-  plan-malen i `nytt-prosjekt`: fasebeskrivelser som «layouten sjekkes på smal
-  skjerm» leses som en oppgave for Claude; skriv «du ser at …». Observasjon,
-  ikke konklusjon: to feilvurderinger i én fase på Sonnet (installasjon,
-  skalering) — begge krevde kjennskap til biblioteket, ikke mekanikk.
+- **Deny mot nettleserinstallasjon og forbud i CLAUDE.md:** rettet i
+  `faseflyt` 0.7.0/0.7.1, se `CHANGELOG.md`. Kontrollkallet i 0.7.0 var en
+  uverifisert hypotese framstilt som fakta — rettet i 0.7.1 etter tørrkjøring
+  i `faseflyt-0.7-test` (se `logg.md` 2026-09-05).
+- **web-prototype: Designsystemet er responsivt ut av boksen:** rettet i
+  `web-prototype` 0.1.4 (designprinsipp 9), se `CHANGELOG.md`.
 - **Tørrkjøringen av klengenavn er fullført (fase 0–4, 2026-09-04/05).
   Sluttmåling STATUS: 45 → 47 → 43 → 44 → 42.** Flat rundt 44 over fem
   faseslutt. Vekstfrykten slo ikke til; målet «maks ~30» ble aldri nådd

@@ -8,44 +8,30 @@ bevisst utsatt av MVP-frysen 2026-08-19.
 **TO MASKINER SKRIVER TIL DETTE REPOET.** Kjør `git fetch` og sammenlign med
 `origin/main` før du stoler på denne fila.
 
-**Fase:** Tørrkjøring av `klengenavn` (fase 0–4) er FULLFØRT og gjennomgått
-2026-09-05 fra `VPC-5CG3433WMH`. Ni pakkefunn er ført i `TODO.md` under «Hold
-kunnskapsfilene edruelige» — ikke implementert ennå. `web-prototype` 0.1.3 er
-uendret siden forrige faseslutt.
+**Fase:** Fase 6 av planens fase 6–8 er levert og verifisert. `faseflyt` 0.7.1,
+`web-prototype` 0.1.4 (commits `fa7f391`, `9742ce6`). Dry-run i det
+midlertidige testprosjektet `faseflyt-0.7-test` bekreftet at CLAUDE.md-forbudet
+mot å installere nettlesere holder, to ganger; `deny`-settet mot
+nettleserinstallasjon er uprøvd med vilje — se `maler.md`.
 
 ## Neste — start her
 
-1. **Implementer de ni funnene i `kunnskap/TODO.md`** (punktet «Hold
-   kunnskapsfilene edruelige»), delt i minst to faser:
-   - `fase-slutt`/`fase-start`: tredje ratchet-utfall («ikke aktuelt lenger»),
-     modell-instruks som ubetinget siste linje (ikke påstand om øktmodell),
-     ordlekkasje-kontrollsøk, sikkerhetssøkets selvforurensning
-     (`client_secret` treffer egen logg), steg 5 hopper over gjentatt grønn
-     sjekk, issue-kriteriet utvides.
-   - `web-prototype`: Designsystemet er responsivt ut av boksen (si det),
-     deny-regel-forslag mot `npx playwright install`/`puppeteer` videre til
-     `nytt-prosjekt` sin mal.
-2. **`/model sonnet`-spørsmålet er delvis avgjort:** virker når BRUKEREN
-   skriver kommandoen, IKKE når skillen startes fra en trigger-frase i vanlig
-   tekst — da blir økten på øktmodellen uansett frontmatter. Gjenstår: verifisere
-   samme skille på kollegaers oppsett.
-3. **Mac-pre-flight** — fortsatt viktigste umålte post, urørt.
-4. `web-prototype` 0.1.3 steg 9 (design-tokens) — fortsatt bare kjørt i
-   scratchpad, ikke i et ekte prosjekt gjennom hele fase 4.
+Fase 7 — `fase-slutt`: ærlig ratchet, færre rundturer (se `plan.md`). Modell:
+tyngste (instruksdesign).
 
 ## Arbeidsmåte neste økt
 
-- **[tilsyn-oeker-todo-uten-fortetting]** Fortett TODO.md-punktet til det som
-  faktisk gjennomføres når fasen over er ferdig — ikke bær tilsynshistorikken
-  videre ubearbeidet.
-- **[ni-funn-krever-fase-oppdeling]** Del implementeringen i minst to faser
-  (se punkt 1 over) — én «gjør alt niende funn»-fase er feil snitt.
+- **[hypotese-skrevet-som-fakta]** Verifiser påstander om verktøyoppførsel
+  (npm/npx, CLI-flagg) før de skrives i pakken — merk som hypotese hvis utestet.
+- **[totrinns-vern-krever-ekstern-verifisering]** Et deny-sett med skadelig
+  feiltilfelle får ikke eget kontrollkall — verifiser via observert atferd i en
+  tørrkjøring, ikke i prosjektet selv.
 
 ## Det en ny økt må vite
 
-- **Testprosjekter er midlertidige og lokale** (BK, 2026-09-05): `klengenavn`
-  m.fl. slettes når ferdig brukt og finnes kun på hjemmekontor-maskinen — ikke
-  en varig referanse for andre økter/maskiner.
+- **Testprosjekter er midlertidige og lokale** (BK, 2026-09-05): `klengenavn`,
+  `faseflyt-0.7-test` m.fl. slettes når ferdig brukt og finnes kun på
+  hjemmekontor-maskinen — ikke en varig referanse for andre økter/maskiner.
 - **To promoteringsforslag venter fortsatt på BKs klarsignal:**
   `[proev-forslaget-mot-prosjektets-egne-laerdommer]` og
   `[ord-jeg-selv-innfoerer-maa-holdes-mot-tabellen]` — begge inn i `CLAUDE.md`.

@@ -9,6 +9,31 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 6: nytt-prosjekt/web-prototype rettet mot tørrkjøringsfunn
+
+**Evaluering av forrige økts punkter:**
+- **[tilsyn-oeker-todo-uten-fortetting]** fulgt: TODO.md-punktet fortettes nå
+  for det fase 6 faktisk leverte (se `logg.md`, steg 4 samme dag). Strøket.
+- **[ni-funn-krever-fase-oppdeling]** fulgt: implementeringen ble delt i tre
+  faser (6, 7, 8) i `plan.md` forrige økt. Strøket.
+
+**Nye punkter:**
+- **[hypotese-skrevet-som-fakta]** Skrev at `npx playwright --version` var
+  «trygt å prøve» uten å verifisere det — `playwright` laster ned nettlesere i
+  install-scriptet sitt. En ekstern tørrkjøring fant feilen, ikke en egen
+  sjekk. Belegg: `faseflyt-0.7-test`, rettet i 0.7.1 samme dag.
+- **[totrinns-vern-krever-ekstern-verifisering]** Et deny-sett der
+  feiltilfellet selv er skadelig kan ikke få et trygt kontrollkall —
+  verifiseringen må skje ved å observere at forbudet i CLAUDE.md faktisk
+  holder, i en ny økt, ikke ved et kall i prosjektet selv. Belegg: forbudet
+  holdt to ganger i `faseflyt-0.7-test`, én gang mot direkte ordre.
+
+**Fasesnittet:** fase 6, inkludert rettelsen til 0.7.1, fikk plass i én økt
+uten `/compact`.
+
+Issue til pakkerepoet: ikke aktuelt — dette ER pakkerepoet, rettingen skjedde
+direkte i samme økt.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Tilsyn med tørrkjøring av `klengenavn` (fase 0–4)
 
 **Evaluering av forrige økts punkter:**

@@ -552,6 +552,111 @@ tillatelsesnotisen) fra mattpocock/skills tas inn i `NOTICE.md`. Repoet er
 internt, så egen lisens for pakken selv er ikke nødvendig — en linje om at den er
 til intern bruk i Vestfold fylkeskommune holder.
 
+## Fase 6 — `nytt-prosjekt` og `web-prototype`: verifiseringen er brukerens
+
+Lagt til 2026-09-05 etter tørrkjøringen av `klengenavn` (fase 0–4,
+2026-09-04/05; belegg i `TODO.md` under «Hold kunnskapsfilene edruelige»).
+Fase 6–8 er funnene derfra, delt etter hvilken skill de rører, så hver fase kan
+verifiseres med én tørrkjøring. Rekkefølgen setter deny-regelen først: den
+lukker hendelsen som alt har utløst Defender, og er den minste av de tre.
+Pakkeendring i hver fase: bump begge manifestene, før inn i `CHANGELOG.md`.
+
+- **Deny mot å installere nettlesere og automasjon**, for alle prosjekttyper og
+  uavhengig av persondata — nytt grunnsett i `settings.json`-malen som alltid
+  tilbys, skilt fra persondata-settet: `Bash(npx playwright install*)`,
+  `Bash(npx playwright *)`, `Bash(npx puppeteer*)`, `Bash(npm install*playwright*)`,
+  `Bash(npm install*puppeteer*)`. Med samme ærlighet som resten: mønstre kan
+  omgås, så regelen i CLAUDE.md står i tillegg.
+- **CLAUDE.md-avsnittet skillen installerer** får forbudet, ikke bare
+  definisjonen: «Claude installerer aldri verktøy for å se resultatet selv —
+  nettlesere, skjermbildeverktøy, `playwright`, `chromium`. Verifiseringen er
+  brukerens.»
+- **Plan-malen** viser feilformen: «layouten sjekkes på smal skjerm» leses som en
+  oppgave for Claude; skriv «du ser at siden holder i et smalt vindu».
+- **Encoding-snutten i CLAUDE.md uansett maskin.** Full snutt på Windows (som i
+  0.6.1); på Mac to linjer: «Jobber du på Windows: bruk Read/Write/Edit for
+  filinnhold, ikke PowerShell; må du, legg på `-Encoding utf8`.» Et Mac-prosjekt
+  klones av en Windows-kollega.
+- **STATUS-malen:** taket settes til 45 linjer og telles (se Fase 7);
+  verktøyversjoner hører i loggen, ikke i STATUS.
+- **`web-prototype`:** én setning om at Designsystemets komponenter og typografi
+  er responsive ut av boksen, og at en «mobil/finpuss»-fase er brukerens sjekk i
+  et smalt vindu — ikke egne media queries eller testverktøy.
+
+**Verifisering:** du kjører `/faseflyt:nytt-prosjekt` i en tom scratch-mappe som
+webapp uten persondata, åpner `.claude/settings.json` og `CLAUDE.md` og ser
+deny-settet, forbudet og encoding-linjen. Så ber du Claude «installer playwright
+og sjekk layouten» og ser at kallet avvises — det er kontrollsøket som skal gi
+treff. Modell: tyngste (settings-mal er sikkerhetskritisk).
+
+## Fase 7 — `fase-slutt`: ærlig ratchet, færre rundturer
+
+- **Tredje utfall i ratchet-en (steg 2a/2b).** Et punkt som ikke ble utløst i
+  fasen teller ikke som runde. Tre utfall: *fulgt* når situasjonen faktisk oppsto
+  → strykes som innarbeidet; *brutt igjen* → videreføres, rundetall +1; *ikke
+  utløst* → kan en gjenstående fase utløse det? Nei: strykes med peker til
+  loggen. Ja: videreføres uten rundetall. Bare «brutt igjen» teller mot tredje
+  runde og CLAUDE.md-forslag. Belegg: `[node-mengdesjekk-importsti]` nådde
+  «3. runde» uten å ha blitt prøvd én gang.
+- **Én adresse per regel.** Et punkt bor i STATUS *eller* i prosjektets
+  `CLAUDE.md`, aldri begge. Promoteres et punkt, slettes det fra STATUS i samme
+  runde; ved skriving av STATUS (steg 3) sjekkes hvert «må vite»-punkt mot
+  `CLAUDE.md`, og står det der, strykes det. Belegg: minst fire av tolv «må
+  vite»-punkter i dette repoets STATUS står også i `CLAUDE.md`. Dette er det
+  ene grepet som stopper vekst; taket under bare måler den.
+- **Issue-kriteriet (steg 2e) utvides:** «…eller pakken kunne ha vernet mot det
+  i neste prosjekt». Belegg: Playwright-forsøket ble avvist som «ikke pakkens
+  sak» fordi det kom fra en generell skill.
+- **Steg 5 hopper over sjekken** når den kjørte grønt i samme økt etter siste
+  endring i kodefiler, og sier det i loggen med klokkeslett. Belegg: 51 s
+  på en `npm run check` som var grønn åtte minutter tidligere.
+- **Steg 6 omtaler søket uten å sitere søkeordet** («søk etter nøkkelord for
+  hemmeligheter»). Belegg: loggens egen setning var eneste treff, to faseslutt
+  på rad.
+- **Ordlekkasje-kontrollsøk** etter steg 1–3: søk i det skillen nettopp skrev
+  (STATUS, `laering.md`, loggen) etter ord som er *observert* lekket —
+  skaffolding, scaffolde, trigge, probe, harness. Treff rettes før commit. Lista
+  bor i skillen og vokser bare med observerte ord.
+- **STATUS telles, ikke anslås:** `wc -l` etter skriving; over 45 kuttes før
+  commit, og tallet føres i loggen så drift er synlig. Belegg: fem faseslutt i
+  `klengenavn` lå flatt på 42–47; «~30» er uoppnåelig med malens faste deler
+  (≈ 40 alene). Dette repoets STATUS (65 linjer) blir den første fila taket
+  biter i.
+- **Ferdige faser kollapser i planen** til én linje («Fase 1 ✅ dato, detaljer i
+  logg»), med før/etter og klarsignal, så planen holder seg rundt 100–150 linjer.
+- **Endres et verifiseringspunkt, endres det i `plan.md`**, ikke bare i
+  STATUS/`laering.md`.
+
+**Verifisering:** du kjører `/faseflyt:fase-slutt` (kommandoform) i et
+testprosjekt der STATUS har minst ett punkt som ikke ble utløst i fasen, og ser
+i loggen og STATUS: utfallet «ikke utløst» uten rundetall, ingen «må
+vite»-punkt som også står i `CLAUDE.md`, sikkerhetssøket omtalt uten ordet,
+sjekken hoppet over med begrunnelse når den alt var grønn, linjetallet for
+STATUS oppgitt, og tiden fra kommando til «FERDIG» ført. Tidsmålet på ett
+minutt nås trolig ikke av denne fasen alene — det føres som måling, ikke
+løfte. Modell: tyngste (instruksdesign).
+
+## Fase 8 — `fase-start`, `hjelp` og README: kort utdata, instruks sist
+
+- **Modell-instruksen** står alene på siste linje, uthevet, som handling:
+  «**Skriv `/model sonnet` nå, før du gir klarsignal.**» (eller tyngste modell
+  ved plan/arkitektur). Skillen påstår aldri hva økten kjører på — den kan ikke
+  vite det. Belegg: linja sto midt i teksten og ble ikke handlet på; én gang
+  påsto den «Sonnet» mens økten sto på Opus.
+- **Fasebeskrivelsen til én linje** — planen har resten. Tak ~10 linjer for det
+  rene tilfellet, målt i neste tørrkjøring (0.6.1 lå på ~15).
+- **Kommandoformen er den som gir Sonnet.** `hjelp`, README og `fase-start` sier
+  at `/faseflyt:fase-slutt` skrevet av brukeren kjører på skillens modell, mens
+  en trigger-frase i vanlig tekst gir øktmodellen. Belegg: to øktlogger
+  2026-09-05, motsatt fortegn, samme konklusjon.
+- **README sier hvem pakken er for:** bruk `/nytt-prosjekt` når prosjektet skal
+  overleve `/clear` minst én gang; et script på én ettermiddag trenger ikke
+  læringssløyfen.
+
+**Verifisering:** du kjører `/faseflyt:fase-start` i et testprosjekt i det rene
+tilfellet og teller: høyst ti linjer, og den siste er modell-instruksen alene.
+`/faseflyt:hjelp` nevner kommandoformen. Modell: Sonnet (`/model sonnet`).
+
 ## Etterpå (utenfor denne planen, avklares med deg)
 
 `nytt-prosjekt` finnes i to drevne kopier — `~/.claude/skills/nytt-prosjekt/` og

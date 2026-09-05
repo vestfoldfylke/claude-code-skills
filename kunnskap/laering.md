@@ -9,6 +9,29 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 9: alt åpent lukket før samlingen
+
+**Evaluering av forrige økts punkter:**
+- `[dry-kjoering-krever-push-foerst]` **ikke utløst — og ingen gjenstående fase
+  kan lenger utløse det.** Ingen tørrkjøring denne runden; planens faser 0–9 er
+  nå alle ferdige. Strøket fra ratchet, men ikke tapt: flyttet til STATUS
+  «Neste» som fast punkt siden gruppeleder-prepen faktisk trenger det snart.
+  Opprinnelse: logg 2026-09-05 (Fase 8).
+- `[beslutning-uten-tilbakeskriving]` **fulgt.** Verifiseringspunktene 3/4/6/7/8
+  ble skrevet inn i `plan.md` i samme redigeringsrunde som STATUS og TODO —
+  nøyaktig disiplinen punktet ba om, på den saken punktet selv ble skrevet av.
+  Strykes som innarbeidet.
+
+**Nytt punkt:**
+- `[ny-fil-uten-forespoersel]` Opprettet `kunnskap/samling-oppgave.md` på eget
+  initiativ for å speile oppgaveteksten fra `TODO.md`; brukeren hadde alt lagt
+  teksten i en artefakt i claude.ai, og filen måtte slettes igjen samme runde.
+  Spør før en ny fil opprettes i `kunnskap/`, ikke bare før pakkefiler endres.
+
+Issue til pakkerepoet: ikke aktuelt (framgangsmåtefeil hos meg, ikke en feil i
+skill-instruksene).
+Fasesnitt: Fase 9 fikk plass i én økt uten `/compact`.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fryse-runde: instruks-funn fra tre tørrkjøringer rettet trygt, men en avgjørelse fra tre uker tidligere hadde aldri blitt skrevet tilbake til planen
 
 **Evaluering av forrige økts punkter:**

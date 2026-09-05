@@ -2,6 +2,47 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 9 ✅: alt åpent lukket før samlingen, verifisert av BK
+
+**Beslutning (BK, køen):** alt som er åpent lukkes eller avgjøres nå; ingenting
+bygges før samlingen 14. september. Det som dukker opp i prep eller samling blir
+nye issues ETTER samlingen.
+
+- Issues #7, #8 og #17 lukket med kommentar. #8 (flere maskiner/personer) er i
+  praksis testet ved at BK bytter maskin selv hele tiden. Ingen åpne issues.
+- `TODO.md` skrevet om fra 589 til 23 linjer: frys-erklæring + tabell med
+  avgjørelse per post. Full utredning i historikken fram til `000b951`.
+- Avgjørelser per post (BK): helhetsvurderingen besvart av README 0.8.3 og
+  samlingen; dataregime = syntetisk på samlingen; læringssløyfe-skjevheten
+  lukket (`nytt-prosjekt` lager alltid `CLAUDE.md`); ordrett-kravet beholdes;
+  tre umålte hypoteser og Actions-seksjonen strøket; case-valget ferdig;
+  `claude-global-config`-postene utenfor repoet.
+- Oppgaveteksten for samlingen er ikke lenger speilet i repoet: BK sier
+  oppgavene ligger i en artefakt i claude.ai, og det er kilden. En kopi jeg
+  først la i `kunnskap/samling-oppgave.md` ble fjernet samme runde. Den gamle
+  ordlyden står i TODO-historikken fram til `000b951`.
+- `plan.md`: verifiseringspunktene 3/4/6/7/8 merket DEKKET — de sto som åpne i
+  planen selv om STATUS og loggen sa dekket, nøyaktig mønsteret #17 beskrev.
+  «Etterpå»-seksjonen strøket, Fase 9 ført inn med verifiseringslinje.
+- STATUS «Neste» er nå prep-sjekklista alene (faseflyt alene, Mac, Snapdragon,
+  de tre påstandene fasilitatorarket hviler på).
+- Ingen pakkefil endret, ingen versjonsbump.
+- **Læringssløyfe:** `[dry-kjoering-krever-push-foerst]` strøket fra ratchet —
+  planens faser 0–9 er nå alle ferdige, ingen gjenstående fase kan utløse det;
+  flyttet til STATUS «Neste» som fast punkt før prepen i stedet.
+  `[beslutning-uten-tilbakeskriving]` strøket som fulgt — verifiseringspunktene
+  3/4/6/7/8 ble skrevet inn i `plan.md` i samme runde som STATUS/TODO, nøyaktig
+  disiplinen punktet krevde. Nytt punkt: `[ny-fil-uten-forespoersel]` — en
+  kunnskapsfil ble opprettet på eget initiativ og måtte slettes igjen samme
+  runde. Detaljer i `laering.md`.
+- **Virker prosjektet fortsatt:** `bash .github/renhet/sjekk.sh` — 11 søk · 0
+  feil · 0 advarsler, kontrollsøk 44 treff på «faseflyt» i `plugins/`.
+  `claude plugin validate .` — validering bestått.
+- **Rask sikkerhetssjekk:** env-filer 0, fødselsnummer-mønster 0,
+  nøkkel-mønster 0, kontrollsøk 22 treff.
+- STATUS: 44 linjer (tak 45). fase-slutt: 16:33–16:39, 6 min til commit, med
+  én klarsignal-tur for kollapsen i planen.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fryse-runde før 1.0: verifiseringslista gjennomgått, `nytt-prosjekt` tørrkjørt tre ganger, `faseflyt` 0.9.0
 
 **Levert** (`89acdd6`, ikke pushet ennå — se steg 7 under):

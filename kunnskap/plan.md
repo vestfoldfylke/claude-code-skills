@@ -545,13 +545,7 @@ til intern bruk i Vestfold fylkeskommune holder.
 
 ## Fase 8 ✅ 2026-09-05 — kort utdata i fase-start (tak ti linjer, modell-instruks alene sist), kommandoform vs. frase i vanlig tekst dokumentert i fase-start/hjelp/README; faseflyt 0.8.3. Detaljer i logg.
 
-## Etterpå (utenfor denne planen, avklares med deg)
-
-Skill-kopiene er fjernet: `~/.claude/skills/nytt-prosjekt/` fantes ikke lenger
-da denne runden sjekket, og `fint-samtykke`s kopi mistet `SKILL.md` +
-oppskriften 2026-09-05 (retrospektivet ligger igjen til BK flytter det).
-Gjenstår: rydde whitelist-oppføringene i `claude-global-config` — ikke gjort
-her, utenfor dette repoet.
+## Fase 9 ✅ 2026-09-05 — alt åpent (issues #7/#8/#17, `TODO.md` 589→23 linjer, plan.md-verifiseringslista 3/4/6/7/8) lukket eller avgjort før samlingen 14. september; ingen pakkefil endret. Detaljer i logg.
 
 ## Verifisering
 
@@ -569,23 +563,23 @@ her, utenfor dette repoet.
    `CLAUDE.md`, ikke STATUS (planen sa STATUS — foreldet siden 0.6.1);
    `git init` hoppet over, eksisterende `CLAUDE.md`, `settings.json` og
    `.gitignore` utvidet uten tap. Funn i skillens instrukser rettet i 0.9.0.
-3. **Rundtur:** kjør `/fase-slutt` i scratch-prosjektet, `/clear`, deretter
+3. **Rundtur — DEKKET** (bekreftet 2026-09-05, se logg): kjør `/fase-slutt` i scratch-prosjektet, `/clear`, deretter
    `/fase-start` — STATUS + `kunnskap/plan.md` skal alene være nok til å gjenoppta
    uten kodeutforskning. **Rytmevaktene testes i samme rundtur:** be om vesentlig
    nytt arbeid uten plan → planmodus skal foreslås; si «verifisert, alt OK» →
    `/fase-slutt` skal foreslås; be om noe utenfor fasen → TODO.md skal foreslås.
-4. **Læringssløyfen lukkes:** i rundturen skal `/fase-slutt` skrive minst ett
+4. **Læringssløyfen lukkes — DEKKET** (bekreftet 2026-09-05, se logg): i rundturen skal `/fase-slutt` skrive minst ett
    handlingsbart punkt til `laering.md` + STATUS, og `/fase-start` etter `/clear`
    skal kvittere på nøyaktig de punktene. Kjør så en fase til: neste `/fase-slutt`
    skal evaluere om punktet ble fulgt, og stryke det hvis det er innarbeidet.
 5. **DROPPET** (BK, 2026-08-21) — bakoverkompatibilitetstest. Kollegaer har
    ingen gamle prosjekter. Kravet om at `fase-start` skal tåle eldre struktur
    står ved lag; bare den eksplisitte testen er droppet.
-6. **Selvbærende-test:** flytt `~/.claude/CLAUDE.md` midlertidig til side (den
+6. **Selvbærende-test — DEKKET** (bekreftet 2026-09-05, se logg): flytt `~/.claude/CLAUDE.md` midlertidig til side (den
    gjelder ellers alltid, så det finnes ingen annen måte å simulere en kollegas
    maskin på), kjør punkt 2–4 på nytt, og legg fila tilbake — flyten skal fungere
    uten den.
-7. **Renhetssjekk før publisering** (kjøres FØR hver push, ETTER `git add`).
+7. **Renhetssjekk før publisering — DEKKET som løpende krav** (`.github/renhet/sjekk.sh`, kjøres FØR hver push, ETTER `git add`; regelen står i `CLAUDE.md`).
    Kanonisk liste med begrunnelser står i `docs/installasjon.md` under
    «Renhetskrav» — kortversjonen:
    - `v-t-f-k` (hyphenert her, ellers treffer regelen seg selv) skal gi **null
@@ -605,7 +599,7 @@ her, utenfor dette repoet.
      push-mål. I pakken er det bare *avhengigheter* til utilgjengelige repo som er
      forbudt, ikke det å nevne dem.
    - Alltid én positiv kontroll i samme runde.
-8. **Synlighet og branch:** etter `gh repo create` — verifiser med
+8. **Synlighet og branch — DEKKET** (verifisert 2026-08-08, se logg): etter `gh repo create` — verifiser med
    `gh repo view vestfoldfylke/claude-code-skills --json visibility,owner,defaultBranchRef`
    at repoet er `PRIVATE`, eid av `vestfoldfylke` (ikke en personlig konto), og at
    standardbranchen er `main`.

@@ -4,6 +4,45 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.7.0 — 2026-09-05
+
+`faseflyt` 0.7.0. Fase 6 i planen: funnene fra tørrkjøringen av `klengenavn`
+(fase 0–4, 2026-09-04/05, `VPC-5CG3433WMH`, hostname kjørt) som gjelder
+`nytt-prosjekt`.
+
+- **Deny mot nettleserinstallasjon i `settings.json`-grunnformen**, for alle
+  prosjekttyper og uavhengig av persondata: `npx playwright`, `npx puppeteer`
+  og `npm install` av pakkene. Observert: Claude ba om `npx playwright install
+  chromium` for å sjekke layout på smal skjerm selv; senere samme dag ble det
+  installert, og Defender flagget kjøringen. Pakken eier nå fire ting i fila.
+  Kolon-prefiksformen er den målte; jokertegn midt i mønsteret er merket
+  utestet, og kontrollkallet (`npx playwright --version` skal avvises) står i
+  malen og i steg 6.
+- **CLAUDE.md-avsnittet forbyr det samme:** «Claude installerer aldri verktøy
+  for å se resultatet selv». Definisjonen «verifisere = at DU ser det» stoppet
+  ikke impulsen når fasen inviterte til den; bare regler Claude Code selv
+  håndhever holder, så deny-settet og forbudet står sammen. Etterkontrollen i
+  steg 8 sjekker at forbudet er med.
+- **Plan-malen og Fasesnittet viser feilformen** «layouten sjekkes på smal
+  skjerm» — en oppgave uten den som gjør den leses som Claudes — og riktig form
+  «du ser at siden holder i et smalt vindu».
+- **Encoding-snutten skrives uansett maskin:** full snutt på Windows (som i
+  0.6.1), to linjer på Mac og Linux — ny seksjon i `windows.md`, steg 8 og
+  `prosjekttyper.md` peker dit. Et Mac-prosjekt klones av en Windows-kollega.
+- **STATUS-malen:** tak 45 linjer, verktøyversjoner hører i loggen, og et
+  «må vite»-punkt som alt står i CLAUDE.md hører ikke i STATUS. Målt: fem
+  faseslutt i `klengenavn` ga 45 → 47 → 43 → 44 → 42; «~30» er uoppnåelig med
+  malens faste deler. `fase-slutt` får tellingen i neste versjon.
+
+## web-prototype 0.1.4 — 2026-09-05
+
+- **Designsystemet er responsivt ut av boksen** — nytt designprinsipp (punkt 9).
+  Observert i `klengenavn` fase 4 (Sonnet, `VPC-5CG3433WMH`): skillen sa ikke
+  at komponentene skalerer selv, så mobil-layout ble behandlet som noe som
+  måtte bygges og testes — og det var det som ledet til Playwright-forsøket.
+  Prinsippet sier også at Claude aldri installerer nettlesere eller
+  skjermbildeverktøy for å sjekke layout.
+
 ## web-prototype 0.1.3 — 2026-09-05
 
 `web-prototype` 0.1.3. Skillen oppdatert til det Svelte CLI (`sv`) 0.17.0 og

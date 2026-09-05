@@ -379,6 +379,7 @@ These principles keep prototypes lean and user-testing-ready:
 6. **Shared state** — use shared reactive state in `.svelte.ts` files with `$state` for cross-page state
 7. **Norwegian language** — all UI text, labels, headings, and placeholder content must be written in Norwegian Bokmål (nb). Never use English as the display language.
 8. **Not for production** — every prototype must display a clearly visible disclaimer, e.g. a banner at the top of the page: "Dette er en prototype laget av Claude og kan ikke brukes i produksjon." Use `<div class="ds-alert" data-color="info" role="alert">` for this (`ds-alert` is CSS-only — never `<ds-alert>`).
+9. **Responsive out of the box** — Designsystemet components and typography scale to narrow screens by themselves. A «mobil/finpuss» phase means the user opens the preview in a narrow window and looks; it does not mean writing media queries or installing test tooling. Never install browsers or screenshot tools (`playwright`, `puppeteer`, `chromium`) to check layout yourself — verification is the user's, and on a managed PC a browser download to the user profile is exactly what endpoint security flags.
 
 ---
 

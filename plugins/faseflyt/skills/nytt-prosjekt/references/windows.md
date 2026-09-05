@@ -4,7 +4,8 @@ Gjelder ALLE prosjekter som utvikles på Windows. Snutten under legges inn i
 prosjektets `CLAUDE.md`, rett etter fase-arbeidsflyt-avsnittet, FØR første
 filskript skrives — ikke etter første mojibake-hendelse, og ikke i STATUS:
 STATUS overskrives ved hver faseslutt, og snutten forsvant slik 2026-09-04
-(flyttet hit i 0.6.1). Resten av fila er referanse for den som setter opp
+(flyttet hit i 0.6.1). Prosjekter på Mac eller Linux får kortformen i seksjonen
+«Utenfor Windows». Resten av fila er referanse for den som setter opp
 prosjektet, og kopieres ikke.
 
 ## CLAUDE.md-snutt — kopieres ORDRETT og i sin helhet
@@ -33,6 +34,17 @@ ved første kjøring:
   `git commit -F <fil>` — here-strings avvises i enkelte oppsett av Claude Code.
 - **PowerShell 5.1 mangler `&&`/`||` (bruk `A; if ($?) { B }`), ternary/`??`/`?.`,
   og Unix-kommandoene `head`/`tail`/`touch`/`which`/`wc`.**
+```
+
+## Utenfor Windows — to linjer, ORDRETT
+
+Et Mac- eller Linux-prosjekt klones av en Windows-kollega, og fellene over slår
+inn hos dem. Snutten over skrives ikke; disse to linjene skrives i stedet, på
+samme sted i `CLAUDE.md`:
+
+```markdown
+- **Jobber du på Windows:** bruk Read/Write/Edit for filinnhold, ikke PowerShell.
+  Må du bruke PowerShell 5.1, legg `-Encoding utf8` på `Get-Content`/`Set-Content`.
 ```
 
 ## Encoding-fella (den som alltid biter)

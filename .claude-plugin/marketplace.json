@@ -10,14 +10,14 @@
       "source": "./plugins/faseflyt",
       "displayName": "Faseflyt",
       "description": "Faseinndelt arbeidsflyt: nytt-prosjekt, fase-start, fase-slutt, grill-me og hjelp. Plan først, én verifisert fase om gangen, prosjektet husker alt mellom øktene.",
-      "version": "0.6.1"
+      "version": "0.7.0"
     },
     {
       "name": "web-prototype",
       "source": "./plugins/web-prototype",
       "displayName": "Web-prototype",
       "description": "SvelteKit + Designsystemet (digdir) for brukertestingsklare prototyper. Kun for webapp-prosjekter.",
-      "version": "0.1.3"
+      "version": "0.1.4"
     },
     {
       "name": "fint-graphql",

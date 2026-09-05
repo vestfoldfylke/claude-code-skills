@@ -57,13 +57,17 @@ normalområdet. En fase som ikke kan verifiseres selvstendig er feil snitt.>
 <hva som settes opp>
 **Verifisering:** <det brukeren GJØR og SER for å si ✅ — «åpne siden, se at
 listen viser tre rader». Ikke «kjør testene»: en kommando Claude kjører er ikke
-brukerens verifisering.>
+brukerens verifisering. Ikke «layouten sjekkes på smal skjerm»: en oppgave uten
+den som gjør den leses som Claudes — skriv «du ser at siden holder i et smalt
+vindu».>
 
 ### Fase 1 — <navn>
 <innhold>
 **Verifisering:** <det brukeren GJØR og SER for å si ✅ — «åpne siden, se at
 listen viser tre rader». Ikke «kjør testene»: en kommando Claude kjører er ikke
-brukerens verifisering.>
+brukerens verifisering. Ikke «layouten sjekkes på smal skjerm»: en oppgave uten
+den som gjør den leses som Claudes — skriv «du ser at siden holder i et smalt
+vindu».>
 
 ## Kritiske filer
 
@@ -102,8 +106,10 @@ regel i CLAUDE.md og ta punktet ut herfra. Tom seksjon er lov.>
 ## Det en ny økt må vite
 
 <3–6 punkter: ikke-opplagte beslutninger, kritiske filer, fallgruver som IKKE
-fremgår av å lese koden. På Windows-prosjekter står encoding-regelen i
-CLAUDE.md (se references/windows.md), ikke her — STATUS overskrives.>
+fremgår av å lese koden — og som ikke alt står i CLAUDE.md. Ikke verktøyversjoner
+(Node, npm, git): de hører i loggen. Encoding-regelen står i CLAUDE.md (se
+references/windows.md), ikke her — STATUS overskrives. Hele fila holder seg
+under 45 linjer; `fase-slutt` teller.>
 ```
 
 ## `kunnskap/logg.md`
@@ -219,9 +225,16 @@ svarer på. Utforskning delegeres til Explore-subagent.
 
 **Fasesnittet:** én fase er noe brukeren kan se virke, i én økt. Verifiseringen
 i planen skrives som noe brukeren gjør og ser («åpne siden, se at listen viser
-tre rader»), ikke som en kommando Claude kjører («kjør testene»). Trengte fasen
-`/compact`, eller gikk den over flere økter, var den for stor — si det ved
-faseslutt og foreslå et nytt snitt for de gjenstående fasene.
+tre rader»), ikke som en kommando Claude kjører («kjør testene»), og ikke som en
+oppgave uten den som gjør den («layouten sjekkes på smal skjerm» — skriv «du ser
+at siden holder i et smalt vindu»). Trengte fasen `/compact`, eller gikk den over
+flere økter, var den for stor — si det ved faseslutt og foreslå et nytt snitt
+for de gjenstående fasene.
+
+**Claude installerer aldri verktøy for å se resultatet selv** — nettlesere,
+skjermbildeverktøy, `playwright`, `puppeteer`, `chromium`. Verifiseringen er
+brukerens: si hva som skal åpnes og hva brukeren skal se. `.claude/settings.json`
+sperrer de vanligste kommandoene, men mønstre kan omgås — regelen gjelder uansett.
 
 **`/compact` brukes bare midt i en fase som ikke rekker å bli ferdig.** Ellers
 er veien alltid `/faseflyt:fase-slutt` → `/clear`: en frisk økt med skarp
@@ -342,6 +355,12 @@ webapp-typen og `"fint-graphql@claude-code-skills": true` når prosjektet bruker
       "Read(~/.claude/plugins/marketplaces/claude-code-skills/**/.claude-plugin/**)",
       "Bash(git status:*)",
       "Bash(git log:*)"
+    ],
+    "deny": [
+      "Bash(npx playwright:*)",
+      "Bash(npx puppeteer:*)",
+      "Bash(npm install*playwright*)",
+      "Bash(npm install*puppeteer*)"
     ]
   }
 }
@@ -365,6 +384,23 @@ Oppføringer med en sti i prefikset gjør det ikke, uansett kolon — se grense 
 Derfor står det ingen `git -C <sti>`-oppføring her, og derfor sjekker steg 0
 ikke org-repoet.
 
+**Deny mot nettleserinstallasjon gjelder alle prosjekttyper**, uavhengig av
+persondata — det er ikke en del av persondata-settet lenger ned. Observert
+2026-09-05 i et webapp-prosjekt uten persondata: Claude ba om `npx playwright
+install chromium` for å sjekke layouten på smal skjerm selv, og fikk det senere
+kjørt. Nettleseren ble lastet ned til brukerprofilen og Defender flagget
+kjøringen — på en styrt jobb-PC er det nettopp det EDR reagerer på.
+Verifiseringen er brukerens; Claude har ingen legitim grunn til å installere
+nettlesere, skjermbildeverktøy eller nettleserautomasjon. De to første
+oppføringene bruker kolon-prefiksformen som er målt å virke, og stopper steget
+som faktisk laster ned nettleseren. De to siste har jokertegn midt i mønsteret —
+den formen er utestet, med samme forbehold som `Bash(npx tsx scripts/*)` under.
+Kontrollkall: `npx playwright --version` skal avvises. Slipper det gjennom,
+henter `npx` bare npm-pakken, ingen nettleser, så kallet er trygt å prøve. Som
+resten av `permissions`: mønstre treffer kommandonavn og kan omgås, matcherne
+dekker ikke PowerShell-verktøyet på Windows, og forbudet i CLAUDE.md-avsnittet
+står i tillegg.
+
 **Oppføringene virker først etter omstart.** `.claude/settings.json` leses ved
 oppstart, ikke på nytt midt i en økt. Målt 2026-08-25 på `VPC-5CG3433WMH`:
 samme oppføring, samme kall og samme økt ga dialog fra den delte fila og ingen
@@ -373,16 +409,18 @@ oppsett, si det — ellers møter brukeren dialoger malen nettopp har lovet er
 dekket.
 
 **Finnes `.claude/settings.json` fra før, er dokumentet over IKKE malen —
-flettingen er det.** Pakken eier bare tre ting:
+flettingen er det.** Pakken eier bare fire ting:
 `extraKnownMarketplaces.claude-code-skills`, `enabledPlugins`-oppføringene som
-slutter på `@claude-code-skills`, og de fire `permissions.allow`-oppføringene
-over. De legges til — en eksisterende `allow`-liste utvides, aldri erstattes — og
+slutter på `@claude-code-skills`, de fire `permissions.allow`-oppføringene
+over, og `permissions.deny`-oppføringene mot nettleserinstallasjon. De legges
+til — eksisterende `allow`- og `deny`-lister utvides, aldri erstattes — og
 alt annet i fila står urørt, også nøkler du ikke kjenner. Vis endringen
 som før/etter, vent på klarsignal før du skriver, og etterkontroller: hver
 nøkkel som fantes før, skal finnes igjen med samme verdi.
 
-Behandler prosjektet persondata, legg til deny-settet — i tillegg til en
-eksisterende `deny`-liste, aldri i stedet for den. **Les «Deny-settets
+Behandler prosjektet persondata, legg til persondata-deny-settet under — i
+tillegg til grunnformens deny mot nettleserinstallasjon og til en eksisterende
+`deny`-liste, aldri i stedet for dem. **Les «Deny-settets
 grenser» og kjør kontrollkallet under før du stoler på noe av det** — settet
 dekker mindre enn navnene antyder, og et vern man tror er tettere enn det er, er
 verre enn ingen vern.

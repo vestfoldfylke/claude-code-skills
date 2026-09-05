@@ -143,7 +143,7 @@ regel om hva du skriver her, ikke bare om hva du sier.
 2. **Avklar prosjekttype** (styrer alt videre — se `references/prosjekttyper.md`):
    webapp/prototype, script/automatisering, dokumentasjon/utredning, eller
    API/backend-tjeneste. Spør samtidig: behandler prosjektet **persondata**
-   (styrer deny-regler i steg 6)? Bruker det **FINT** (styrer skill-deklarasjon)?
+   (styrer persondata-deny-settet i steg 6)? Bruker det **FINT** (styrer skill-deklarasjon)?
    Og prosjektnavn/domene.
 
    **Still spørsmålene samlet i én melding** — de er enkle, og fem turer for fem
@@ -197,24 +197,28 @@ regel om hva du skriver her, ikke bare om hva du sier.
    kopieres; kun prosjektets egen domenekunnskap bor i `.claude/skills/`).
    Deklarer `web-prototype` kun for webapp-typen og `fint-graphql` kun når
    prosjektet bruker FINT.
-   **Pakken eier bare tre ting i denne fila:**
+   **Pakken eier bare fire ting i denne fila:**
    `extraKnownMarketplaces.claude-code-skills`, oppføringene i
-   `enabledPlugins` som slutter på `@claude-code-skills`, og de fire
+   `enabledPlugins` som slutter på `@claude-code-skills`, de fire
    `permissions.allow`-oppføringene i malen — de dekker `fase-start` sine egne
-   kall. **Lov aldri at de fjerner dialogene:** målt 2026-08-27 ga oppføringer
-   som matcher ordrett likevel dialog, mens kall uten oppføring gikk gjennom, så
+   kall — og `permissions.deny`-oppføringene mot nettleserinstallasjon.
+   **Lov aldri at de fjerner dialogene:** målt 2026-08-27 ga oppføringer som
+   matcher ordrett likevel dialog, mens kall uten oppføring gikk gjennom, så
    allowlisten er ikke alene om å avgjøre. Si i stedet at oppstarten kan koste
    noen godkjenninger, og at «allow for this project» gjør valget varig. Finnes
    `.claude/settings.json` fra før: legg KUN disse nøklene til, og rør
-   ingenting annet — en eksisterende `allow`-liste utvides og aldri erstattes,
-   brukerens `deny`-liste røres ikke, og heller ikke andre marketplaces
+   ingenting annet — eksisterende `allow`- og `deny`-lister utvides og aldri
+   erstattes, brukerens egne oppføringer røres ikke, og heller ikke andre marketplaces
    eller plugins eller nøkler du ikke kjenner. Vis endringen som før/etter og
    **vent på klarsignal før du skriver**. **Etterkontroll (obligatorisk når
    fila fantes):** les den skrevne fila og bekreft at hver nøkkel som fantes
    før, finnes igjen med samme verdi — mangler én, rett det FØR du går videre.
    **Si fra at allowlisten først virker etter omstart** — fila leses ved
    oppstart, ikke midt i en økt (se `references/maler.md`).
-   Behandler prosjektet persondata: tilby deny-settet
+   Deny-oppføringene mot nettleserinstallasjon er del av grunnformen og skrives
+   alltid, uavhengig av type og persondata; kontrollkallet er
+   `npx playwright --version`, som skal avvises — forklar det først, som under.
+   Behandler prosjektet persondata: tilby i tillegg persondata-deny-settet
    for prosjekttypen (se maler.md) — som tillegg til en eksisterende
    `deny`-liste, aldri som erstatning — men **skriv aldri en `permissions`-blokk uten
    å levere kontrollkallet i samme endring** (`Bash(curl:*)` mot
@@ -251,11 +255,13 @@ regel om hva du skriver her, ikke bare om hva du sier.
    personvern-avsnittet med — også det ordrett, inkludert setningene om hva
    deny-settet IKKE dekker. På Windows følger CLAUDE.md-snutten fra
    `references/windows.md` med, ordrett og i sin helhet, rett etter avsnittet
-   (se steg 5).
+   (se steg 5). På Mac og Linux følger i stedet to-linjersformen fra samme fil
+   — et Mac-prosjekt klones av en Windows-kollega.
    **Etterkontroll (obligatorisk her):** sammenlign den skrevne CLAUDE.md mot
    malblokken punkt for punkt — alle tre vaktene til stede, «foreslå … og vent på
-   klarsignal» og porttesten i vakt 2 ordrett, ingen setning slått sammen med en
-   annen. Finnes CLAUDE.md fra før: legg avsnittet til, ikke overskriv — og la
+   klarsignal» og porttesten i vakt 2 ordrett, forbudet mot å installere verktøy
+   for å se resultatet til stede, ingen setning slått sammen med en annen.
+   Finnes CLAUDE.md fra før: legg avsnittet til, ikke overskriv — og la
    prosjektets egne avsnitt stå urørt ved siden av.
 
 9. **Forklar fase-rytmen kort**, slik at den er avtalt fra dag 1:

@@ -16,6 +16,8 @@
 # Sist verifisert 2026-08-21: begge oppføringene under er spørsmålet i steg 2 og
 # deklarasjonsteksten i steg 6 av nytt-prosjekt. Steg 6-linjen ble brutt om da
 # flettregelen kom inn i 0.2.3 — innholdet er uendret deklarasjonslogikk.
+# Steg 2-linjen ble brutt om i 0.7.0 («deny-regler» → «persondata-deny-settet»,
+# fordi grunnformen fikk et deny-sett som gjelder alle) — samme spørsmål.
 
-plugins/faseflyt/skills/nytt-prosjekt/SKILL.md|(styrer deny-regler i steg 6)? Bruker det **FINT** (styrer skill-deklarasjon)?
+plugins/faseflyt/skills/nytt-prosjekt/SKILL.md|(styrer persondata-deny-settet i steg 6)? Bruker det **FINT** (styrer skill-deklarasjon)?
 plugins/faseflyt/skills/nytt-prosjekt/SKILL.md|prosjektet bruker FINT.

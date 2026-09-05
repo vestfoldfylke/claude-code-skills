@@ -12,14 +12,15 @@ webapp > script > dokumentasjon) og suppler manuelt.
 | Sikkerhetssjekkliste | full | smal (se under) | datahåndtering (se under) | full |
 | `web-prototype`-plugin deklareres | ✅ | ❌ | ❌ | ❌ |
 | Designtema-oppskrift relevant | ✅ (`claude-design-oppskrift.md`) | ❌ | ❌ | ❌ |
-| Encoding-/shell-regler i STATUS | ved Windows | ved Windows | ved filskript på Windows | ved Windows |
+| Encoding-/shell-regler i CLAUDE.md | full snutt ved Windows, to linjer ellers | full snutt ved Windows, to linjer ellers | full snutt ved Windows, to linjer ellers | full snutt ved Windows, to linjer ellers |
 | Bredt nettverksdeny (persondata) | ❌ (se under) | ✅ | ✅ | ❌ (se under) |
 
 `fint-graphql` deklareres uavhengig av type — kun når prosjektet faktisk bruker FINT.
 
 **Plattform er en egen akse, ikke en egenskap ved typen.** Reglene i `windows.md`
 gjelder der prosjektet faktisk utvikles — ikke alle er på Windows. Avklar det før
-du skriver noe plattformspesifikt i CLAUDE.md.
+du skriver noe plattformspesifikt i CLAUDE.md. Full snutt på Windows,
+to-linjersformen ellers — ingen plattform får ingenting.
 
 ## Hva en fase er, per type
 

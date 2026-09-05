@@ -637,6 +637,12 @@ STATUS oppgitt, og tiden fra kommando til «FERDIG» ført. Tidsmålet på ett
 minutt nås trolig ikke av denne fasen alene — det føres som måling, ikke
 løfte. Modell: tyngste (instruksdesign).
 
+**Målt 2026-09-05** (`VPC-5CG3433WMH`, `test-faseflyt` økt 9, 0.8.0, Sonnet via
+kommando): fire av seks holdt. Søkeordet ble sitert tross instruksen, og «ikke
+utløst» ble hedget til et fjerde utfall. 6 min / over 37k tokens. 0.8.1 la til
+turplan (sju turer), 0–3 nye punkter, ordrett rapportlinje og
+`<command-name>`-taggen som portbevis — uprøvd til neste tørrkjøring.
+
 ## Fase 8 — `fase-start`, `hjelp` og README: kort utdata, instruks sist
 
 - **Modell-instruksen** står alene på siste linje, uthevet, som handling:

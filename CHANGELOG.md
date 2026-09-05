@@ -4,6 +4,30 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.8.1 — 2026-09-05
+
+`faseflyt` 0.8.1. Rettelser etter tørrkjøring av 0.8.0 i `test-faseflyt` økt 9
+(`VPC-5CG3433WMH`, hostname kjørt; Sonnet via kommandoformen). Fire av seks
+verifiseringspunkter holdt; målt 6 min etter skillens klokke, over 7 etter
+brukerens, og over 37k tokens for en økt som ikke hadde gjort noe.
+
+- **Turplan.** Sju turer, med hva som deler melding: lesninger og `date` i én,
+  de tre skrivingene i én, tellinger og alle søk og `date` i én, så rettinger,
+  `git add`, commit, push. «Færre rundturer» sto i 0.8.0 som prosaregler; det
+  som manglet var å si hvilke kall som går sammen. Én-adresse-sjekken var selv
+  skrevet som ett `Grep` per punkt — nå ett mønster, én tur.
+- **«Ikke utløst» i et prosjekt uten plan strykes.** Observert: skillen fant opp
+  et fjerde utfall («tatt ut av STATUS, ikke strøket, videreført i arkivet») og
+  en fotnote om det, i stedet for å stryke.
+- **0–3 nye punkter, ikke 1–3.** Observert: to «nye punkter» uten et brudd bak
+  seg, i en økt der ingenting gikk galt.
+- **Rapportlinja for sikkerhetssjekken gis ordrett.** Observert: «omtal søket
+  uten ordet» sto i instruksen, og loggen fikk ordet likevel, pluss et nytt navn
+  på sjekken. `røyktest` er lagt til ordlekkasje-lista — observert i samme
+  logg.
+- **Portbevis:** `<command-name>`-taggen i inputen, når den finnes; fritekst-søk
+  bare når den mangler. Ideen kom fra tørrkjøringens egen selvvurdering.
+
 ## 0.8.0 — 2026-09-05
 
 `faseflyt` 0.8.0. Fase 7 i planen: `fase-slutt` får ærlig ratchet og færre

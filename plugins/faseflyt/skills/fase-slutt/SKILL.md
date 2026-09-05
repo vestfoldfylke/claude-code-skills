@@ -19,9 +19,11 @@ foreslår du fase-slutt og venter (fase-slutt-vakten i prosjektets `CLAUDE.md`).
 Grunnen er steg 7: det committer og pusher uten eget klarsignal, og det er bare
 forsvarlig når det var brukeren som kalte skillen.
 
-**Sjekk porten før du begynner, den er observerbar:** finn meldingen der brukeren
-ba om dette — `/faseflyt:fase-slutt`, «avslutt fasen» eller tilsvarende. Finner du
-den ikke, ble du utløst av en vakt eller av eget initiativ. Stopp da her, si at
+**Sjekk porten før du begynner, den er observerbar:** står
+`<command-name>/faseflyt:fase-slutt</command-name>` i inputen, er porten passert
+— det er beviset. Mangler taggen, finn meldingen der brukeren ba om dette med
+ord — «avslutt fasen» eller tilsvarende. Finner du heller ikke den, ble du
+utløst av en vakt eller av eget initiativ. Stopp da her, si at
 porten er nådd, foreslå kommandoen og vent. Ikke utfør stegene «for hånd» i stedet
 — det er samme handling uten porten. Dette har gått galt to ganger i test (rutinen
 kjørte helt gjennom og committet uten å spørre), så behandle det som en kjent
@@ -54,10 +56,24 @@ Dette gjelder utskriften, ikke arbeidet: hvert steg kjøres som før.
 
 Fasen er ferdig (eller økten avsluttes). Gjør følgende, i rekkefølge:
 
-Rekkefølgen gjelder tenkingen, ikke turene: loggen (steg 1), læringsloggen
-(steg 2d) og STATUS (steg 3) er uavhengige filer, så når innholdet i alle tre er
-bestemt, sendes filskrivingene i samme melding — én tur i stedet for tre, på det
-punktet i økten der hver tur koster mest.
+**Turplan — rekkefølgen gjelder tenkingen, ikke turene.** Et steg som trenger
+svaret fra et annet får egen tur; alt annet deler tur. Sju turer er normalen:
+
+1. `date`, de to topp-lesningene, søket etter fasens overskrift i loggen og
+   `Grep` mot `CLAUDE.md` — alt i samme melding.
+2. De tre skrivingene: logg, `laering.md`, STATUS. Forslagene fra steg 4 (plan,
+   `TODO.md`) legges fram i samme melding og avventer svar.
+3. `wc -l` på STATUS, ordlekkasje-søket, alle sikkerhetssøkene med kontrollsøk,
+   sjekken (eller avgjørelsen om å hoppe over den) og `date` igjen — alt i
+   samme melding.
+4. Rette treff fra tur 3, tidslinja inn i logginnslaget, meldingsfila.
+5. `git add`.
+6. `git commit -F`.
+7. Push, så FERDIG.
+
+Målt 2026-09-05 (`VPC-5CG3433WMH`, Sonnet via kommando) uten turplan: 6 min og
+over 37k tokens for en økt som ikke hadde gjort noe. Hver tur sender hele
+konteksten på nytt, på det punktet i økten der den er størst.
 
 **Les toppen, ikke arkivet.** `logg.md` og `laering.md` får nye innslag øverst
 og vokser for hver faseslutt. For å legge inn et innslag trenger du bare de
@@ -95,9 +111,11 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
       - *Brutt igjen* — situasjonen oppsto, punktet ble ikke fulgt: videreføres,
         rundetallet øker.
       - *Ikke utløst* — situasjonen oppsto ikke i fasen. Kan en gjenstående fase
-        utløse den? Ja: videreføres, rundetallet står. Nei: strykes, med peker
-        til logginnslaget. Et punkt som aldri ble satt på prøve har ikke hatt en
-        runde. Belegg: et punkt nådde «3. runde» uten å ha blitt prøvd én gang.
+        utløse den? Ja: videreføres, rundetallet står. Nei — og et prosjekt uten
+        plan har ingen gjenstående fase: strykes, med peker til logginnslaget.
+        «Tatt ut men ikke strøket» er ikke et utfall. Et punkt som aldri ble
+        satt på prøve har ikke hatt en runde. Belegg: et punkt nådde «3. runde»
+        uten å ha blitt prøvd én gang; en økt uten plan fant opp et fjerde utfall.
    b. **Tell rundene i STATUS**, ikke i læringsloggen: hvert punkt bærer et
       rundetall (`(2. runde)`). Bare «brutt igjen» øker tallet; et nytt punkt
       starter uten tall; et punkt uten tall i et eldre prosjekt regnes som
@@ -109,9 +127,11 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
       **Forslaget legges fram én gang.** Sier brukeren nei eller «ikke nå»,
       føres svaret i `laering.md`, punktet tas ut av STATUS, og forslaget
       gjentas ikke.
-   c. Skriv 1–3 **nye** handlingsbare punkter, hver med stabil
+   c. Skriv **0–3 nye** handlingsbare punkter, hver med stabil
       stikkordsetikett (`[explore-delegering]`-stil) og konkret belegg — dekk
-      både prosess/token-bruk og kodekvalitet/framgangsmåte. **Svar alltid på
+      prosess/token-bruk og kodekvalitet/framgangsmåte der noe faktisk gikk
+      galt. Null er riktig svar etter en økt der ingenting gikk galt; et punkt
+      uten et brudd bak seg er en oppfinnelse. **Svar alltid på
       ett spørsmål om fasesnittet:** fikk fasen plass i én økt uten `/compact`?
       Hvis ikke, var fasen for stor — foreslå hvordan de gjenstående fasene bør
       deles, og legg det inn i `kunnskap/plan.md` når brukeren sier ja. «Kunne
@@ -149,9 +169,10 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
    til `TODO.md`, per-økt-påminnelser i STATUS eller prosjektets CLAUDE.md.
    Hold den skarp — historikk hører hjemme i loggen.
 
-   **Én adresse per regel.** Før hvert «må vite»-punkt skrives, sjekkes det mot
-   prosjektets `CLAUDE.md` (ett `Grep` etter et nøkkelord fra punktet). Står det
-   der, strykes det fra STATUS — `CLAUDE.md` leses i hver økt uansett, og to
+   **Én adresse per regel.** Før «må vite»-punktene skrives, sjekkes de mot
+   prosjektets `CLAUDE.md` — ett `Grep` med alle punktenes nøkkelord i samme
+   mønster (`ord1|ord2|…`), én tur, ikke ett kall per punkt. Står et punkt der,
+   strykes det fra STATUS — `CLAUDE.md` leses i hver økt uansett, og to
    adresser er det som får STATUS til å vokse. Belegg: fire av tolv punkter i
    ett prosjekt sto begge steder.
 
@@ -175,11 +196,12 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
    `kunnskap/plan.md` NÅ — den originale er en engangsartikkel.)
 
    **Ordlekkasje-søk i det du nettopp skrev.** Ett `Grep` i `STATUS.md`,
-   `laering.md` og loggen etter `skaffold|scaffold|trigg|probe|harness` — ordene
-   som er *observert* lekket fra Claude Codes eget vokabular inn i
+   `laering.md` og loggen etter `skaffold|scaffold|trigg|probe|harness|røyktest`
+   — ordene som er *observert* lekket fra Claude Codes eget vokabular inn i
    prosjektfiler. Treff skrives om til vanlig norsk (sette opp, slår inn,
-   kontrollkall, Claude Code selv) før commit. Lista vokser bare med ord som
-   faktisk er sett i et prosjekts filer, ikke med ord som kunne lekke.
+   kontrollkall, Claude Code selv, rask sjekk) før commit. Lista vokser bare
+   med ord som faktisk er sett i et prosjekts filer, ikke med ord som kunne
+   lekke.
 
 4. **Plan og `TODO.md`.**
 
@@ -278,10 +300,12 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
    ikke at mønstrene er de riktige. En regex kan være gal og likevel bestå
    kontrollen.
 
-   **Omtal søket uten å sitere søkeordet** — i chatten og i loggen. «Søk etter
-   nøkkelord for hemmeligheter: 0 treff», ikke ordet selv. Skrives ordet i
-   loggen, er loggens egen setning neste faseslutts eneste treff, og nullsvaret
-   er borte. Belegg: to faseslutt på rad.
+   **Rapportlinja i loggen skrives slik, og ikke annerledes:** «Rask
+   sikkerhetssjekk: env-filer 0, fødselsnummer-mønster 0, nøkkel-mønster 0,
+   kontrollsøk N treff.» Ingen av søkeordene, og ikke et nytt navn på sjekken.
+   Skrives ordet i loggen, er loggens egen setning neste faseslutts eneste
+   treff, og nullsvaret er borte. Belegg: to faseslutt på rad, og en tredje der
+   instruksen «omtal uten ordet» sto — og ordet kom likevel.
 
    **Alle søkene kjøres som parallelle kall i samme melding** — ls-files-sjekkene,
    grep-søkene og kontrollsøket sendes samlet, ikke som en tur per søk. Hvert kall

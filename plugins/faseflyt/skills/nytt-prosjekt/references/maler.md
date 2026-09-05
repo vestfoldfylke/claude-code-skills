@@ -395,11 +395,17 @@ nettlesere, skjermbildeverktøy eller nettleserautomasjon. De to første
 oppføringene bruker kolon-prefiksformen som er målt å virke, og stopper steget
 som faktisk laster ned nettleseren. De to siste har jokertegn midt i mønsteret —
 den formen er utestet, med samme forbehold som `Bash(npx tsx scripts/*)` under.
-Kontrollkall: `npx playwright --version` skal avvises. Slipper det gjennom,
-henter `npx` bare npm-pakken, ingen nettleser, så kallet er trygt å prøve. Som
-resten av `permissions`: mønstre treffer kommandonavn og kan omgås, matcherne
-dekker ikke PowerShell-verktøyet på Windows, og forbudet i CLAUDE.md-avsnittet
-står i tillegg.
+**Dette settet har ikke noe kontrollkall, med vilje.** Feiltilfellet er ikke
+harmløst: `playwright`-pakken laster ned nettlesere i install-scriptet sitt,
+og `npx` kjører det, så et kall som slipper gjennom gjør nettopp det settet
+skal hindre. Og et kall som prøver, ber Claude bryte forbudet i
+CLAUDE.md-avsnittet — observert 2026-09-05 i `faseflyt-0.7-test`: ny økt fikk
+ordre om å kjøre `npx playwright --version` som test, og avslo med henvisning
+til regelen. Det er slik laget testes: be om installasjonen, se avslaget.
+Deny-settet er andre lag, for økter der regelen ikke holder — formen er målt
+(`Bash(curl:*)`, se «Deny-settets grenser»), strengen er uprøvd og forblir det.
+Som resten av `permissions`: mønstre treffer kommandonavn og kan omgås, og
+matcherne dekker ikke PowerShell-verktøyet på Windows.
 
 **Oppføringene virker først etter omstart.** `.claude/settings.json` leses ved
 oppstart, ikke på nytt midt i en økt. Målt 2026-08-25 på `VPC-5CG3433WMH`:

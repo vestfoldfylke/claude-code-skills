@@ -4,6 +4,19 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.7.1 — 2026-09-05
+
+`faseflyt` 0.7.1. Rettelse etter tørrkjøring av 0.7.0 i `faseflyt-0.7-test`
+(`VPC-5CG3433WMH`, hostname kjørt).
+
+- **Kontrollkallet for nettleser-deny er tatt ut.** 0.7.0 sa at
+  `npx playwright --version` var trygt å prøve fordi `npx` bare henter
+  npm-pakken. Det var en hypotese skrevet som fakta: `playwright` laster ned
+  nettlesere i install-scriptet. Og kallet ber Claude bryte forbudet —
+  observert: ny økt avslo ordren med henvisning til regelen, to ganger samme
+  dag. Forbudet er laget som testes; deny-settet er andre lag med målt form og
+  uprøvd streng. Malen, steg 6 og planens verifiseringslinje sier det.
+
 ## 0.7.0 — 2026-09-05
 
 `faseflyt` 0.7.0. Fase 6 i planen: funnene fra tørrkjøringen av `klengenavn`

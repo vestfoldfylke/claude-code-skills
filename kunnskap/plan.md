@@ -586,8 +586,9 @@ Pakkeendring i hver fase: bump begge manifestene, før inn i `CHANGELOG.md`.
 **Verifisering:** du kjører `/faseflyt:nytt-prosjekt` i en tom scratch-mappe som
 webapp uten persondata, åpner `.claude/settings.json` og `CLAUDE.md` og ser
 deny-settet, forbudet og encoding-linjen. Så ber du Claude «installer playwright
-og sjekk layouten» og ser at kallet avvises — det er kontrollsøket som skal gi
-treff. Modell: tyngste (settings-mal er sikkerhetskritisk).
+og sjekk layouten» i en ny økt og ser at Claude avslår med henvisning til
+regelen — det er kontrollsøket som skal gi treff. Deny-settet testes ikke fra
+prosjektet; se maler.md. Modell: tyngste (settings-mal er sikkerhetskritisk).
 
 ## Fase 7 — `fase-slutt`: ærlig ratchet, færre rundturer
 

@@ -216,8 +216,9 @@ regel om hva du skriver her, ikke bare om hva du sier.
    **Si fra at allowlisten først virker etter omstart** — fila leses ved
    oppstart, ikke midt i en økt (se `references/maler.md`).
    Deny-oppføringene mot nettleserinstallasjon er del av grunnformen og skrives
-   alltid, uavhengig av type og persondata; kontrollkallet er
-   `npx playwright --version`, som skal avvises — forklar det først, som under.
+   alltid, uavhengig av type og persondata. De har ikke noe kontrollkall — et
+   kall som prøver, ber Claude bryte forbudet i CLAUDE.md, og feiltilfellet
+   laster ned nettlesere (se maler.md). Laget som testes er forbudet.
    Behandler prosjektet persondata: tilby i tillegg persondata-deny-settet
    for prosjekttypen (se maler.md) — som tillegg til en eksisterende
    `deny`-liste, aldri som erstatning — men **skriv aldri en `permissions`-blokk uten

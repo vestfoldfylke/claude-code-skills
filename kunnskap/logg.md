@@ -2,6 +2,45 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 7 levert og verifisert: `fase-slutt` får ærlig ratchet og turplan; `faseflyt` 0.8.0 → 0.8.2
+
+**Levert i tre trinn**, hver pushet rett til `main` og målt i det midlertidige
+testprosjektet `test-faseflyt` før neste trinn:
+- **0.8.0** (`865c5cb`): tredje utfall i selvvurderingen (fulgt/brutt igjen/ikke
+  utløst), én adresse per regel, STATUS telles mot tak 45, issue-kriteriet
+  utvidet, steg 5 hopper over en alt-grønn sjekk, steg 6 omtaler søket uten
+  ordet, ordlekkasje-søk, planen kollapser ferdige faser, tid føres med `date`.
+- **0.8.1** (`36735fb`): turplan (sju turer, hva som deler melding) etter at
+  0.8.0 likevel brukte 37k tokens/7+ min i tørrkjøring (økt 9) — «ikke utløst»
+  ble hedget til et fjerde utfall, søkeordet ble sitert tross instruksen, og
+  «1–3 nye punkter» tvang fram oppfinnelser i en økt der ingenting gikk galt.
+- **0.8.2** (`73b910c`): STATUS-linjetallet ble målt i tur 3 men aldri skrevet
+  fordi turplanens tur 4 ikke nevnte det (økt 10, 18k/3:40); tabellens
+  forbudte ord for «sjekk at prosjektet virker» lekket til loggens overskrift
+  og manglet i ordlekkasje-lista.
+
+**Målt, tre tørrkjøringer i `test-faseflyt`** (økt 9–11, `VPC-5CG3433WMH`,
+Sonnet via kommandoformen): 37k tokens/7+ min → 18k/3:40 → 12k/2:40. Alle seks
+punktene i planens verifiseringslinje er bekreftet, fordelt over økt 10 (fem
+av seks) og økt 11 (alle seks). Ettminuttsmålet er ikke nådd — ført som
+måling, ikke løfte.
+
+**Beslutning (BK, testregime):** tørrkjøring i `test-faseflyt`, rettelser
+skrevet og pushet direkte til `main` mellom hver runde — ingen branch, i tråd
+med at diffen er repoets eneste port.
+
+**Én adresse per regel traff dette repoet ved første bruk:** ved denne
+faseslutten viste tre av STATUS' «må vite»-punkter seg å stå ordrett i
+`CLAUDE.md` (sjekk-rekkefølgen, manifestbump/CHANGELOG/målinger, `git commit
+-F`) — strøket fra STATUS i samme runde, se steg 3.
+
+Denne faseslutten: sjekk `sjekk.sh` 11 søk / 0 feil (manifestvalidering hoppet
+over — ingen manifest rørt siden den gikk grønt på `73b910c`). Rask
+sikkerhetssjekk: env-filer 0, fødselsnummer-mønster 0, nøkkel-mønster 0,
+kontrollsøk 43 treff. STATUS.md: 42 linjer. fase-slutt: 14:03–14:10, 7 min —
+på skillens 0.7.0-form (økten startet før 0.8.x), med to klarsignal-runder
+(TODO-fortetting og plan-kollaps) inni.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 6 levert og verifisert: nytt-prosjekt/web-prototype rettet mot tørrkjøringsfunn; `faseflyt` 0.7.1, `web-prototype` 0.1.4
 
 **Levert:** `plan.md` sin fase 6 (nytt-prosjekt/web-prototype) implementert som

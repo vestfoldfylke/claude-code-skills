@@ -9,6 +9,27 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 7: fase-slutt får ærlig ratchet og turplan
+
+**Evaluering av forrige økts punkter:**
+- **[hypotese-skrevet-som-fakta]** ikke utløst denne fasen (instruksdesign,
+  ingen uverifiserte verktøypåstander skrevet). Kan utløses av fase 8, som
+  omtaler modellbytte-oppførsel — videreføres uten rundetall.
+- **[totrinns-vern-krever-ekstern-verifisering]** ikke utløst, og ingen
+  gjenstående fase gjelder deny-sett → strøket. Se `logg.md` 2026-09-05
+  (tørrkjøring `faseflyt-0.7-test`) for hvor funnet faktisk ble verifisert.
+
+**Nye punkter:** 0 — korrigeringene denne fasen skjedde i pakketeksten selv
+(`CHANGELOG.md` 0.8.0–0.8.2), ikke i øktens egen framgangsmåte.
+
+**Fasesnitt:** fikk plass i én økt uten `/compact`, på tvers av tre
+modellskifter (Sonnet → Fable → Sonnet) og tre tørrkjøringsrunder.
+
+**Ordvalg:** ordlekkasje-søk i STATUS/laering/logg (denne skrivingen): 0 treff.
+
+**Issue til pakkerepoet:** ikke aktuelt — alle funn ble rettet direkte i denne
+fasen, som var fasens formål.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 6: nytt-prosjekt/web-prototype rettet mot tørrkjøringsfunn
 
 **Evaluering av forrige økts punkter:**

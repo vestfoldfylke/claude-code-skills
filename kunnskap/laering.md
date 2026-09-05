@@ -9,6 +9,26 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-05 (`VPC-5CG3433WMH`) — gruppeleder-prep: README og sjekkliste
+
+**Evaluering av forrige økts punkter:**
+- `[ny-fil-uten-forespoersel]` **fulgt.** Spurte (AskUserQuestion) før
+  `kunnskap/gruppeleder-sjekkliste.md` ble opprettet, og sjekket samtidig om
+  innholdet fantes andre steder (claude.ai-artefakten). Strøket fra STATUS.
+
+**Nytt punkt:**
+- `[trigg-ordet-gjentar-seg]` Skrev «auto-trigger» tre ganger i samme økt —
+  sjekkliste-overskriften, en STATUS-linje, et logginnslag — til tross for å ha
+  rettet det første gang og kjent klarspråktabellen. Ordlekkasje-søket i steg 3
+  fanget de to siste før commit, men det bør ikke være eneste nett: søk etter
+  tabellordene rett etter hver skriving til `kunnskap/`, ikke først samlet ved
+  faseslutt.
+
+Ett spørsmål om fasesnittet: hele gruppeleder-prep-delen fikk plass i én økt
+uten `/compact` — riktig snitt.
+
+Issue til pakkerepoet: ikke aktuelt.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 9: alt åpent lukket før samlingen
 
 **Evaluering av forrige økts punkter:**

@@ -2,6 +2,38 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-05 (`VPC-5CG3433WMH`) — gruppeleder-prep: README strammet, sjekkliste opprettet (skrevet, verifisert av BK)
+
+**Beslutning (BK, README-kutt):** godkjente kuttplanen — installasjonen sier
+«i en terminal» først, `claude plugin`-formene skrevet ut med `claude plugin
+list` som kvittering, «Overta andres prosjekt» rettet til det som faktisk er
+målt (planens verifiseringspunkt 9: intet installasjonstilbud ved kloning),
+tre FAQ-svar kortet ned. 252 → 235 linjer. Ingen versjonsbump — README endrer
+ikke hva en plugin gjør.
+
+**Beslutning (BK, sjekkliste):** ny fil `kunnskap/gruppeleder-sjekkliste.md` —
+forutsetninger, installasjon i terminal (`claude plugin marketplace add`/
+`install`/`list`), test i chat (slår skillene inn av seg selv?), måling av
+kloningstilbudet
+(samme løfte står fortsatt i `nytt-prosjekt` steg 6 og rettes først med
+belegg fra samlingen), Mac/Snapdragon-ARM, rapportering.
+
+- Committet `9eb7a03` (README.md, CHANGELOG.md,
+  `kunnskap/gruppeleder-sjekkliste.md`). **Ikke pushet ved faseslutt** — push
+  kreves før noen tørrkjøring, ellers testes forrige pushede versjon.
+- Selvfunn: overskriften «Auto-trigger» i sjekklisten brøt CLAUDE.mds
+  ordtabell — fanget og rettet før staging (manuell gjennomlesing av egne ord,
+  ikke renhetssjekken — den dekker ikke ordtabellen). Ingen ny regel; steget
+  som skulle fange det, fanget det.
+- `claude plugin validate .`: bestått (kjørt rett før forrige commit, ingen
+  manifestendring siden). `sjekk.sh` (11 søk) kjørt på nytt etter rettingene
+  over: 0 feil, 0 advarsler, kontrollsøk 44 treff på `faseflyt` i `plugins/`.
+- Rask sikkerhetssjekk (samme `sjekk.sh`-kjøring): env-filer 0 (ingen tracked,
+  `git ls-files` mot `.env`), fødselsnummer-mønster 0, nøkkel-mønster 0,
+  kontrollsøk 44 treff.
+- STATUS: 45 linjer (tak).
+- fase-slutt: 20:54–21:00, 6 min.
+
 ## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 9 ✅: alt åpent lukket før samlingen, verifisert av BK
 
 **Beslutning (BK, køen):** alt som er åpent lukkes eller avgjøres nå; ingenting

@@ -2,7 +2,7 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
-## 2026-09-05 (`VPC-5CG3433WMH`) — gruppeleder-prep: README strammet, sjekkliste opprettet (skrevet, verifisert av BK)
+## 2026-09-05 (`hjemme-win-x86`) — gruppeleder-prep: README strammet, sjekkliste opprettet (skrevet, verifisert av BK)
 
 **Beslutning (BK, README-kutt):** godkjente kuttplanen — installasjonen sier
 «i en terminal» først, `claude plugin`-formene skrevet ut med `claude plugin
@@ -34,7 +34,7 @@ belegg fra samlingen), Mac/Snapdragon-ARM, rapportering.
 - STATUS: 45 linjer (tak).
 - fase-slutt: 20:54–21:00, 6 min.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 9 ✅: alt åpent lukket før samlingen, verifisert av BK
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Fase 9 ✅: alt åpent lukket før samlingen, verifisert av BK
 
 **Beslutning (BK, køen):** alt som er åpent lukkes eller avgjøres nå; ingenting
 bygges før samlingen 14. september. Det som dukker opp i prep eller samling blir
@@ -75,7 +75,7 @@ nye issues ETTER samlingen.
 - STATUS: 44 linjer (tak 45). fase-slutt: 16:33–16:39, 6 min til commit, med
   én klarsignal-tur for kollapsen i planen.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fryse-runde før 1.0: verifiseringslista gjennomgått, `nytt-prosjekt` tørrkjørt tre ganger, `faseflyt` 0.9.0
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Fryse-runde før 1.0: verifiseringslista gjennomgått, `nytt-prosjekt` tørrkjørt tre ganger, `faseflyt` 0.9.0
 
 **Levert** (`89acdd6`, ikke pushet ennå — se steg 7 under):
 - Org-katalogen droppet som distribusjonskanal. **Beslutning (BK, distribusjon):**
@@ -117,7 +117,7 @@ kontrollsøk 23 treff. STATUS: 45 linjer (tak 45). Issue #17 opprettet
 (beslutninger tatt utenfor fase-slutt skrives ikke tilbake til planen).
 fase-slutt: 15:40–15:48, 8 min til sjekkene var ferdige; commit og push etterpå.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 8 levert og verifisert: `fase-start`/`hjelp`/README kort utdata, kommandoform-modell dokumentert; `faseflyt` 0.8.3
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Fase 8 levert og verifisert: `fase-start`/`hjelp`/README kort utdata, kommandoform-modell dokumentert; `faseflyt` 0.8.3
 
 **Levert** (`9574b99`, pushet til `main`):
 - `fase-start`: modell-instruksen står alene som siste linje i svaret, uthevet
@@ -152,7 +152,7 @@ ordlekkasje-rettelsen). **Rask sikkerhetssjekk:** env-filer 0,
 fødselsnummer-mønster 0, nøkkel-mønster 0, kontrollsøk 24 treff (`faseflyt` i
 README.md). **STATUS:** 45 linjer. **fase-slutt: 14:30–14:41, 11 min.**
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 7 levert og verifisert: `fase-slutt` får ærlig ratchet og turplan; `faseflyt` 0.8.0 → 0.8.2
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Fase 7 levert og verifisert: `fase-slutt` får ærlig ratchet og turplan; `faseflyt` 0.8.0 → 0.8.2
 
 **Levert i tre trinn**, hver pushet rett til `main` og målt i det midlertidige
 testprosjektet `test-faseflyt` før neste trinn:
@@ -169,7 +169,7 @@ testprosjektet `test-faseflyt` før neste trinn:
   forbudte ord for «sjekk at prosjektet virker» lekket til loggens overskrift
   og manglet i ordlekkasje-lista.
 
-**Målt, tre tørrkjøringer i `test-faseflyt`** (økt 9–11, `VPC-5CG3433WMH`,
+**Målt, tre tørrkjøringer i `test-faseflyt`** (økt 9–11, `hjemme-win-x86`,
 Sonnet via kommandoformen): 37k tokens/7+ min → 18k/3:40 → 12k/2:40. Alle seks
 punktene i planens verifiseringslinje er bekreftet, fordelt over økt 10 (fem
 av seks) og økt 11 (alle seks). Ettminuttsmålet er ikke nådd — ført som
@@ -191,7 +191,7 @@ kontrollsøk 43 treff. STATUS.md: 42 linjer. fase-slutt: 14:03–14:10, 7 min �
 på skillens 0.7.0-form (økten startet før 0.8.x), med to klarsignal-runder
 (TODO-fortetting og plan-kollaps) inni.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 6 levert og verifisert: nytt-prosjekt/web-prototype rettet mot tørrkjøringsfunn; `faseflyt` 0.7.1, `web-prototype` 0.1.4
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Fase 6 levert og verifisert: nytt-prosjekt/web-prototype rettet mot tørrkjøringsfunn; `faseflyt` 0.7.1, `web-prototype` 0.1.4
 
 **Levert:** `plan.md` sin fase 6 (nytt-prosjekt/web-prototype) implementert som
 `faseflyt` 0.7.0 (commit `fa7f391`), rettet til 0.7.1 (commit `9742ce6`) etter
@@ -223,7 +223,7 @@ deny-settet er dokumentert som uprøvd med vilje (formen målt tidligere via
 `Bash(curl:*)`, strengen `npx playwright` ikke), og forbudet er lagets faktiske
 test.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Tørrkjøring av `klengenavn` fullført (fase 0–4); ni pakkefunn ført til TODO.md
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Tørrkjøring av `klengenavn` fullført (fase 0–4); ni pakkefunn ført til TODO.md
 
 **Levert:** ingen kode endret i pakken denne økten — hele økten var tilsyn med
 BKs fullstendige tørrkjøring av `web-prototype` 0.1.3/`faseflyt` 0.6.1 i
@@ -269,7 +269,7 @@ faseslutt i SAMME prosjekt.
 to implementeringsfaser her — se `TODO.md` og `## Arbeidsmåte neste økt`
 under.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — web-prototype 0.1.3: sv/Designsystemet-drift rettet, bekreftet mot `klengenavn`
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — web-prototype 0.1.3: sv/Designsystemet-drift rettet, bekreftet mot `klengenavn`
 
 **Levert:** `web-prototype` **0.1.3** — bump av begge manifestene + `CHANGELOG.md`.
 Fire funn rettet i skillens `SKILL.md`: (1) `.gitignore` overskrives stille av
@@ -308,7 +308,7 @@ gikk fra 41 til 42 treff på «faseflyt». `claude plugin validate .` → Valida
 passed, kjørt to ganger etter to rettelser i selve teksten (uklar begrunnelse i
 fargepunktet, unøyaktig omtale av det opprinnelige forslaget).
 
-## 2026-09-04 (hjemmekontor, `VPC-5CG3433WMH`) — faseflyt 0.6.1: funn fra første tørrkjøring av 0.6.0 rettet
+## 2026-09-04 (hjemmekontor, `hjemme-win-x86`) — faseflyt 0.6.1: funn fra første tørrkjøring av 0.6.0 rettet
 
 **Levert:** `faseflyt` **0.6.1** — bump av begge manifestene, ikke committet
 før dette fase-slutt-kallet. Elleve filer endret: fem `SKILL.md`, fire
@@ -328,8 +328,8 @@ faseslutt, og observert 2026-09-04 i `klengenavn`: nettopp dét skjedde — en
 falsk peker til `laering.md` erstattet tre reelle regler.
 
 **Beslutning (BK, CHANGELOG):** rette maskinnavnet i 0.6.0-innslaget til
-`VPC-8WD9VC4`, i samme runde som 0.6.1. `hostname` kjørt før noe maskinnavn
-ble skrevet i denne økten (`VPC-5CG3433WMH`, bekreftet før bruk).
+`kontor-win-arm`, i samme runde som 0.6.1. `hostname` kjørt før noe maskinnavn
+ble skrevet i denne økten (`hjemme-win-x86`, bekreftet før bruk).
 
 **Funn rettet i 0.6.1** (fullt utdrag i CHANGELOG.md):
 1. STATUS-overskrivingen mistet Windows-reglene mot en falsk peker → snutten
@@ -365,7 +365,7 @@ egen plugin og egen pakkesak — se «Neste» i STATUS.
 
 ## 2026-09-04 (kontor-PC) — faseflyt 0.6.0 ute; CHANGELOG navngir feil maskin
 
-Maskin `VPC-8WD9VC4` (kontor-PC). `uname -m` her ga `x86_64` — det avviker fra
+Maskin `kontor-win-arm` (kontor-PC). `uname -m` her ga `x86_64` — det avviker fra
 tidligere loggførte funn om samme maskinnavn som ARM64/Snapdragon X Elite.
 **Hypotese, ikke undersøkt:** Git Bash kjører som en x86_64-emulert binær på
 denne maskinen (kjent mønster for Git for Windows på ARM), så `uname -m`
@@ -409,8 +409,8 @@ Full plan med ordlyd-forslag ligger i `~/.claude/plans/mellow-rolling-gadget.md`
   ingen av de enkelte `Edit`-bekreftelsene viste. Rettet før commit.
 
 **Feil oppdaget ved faseslutt, IKKE rettet:** `CHANGELOG.md` sier
-«filstørrelser målt 2026-09-04 på `VPC-5CG3433WMH`» (hjemmekontor-maskinen).
-Det er feil — `hostname` kjørt nå viser at hele økten kjørte på `VPC-8WD9VC4`.
+«filstørrelser målt 2026-09-04 på `hjemme-win-x86`» (hjemmekontor-maskinen).
+Det er feil — `hostname` kjørt nå viser at hele økten kjørte på `kontor-win-arm`.
 Maskinnavnet ble aldri sjekket under selve arbeidet i dag; det ble antatt fra
 hvilken maskin som vanligvis gjør denne typen målinger i dette repoet, i strid
 med CLAUDE.md-regelen om at målinger navngir maskinen. **Ikke rettet i denne
@@ -424,7 +424,7 @@ faseslutt på 0.6.0, og av at neste `fase-start`-økt faktisk bruker
 
 ## 2026-08-30 (hjemmekontor, kveld) — 0.5.12: rutineskillene kjører på Sonnet, og fase-slutt samler turene der konteksten er størst
 
-Maskin `VPC-5CG3433WMH` (hjemmekontor, x86_64). Utgivelse `faseflyt` **0.5.12**
+Maskin `hjemme-win-x86` (hjemmekontor, x86_64). Utgivelse `faseflyt` **0.5.12**
 (`703ef89`), planlagt i planmodus og godkjent av BK samme dag.
 
 **Bakgrunnen er en Usage-avlesning BK la fram, ikke en måling jeg kjørte.**
@@ -487,7 +487,7 @@ innslaget gikk på øktens egen modell, ikke på Sonnet.
 
 ## 2026-08-30 (hjemmekontor) — Tørrkjøringene er gjennomført i to eksterne repoer; funnene hentet hjem til loggen
 
-Maskin `VPC-5CG3433WMH` (hjemmekontor, x86_64). Ingen pakkeendring. Innslaget
+Maskin `hjemme-win-x86` (hjemmekontor, x86_64). Ingen pakkeendring. Innslaget
 fører hjem funn fra to testrepoer BK pekte på. Observasjonene under er gjort i
 de øktene og sitert fra repoenes egne `kunnskap/`-logger — ikke kjørt på nytt
 her, så de står som siterte funn, ikke som denne øktens målinger.
@@ -499,7 +499,7 @@ repoet, slik planen krevde:
   tørrkjøringen som STATUS alt omtalte som avsluttet. Fase 0/1/2 verifisert,
   fase 3 bevisst uåpnet. Verifiseringsporten holdt tre av tre ganger — det var
   suksesskriteriet.
-- `bkaarstein/test-oppgave-samling` (ARM-maskinen `VPC-8WD9VC4`, logget
+- `bkaarstein/test-oppgave-samling` (ARM-maskinen `kontor-win-arm`, logget
   2026-08-28): nytt prosjekt satt opp fra bunnen med `nytt-prosjekt` på faseflyt
   0.5.11 — en Donald Pocket-boksamling med tegnede omslag. Tre faseslutt, alle
   verifisert av BK; porten holdt der også. Dette dekker «kjør flyten fra blank
@@ -546,7 +546,7 @@ klarsignal 2026-08-30.
 
 ## 2026-08-28 (formiddag) — ARM-leddet er komplett: innholdet i cachen er målt fil-for-fil på denne maskinen, og «0 avvik» ble etterprøvd framfor trodd
 
-Maskin `VPC-8WD9VC4` (Snapdragon X Elite, ARM64, VS Code-utvidelsen). Kort økt med
+Maskin `kontor-win-arm` (Snapdragon X Elite, ARM64, VS Code-utvidelsen). Kort økt med
 én post: innholdssammenligning cache mot repo, som var aldri gjort på denne
 maskinen. Ingen pakkeendring, ingen ny versjon.
 
@@ -557,7 +557,7 @@ linjeskift normalisert (`tr -d '\r'` før `sha256sum`).
 
 | Trinn | Målt hvordan | Utfall |
 |---|---|---|
-| Rammer | `$COMPUTERNAME` + `ls` på begge sider | `VPC-8WD9VC4`, `skills/` på hver side |
+| Rammer | `$COMPUTERNAME` + `ls` på begge sider | `kontor-win-arm`, `skills/` på hver side |
 | Filliste | `find . -type f` begge sider, `diff` på listene | 11 pakkefiler likt; cachen har i tillegg `.in_use/13932` |
 | Innhold | `tr -d '\r' \| sha256sum` per fil, 11 par | 0 avvik |
 | Kontroll | `hjelp/SKILL.md` mot `grill-me/SKILL.md`, samme logikk | AVVIK som forventet |
@@ -596,7 +596,7 @@ som ikke ligger i pakken.
 **Funn, observert ved push: maskinen var én commit bak remote, og samme måling ble
 gjort to steder samme dag.** `git push` ble avvist (non-fast-forward). `git fetch`
 viste `b03622a` — en faseslutt fra hjemmekontoret kvelden før, som gjorde samme
-innholdssammenligning på x86 (`VPC-5CG3433WMH`, 0.5.11, 11 filer, 0 avvik, tredje
+innholdssammenligning på x86 (`hjemme-win-x86`, 0.5.11, 11 filer, 0 avvik, tredje
 gang der). De to målingene er komplementære, ikke dobbeltarbeid: x86 og ARM er
 ulike ledd i pre-flighten, og begge sto som umålt mot 0.5.11.
 
@@ -619,7 +619,7 @@ forrige økt la til to `echo`-mønstre og to `grep`-mønstre. Ingen brukersti. K
 falsk positiv i `fase-start` steg 2, bekreftet ved å lese diffen.
 ## 2026-08-27 (hjemmekontor, kveld) — 0.5.11 er identisk i cache og repo på x86-maskinen, tredje gang; og et ord jeg selv innførte slapp gjennom språkregelen
 
-Maskin `VPC-5CG3433WMH` (hjemmekontor, x86_64). Kort økt: maskinen var åtte
+Maskin `hjemme-win-x86` (hjemmekontor, x86_64). Kort økt: maskinen var åtte
 commits bak, og den ene posten i STATUS som kunne gjøres herfra ble gjort.
 
 **Levert:** ingen utgivelse. `git pull` (`b2ef202` → `a0b27a2`, åtte commits), én
@@ -679,7 +679,7 @@ tilbudt og ikke bestilt.
 
 ## 2026-08-27 (natt) — 0.5.11: pakken krever nå av kollegaene det den har krevd av seg selv, og køen viste seg å være tom bak frysen
 
-Maskin `VPC-8WD9VC4`. Tørrkjøringen ble flyttet til i morgen (28.08) på denne
+Maskin `kontor-win-arm`. Tørrkjøringen ble flyttet til i morgen (28.08) på denne
 maskinen, sammen med en kollega, så økten gikk til køen i stedet.
 
 **Levert:** `faseflyt` **0.5.11** (`fd86599`, pushet), issue #16 lukket.
@@ -727,7 +727,7 @@ utløste tidligere i økten. Ingen brukersti. Den kjente falske positiven i
 
 ## 2026-08-27 (sent kveld) — 0.5.10 når ARM-maskinen: alle tre ledd målt, og økten kjører teksten den nettopp utgav
 
-Maskin `VPC-8WD9VC4` (Snapdragon X Elite, ARM64, VS Code-utvidelsen). Kort økt med
+Maskin `kontor-win-arm` (Snapdragon X Elite, ARM64, VS Code-utvidelsen). Kort økt med
 én post å lukke: at `faseflyt` 0.5.10 faktisk kommer fram til denne maskinen.
 
 **Observert, alle tre ledd:**
@@ -760,7 +760,7 @@ kollegaprosjekt finnes de to tallene steget beskriver. Ingen endring foreslått.
 
 ## 2026-08-27 (kveld) — Allowlisten er ikke det som bestemmer, og saken lukkes med en beslutning framfor en ny måling
 
-Maskin `VPC-8WD9VC4`. Belegget kom av seg selv: faseslutten i innslaget under
+Maskin `kontor-win-arm`. Belegget kom av seg selv: faseslutten i innslaget under
 kjørte tolv `Bash`-kall, og BK fotograferte **alle fire** dialogene som kom. Det
 gjør fraværet av dialog like målt som tilstedeværelsen — hele tabellen er
 observert, ikke bare treffene.
@@ -853,7 +853,7 @@ går tapt.
 
 ## 2026-08-27 — Den brede `**`-formen er frikjent, men riggen kunne ikke skille fil fra omstart
 
-Maskin `VPC-8WD9VC4` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.
+Maskin `kontor-win-arm` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.
 Ingen utgivelse og ingen pakkeendring — økten målte, og målte ikke ferdig.
 
 Riggen kom fra innslaget under: den brede formen lagt inn i
@@ -921,7 +921,7 @@ omstart.
 
 ## 2026-08-26 (kveld) — `settings.json` er ikke inert: `Bash`-armen var feilmålt, og `Read`-armen har to variabler i seg
 
-Maskin `VPC-8WD9VC4` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.
+Maskin `kontor-win-arm` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.
 Samme maskin som innslaget under. Ingen utgivelse — økten målte.
 
 Utgangspunktet var BKs observasjon i oppstarten: **to** dialoger, med
@@ -996,7 +996,7 @@ Read-armen er avgjort.
 *Rettet samme dag, se innslaget over: `Bash`-halvdelen av funnet er motbevist, og
 Read-halvdelen har en variabel til i seg enn den sier.*
 
-Maskin `VPC-8WD9VC4` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.
+Maskin `kontor-win-arm` (kontor-PC, Snapdragon X Elite, ARM64), VS Code-utvidelsen.
 **Første måling gjort på ARM-maskinen i det hele tatt.** Ingen utgivelse — økten
 målte, den endret ingen pakkefil.
 
@@ -1066,12 +1066,12 @@ fil.
 
 - **Hvorfor `settings.json` er inert er ikke målt.** Godkjenningstilstand for
   prosjektinnstillinger, VS Code-utvidelsen og ARM er tre uprøvde forklaringer.
-- Om det samme gjelder på `VPC-5CG3433WMH` eller i terminal-CLI-en.
+- Om det samme gjelder på `hjemme-win-x86` eller i terminal-CLI-en.
 - Om skråstrek-retningen har noe å si — bare `/` er prøvd, aldri `\`.
 
 ## 2026-08-25 (dag) — Tilde-regelen fra 0.5.7 var feil, og allowlisten virker ikke i økten den skrives
 
-Maskin `VPC-5CG3433WMH` (hjemmekontor, AMD64 — ikke ARM-maskinen). Én utgivelse:
+Maskin `hjemme-win-x86` (hjemmekontor, AMD64 — ikke ARM-maskinen). Én utgivelse:
 `faseflyt` **0.5.9**. Renhetssjekken (11 søk, 0 feil) og `claude plugin validate .`
 kjørt etter `git add`, to ganger — én gang midtveis og én før commit. Første økt
 som kjørte 0.5.8 i drift.
@@ -1146,7 +1146,7 @@ grunnlag av den.
 
 ## 2026-08-25 (natt) — Fire godkjenninger igjen, og språkregelen som lå bak en henvisning
 
-Maskin `VPC-5CG3433WMH` (hjemmekontor, AMD64 — ikke ARM-maskinen). To utgivelser:
+Maskin `hjemme-win-x86` (hjemmekontor, AMD64 — ikke ARM-maskinen). To utgivelser:
 `faseflyt` 0.5.6 og 0.5.7, begge pushet til `main` (`6086d60`, `3093595`).
 Renhetssjekken og `claude plugin validate .` kjørt etter `git add` foran hver
 push. Første økt som kjørte 0.5.5 i drift.
@@ -1241,7 +1241,7 @@ den som holder over tid.
 
 ## 2026-08-25 (sent kveld) — Oppstarten kostet fem godkjenninger, og jeg brøt kontrakten jeg nettopp hadde lest
 
-Maskin `VPC-5CG3433WMH` (hjemmekontor). To utgivelser: `faseflyt` 0.5.4 og 0.5.5.
+Maskin `hjemme-win-x86` (hjemmekontor). To utgivelser: `faseflyt` 0.5.4 og 0.5.5.
 Renhetsporten kjørt etter `git add` foran push. Første økt som faktisk kjørte
 0.5.3 i drift — punkt 1 i forrige STATUS («marketplace update + omstart») var
 allerede utført da økten startet.
@@ -1292,7 +1292,7 @@ brukeren før utdataet alt er skrevet.
 
 ## 2026-08-25 (kveld) — Fire utgivelser: pakken sluttet å rapportere at ingenting var galt
 
-Maskin `VPC-5CG3433WMH` (hjemmekontor). Fem commits, fire utgivelser —
+Maskin `hjemme-win-x86` (hjemmekontor). Fem commits, fire utgivelser —
 `faseflyt` 0.5.0/0.5.1/0.5.2 og `web-prototype` 0.1.1. Renhetsporten kjørt etter
 `git add` foran hver push: 11 søk · 0 feil, positiv kontroll 38 treff på
 «faseflyt». `claude plugin validate .` passed hver gang.
@@ -1436,7 +1436,7 @@ ok» — den som gikk galt to ganger i tidligere test.
 ## 2026-08-25 (natt) — Tørrkjøringen nådde suksesskriteriet, og sikkerhetsrøyktesten viste seg å mangle sin egen kontroll
 
 Ingen pakkeendring denne økten — ingen versjonsbump, ingen manifestendring. Én
-leveranse: **issue #16**. Maskin `VPC-5CG3433WMH` (`uname -m: x86_64`), målt med
+leveranse: **issue #16**. Maskin `hjemme-win-x86` (`uname -m: x86_64`), målt med
 `hostname` + `uname -m` i økten, ikke antatt.
 
 ### Tørrkjøringen: fase 1 + faseslutt nummer to — BK kjørte, jeg tolket
@@ -1551,7 +1551,7 @@ forbeholdene under den tillater»). Regelen fantes i pakken og ble brutt likevel
 
 ## 2026-08-24 (natt) — 0.4.1 levert, og tørrkjøringen fant veggen ingen hadde forutsett
 
-Maskin `VPC-5CG3433WMH`, `uname -m: x86_64` — målt med `hostname` og `uname -m`
+Maskin `hjemme-win-x86`, `uname -m: x86_64` — målt med `hostname` og `uname -m`
 før commit-meldingen ble skrevet, ikke antatt. Én commit pushet: `378a624`.
 `faseflyt` 0.4.0 → 0.4.1. Issue #11 lukket.
 
@@ -1737,7 +1737,7 @@ strøket som innarbeidet i forrige faseslutt.
 
 ## 2026-08-24 (kveld) — faseflyt 0.4.0: to skills levert, og porten som ikke leste skills
 
-Hjemme-PC `VPC-5CG3433WMH` (AMD64) — målt med `hostname` og `uname -m`, ikke
+Hjemme-PC `hjemme-win-x86` (AMD64) — målt med `hostname` og `uname -m`, ikke
 antatt. Fire commits, alle pushet: `ffc43d4`, `967d5d3`, `8eda2c3`, `5f0f1aa`.
 `faseflyt` 0.2.4 → 0.3.0 → 0.4.0. Issues #6 og #4 lukket.
 
@@ -1825,7 +1825,7 @@ er korreksjonen. Selve målingene står, det er maskinnavnet som var galt.
 - **HOVEDFEILEN: jeg navngav maskinen uten å måle den.** Jeg skrev «kontor-PC
   (Snapdragon/ARM)» i loggen og «kontor-PC-en» i to commit-meldinger som nå er
   pushet. Målt i ettertid, etter at BK stoppet det: `hostname` gir
-  `VPC-5CG3433WMH` og `uname -m` gir `x86_64`. Det er hjemme-PC-en.
+  `hjemme-win-x86` og `uname -m` gir `x86_64`. Det er hjemme-PC-en.
   Sannsynlig årsak, og den er verre enn slurv: `TODO.md` sier at
   cache-målingen må gjøres om på kontor-PC-en, og jeg leste maskinen jeg satt på
   som den maskinen fordi det gjorde historien hel. Konsekvensen var reell —
@@ -1844,7 +1844,7 @@ er korreksjonen. Selve målingene står, det er maskinnavnet som var galt.
 
 ## 2026-08-24 — PATH fikset, 0.2.4 målt om, tolv beslutninger avgjort; issue #5 lukket
 
-Hjemme-PC `VPC-5CG3433WMH` (AMD64). Fire pusher: `2003cb7`, `ef6e66d`,
+Hjemme-PC `hjemme-win-x86` (AMD64). Fire pusher: `2003cb7`, `ef6e66d`,
 `41f0c97`, `420844a`. Ingen versjonsbump — ingen av endringene rører `plugins/`.
 
 ### Levert
@@ -1969,7 +1969,7 @@ Ført fordi belegg-kravet gjelder også når målingen var min:
 
 ## 2026-08-21 (sent kveld) — Køpunkt 2 levert: faseflyt 0.2.4 + repo-CLAUDE.md; promoteringen landet
 
-Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). To pusher: `4d86520` (faseflyt 0.2.4,
+Hjemme-PC-en `hjemme-win-x86` (AMD64). To pusher: `4d86520` (faseflyt 0.2.4,
 begge manifestene bumpet) og `f1b4a68` (repo-CLAUDE.md).
 
 ### Målt først: cache ren mot 0.2.3
@@ -2020,7 +2020,7 @@ pushet — forventet og flagget: installert står nå på 0.2.3, repo på 0.2.4.
 
 ## 2026-08-21 (kveld) — faseflyt 0.2.3: vurderingspunkt installasjon lukket + versjonssjekk; økten kjørte selv 0.1.0 uten å vite det
 
-Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). **Pakkeendring pushet:** `156dd94`,
+Hjemme-PC-en `hjemme-win-x86` (AMD64). **Pakkeendring pushet:** `156dd94`,
 faseflyt 0.2.3, begge manifestene bumpet.
 
 ### Levert
@@ -2080,7 +2080,7 @@ faseflyt 0.2.3, begge manifestene bumpet.
 
 ## 2026-08-21 — Websiden ble eneste kanal: klarspråkrunde 3, Snoozeloggen ut, docx-sporet lagt ned
 
-Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). **Ingen pakkeendring** — alt skjedde i
+Hjemme-PC-en `hjemme-win-x86` (AMD64). **Ingen pakkeendring** — alt skjedde i
 `kunnskap/` og på artefakten. faseflyt står på 0.2.2.
 
 ### Levert
@@ -2137,7 +2137,7 @@ skrevet før BKs «Alt ok — kjør»:
   `client_secret`-treff er instruksjonstekst (scriptet selv, logg, skill-tekst).
 ## 2026-08-20 — Klarspråk: en ikke-teknisk leser målte pakken, og pakken tapte
 
-Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). `main` = `095a1c1` + denne. **faseflyt
+Hjemme-PC-en `hjemme-win-x86` (AMD64). `main` = `095a1c1` + denne. **faseflyt
 0.2.1 → 0.2.2.** Økten avsluttes midt i ordlydsgjennomgangen av websiden.
 
 ### Levert
@@ -2233,7 +2233,7 @@ kontroller (fanger ett innsatt tegn, ignorerer CRLF).
 
 ## 2026-08-19 (sen kveld) — Samlingsarket strammet, TODO ryddet for løste funn ✅
 
-Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). `main` = `fba8674` + denne. faseflyt 0.2.1
+Hjemme-PC-en `hjemme-win-x86` (AMD64). `main` = `fba8674` + denne. faseflyt 0.2.1
 uendret — ingen endring i `plugins/`, pakken står fortsatt fryst for MVP-test.
 
 ### Levert
@@ -2326,7 +2326,7 @@ over `.env.example`, ingen treff på fødselsnummer eller `client_secret`.
 
 ## 2026-08-19 (kveld) — Renhetsport i CI, språkvask, og en scope-korreks fra BK ✅
 
-Hjemme-PC-en `VPC-5CG3433WMH` (AMD64). `main` = `5ba65ed` → `a33a11e` + denne.
+Hjemme-PC-en `hjemme-win-x86` (AMD64). `main` = `5ba65ed` → `a33a11e` + denne.
 faseflyt 0.2.1 uendret.
 
 ### Levert
@@ -2428,8 +2428,8 @@ dette er en instruks og ikke en håndhevet regel.
 
 ## 2026-08-19 — To maskiner, tre PR-er merget, `kunnskap/` inn i git ✅
 
-**Maskiner:** kontor-PC-en `VPC-8WD9VC4` (Dell, ARM64/Snapdragon X Elite, Win 11
-Ent 10.0.26200, PS 5.1, ingen `pwsh`) formiddag; hjemme-PC-en `VPC-5CG3433WMH`
+**Maskiner:** kontor-PC-en `kontor-win-arm` (Dell, ARM64/Snapdragon X Elite, Win 11
+Ent 10.0.26200, PS 5.1, ingen `pwsh`) formiddag; hjemme-PC-en `hjemme-win-x86`
 ettermiddag/kveld. `main` = `578dc95`. faseflyt **0.2.1**, konsistent.
 
 **Merget i dag:** PR #12 (ordrett maltekst, merge `057a3fc`), PR #13
@@ -2585,7 +2585,7 @@ pakken og 7 treff i `kunnskap/` som forventet, `faseflyt` treff i 16 filer.
 
 ## 2026-08-18 (kveld) — O8-fiksen: ordrett maltekst, PR #12 (skrevet, review hos bruker)
 
-**Maskin:** `VPC-5CG3433WMH`. Branch `ordrett-maltekst`, seks commits, pushet.
+**Maskin:** `hjemme-win-x86`. Branch `ordrett-maltekst`, seks commits, pushet.
 **PR #12 er OPEN og venter review** — ikke merget. Faseflyt-versjon 0.2.1.
 
 **Levert (STATUS-punkt 1):** steg 5, 6 og 8 i `nytt-prosjekt` krever nå ORDRETT
@@ -2664,7 +2664,7 @@ dokumentasjons- og API-typene er umålt, Mac er urørt.
 
 ## 2026-08-18 — Selvbærende-testen (verifiseringsplanens punkt 6) ✅
 
-**Maskin:** `VPC-5CG3433WMH`. Denne økten var **riggholder**; måleøktene kjørte i
+**Maskin:** `hjemme-win-x86`. Denne økten var **riggholder**; måleøktene kjørte i
 terminal-CLI mot en scratch-katalog. Full protokoll, tolkningstabell og tolv
 observasjoner i `kunnskap/selvbaerende-test.md` (lokal — `kunnskap/` er gitignored).
 
@@ -2723,7 +2723,7 @@ ligger kun lokalt på denne maskinen.
 
 ## 2026-08-18 — PR #2 merget, faseflyt 0.2.0 på main ✅
 
-**Maskin:** `VPC-5CG3433WMH` (hjemmekontor-PC-en). Denne økten var **skriptholder**
+**Maskin:** `hjemme-win-x86` (hjemmekontor-PC-en). Denne økten var **skriptholder**
 for en egen sesjon i `C:\dev\test-faseflyt` — jeg skrev promptene, den kjørte
 probene. Merge-commit `115ca15`, sju commits, `--merge` (ikke squash).
 
@@ -2771,7 +2771,7 @@ commitene dokumenterer målingsrekkefølgen, som er sporbarheten prosjektet bygg
 
 ## 2026-08-17 — Funn-PR skrevet, deny-runden avgjort i fem punkter ✅
 
-**Maskin:** `VPC-5CG3433WMH` (AMD64, i9-13900H, Win 11 Ent 10.0.26200,
+**Maskin:** `hjemme-win-x86` (AMD64, i9-13900H, Win 11 Ent 10.0.26200,
 PS 5.1.26100.8875, ingen `pwsh`). Dette er hjemmekontor-PC-en — den med
 plugin-oppsettet og med `C:\dev\test-faseflyt`.
 

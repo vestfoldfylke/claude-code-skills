@@ -4,6 +4,22 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.9.1 — 2026-09-07
+
+Repoet er åpent fra i dag. Ingen plugin endrer oppførsel; bumpen er fordi tre
+pakkefiler er rørt.
+
+- **Maskinnavn erstattet med alias** i hele repoet — `fase-start`, `fase-slutt`,
+  `maler.md`, CHANGELOG og `kunnskap/`. Målinger navngir nå
+  `hjemme-win-x86`/`kontor-win-arm`; tabellen mot hostname er gitignorert.
+  Renhetssjekken har fått en hard regel mot organisasjonens hostnavnmønster.
+- **Kravene til `kunnskap/` strammet:** initialer og alias, ikke fulle navn og
+  hostnavn — mappa var «internt arbeidsarkiv», nå er den åpent lesbar.
+- **Historikken er skrevet om** (forfatteradresse i alle commits). Eksisterende
+  kloner må hentes på nytt: `git fetch` + `git reset --hard origin/main`, eller
+  klon på nytt.
+- **`LICENSE` (MIT)** lagt til — uten lisens kunne andre lese, men ikke bruke.
+
 ## 0.9.0 — 2026-09-05
 
 `faseflyt` 0.9.0. Fryse-runden før samlingen 14. september: alle planens
@@ -19,7 +35,7 @@ punkt (BK). 1.0 avgjøres av samlingen, slik planen definerer den.
 - **README strammet inn, ingen bump** (README endrer ikke hva en plugin gjør).
   Installasjonen sier «i en terminal» først og skriver ut `claude plugin`-formene,
   med `claude plugin list` som kvittering — formene observert i `--help` på
-  `VPC-5CG3433WMH` 2026-09-05. «Overta andres prosjekt» lovet at
+  `hjemme-win-x86` 2026-09-05. «Overta andres prosjekt» lovet at
   `.claude/settings.json` gir et installasjonstilbud ved kloning; det er
   motbevist i planens verifiseringspunkt 9, og seksjonen sier nå bare det som
   er målt: klon, installer, `fase-start`. Samme løfte står fortsatt i
@@ -31,7 +47,7 @@ punkt (BK). 1.0 avgjøres av samlingen, slik planen definerer den.
   sin egen flyt). «Org-skills» heter nå «felles skills til bruk i Vestfold» i
   `nytt-prosjekt`.
 - **`nytt-prosjekt` tørrkjørt for dokumentasjons- og API-typen og i et
-  eksisterende ikke-tomt prosjekt** (`VPC-5CG3433WMH`, hostname kjørt; mot
+  eksisterende ikke-tomt prosjekt** (`hjemme-win-x86`, hostname kjørt; mot
   0.8.3 i isolerte scratch-kataloger). Alle sjekkpunkter grønne — ingen
   `arkitektur.md` for dokumentasjon, påkrevd for API; `web-prototype` bare
   deklarert for webapp; eksisterende `CLAUDE.md`, `settings.json` og
@@ -82,7 +98,7 @@ instruks sist).
 ## 0.8.2 — 2026-09-05
 
 `faseflyt` 0.8.2. Etter tørrkjøring av 0.8.1 i `test-faseflyt` økt 10
-(`VPC-5CG3433WMH`, hostname kjørt; Sonnet via kommandoformen): fem av seks
+(`hjemme-win-x86`, hostname kjørt; Sonnet via kommandoformen): fem av seks
 holdt, 3 min / 18k tokens — halvert fra 0.8.0 av turplanen alene.
 
 - **Turplanens tur 4 nevner STATUS-linjetallet.** Observert: `wc -l` ble kjørt
@@ -94,7 +110,7 @@ holdt, 3 min / 18k tokens — halvert fra 0.8.0 av turplanen alene.
 ## 0.8.1 — 2026-09-05
 
 `faseflyt` 0.8.1. Rettelser etter tørrkjøring av 0.8.0 i `test-faseflyt` økt 9
-(`VPC-5CG3433WMH`, hostname kjørt; Sonnet via kommandoformen). Fire av seks
+(`hjemme-win-x86`, hostname kjørt; Sonnet via kommandoformen). Fire av seks
 verifiseringspunkter holdt; målt 6 min etter skillens klokke, over 7 etter
 brukerens, og over 37k tokens for en økt som ikke hadde gjort noe.
 
@@ -119,7 +135,7 @@ brukerens, og over 37k tokens for en økt som ikke hadde gjort noe.
 
 `faseflyt` 0.8.0. Fase 7 i planen: `fase-slutt` får ærlig ratchet og færre
 rundturer. Belegget er fem faseslutt i `klengenavn` og to i dette repoet
-(2026-09-04/05, `VPC-5CG3433WMH`, hostname kjørt). Ingen tørrkjøring av 0.8.0
+(2026-09-04/05, `hjemme-win-x86`, hostname kjørt). Ingen tørrkjøring av 0.8.0
 ennå — den er fasens verifisering.
 
 - **Tredje utfall i ratchet-en (steg 2a/2b).** *Fulgt* strykes, *brutt igjen*
@@ -152,7 +168,7 @@ ennå — den er fasens verifisering.
 ## 0.7.1 — 2026-09-05
 
 `faseflyt` 0.7.1. Rettelse etter tørrkjøring av 0.7.0 i `faseflyt-0.7-test`
-(`VPC-5CG3433WMH`, hostname kjørt).
+(`hjemme-win-x86`, hostname kjørt).
 
 - **Kontrollkallet for nettleser-deny er tatt ut.** 0.7.0 sa at
   `npx playwright --version` var trygt å prøve fordi `npx` bare henter
@@ -165,7 +181,7 @@ ennå — den er fasens verifisering.
 ## 0.7.0 — 2026-09-05
 
 `faseflyt` 0.7.0. Fase 6 i planen: funnene fra tørrkjøringen av `klengenavn`
-(fase 0–4, 2026-09-04/05, `VPC-5CG3433WMH`, hostname kjørt) som gjelder
+(fase 0–4, 2026-09-04/05, `hjemme-win-x86`, hostname kjørt) som gjelder
 `nytt-prosjekt`.
 
 - **Deny mot nettleserinstallasjon i `settings.json`-grunnformen**, for alle
@@ -195,7 +211,7 @@ ennå — den er fasens verifisering.
 ## web-prototype 0.1.4 — 2026-09-05
 
 - **Designsystemet er responsivt ut av boksen** — nytt designprinsipp (punkt 9).
-  Observert i `klengenavn` fase 4 (Sonnet, `VPC-5CG3433WMH`): skillen sa ikke
+  Observert i `klengenavn` fase 4 (Sonnet, `hjemme-win-x86`): skillen sa ikke
   at komponentene skalerer selv, så mobil-layout ble behandlet som noe som
   måtte bygges og testes — og det var det som ledet til Playwright-forsøket.
   Prinsippet sier også at Claude aldri installerer nettlesere eller
@@ -204,7 +220,7 @@ ennå — den er fasens verifisering.
 ## web-prototype 0.1.3 — 2026-09-05
 
 `web-prototype` 0.1.3. Skillen oppdatert til det Svelte CLI (`sv`) 0.17.0 og
-Designsystemet 1.21.0 faktisk gjør, målt 2026-09-04/05 på `VPC-5CG3433WMH` (hostname kjørt)
+Designsystemet 1.21.0 faktisk gjør, målt 2026-09-04/05 på `hjemme-win-x86` (hostname kjørt)
 ved å lese npm-pakkene og kjøre tokens-verktøyet i en scratch-mappe; bekrefter
 tørrkjøringsfunnene fra 2026-08-30 (`test-oppgave-samling`, ARM-maskinen) og
 2026-09-04 (`klengenavn`).
@@ -236,7 +252,7 @@ tørrkjøringsfunnene fra 2026-08-30 (`test-oppgave-samling`, ARM-maskinen) og
 ## 0.6.1 — 2026-09-04
 
 `faseflyt` 0.6.1. Funn fra første tørrkjøring av 0.6.0: `klengenavn` (webapp)
-fra tom mappe gjennom fase 0, fase-slutt og fase-start, på `VPC-5CG3433WMH`
+fra tom mappe gjennom fase 0, fase-slutt og fase-start, på `hjemme-win-x86`
 (hostname kjørt); oppsettet på Fable 5.1, resten på Sonnet.
 
 - **Windows-snutten bor i CLAUDE.md, ikke i STATUS.** fase-slutt overskrev
@@ -263,7 +279,7 @@ fra tom mappe gjennom fase 0, fase-slutt og fase-start, på `VPC-5CG3433WMH`
   bytte for brukeren, bare si det. Posten sto i `TODO.md`. **Umålt:** at
   `/model sonnet` virker i alle oppsett.
 - **Rettet i 0.6.0-innslaget:** maskinnavnet for målingene var
-  `VPC-5CG3433WMH`; riktig er `VPC-8WD9VC4` (BK 2026-09-04).
+  `hjemme-win-x86`; riktig er `kontor-win-arm` (BK 2026-09-04).
 - **Bekreftet i tørrkjøringen, på Sonnet:** forklaringssetning før hver
   kommando (også midt i fasen), rundetall i STATUS, verifiseringslinjen
   gjengitt ordrett i fasen, i STATUS og i fase-start, kvittering på tre
@@ -281,7 +297,7 @@ STATUS til CLAUDE.md for hånd, eller si ja når fase-slutt tilbyr det.
 `faseflyt` 0.6.0. Kvalitetsheving før samlingen 14. september, bestilt av BK som
 bevisst unntak fra MVP-frysen. Grunnlaget er en gjennomgang av pakken mot de tre
 formålene — dele oppdrag i små biter, være brukbar for ikke-utviklere, og holde
-øktene korte — med filstørrelser målt 2026-09-04 på `VPC-8WD9VC4`.
+øktene korte — med filstørrelser målt 2026-09-04 på `kontor-win-arm`.
 
 - **`fase-slutt` leser bare toppen av `logg.md` og `laering.md`.** Begge får
   nye innslag øverst og vokser for hver faseslutt; for å legge inn et innslag
@@ -320,7 +336,7 @@ formålene — dele oppdrag i små biter, være brukbar for ikke-utviklere, og h
   trygg lokalt, si det i vanlig språk, ikke løs det selv.
 - **`fase-start` sjekker om noen har pushet siden sist** (`git fetch` +
   `git rev-list --count HEAD..@{u}`, myk feiling uten remote eller nett).
-  Observert 2026-08-28 på `VPC-8WD9VC4`: STATUS var overskrevet på remote før
+  Observert 2026-08-28 på `kontor-win-arm`: STATUS var overskrevet på remote før
   økten begynte, og de lokale spørsmålene så det ikke. Ingen nye
   allow-oppføringer — allowlist-saken er lukket. Sak nr. 8 lukkes for denne
   delen.
@@ -353,7 +369,7 @@ egen `CLAUDE.md` for hånd.
 ## 0.5.12 — 2026-08-30
 
 - **`fase-slutt` og `fase-start` kjører nå på Sonnet** (`model: sonnet` i
-  frontmatter). Bakgrunn: Usage-avlesning 2026-08-30 på `VPC-5CG3433WMH` viste
+  frontmatter). Bakgrunn: Usage-avlesning 2026-08-30 på `hjemme-win-x86` viste
   `fase-slutt` på 11 % og `fase-start` på 7 % av forbruket — mekaniske rutiner
   som arvet øktens modell, også når den var tyngste. Feltet gjelder per tur:
   pauser skillen for en brukeravklaring (f.eks. steg 4 i fase-slutt), kjører
@@ -407,7 +423,7 @@ versjonssjekkens tredje ledd kunne ikke gjøres billig.
 - **En sti i et `Bash`-prefiks matcher ikke — 0.5.7-regelen sa det motsatte.**
   `fase-start` instruerte om tilde-form (`Bash(git -C ~/... rev-parse:*)`) og
   begrunnet det med at matchere er tekstlige. Målt 2026-08-25 på
-  `VPC-5CG3433WMH`: det kallet ga dialog, mens samme kall og samme oppføring i
+  `hjemme-win-x86`: det kallet ga dialog, mens samme kall og samme oppføring i
   full sti gikk gjennom — isolert mot en kontrollinje som bekreftet at
   `settings.local.json` leses midt i en økt. Målingen fra 0.5.7 skilte aldri
   form fra lasting, fordi oppføringen den gangen kom inn via dialogens egen
@@ -424,7 +440,7 @@ versjonssjekkens tredje ledd kunne ikke gjøres billig.
 - **Allowlisten virker først etter omstart — nå sagt der den skrives.**
   `.claude/settings.json` leses ved oppstart og ikke på nytt midt i en økt:
   samme oppføring, samme kall og samme økt ga dialog fra den delte fila og
-  ingen dialog fra `settings.local.json`. Målt 2026-08-25 på `VPC-5CG3433WMH`.
+  ingen dialog fra `settings.local.json`. Målt 2026-08-25 på `hjemme-win-x86`.
   `nytt-prosjekt` skriver fila i steg 6 og skal nå si det, ellers møter
   brukeren dialoger malen nettopp har lovet er dekket. Funnet forklarer
   samtidig hvorfor 0.5.7-målingen konkluderte som den gjorde.
@@ -460,7 +476,7 @@ versjonssjekkens tredje ledd kunne ikke gjøres billig.
   prosjekt. Alle seks er lesende og rører ikke prosjektets data; de to siste er
   brede (all `git status`, all `git log`) og malen sier det.
 - **Kolon-prefiksformen er nå målt, ikke antatt.** 0.5.6 førte hypotesen som
-  sluttet. Bekreftet 2026-08-25 på `VPC-5CG3433WMH`: omleggingen fra eksakt-form
+  sluttet. Bekreftet 2026-08-25 på `hjemme-win-x86`: omleggingen fra eksakt-form
   til `rev-parse:*`/`ls-remote:*` fjernet dialogen på det samme kallet, i samme
   økt. Malen fører målingen, så formen ikke blir gjettet på om igjen.
 - **«Pakken eier bare to ting i denne fila» rettet til tre**, i både
@@ -480,7 +496,7 @@ versjonssjekkens tredje ledd kunne ikke gjøres billig.
   Avsnittet «Kall som ikke skal koste en godkjenning» krever tilde-form, mens
   «Kjørende»-punktet to linjer under peker på skillens egen basekatalog — som
   Claude Code oppgir som absolutt brukersti. Regelen og instruksen motsa
-  hverandre, og instruksen vant. Observert 2026-08-25 på `VPC-5CG3433WMH`:
+  hverandre, og instruksen vant. Observert 2026-08-25 på `hjemme-win-x86`:
   første oppstart som kjørte 0.5.5 kostet fortsatt en dialog på `Read` av
   kjørende `plugin.json`, i et prosjekt der allowlisten dekket fila i
   tilde-form.
@@ -518,7 +534,7 @@ versjonssjekkens tredje ledd kunne ikke gjøres billig.
 - **`fase-start` sier nå hvordan steg 0 og 2 skal skrives.** Nytt avsnitt «Kall
   som ikke skal koste en godkjenning»: tilde-form framfor absolutt brukersti, og
   ett kall per kommando framfor `&&`/`;`-kjeder. Målt 2026-08-25 på
-  `VPC-5CG3433WMH`: fem godkjenningsdialoger i én oppstart i et prosjekt der
+  `hjemme-win-x86`: fem godkjenningsdialoger i én oppstart i et prosjekt der
   allowlisten dekket alle kallene. Tilde mot absolutt sti er direkte observert —
   samme fil, to skrivemåter, én prompt og én ikke. At kjeding bryter matchingen
   er sluttet fra at nøyaktig de fem kallene som ikke matchet ga nøyaktig fem

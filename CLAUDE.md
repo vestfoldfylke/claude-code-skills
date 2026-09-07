@@ -34,9 +34,12 @@ port, også etter 1.0 — les den. Bump BEGGE manifestene
 
 ## Målinger
 
-Målinger dateres og navngir maskinen — en måling eldes, også i
-`plan.md`/`TODO.md`. Funn føres som observert kun når kallet faktisk ble kjørt
-og utfallet sett; ellers som hypotese.
+Målinger dateres og navngir maskinen **med alias fra tabellen i
+`kunnskap/lokalt/maskiner.md`** (`hjemme-win-x86`, `kontor-win-arm`; andres
+maskiner som «gruppeleder, mac-arm») — aldri hostname: repoet er åpent, og
+renhetssjekken slår ut på organisasjonens hostnavnmønster. En måling eldes,
+også i `plan.md`/`TODO.md`. Funn føres som observert kun når kallet faktisk ble
+kjørt og utfallet sett; ellers som hypotese.
 
 ## Språket i alt som skrives her
 

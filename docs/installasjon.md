@@ -84,6 +84,12 @@ maskin: endrer du et krav her, endres scriptet i samme commit. Se
 - **Ingen absolutte brukerstier.** Søk generisk, aldri etter et bestemt
   brukernavn: en regel som leter etter én persons brukernavn går ren for alle
   andre, og «null treff» blir falsk trygghet framfor måling.
+- **Ingen hostnavn — i hele repoet, `kunnskap/` inkludert.** Repoet er åpent
+  (2026-09-07), og et hostnavn er en inventar-ID som kobler person, maskin og
+  verktøy. Målinger navngir maskinen med alias (`hjemme-win-x86`,
+  `kontor-win-arm`; andres som «gruppeleder, mac-arm»); tabellen mot hostname
+  ligger i `kunnskap/lokalt/`, som er gitignorert. Mønsteret står bare i
+  skriptet — skrevet ut her ville regelen treffe seg selv.
 - **Ingen hard avhengighet til et repo leseren ikke har tilgang til.** Det er
   funksjonen som er problemet, ikke kontonavnet. En installasjonsinstruks som
   peker på et privat repo gir kollegaen en død peker og en ødelagt oppsett. Å
@@ -100,12 +106,13 @@ maskin: endrer du et krav her, endres scriptet i samme commit. Se
   slår regelen ut ved hver eneste kjøring. I `kunnskap/` er `fint-samtykke` en
   legitim referanse til prosjektet arbeidsflyten ble utviklet for — plan og TODO
   viser til det som *prosjekt*, ikke som FINT-innhold.
-### `kunnskap/` (internt arbeidsarkiv)
+### `kunnskap/` (arbeidsarkiv — åpent lesbart siden 2026-09-07)
 
-- **Personnavn, maskinnavn og referanser til private repo er tillatt.** Loggen
-  skal kunne si hvem som bestemte hva, på hvilken maskin, og hvor noe faktisk ble
-  pushet — det er halve poenget med den. Initialer holder der navnet ikke tilfører
-  noe, men det er redaksjonell smak, ikke et krav.
+- **Initialer for personer, alias for maskiner og referanser til private repo er
+  greit.** Loggen skal kunne si hvem som bestemte hva, på hvilken maskin, og hvor
+  noe faktisk ble pushet — det er halve poenget med den. Fulle personnavn og
+  hostnavn skal ikke inn: repoet er åpent, og maskinnavn-regelen over gjelder
+  hele repoet. Alias-tabellen ligger i `kunnskap/lokalt/` (gitignorert).
 - Absolutte brukerstier bør generaliseres til `~/`-form. Begrunnelsen er ikke
   personvern, men at en sti som virker på én maskin er ubrukelig for enhver annen
   leser — også for deg selv på neste maskin.

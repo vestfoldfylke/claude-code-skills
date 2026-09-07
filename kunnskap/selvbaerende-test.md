@@ -1,6 +1,6 @@
 # Selvbærende-test — verifiseringsplanens punkt 6
 
-**Dato:** 2026-08-18 **Maskin:** VPC-5CG3433WMH (AMD64, PS 5.1)
+**Dato:** 2026-08-18 **Maskin:** hjemme-win-x86 (AMD64, PS 5.1)
 **Status:** KJØRT OG AVSLUTTET 2026-08-18. Rigg tatt ned og verifisert
 (`~/.claude/CLAUDE.md` tilbake, 1139 b). Konklusjon nederst.
 

@@ -44,7 +44,7 @@ git, og de kjøres i hver eneste økt. To skrivemåter gjør dem dyre for bruker
   brukernavnet. Trenger du git mot en annen katalog, koster det en godkjenning
   — derfor gjør stegene under det ikke.
 
-Målt 2026-08-25 på `VPC-5CG3433WMH`, hver form isolert mot en kontrollinje som
+Målt 2026-08-25 på `hjemme-win-x86`, hver form isolert mot en kontrollinje som
 skulle gå gjennom. Teksten som sto her sa at tilde-form var påkrevd også i
 Bash; det er motbevist, ikke utelatt.
 
@@ -105,7 +105,7 @@ hva som sjekkes, og at alt var rent.
      eller person pushet etter din siste økt, og STATUS på disk kan være
      foreldet — si det, og tilby `git pull` FØR du leser videre. Feiler
      kommandoene (ingen remote, ingen nett, ingen upstream): si det i én
-     setning og fortsett. Observert 2026-08-28 på `VPC-8WD9VC4`: STATUS var
+     setning og fortsett. Observert 2026-08-28 på `kontor-win-arm`: STATUS var
      overskrevet på remote før økten begynte, og de to spørsmålene over er
      lokale og kunne ikke se det.
 

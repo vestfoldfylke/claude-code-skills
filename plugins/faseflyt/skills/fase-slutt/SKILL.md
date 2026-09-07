@@ -72,7 +72,7 @@ svaret fra et annet får egen tur; alt annet deler tur. Sju turer er normalen:
 6. `git commit -F`.
 7. Push, så FERDIG.
 
-Målt 2026-09-05 (`VPC-5CG3433WMH`, Sonnet via kommando) uten turplan: 6 min og
+Målt 2026-09-05 (`hjemme-win-x86`, Sonnet via kommando) uten turplan: 6 min og
 over 37k tokens for en økt som ikke hadde gjort noe. Hver tur sender hele
 konteksten på nytt, på det punktet i økten der den er størst.
 

@@ -66,7 +66,8 @@ forbudt() {
 }
 
 # Mykt krav: treff = advarsel, ikke feil. Brukes der docs/installasjon.md sier
-# «bør» framfor «skal» — kunnskap/ er internt arbeidsarkiv med løsere krav.
+# «bør» framfor «skal» — kunnskap/ er arbeidsarkiv, åpent lesbart siden
+# 2026-09-07, med løsere krav.
 bor_unngaas() {
   local navn="$1" regex="$2"; shift 2
   local ut rc
@@ -121,6 +122,14 @@ forbudt "Secrets med tilordnet verdi" \
 # interne miljøer og organisasjonsinterne verter som ikke skal ut.
 forbudt "Interne miljø-URLer" \
   'https?://[a-z0-9.-]*(vestfoldfylke|\.local|\.internal|\.intern)[a-z0-9./_-]*' .
+
+# Maskinnavn. Organisasjonens hostnavnmønster skal ikke finnes noe sted — repoet
+# er åpent (2026-09-07), og målinger navngir maskinen med alias fra tabellen i
+# kunnskap/lokalt/ (gitignorert), aldri hostname. Forankret så tegnet foran
+# ikke er en bokstav: søket er case-uavhengig, og uten forankring traff det
+# inne i prosjektnavnet «ElevPC-fakturagrunnlag» (målt 2026-09-07). Mønsteret
+# treffer ikke seg selv: tegnet etter bindestreken i denne fila er «[».
+forbudt "Maskinnavn (organisasjonens hostnavnmønster)" '(^|[^A-Za-z])VPC-[A-Z0-9]{6,}' .
 
 echo
 echo "== Pakken (plugins/, docs/, README.md) =="
@@ -283,7 +292,7 @@ EOF
 fi
 
 echo
-echo "== kunnskap/ (internt arbeidsarkiv — «bør», ikke «skal») =="
+echo "== kunnskap/ (arbeidsarkiv, åpent lesbart siden 2026-09-07 — «bør», ikke «skal») =="
 
 # docs/installasjon.md: absolutte brukerstier BØR generaliseres til ~/-form her.
 # Begrunnelsen er lesbarhet på andre maskiner, ikke personvern — derfor advarsel.

@@ -51,7 +51,7 @@ flere maskiner avgjør om skillen rettes etter samlingen.
 
 - **Mac:** helt uprøvd i dag — første reelle datapunkt. Noter alt som
   avviker fra punkt 1–2.
-- **Snapdragon/ARM (Windows):** pre-flight påbegynt på `VPC-8WD9VC4`, ikke
+- **Snapdragon/ARM (Windows):** pre-flight påbegynt på `kontor-win-arm`, ikke
   gjennomført — fullfør her.
 
 ## 5. Rapporter tilbake

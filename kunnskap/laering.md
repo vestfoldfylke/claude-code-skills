@@ -9,7 +9,7 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
-## 2026-09-05 (`VPC-5CG3433WMH`) — gruppeleder-prep: README og sjekkliste
+## 2026-09-05 (`hjemme-win-x86`) — gruppeleder-prep: README og sjekkliste
 
 **Evaluering av forrige økts punkter:**
 - `[ny-fil-uten-forespoersel]` **fulgt.** Spurte (AskUserQuestion) før
@@ -29,7 +29,7 @@ uten `/compact` — riktig snitt.
 
 Issue til pakkerepoet: ikke aktuelt.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 9: alt åpent lukket før samlingen
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Fase 9: alt åpent lukket før samlingen
 
 **Evaluering av forrige økts punkter:**
 - `[dry-kjoering-krever-push-foerst]` **ikke utløst — og ingen gjenstående fase
@@ -52,7 +52,7 @@ Issue til pakkerepoet: ikke aktuelt (framgangsmåtefeil hos meg, ikke en feil i
 skill-instruksene).
 Fasesnitt: Fase 9 fikk plass i én økt uten `/compact`.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fryse-runde: instruks-funn fra tre tørrkjøringer rettet trygt, men en avgjørelse fra tre uker tidligere hadde aldri blitt skrevet tilbake til planen
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Fryse-runde: instruks-funn fra tre tørrkjøringer rettet trygt, men en avgjørelse fra tre uker tidligere hadde aldri blitt skrevet tilbake til planen
 
 **Evaluering av forrige økts punkter:**
 - `[hypotese-skrevet-som-fakta]` **fulgt.** Tre dry-run-agenter kjørte og leste
@@ -78,7 +78,7 @@ alt ferdige) — en fryse-runde over hele verifiseringslista. Den fikk plass i
 økten uten `/compact` ved å delegere kartlegging og alle tre tørrkjøringene til
 bakgrunnsagenter; hovedtråden leste bare konklusjonene.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 8: fase-start/hjelp/README kort utdata
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Fase 8: fase-start/hjelp/README kort utdata
 
 **Evaluering av forrige økts punkter:**
 - **[hypotese-skrevet-som-fakta]** Ikke utløst denne fasen heller — ingen nye
@@ -96,7 +96,7 @@ bakgrunnsagenter; hovedtråden leste bare konklusjonene.
 Issue til pakkerepoet: ikke aktuelt (dette prosjektet ER pakkerepoet).
 Fasesnitt: fase 8 fikk plass i én økt uten `/compact`.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 7: fase-slutt får ærlig ratchet og turplan
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Fase 7: fase-slutt får ærlig ratchet og turplan
 
 **Evaluering av forrige økts punkter:**
 - **[hypotese-skrevet-som-fakta]** ikke utløst denne fasen (instruksdesign,
@@ -117,7 +117,7 @@ modellskifter (Sonnet → Fable → Sonnet) og tre tørrkjøringsrunder.
 **Issue til pakkerepoet:** ikke aktuelt — alle funn ble rettet direkte i denne
 fasen, som var fasens formål.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Fase 6: nytt-prosjekt/web-prototype rettet mot tørrkjøringsfunn
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Fase 6: nytt-prosjekt/web-prototype rettet mot tørrkjøringsfunn
 
 **Evaluering av forrige økts punkter:**
 - **[tilsyn-oeker-todo-uten-fortetting]** fulgt: TODO.md-punktet fortettes nå
@@ -142,7 +142,7 @@ uten `/compact`.
 Issue til pakkerepoet: ikke aktuelt — dette ER pakkerepoet, rettingen skjedde
 direkte i samme økt.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — Tilsyn med tørrkjøring av `klengenavn` (fase 0–4)
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — Tilsyn med tørrkjøring av `klengenavn` (fase 0–4)
 
 **Evaluering av forrige økts punkter:**
 - **[faktisk-bruk-foran-pakkekildekode]** fulgt: hvert funn denne økten bygde
@@ -171,7 +171,7 @@ implementeringen av funnene er en annen sak og skal deles som over.
 repoet, så funnene går rett i `TODO.md`/neste fase her, ikke via
 issue-køen som er ment for kollegaers tilbakemelding.
 
-## 2026-09-05 (hjemmekontor, `VPC-5CG3433WMH`) — web-prototype 0.1.3; forrige runde tom
+## 2026-09-05 (hjemmekontor, `hjemme-win-x86`) — web-prototype 0.1.3; forrige runde tom
 
 **Evaluering av forrige økts punkter:** ingen å evaluere — `## Arbeidsmåte
 neste økt` var tom ved denne øktens start (alle tre forrige punkter fulgt og
@@ -198,7 +198,7 @@ i én økt, ingen `/compact`.
 Aktive punkter i STATUS. Issue til pakkerepoet: ikke aktuelt — denne økten
 jobber direkte i pakkerepoet, så funnet er rettet, ikke meldt videre.
 
-## 2026-09-04 (hjemmekontor, `VPC-5CG3433WMH`) — 0.6.1 rettet fra første tørrkjøring; alle tre punkter fra i går fulgt
+## 2026-09-04 (hjemmekontor, `hjemme-win-x86`) — 0.6.1 rettet fra første tørrkjøring; alle tre punkter fra i går fulgt
 
 **Evaluering av forrige økts punkter:**
 
@@ -207,8 +207,8 @@ jobber direkte i pakkerepoet, så funnet er rettet, ikke meldt videre.
   Windows-snutt-flyttingen fra 0.6.0-flyttingen av fasesnitt/`/compact`/
   sjekk-forklaring — «denne er plattformspesifikk», ikke bare «samme lærdom».
 - **[maskinnavn-antatt-ikke-sjekket]** (1. runde) — **fulgt, strøket.**
-  Belegg: `hostname` kjørt før noe maskinnavn ble skrevet (`VPC-5CG3433WMH`),
-  og feilen i 0.6.0-innslaget rettet til `VPC-8WD9VC4` i samme runde.
+  Belegg: `hostname` kjørt før noe maskinnavn ble skrevet (`hjemme-win-x86`),
+  og feilen i 0.6.0-innslaget rettet til `kontor-win-arm` i samme runde.
 - **[full-diff-fanger-det-enkelt-edit-ikke-viser]** (1. runde) — **fulgt,
   strøket.** Belegg: `git diff --cached` etter batch-redigeringen fanget to
   gjenværende STATUS-referanser i `fallgruver.md` og `prosjekttyper.md` som
@@ -232,7 +232,7 @@ jobber direkte i pakkerepoet, så funnet er rettet, ikke meldt videre.
 klarsignal, innskriving, sjekk, denne faseslutten) fikk plass i én økt uten
 `/compact`. Godt snitt.
 
-## 2026-09-04 (kontor-PC, `VPC-8WD9VC4`) — Kvalitetsheving levert og pushet, men et maskinnavn ble antatt i CHANGELOG uten å sjekke hostname
+## 2026-09-04 (kontor-PC, `kontor-win-arm`) — Kvalitetsheving levert og pushet, men et maskinnavn ble antatt i CHANGELOG uten å sjekke hostname
 
 **Evaluering av forrige økts punkter:**
 
@@ -262,8 +262,8 @@ klarsignal, innskriving, sjekk, denne faseslutten) fikk plass i én økt uten
 **Nye punkter:**
 
 - **[maskinnavn-antatt-ikke-sjekket]** `CHANGELOG.md` 0.6.0 sier «målt … på
-  `VPC-5CG3433WMH`». `hostname` kjørt ved faseslutt viser at hele økten kjørte
-  på `VPC-8WD9VC4` — maskinnavnet ble aldri sjekket under arbeidet, bare
+  `hjemme-win-x86`». `hostname` kjørt ved faseslutt viser at hele økten kjørte
+  på `kontor-win-arm` — maskinnavnet ble aldri sjekket under arbeidet, bare
   antatt fra hvilken maskin som vanligvis gjør denne typen målinger i dette
   repoet. CLAUDE.md sier «målinger dateres og navngir maskinen»; regelen ble
   ikke brutt i ordlyden jeg skrev, men i praksisen bak den. **Regel: kjør
@@ -1037,7 +1037,7 @@ person som jobber alene, er et pakkefunn — `fase-slutt` steg 7 antar push rett
   måledata på linje med søkeresultater — de utledes ikke av hva som ville passet
   historien. Belegg: jeg skrev «kontor-PC (Snapdragon/ARM)» i loggen og
   «kontor-PC-en» i to commit-meldinger som nå er pushet. `hostname` gir
-  `VPC-5CG3433WMH` og `uname -m` gir `x86_64` — hjemme-PC-en. BK stoppet det, ikke
+  `hjemme-win-x86` og `uname -m` gir `x86_64` — hjemme-PC-en. BK stoppet det, ikke
   jeg. Årsaken er verre enn slurv: `TODO.md` sier cache-målingen må gjøres om på
   kontor-PC-en, og jeg leste maskinen jeg satt på som den maskinen fordi det
   gjorde historien hel. Konsekvensen var reell — jeg meldte en TODO-post som
@@ -1122,7 +1122,7 @@ rettet i `sjekk.sh` og `docs/installasjon.md` i `8eda2c3`.
   først etter «Kjør alle». Ratchet-en er fullført: regelen står nå permanent i
   repo-CLAUDE.md (`f1b4a68`), som lastes i hver økt i dette repoet.
 - **[paaminnelser-utfoeres-ikke-gjengis]** — **fulgt. Strykes.** Belegg:
-  hostname ble målt i selve fase-start-kvitteringen (`VPC-5CG3433WMH`, AMD64)
+  hostname ble målt i selve fase-start-kvitteringen (`hjemme-win-x86`, AMD64)
   som handling, ikke gjengivelse — og versjonssjekkens tre ledd ble målt før
   oppsummeringen ble skrevet. Ett datapunkt, men oppførselen var umiddelbar og
   komplett; punktet var en presisering, ikke et brudd som må bevises over tid.

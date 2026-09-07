@@ -413,7 +413,7 @@ Som resten av `permissions`: mønstre treffer kommandonavn og kan omgås, og
 matcherne dekker ikke PowerShell-verktøyet på Windows.
 
 **Oppføringene virker først etter omstart.** `.claude/settings.json` leses ved
-oppstart, ikke på nytt midt i en økt. Målt 2026-08-25 på `VPC-5CG3433WMH`:
+oppstart, ikke på nytt midt i en økt. Målt 2026-08-25 på `hjemme-win-x86`:
 samme oppføring, samme kall og samme økt ga dialog fra den delte fila og ingen
 dialog fra `settings.local.json`, som leses underveis. Skriver du fila i et
 oppsett, si det — ellers møter brukeren dialoger malen nettopp har lovet er
@@ -587,7 +587,7 @@ ut for neste person som åpner prosjektet.
     `deny`. `Bash(git status:*)` matcher, mens
     `Bash(git -C ~/.claude/... rev-parse:*)` ikke gjorde det for kallet skrevet
     med nøyaktig samme tilde-sti. Samme kall og samme matcher i full sti
-    (`/c/Users/<navn>/...`) matchet. Målt 2026-08-25 på `VPC-5CG3433WMH`, med en
+    (`/c/Users/<navn>/...`) matchet. Målt 2026-08-25 på `hjemme-win-x86`, med en
     kontrollinje i samme runde som bekreftet at `settings.local.json` leses midt
     i en økt — så de to utfallene er sammenlignbare.
     **Konsekvensen er praktisk:** formen som virker bærer brukernavnet og kan

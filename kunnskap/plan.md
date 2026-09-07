@@ -556,7 +556,7 @@ til intern bruk i Vestfold fylkeskommune holder.
    de andre pluginenes skills, bare deklarerer dem i nye prosjekters
    `settings.json` for typene som trenger dem. Målingen tas i
    gruppeleder-prepen før samlingen 14. september.
-2. **Tørrkjøring av `nytt-prosjekt` — DEKKET** (2026-09-05, `VPC-5CG3433WMH`,
+2. **Tørrkjøring av `nytt-prosjekt` — DEKKET** (2026-09-05, `hjemme-win-x86`,
    mot 0.8.3). Script og webapp var dekket fra før; dokumentasjons- og API-typen
    tørrkjørt i scratch-kataloger, og én kjøring i et eksisterende ikke-tomt
    prosjekt. Alle sjekkpunkter grønne: ingen `arkitektur.md` for dokumentasjon,
@@ -595,14 +595,15 @@ til intern bruk i Vestfold fylkeskommune holder.
      prosjektet arbeidsflyten ble utviklet for.
    - Ingen fødselsnummer, testbrukere, miljø-URL-er eller secrets i eksempler
      — gjelder særlig `fint-graphql`, og gjelder også `kunnskap/`.
-   - Personnavn, maskinnavn og referanser til private repo er **tillatt i
-     `kunnskap/`** — loggen skal kunne navngi beslutningstaker, maskin og faktisk
-     push-mål. I pakken er det bare *avhengigheter* til utilgjengelige repo som er
-     forbudt, ikke det å nevne dem.
+   - I `kunnskap/`: initialer for personer, alias for maskiner (tabell i
+     `kunnskap/lokalt/`) og referanser til private repo er greit — loggen skal
+     kunne navngi beslutningstaker, maskin og faktisk push-mål. Fulle personnavn
+     og hostnavn ikke; repoet er åpent (2026-09-07). I pakken er det bare
+     *avhengigheter* til utilgjengelige repo som er forbudt, ikke det å nevne dem.
    - Alltid én positiv kontroll i samme runde.
 8. **Synlighet og branch — OMGJORT 2026-09-07.** Målingen fra 2026-08-08
    (`PRIVATE`) er ikke lenger gyldig: repoet ble satt åpent av BK samme dag som
-   dette ble skrevet. Verifisert 2026-09-07 (`VPC-5CG3433WMH`) med
+   dette ble skrevet. Verifisert 2026-09-07 (`hjemme-win-x86`) med
    `gh repo view vestfoldfylke/claude-code-skills --json visibility,owner,defaultBranchRef`:
    `PUBLIC`, eid av `vestfoldfylke` (ikke en personlig konto), standardbranch
    `main`. Eier og branch er fortsatt krav; synlighet er en beslutning som

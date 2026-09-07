@@ -2,6 +2,58 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-07 (`hjemme-win-x86`) — Installasjonssperre hos kollega: feil Intune-sti funnet, admin-konsoll bekreftet tomt, avventer Intune/sikkerhet
+
+**Bakgrunn:** brukeren ba om å sjekke om egen Claude-installasjon kommer fra
+Firmaportalen (Intune), og deretter om hva som er mulig i claude.ai-konsollet
+for å omgå kollegaens «No external marketplaces are allowed».
+
+**Funn 1 — to Desktop-installasjoner, ingen av dem den aktive:** Intune har
+tildelt «Claude Desktop for Vestfold (AMD64)» (tilgjengelig, ikke påkrevd),
+installert 2026-06-20 med versjon 1.14271, ikke oppdatert siden. Den faktisk
+kjørende kopien er brukerinstallert under `%LOCALAPPDATA%\AnthropicClaude`
+(1.46388.4). Claude Code (CLI + VS Code-utvidelsens innebygde binær) er
+brukerinstallert (`installMethod: native`), ikke Intune-styrt i det hele tatt.
+
+**Funn 2 — Intune-remediation skriver til feil katalog:** «Remediation (BASE)
+versjon 9» har feilet daglig siden minst 2026-08-12 ved `AddAccessRule`
+(«identitetsreferanser kan ikke oversettes» — trolig et kontonavn som ikke
+finnes på norsk Windows). Den skriver til `C:\ProgramData\ClaudeCode\`, en sti
+Claude Code ikke leser. Dokumentert sti: `C:\Program Files\ClaudeCode\managed-settings.json`
+eller registeret `HKLM\SOFTWARE\Policies\ClaudeCode`. Selv uten ACL-feilen
+ville fila aldri blitt lest fra feil katalog.
+
+**Funn 3 — admin-konsollet bekreftet tomt:** claude.ai-konsollets «Managed
+settings» hadde v1–v6 med en deny-liste mot secrets; v6 hadde også treff
+utenfor secrets (`**/*appsettings*`, `./build`, `./dist`) som trolig brakk
+.NET-arbeidsflyter og kan forklare hvorfor v7 (gjeldende) er tømt. Bekreftet
+uavhengig med `claude doctor`: «Managed settings (remote): none configured for
+this organization». Kollegaens feilmelding kommer altså ikke derfra — den må
+komme fra en lokal kilde (register eller fil) på den maskinen, ikke avklart
+hvilken.
+
+**Beslutning (BK, styringskanal):** claude.ai-konsollets «Managed settings»
+skal forbli tomt. All sentral styring av Claude Code skjer via Intune, ikke
+server-styrte innstillinger.
+
+**Beslutning (BK, prosess):** saken avventes til Intune-ansvarlig og
+sikkerhetskontakt har sett på funnene, forventet 2026-09-08. Utkast til melding
+(sti-feil, SID i stedet for kontonavn, spørsmål om kollegaens kilde) er
+utformet i chatten og loggført i `kunnskap/lokalt/sikkerhetsvurdering-aapent-repo.md`
+— ikke sendt av økten. Ingen pakkefiler endret. Marketplace-klonen ble
+oppdatert (`/plugin marketplace update`); installert `faseflyt` er nå 0.9.1,
+kjørende venter på omstart av VS Code-vinduet.
+
+**Sjekk at prosjektet virker:** `claude plugin validate .` — gyldig manifest.
+`bash .github/renhet/sjekk.sh` — 12 søk, 0 feil, 0 advarsler, kontrollsøk 44
+treff på «faseflyt» i `plugins/`. `kunnskap/STATUS.md` 45 linjer (tak nådd,
+ikke overskredet).
+
+Rask sikkerhetssjekk: env-filer 0, fødselsnummer-mønster 0, nøkkel-mønster 0,
+kontrollsøk 44 treff.
+
+fase-slutt: 17:55–18:01, 6 min.
+
 ## 2026-09-07 (`hjemme-win-x86`) — Repoet satt åpent: privat-påstander rettet, historikk skrevet om, 0.9.1
 
 **Bakgrunn:** en kollega fikk «blocked by enterprise policy. No external

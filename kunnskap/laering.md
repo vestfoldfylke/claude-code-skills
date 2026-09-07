@@ -9,6 +9,25 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-07 (`hjemme-win-x86`) — Installasjonssperre: diagnostikk i hovedtråden
+
+**Evaluering av forrige økts punkter:**
+- `[trigg-ordet-gjentar-seg]` **ikke utløst (2. runde, uendret).** Ingen
+  skriving til `kunnskap/` fant sted i økten før denne fase-slutten selv — så
+  situasjonen punktet gjelder ble ikke satt på prøve i felten. Videreføres
+  uendret; neste økt kan fortsatt utløse det.
+
+**Nytt punkt:**
+- `[system-diagnose-i-hovedtraden]` Bred systemdiagnostikk (register,
+  Intune-logger, `WebFetch` mot dokumentasjon) ble kjørt direkte i hovedtråden
+  i stedet for delegert til Explore/general-purpose. To mislykkede
+  JSON-parse-forsøk på samme Intune-loggfil før riktig linje ble funnet, midt i
+  en økt med mye WebFetch-innhold alt i kontekst — kostet tokens der de kostet
+  mest.
+
+Issue til pakkerepoet: ikke aktuelt (funnet gjaldt organisasjonens Intune-
+oppsett, ikke en feil i faseflyt-skillene).
+
 ## 2026-09-07 (`hjemme-win-x86`) — Repoet åpent: prosess rundt irreversible endringer
 
 **Evaluering av forrige økts punkter:**

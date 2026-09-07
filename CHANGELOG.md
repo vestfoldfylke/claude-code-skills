@@ -10,6 +10,12 @@ skal ellers alltid tåle eldre struktur.
 nummererte faser er levert, og verifiseringslista er gått gjennom punkt for
 punkt (BK). 1.0 avgjøres av samlingen, slik planen definerer den.
 
+- **Repoet satt åpent 2026-09-07 (BK), ingen bump.** README kaller det ikke
+  lenger «privat»; kravet om `gh auth`/org-medlemskap er strøket i
+  `docs/installasjon.md`, gruppeleder-sjekklisten og planen, og planens
+  synlighetspunkt er merket omgjort. Åpenheten løser *ikke* sperren mot
+  eksterne marketplaces — den er policy på kildeklassen, og løses i managed
+  settings. Sikkerhetsvurdering av konsekvensene samme dag.
 - **README strammet inn, ingen bump** (README endrer ikke hva en plugin gjør).
   Installasjonen sier «i en terminal» først og skriver ut `claude plugin`-formene,
   med `claude plugin list` som kvittering — formene observert i `--help` på

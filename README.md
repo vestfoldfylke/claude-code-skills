@@ -50,7 +50,7 @@ claude plugin install fint-graphql@claude-code-skills    # jobber du mot FINT
 ```
 
 Ingenting sendes til noen ekstern tjeneste — «marketplace add» kloner bare
-dette (private) repoet til din maskin. Oppdatere senere:
+dette repoet til din maskin. Oppdatere senere:
 `claude plugin marketplace update claude-code-skills`.
 
 **Bruker du claude.ai eller Claude Desktop-chat (ikke Claude Code)?** Da får du

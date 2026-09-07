@@ -37,8 +37,7 @@ pakken, og endringer fra andre skal inn via PR.
 Prosjekter satt opp med `nytt-prosjekt` får en `.claude/settings.json` som
 deklarerer marketplacet og pluginene prosjektet trenger. Når en kollega kloner
 prosjektet og godtar workspace-trust-dialogen, tilbyr Claude Code å installere
-dem (dokumentert oppførsel: prompten kommer etter trust-aksept). Krever
-GitHub-tilgang til dette repoet.
+dem (dokumentert oppførsel: prompten kommer etter trust-aksept).
 
 ## Oppdatere pakken
 

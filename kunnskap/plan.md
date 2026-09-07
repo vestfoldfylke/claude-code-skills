@@ -55,11 +55,11 @@ mappe og repo har samme navn — `skills-creation` slettes når det er gjort.
 - **Innhold:** de fire kjernene + grill-me koblet inn i flyten + Windows/PowerShell-regler
   + `claude-design-oppskrift`. I tillegg `web-prototype` og `fint-graphql` som egne,
   uavhengige plugins i samme marketplace — repoet blir master for web-prototype.
-- **Repo:** `vestfoldfylke/claude-code-skills`, privat, branch `main`.
+- **Repo:** `vestfoldfylke/claude-code-skills`, **åpent** (BK, 2026-09-07 — privat fram til da), branch `main`.
 - **Prosjekttyper:** webapp/prototype, script/automatisering, dokumentasjon/utredning,
   API/backend-tjeneste.
 
-## Hva et «plugin marketplace» faktisk er — og hvordan det holdes internt
+## Hva et «plugin marketplace» faktisk er — og hva åpenheten betyr
 
 Ordet er misvisende: det finnes ingen sentral Anthropic-katalog, og ingenting
 publiseres noe sted. Et marketplace er *et git-repo med filen
@@ -67,13 +67,14 @@ publiseres noe sted. Et marketplace er *et git-repo med filen
 `/plugin marketplace add vestfoldfylke/claude-code-skills` gjør en `git clone` til
 kollegaens egen maskin — det er hele mekanismen. Ingen data sendes til Anthropic.
 
-**Tilgangskontrollen er repoets egen.** Ligger repoet `private` eller `internal`
-i Vestfold fylkeskommune-organisasjonen på GitHub, kan bare de med repo-tilgang legge det til; det
-er ikke søkbart og kan ikke oppdages utenfra. Er repoet `public`, kan derimot
-hvem som helst som kjenner URL-en installere det. Derfor, som harde krav:
+**Tilgangskontrollen er repoets egen.** Repoet ble satt `public` 2026-09-07
+(BK). Fram til da var `private` et hardt krav her («aldri `public`»); det er
+omgjort, og konsekvensene — hvem som kan installere, hva `kunnskap/` eksponerer,
+maskinnavn i målinger, lisens — vurderes i en egen sikkerhetsvurdering samme
+dag. Kravene som står ved lag:
 
-- Repoet er **`vestfoldfylke/claude-code-skills`**, `private`, med `main` som
-  standardbranch — aldri under vedlikeholderens personlige GitHub-konto, aldri `public`.
+- Repoet er **`vestfoldfylke/claude-code-skills`** med `main` som
+  standardbranch — aldri under vedlikeholderens personlige GitHub-konto.
   Ditt private `bkaarstein/claude-global-config` blir liggende som det er; det er
   din `~/.claude`-synk og skal ikke deles.
 - **Branch-hardening: SLÅTT AV for repoet 2026-08-19.** Målt samme dag:
@@ -110,10 +111,10 @@ hvem som helst som kjenner URL-en installere det. Derfor, som harde krav:
   - Historisk, ikke gjeldende nå: `require_last_push_approval` gjorde at en push
     etter godkjenning kostet en ekstra review-runde (erfart i PR #2).
   - Skrivetilgang bør uansett begrenses til de som vedlikeholder pakken.
-- Kollegaer må være autentisert mot GitHub (`gh auth login`) for at `add` skal
-  virke mot et privat repo — og de må være medlem av `vestfoldfylke` på GitHub
-  (claude.ai-org-tilgang er ikke det samme). Begge forutsetninger dokumenteres
-  i README.
+- Ingen GitHub-innlogging eller org-medlemskap trengs for `add` — repoet er
+  åpent (2026-09-07). Den sperren som faktisk finnes, er organisasjonens
+  Claude-policy mot eksterne marketplaces; den løses i managed settings
+  (`docs/installasjon.md`), ikke ved repo-tilgang.
 - Ingen kunde-/persondata, secrets eller prosjektnavn i innholdet — pakken er ren
   arbeidsflyt. Dekkes av renhetssjekken i verifiseringen.
 - Org-katalogen på claude.ai er allerede avgrenset til din organisasjon, så den
@@ -599,10 +600,13 @@ til intern bruk i Vestfold fylkeskommune holder.
      push-mål. I pakken er det bare *avhengigheter* til utilgjengelige repo som er
      forbudt, ikke det å nevne dem.
    - Alltid én positiv kontroll i samme runde.
-8. **Synlighet og branch — DEKKET** (verifisert 2026-08-08, se logg): etter `gh repo create` — verifiser med
-   `gh repo view vestfoldfylke/claude-code-skills --json visibility,owner,defaultBranchRef`
-   at repoet er `PRIVATE`, eid av `vestfoldfylke` (ikke en personlig konto), og at
-   standardbranchen er `main`.
+8. **Synlighet og branch — OMGJORT 2026-09-07.** Målingen fra 2026-08-08
+   (`PRIVATE`) er ikke lenger gyldig: repoet ble satt åpent av BK samme dag som
+   dette ble skrevet. Verifisert 2026-09-07 (`VPC-5CG3433WMH`) med
+   `gh repo view vestfoldfylke/claude-code-skills --json visibility,owner,defaultBranchRef`:
+   `PUBLIC`, eid av `vestfoldfylke` (ikke en personlig konto), standardbranch
+   `main`. Eier og branch er fortsatt krav; synlighet er en beslutning som
+   følges opp i sikkerhetsvurderingen.
 9. **DROPPET** (BK, 2026-09-05) — overtakelsestest. Premisset er motbevist:
    `.claude/settings.json` når ikke kollegaers økter (målt 2026-08-24), og
    `extraKnownMarketplaces`/`enabledPlugins` forsvant fra fila etter noen

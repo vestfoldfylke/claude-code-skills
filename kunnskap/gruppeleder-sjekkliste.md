@@ -7,9 +7,12 @@ arbeidskatalog.
 
 ## 0. Forutsetninger
 
-- `gh auth status` i terminalen skal vise innlogget konto, og kontoen må være
-  medlem av `vestfoldfylke` på GitHub (claude.ai-tilgang er ikke det samme).
 - git installert. Claude Code som CLI eller VS Code-utvidelse.
+- Ingen GitHub-innlogging trengs — repoet er åpent (BK, 2026-09-07). Kravet om
+  `gh auth` og medlemskap i `vestfoldfylke` er falt bort.
+- Får du «blocked by enterprise policy. No external marketplaces are allowed»,
+  stopper installasjonen her; det løses på admin-siden (`docs/installasjon.md`),
+  ikke på maskinen. Noter det og gå til punkt 4.
 
 ## 1. Installer — i TERMINALEN, ikke i chatten
 

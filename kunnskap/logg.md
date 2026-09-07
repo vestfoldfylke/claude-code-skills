@@ -2,6 +2,61 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-07 (`hjemme-win-x86`) — Repoet satt åpent: privat-påstander rettet, historikk skrevet om, 0.9.1
+
+**Bakgrunn:** en kollega fikk «blocked by enterprise policy. No external
+marketplaces are allowed» ved `claude plugin marketplace add` — organisasjonens
+sky-styrte Claude-policy blokkerer eksterne marketplaces uavhengig av
+repo-synlighet. Løses på admin-siden (Intune → managed settings), ikke av
+denne økten; BKs sikkerhetskontakt sender JSON-blokka i `docs/installasjon.md`
+videre til Intune-ansvarlig.
+
+**Beslutning (BK, synlighet):** repoet satt `PUBLIC` 2026-09-07 (var `private`
+fram til da, hardt krav i planen). Verifisert med `gh repo view`: `PUBLIC`, eid
+av `vestfoldfylke`, standardbranch `main`.
+
+README, `docs/installasjon.md`, gruppeleder-sjekklisten og planen rettet — alle
+påsto at repoet var privat/krevde GitHub-tilgang. Planens verifiseringspunkt 8
+merket OMGJORT.
+
+**Sikkerhetsvurdering gjennomført** (full versjon i
+`kunnskap/lokalt/sikkerhetsvurdering-aapent-repo.md`, gitignorert):
+jobbadresse i 101 commits, 95 maskinnavn i 10 filer (5 i pakkefiler),
+`kunnskap/`-unntaket for personnavn/maskinnavn, manglende lisens, tom
+repo-beskrivelse — og viktigste funn: **ti kontoer har push til `main`** (5
+org-eiere + teamene `innviklere` og `duster`), ikke bare BK slik planen antok
+(«én vedlikeholder leser sin egen diff»).
+
+**Beslutning (BK):** jobbadressen fjernes fra historikken (omskriving);
+`innviklere`/`duster` beholder push, strammes ikke inn; MIT-lisens, ingen
+annen lisenspolicy i fylkeskommunen («vi kjører åpent på alt vi lager»).
+
+**Utført:**
+- `git filter-branch` byttet forfatter-/committer-adresse i 103 commits til
+  `181350664+bkaarstein@users.noreply.github.com`; `main` force-pushet
+  (`ec11f57` → `40e378f`); tre innfasede sidebrancher slettet på GitHub.
+- `LICENSE` (MIT) lagt til; repo-beskrivelse satt via `gh repo edit`.
+- Commit `69d986e` (0.9.1): 95 maskinnavn byttet til alias
+  (`hjemme-win-x86`/`kontor-win-arm`), alias-tabell i
+  `kunnskap/lokalt/maskiner.md` (gitignorert), ny hard regel i `sjekk.sh` mot
+  organisasjonens hostnavnmønster, `kunnskap/`-kravene strammet (initialer/alias,
+  ikke fulle navn/hostnavn), målereglen i `CLAUDE.md` oppdatert. Pushet.
+
+**Rest-risiko, BKs oppfølging:** GitHubs cache/PR-refer (#1, #2, #12–14) var
+målt fortsatt å kunne hente pre-omskriving-commits via SHA — krever henvendelse
+til GitHub Support (tekst klar i sikkerhetsvurderingen). Skrapevindu før
+omskrivingen er ikke reversibelt. `kontor-win-arm` er ikke synket ennå —
+oppskrift gitt i chatten (Teams), ikke i en fil.
+
+**Overraskelse:** hostnavn-regexen (`VPC-[A-Z0-9]{6,}`) traff først inni
+prosjektnavnet `ElevPC-fakturagrunnlag` i `testplan.md` — måtte forankres
+(`(^|[^A-Za-z])VPC-…`) før den kunne stå som hardt krav i renhetssjekken.
+
+Issue til pakkerepoet: ikke aktuelt (dette prosjektet ER pakkerepoet).
+Fasesnitt: kartlegging, sikkerhetsvurdering, to redigeringsrunder,
+historieomskriving og push fikk plass i én økt uten `/compact`.
+STATUS: 45 linjer. fase-slutt: 13:36–13:50, 14 min.
+
 ## 2026-09-05 (`hjemme-win-x86`) — gruppeleder-prep: README strammet, sjekkliste opprettet (skrevet, verifisert av BK)
 
 **Beslutning (BK, README-kutt):** godkjente kuttplanen — installasjonen sier

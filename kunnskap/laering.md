@@ -9,6 +9,23 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-07 (`hjemme-win-x86`) — Repoet åpent: prosess rundt irreversible endringer
+
+**Evaluering av forrige økts punkter:**
+- `[trigg-ordet-gjentar-seg]` **brutt igjen (2. runde).** Klarspråk-sjekken ble
+  kjørt batchet etter runde 1s seks redigeringer (ikke rett etter hver enkelt
+  skriving til `kunnskap/`), og droppet helt i runde 2 — fanget bare opp i et
+  samlesøk nå ved fase-slutt. Ingen faktisk lekkasje funnet ved kontroll mot
+  hele klarspråktabellen, men prosessen fulgte ikke instruksen to ganger på rad.
+
+**Nytt punkt:** ingen, utover videreføringen over. Resten av økten fulgte
+godkjenningsflyten i prosjektets `CLAUDE.md`: ordlyd vist før hver endring, og
+de irreversible stegene (historieomskriving, force push) samlet i ett
+eksplisitt klarsignal etter at alt reversibelt var forberedt og vist fram.
+
+Fasesnitt: ja — kartlegging, sikkerhetsvurdering, to redigeringsrunder,
+historieomskriving og push fikk plass i én økt uten `/compact`.
+
 ## 2026-09-05 (`hjemme-win-x86`) — gruppeleder-prep: README og sjekkliste
 
 **Evaluering av forrige økts punkter:**

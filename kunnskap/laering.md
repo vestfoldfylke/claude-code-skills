@@ -9,6 +9,38 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-08 (`hjemme-win-x86`) — README-reserveløsning: ordlekkasje-sjekk gjort per skriving, systemdiagnostikk i hovedtråden igjen
+
+**Evaluering av forrige økts punkter:**
+- `[trigg-ordet-gjentar-seg]` **fulgt (satt på prøve for første gang).**
+  Kjørte grep etter klarspråktabellens ord rett etter hver enkelt skriving til
+  `kunnskap/` i denne fase-slutten (logg, læring, STATUS hver for seg), ikke
+  batchet i turn 3 slik skillens egen turplan foreslår. Strykes som innarbeidet.
+  **Spenning å ta videre:** skillens egen turplan (`fase-slutt/SKILL.md` steg 3)
+  instruerer ETT samlet søk etter alle tre skrivingene — det er nettopp
+  batching-mønsteret korrigeringen ble skrevet mot. Løst denne gangen ved å
+  overstyre turplanen, ikke ved at de to tekstene ble forenet. Se forslag til
+  issue under.
+- `[system-diagnose-i-hovedtraden]` **brutt igjen (2. runde).** Sjekket
+  register (`HKLM\SOFTWARE\Policies\ClaudeCode`), `Program Files\ClaudeCode`
+  og `ProgramData\ClaudeCode` (inkl. hale av `remediation-log.txt`) direkte i
+  hovedtråden, ikke delegert til Explore/general-purpose — samme mønster som
+  forrige runde, denne gangen mindre kostbart (to `PowerShell`-kall, ingen
+  mislykkede parse-forsøk), men samme instruks brutt.
+
+Issue til pakkerepoet: **tilbudt, ikke opprettet — venter på klarsignal.**
+Forslag: `fase-slutt/SKILL.md` steg 3 sin batchede ordlekkasje-søk står i
+direkte spenning med `## Arbeidsmåte neste økt`-mønsteret «søk rett etter hver
+skriving, ikke batchet» når begge gjelder samme fil-sett. Skillen bør enten
+foreskrive per-skriving-søk eksplisitt der batching ellers er default, eller
+korrigeringen bør presisere at fase-slutts egen steg 3 er unntatt fordi den
+allerede garanterer søket før commit.
+
+Ingen nye punkter utover videreføringen over.
+
+**Fasesnitt:** ja — installasjonsspørsmål, sti-diagnostikk, distribusjons-
+alternativer og fem filredigeringer fikk plass i én økt uten `/compact`.
+
 ## 2026-09-07 (`hjemme-win-x86`) — Installasjonssperre: diagnostikk i hovedtråden
 
 **Evaluering av forrige økts punkter:**

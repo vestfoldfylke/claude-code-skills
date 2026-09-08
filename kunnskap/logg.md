@@ -2,6 +2,54 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-08 (`hjemme-win-x86`) — README-reserveløsning ved policy-sperre, siste «internt»-påstander fjernet, faseflyt 0.9.2
+
+**Bakgrunn:** oppfølging av gårsdagens installasjonssperre-diagnose. Brukeren
+spurte nøyaktig hvilken fil og hvilket innhold som trengs for at managed
+settings skal slippe pakken inn (svart med det som alt lå i
+`kunnskap/lokalt/sikkerhetsvurdering-aapent-repo.md`), deretter hvor denne
+JSON-en ligger på egen maskin, og til slutt hva vi gjør hvis policy-veien ikke
+ordner seg i tide til testen med utviklerne i morgen.
+
+**Målt på `hjemme-win-x86`:** ingen managed settings noe sted — register
+`HKLM\SOFTWARE\Policies\ClaudeCode` finnes ikke, `C:\Program Files\ClaudeCode\`
+er tom, `C:\ProgramData\ClaudeCode\` har bare Intune-hooken og to logger.
+`faseflyt` virker her utelukkende via brukernivå (`~/.claude/settings.json`
++ `known_marketplaces.json` + `installed_plugins.json`). Intune-remediationen
+feilet på nytt 2026-09-07 08:50 med samme `AddAccessRule`-feil som før — target
+er en hook (`pretool-credential-scan.ps1`), ikke managed settings, så det er en
+beslektet, ikke identisk, feil.
+
+**Beslutning (BK, distribusjon):** manuell kopi til `~/.claude/skills/`
+dokumenteres i README som reserveløsning for maskiner med
+`strictKnownMarketplaces`-sperren, ikke som primærkanal. Policy-veien
+(managed settings hos Intune-ansvarlig) er fortsatt den riktige løsningen.
+Vurderte og forkastet for nå: skill-katalogen i claude.ai-appen (når ikke
+Claude Code), Intune-utrulling av skills-mappa (bygger på samme ACL-steg som
+alt feiler), privat repo (GitHub Team har 11 av 11 seter brukt — ikke en vei
+til kollegaer uten utviklerlisens).
+
+**Beslutning (BK, synlighet):** siste «internt/skal ikke deles»-påstander
+fjernet — README (åpningslinje), `NOTICE.md`, beskrivelsen i
+`marketplace.json`. Åpningen av repoet 2026-09-07 gjaldt disse filene også,
+de var bare ikke fanget opp da.
+
+**Gjort:** README fikk en ny seksjon «Får du "blocked by enterprise policy…"»
+(ZIP-nedlasting, kopiering, kommandoer uten prefiks, ingen automatisk
+oppdatering) og kortere forutsetninger (`gh auth`/medlemskap fjernet — unødvendig
+for et åpent repo). `faseflyt` bumpet til 0.9.2 i begge manifester. Renhetssjekk
+og `plugin validate` kjørt grønt fire ganger, én gang per redigeringsrunde.
+
+**Verifisert:** brukeren gjennomgikk og godkjente hver ordlyd før skriving
+(«klar»). Ikke kjørt: kollisjonstesten mellom plugin-`fase-start` og en
+manuelt kopiert `fase-start` i `~/.claude/skills/` — nevnt til brukeren som
+egen sjekk, ikke gjort i denne økten.
+
+**Renhetssjekk og `plugin validate`:** kjørt grønt fem ganger i økten, siste
+gang etter `git add` av `kunnskap/`-filene under. **Rask sikkerhetssjekk:**
+env-filer 0, fødselsnummer-mønster 0, nøkkel-mønster 0, kontrollsøk 1 treff.
+STATUS: 44 linjer (tak 45). fase-slutt: 10:23–10:29, 6 min.
+
 ## 2026-09-07 (`hjemme-win-x86`) — Installasjonssperre hos kollega: feil Intune-sti funnet, admin-konsoll bekreftet tomt, avventer Intune/sikkerhet
 
 **Bakgrunn:** brukeren ba om å sjekke om egen Claude-installasjon kommer fra

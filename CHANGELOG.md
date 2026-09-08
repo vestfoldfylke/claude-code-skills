@@ -4,6 +4,18 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.9.2 — 2026-09-08
+
+Ingen plugin endrer oppførsel; bumpen er fordi marketplace-manifestet er rørt.
+
+- **README: manuell installasjon som reserveløsning** for maskiner med policyen
+  «No external marketplaces are allowed» — de fem skill-mappene kopieres til
+  `~/.claude/skills/`, uten prefiks og uten automatisk oppdatering.
+  Forutsetningene rettet: `gh auth` og GitHub-medlemskap trengs ikke for et
+  åpent repo.
+- **Siste «internt»-påstander fjernet** etter åpningen 2026-09-07: README,
+  `NOTICE.md` og beskrivelsen i `marketplace.json`.
+
 ## 0.9.1 — 2026-09-07
 
 Repoet er åpent fra i dag. Ingen plugin endrer oppførsel; bumpen er fordi tre

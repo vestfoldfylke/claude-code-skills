@@ -1,7 +1,6 @@
 # Tredjepartsattribusjon og bruksvilkår
 
-Denne pakken er til intern bruk i Vestfold fylkeskommune og skal ikke deles
-utenfor organisasjonen.
+Pakken er utgitt under MIT-lisens, se `LICENSE`. Tredjepartsattribusjon under.
 
 ## grill-me
 

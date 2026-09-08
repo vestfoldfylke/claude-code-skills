@@ -5,7 +5,8 @@ implementeres om gangen, du verifiserer før neste fase starter — og prosjekte
 husker alt som skjedde mellom øktene.** I tillegg: skills for web-prototyping
 (SvelteKit + Designsystemet) og FINT GraphQL.
 
-Internt repo for Vestfold fylkeskommune. Skal ikke deles utenfor organisasjonen.
+Laget av Vestfold fylkeskommune for egne prosjekter. Åpent repo; bruk gjerne,
+uten garantier.
 
 ## Hvorfor faser?
 
@@ -23,10 +24,7 @@ Internt repo for Vestfold fylkeskommune. Skal ikke deles utenfor organisasjonen.
 
 ## Installasjon
 
-**Forutsetninger:** Claude Code (CLI eller VS Code-utvidelsen), git, og
-GitHub CLI innlogget (`gh auth login`) med en konto som er **medlem av
-`vestfoldfylke` på GitHub** (tilgang til claude.ai er ikke det samme — spør
-IT om GitHub-medlemskap hvis du mangler det).
+**Forutsetninger:** Claude Code (CLI eller VS Code-utvidelsen) og git.
 
 **Installasjonen gjøres i en terminal** (VS Codes innebygde terminal holder) —
 `/plugin` finnes ikke som slash-kommando i VS Code-utvidelsens chat. Kjør:
@@ -52,6 +50,31 @@ claude plugin install fint-graphql@claude-code-skills    # jobber du mot FINT
 Ingenting sendes til noen ekstern tjeneste — «marketplace add» kloner bare
 dette repoet til din maskin. Oppdatere senere:
 `claude plugin marketplace update claude-code-skills`.
+
+**Får du «blocked by enterprise policy. No external marketplaces are allowed»?**
+
+Da har maskinen din en policy som bare tillater godkjente plugin-kilder, og
+denne pakken er ikke på listen ennå. Det jobbes med å få den inn. I mellomtiden
+kan skillene legges inn manuelt — policyen gjelder plugin-kilder, ikke skills:
+
+1. Last ned repoet som ZIP («Code → Download ZIP» på
+   github.com/vestfoldfylke/claude-code-skills) og pakk ut.
+2. Kopier de fem mappene under `plugins/faseflyt/skills/` (`nytt-prosjekt`,
+   `fase-start`, `fase-slutt`, `grill-me`, `hjelp`) til `~/.claude/skills/` —
+   på Windows `%USERPROFILE%\.claude\skills\`. Opprett `skills`-mappa om den
+   mangler.
+3. Skriv `/hjelp` i Claude Code. Svarer den, er skillene lastet. Ingen omstart.
+
+To ting er annerledes enn plugin-installasjonen:
+
+- **Kommandoene har ikke prefiks:** `/fase-start`, ikke `/faseflyt:fase-start`.
+  Der skillene eller denne README-en sier `/faseflyt:…`, dropp prefikset.
+- **Ingen automatisk oppdatering.** Ny versjon = slett de fem mappene, last
+  ned og kopier på nytt. Endringer står i [CHANGELOG.md](CHANGELOG.md).
+
+Skru av: slett de fem mappene. Virker ikke dette heller, har maskinen også en
+policy mot egne skills. Da må IT slippe pakken inn; si fra til den som
+vedlikeholder den.
 
 **Bruker du claude.ai eller Claude Desktop-chat (ikke Claude Code)?** Da får du
 ikke disse skillene. Pakken distribueres kun som plugin i Claude Code — det

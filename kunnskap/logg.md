@@ -50,6 +50,27 @@ gang etter `git add` av `kunnskap/`-filene under. **Rask sikkerhetssjekk:**
 env-filer 0, fødselsnummer-mønster 0, nøkkel-mønster 0, kontrollsøk 1 treff.
 STATUS: 44 linjer (tak 45). fase-slutt: 10:23–10:29, 6 min.
 
+**Etter fase-slutt, samme økt (10:30–11:00):**
+
+- **Sikkerhets påstand om «repoet må være privat»** gjelder
+  organisasjons-marketplaces synket fra claude.ai-konsollet (Claude GitHub
+  App henter serverside, brukerne trenger ikke GitHub-sete). Vår vei,
+  `/plugin marketplace add`, har ikke det kravet. Konsoll-veien er et reelt
+  alternativ med tre umålte forutsetninger: når den Claude Code CLI/VS Code,
+  slipper den gjennom `strictKnownMarketplaces`, og er Claude GitHub App
+  installert på organisasjonen. Den krever at beslutningen om tomt konsoll
+  tas opp igjen — BKs valg, ikke tatt. Svarplan gitt i chatten, ikke sendt.
+- **Sikkerhets diagnosescript kjørt** (`kunnskap/lokalt/Diag-ClaudeCode-Marketplace.ps1`,
+  gitignorert; rapport + tillegg på skrivebordet, ikke i repoet). Observert:
+  ingen effektiv managed-kilde på `hjemme-win-x86`; `remote-settings.json` er
+  `{}`; AddAccessRule-feilen reprodusert («Administrators»/«Users» slår ikke
+  opp på nb-NO, SID gjør det). To feil i scriptet meldt i tillegget:
+  `$Args` som parameternavn tømmer hele seksjon 2, og Tier 1-sjekken tolker
+  en tom cache som aktiv server-styring og gir feil verdict.
+- **Beslutning (BK, fase-slutt-spenningen):** alternativ 1 skal inn i
+  `fase-slutt/SKILL.md` steg 3 direkte, ikke som issue. Ordlyd avventer
+  klarsignal.
+
 ## 2026-09-07 (`hjemme-win-x86`) — Installasjonssperre hos kollega: feil Intune-sti funnet, admin-konsoll bekreftet tomt, avventer Intune/sikkerhet
 
 **Bakgrunn:** brukeren ba om å sjekke om egen Claude-installasjon kommer fra

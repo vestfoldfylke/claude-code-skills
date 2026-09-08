@@ -17,6 +17,9 @@
 Diagnose: `kunnskap/lokalt/sikkerhetsvurdering-aapent-repo.md`, ikke mål på
 nytt. README har fått en reserveløsning (kopi til `~/.claude/skills/`, logg
 2026-09-08) — kollisjonstest mot plugin-versjonen er ikke gjort ennå.
+**Åpent fra 2026-09-08 (se logg, «Etter fase-slutt»):** svar til sikkerhet om
+konsoll-marketplace vs. åpent repo (BK avgjør konsoll-spørsmålet), og
+alternativ 1 inn i `fase-slutt/SKILL.md` steg 3 med bump til 0.9.3.
 
 ## Arbeidsmåte neste økt
 
@@ -35,10 +38,8 @@ nytt. README har fått en reserveløsning (kopi til `~/.claude/skills/`, logg
 - **GitHub Support-henvendelsen** (cache/PR-refer til gamle commits) er BKs
   eksterne oppfølging — detaljer i sikkerhetsvurderingsfila over.
 - `innviklere`/`duster`-teamene beholder push til `main` (BK, 2026-09-07). Ikke gjenåpne.
-- `fint-samtykke` har to slettede filer ustaget og en løs
-  `retrospektiv-fint-samtykke.md` — avklares i det prosjektets egen fase-slutt.
-- Samme prosjekt har fortsatt kopier av `fint-graphql` og `web-prototype` i
-  `.claude/skills/` — ikke rørt, avklar med BK om de skal samme vei.
+- `fint-samtykke`: to slettede filer ustaget, løs `retrospektiv-fint-samtykke.md`,
+  og kopier av `fint-graphql`/`web-prototype` i `.claude/skills/` — avklares der.
 - `TODO.md` er en frys-erklæring med tabell. Ikke gjenåpne postene der.
 - Allowlist-saken er LUKKET. Ikke gjenåpne.
 - `/plugin` og `/permissions` kun i terminalen.

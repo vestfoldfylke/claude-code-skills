@@ -4,6 +4,13 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 0.9.3 — 2026-09-08
+
+- **`fase-slutt` steg 3** sier nå eksplisitt at det samlede ordlekkasje-søket
+  dekker per-skriving-korrigeringer for fase-slutts egne skrivinger, og at
+  slike korrigeringer strykes i steg 2a. Belegg: en korrigering sto i to
+  runder uten å kunne prøves.
+
 ## 0.9.2 — 2026-09-08
 
 Ingen plugin endrer oppførsel; bumpen er fordi marketplace-manifestet er rørt.

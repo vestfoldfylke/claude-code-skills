@@ -8,7 +8,7 @@
 `origin/main` før du stoler på denne fila.
 
 **Repoet er PUBLIC siden 2026-09-07**, ingen «internt»-påstander igjen (rettet
-2026-09-08). `faseflyt` 0.9.2 installert; last VS Code-vinduet på nytt.
+2026-09-08). `faseflyt` 0.9.3 pushet; `marketplace update` + last VS Code på nytt.
 
 ## Neste — start her
 
@@ -18,8 +18,8 @@ Diagnose: `kunnskap/lokalt/sikkerhetsvurdering-aapent-repo.md`, ikke mål på
 nytt. README har fått en reserveløsning (kopi til `~/.claude/skills/`, logg
 2026-09-08) — kollisjonstest mot plugin-versjonen er ikke gjort ennå.
 **Åpent fra 2026-09-08 (se logg, «Etter fase-slutt»):** svar til sikkerhet om
-konsoll-marketplace vs. åpent repo (BK avgjør konsoll-spørsmålet), og
-alternativ 1 inn i `fase-slutt/SKILL.md` steg 3 med bump til 0.9.3.
+konsoll-marketplace vs. åpent repo — BK avgjør konsoll-spørsmålet.
+Alternativ 1 er inne i `fase-slutt` steg 3 som 0.9.3.
 
 ## Arbeidsmåte neste økt
 

@@ -205,6 +205,14 @@ STATUS (steg 2b), ikke ved å lese læringsloggen.
    med ord som faktisk er sett i et prosjekts filer, ikke med ord som kunne
    lekke.
 
+   Dette ene søket er sjekken før commit, og det dekker kravet «søk etter hver
+   skriving til `kunnskap/`» for skrivingene fase-slutt selv gjør. Står en
+   korrigering av den typen i `## Arbeidsmåte neste økt`, og de eneste
+   skrivingene til `kunnskap/` i økten var disse, strykes den som dekket i
+   steg 2a — den kan ikke settes på prøve av en økt som bare skriver her.
+   Observert 2026-09-08: en slik korrigering sto i to runder uten å bli prøvd,
+   fordi ingen økt skrev til `kunnskap/` utenom fase-slutt.
+
 4. **Plan og `TODO.md`.**
 
    **Er fasen verifisert ✅, kollapser den i `kunnskap/plan.md`** til én linje:

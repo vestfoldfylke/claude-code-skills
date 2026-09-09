@@ -4,42 +4,30 @@
 **Plan:** `kunnskap/plan.md` **TODO:** `kunnskap/TODO.md`
 **Køen bor i GitHub issues** — `gh issue list`. Ingen åpne issues 2026-09-08.
 
-**TO MASKINER SKRIVER TIL DETTE REPOET.** Kjør `git fetch` og sammenlign med
-`origin/main` før du stoler på denne fila.
+**TO MASKINER SKRIVER TIL DETTE REPOET.** Kjør `git fetch` og sammenlign med `origin/main` før du stoler på denne fila.
 
-**Repoet er PUBLIC siden 2026-09-07**, ingen «internt»-påstander igjen (rettet
-2026-09-08). `faseflyt` 0.9.3 pushet; `marketplace update` + last VS Code på nytt.
+**Repoet er PUBLIC siden 2026-09-07.** `faseflyt` 0.9.3 er siste versjon — **INGEN pakkeendring før samlingen 14. september** (BK, frys 2026-09-09, gjelder også korrekte småfeil, se logg).
 
 ## Neste — start her
 
-**Avventer svar fra Intune-ansvarlig og sikkerhetskontakt** (forventet
-2026-09-08) før gruppeleder-sjekklisten kan kjøres — siste steg før 1.0.
-Diagnose: `kunnskap/lokalt/sikkerhetsvurdering-aapent-repo.md`, ikke mål på
-nytt. README har fått en reserveløsning (kopi til `~/.claude/skills/`, logg
-2026-09-08) — kollisjonstest mot plugin-versjonen er ikke gjort ennå.
-**Åpent fra 2026-09-08 (se logg, «Etter fase-slutt»):** svar til sikkerhet om
-konsoll-marketplace vs. åpent repo — BK avgjør konsoll-spørsmålet.
-Alternativ 1 er inne i `fase-slutt` steg 3 som 0.9.3.
+- **Gruppeleder-gjennomgang kjørt 2026-09-09** (Mac/PC, x86+ARM): installasjon fungerte for noen, andre falt tilbake til skill-kopi (Intune ikke klart for alle modeller ennå). Skillene slo inn av seg selv. Ingen umiddelbare feil. Detaljer i logg.
+- **Fortsatt utestet:** sjekklistepunkt 3 — kloning av et oppsatt prosjekt, om `.claude/settings.json` tilbyr plugin-installasjon. Ingen gruppeleder klonet.
+- **Parkert til etter samlingen:** `nytt-prosjekt` steg 6 lover fortsatt automatisk skill-tilgang ved kloning — motbevist av plan.md punkt 9. Ordlyd klar, se logg 2026-09-09. Blir issue ETTER samlingen (TODO.md sin frysregel).
+- **Fortsatt åpent siden 2026-09-08:** svar fra Intune/sikkerhet om konsoll-marketplace vs. åpent repo (BK avgjør).
+- **1.0 tas opp etter samlingen, betinget av at den går bra.**
 
 ## Arbeidsmåte neste økt
 
-- `[system-diagnose-i-hovedtraden]` (2. runde, brutt igjen — se `laering.md`)
-  Bred systemdiagnostikk (register, Intune-logger, dokumentasjonssøk)
-  delegeres til Explore/general-purpose, ikke i hovedtråden.
+Ingen aktive punkter. `[system-diagnose-i-hovedtraden]` strøket 2026-09-09 — ingen gjenstående fase kan utløse den (logg/laering).
 
 ## Det en ny økt må vite
 
-- **Beslutning (BK): claude.ai-konsollets «Managed settings» skal forbli
-  tomt.** All sentral styring skjer via Intune. Ikke foreslå innhold der.
-- **GitHub Team har 11 av 11 seter brukt** — privat repo når ikke kollegaer
-  uten utviklerlisens; åpent repo er eneste kanal for dem.
-- **Historikken er skrevet om** (jobbadresse fjernet); `kontor-win-arm` ikke
-  synket ennå (oppskrift i Teams).
-- **GitHub Support-henvendelsen** (cache/PR-refer til gamle commits) er BKs
-  eksterne oppfølging — detaljer i sikkerhetsvurderingsfila over.
-- `innviklere`/`duster`-teamene beholder push til `main` (BK, 2026-09-07). Ikke gjenåpne.
-- `fint-samtykke`: to slettede filer ustaget, løs `retrospektiv-fint-samtykke.md`,
-  og kopier av `fint-graphql`/`web-prototype` i `.claude/skills/` — avklares der.
+- **Beslutning (BK): «Managed settings» i claude.ai-konsollet skal forbli tomt.** All styring skjer via Intune.
+- **GitHub Team har 11 av 11 seter brukt** — åpent repo er eneste kanal for kollegaer uten utviklerlisens.
+- **`kontor-win-arm` synket med `origin/main` 2026-09-09** — var 5 dager bak, ukjent for maskinen (se logg).
+- **GitHub Support-henvendelsen** (cache/PR mot gamle commits): BKs eksterne oppfølging, detaljer i `kunnskap/lokalt/sikkerhetsvurdering-aapent-repo.md`.
+- `innviklere`/`duster` beholder push til `main` (BK, 2026-09-07). Ikke gjenåpne.
+- `fint-samtykke`: to slettede filer ustaget, kopier i `.claude/skills/` — avklares der, ikke her.
 - `TODO.md` er en frys-erklæring med tabell. Ikke gjenåpne postene der.
 - Allowlist-saken er LUKKET. Ikke gjenåpne.
 - `/plugin` og `/permissions` kun i terminalen.

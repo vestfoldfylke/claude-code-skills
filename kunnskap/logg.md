@@ -2,6 +2,45 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-09 (`kontor-win-arm`) — gruppeleder-gjennomgang kjørt, maskinen synket, pakken fryst til etter samlingen
+
+**Git-historikk resynkronisert.** Økten startet med `git pull` som feilet med
+«refusing to merge unrelated histories» — `main` (82 commits, siste
+`3d545cc`/0.6.0) og `origin/main` (108 commits, siste `5229d2c`/0.9.3) delte
+ingen felles forfar (`git merge-base` tomt). Årsak: historikken ble skrevet om
+da repoet ble åpnet 2026-09-07, og denne maskinen hadde ikke hentet siden
+2026-09-04. Verifisert før noe ble endret: `git diff 3d545cc..e00c291` (lokal
+topp mot dens motstykke i den nye historikken) var tomt — identisk innhold,
+ingenting unikt lokalt. `git reset --hard origin/main` kjørt; maskinen er nå
+synket.
+
+**Gruppeleder-gjennomgang** (samlingsforberedelse, dagen etter forventet
+Intune/sikkerhet-svar): Mac og PC (x86 og ARM), kollegaer uten forhåndskjennskap.
+- Installasjon: fungerte for noen; andre falt tilbake til skill-kopi i
+  `~/.claude/skills/` fordi Intune ikke er klart for alle maskinmodeller ennå.
+- Skillene slo inn av seg selv av vanlig tekst — bekreftet i flere runder på
+  `kontor-win-arm`.
+- Skill-kopi ved siden av plugin: bekreftet fungerende på `hjemme-win-x86`.
+  Regnes som dekket, ingen flere runder trengs.
+- Ingen umiddelbare feil. Klare for samlingen 14. september.
+- **Fortsatt utestet:** sjekklistepunkt 3 (klone et oppsatt prosjekt, se om
+  `.claude/settings.json` tilbyr plugin-installasjon) — gruppelederne startet
+  alle fra tomme mapper, ingen klonet et eksisterende.
+
+**Funn (ikke rettet):** `nytt-prosjekt` SKILL.md steg 6 lover fortsatt at den
+som kloner prosjektet får arbeidsflyt-skillene automatisk via
+marketplace-deklarasjonen. Det motsier plan.md sitt eget verifiseringspunkt 9
+(droppet 2026-08-21/2026-09-05): målt 2026-08-24 at `.claude/settings.json`
+ikke når andres økter, og 2026-08-30 at `extraKnownMarketplaces`/
+`enabledPlugins` forsvinner fra fila etter noen godkjenninger. Ordlyd
+utarbeidet i økten, ikke skrevet inn.
+
+**Beslutning (BK, frys):** ingen pakkeendring før samlingen 14. september —
+heller ikke korrekte, små rettelser som funnet over. Rettingen av
+`nytt-prosjekt` steg 6 parkeres til etter samlingen, betinget av at den går
+bra; blir da GitHub-issue i pakkerepoet, per `TODO.md` sin egen frysregel
+(nye funn fra gjennomgangen skal som issue ETTER samlingen, ikke i fila).
+
 ## 2026-09-08 (`hjemme-win-x86`) — README-reserveløsning ved policy-sperre, siste «internt»-påstander fjernet, faseflyt 0.9.2
 
 **Bakgrunn:** oppfølging av gårsdagens installasjonssperre-diagnose. Brukeren

@@ -9,6 +9,22 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-10 (`hjemme-win-x86`) — driftsstøtte mellom faser: ingen brudd, 0 nye punkter
+
+**Evaluering:** ingen aktive punkter i STATUS fra forrige faseslutt —
+ingenting å evaluere.
+
+**Nye punkter:** ingen. Bred systemdiagnostikk (Intune-logger) ble delegert
+til en subagent i stedet for hovedtråden, i tråd med korrigeringen strøket
+09-09 — bekrefter at den sitter.
+
+**Issue til pakkerepoet:** tilbudt (uavklart hvilken skill som slår inn når
+plugin og manuell kopi deler aktiveringsfraser), avslått av BK 2026-09-10.
+Gjentas ikke.
+
+**Fasesnitt:** ikke en fase fra planen (driftsstøtte under pakkefrys); ingen
+`/compact` trengt.
+
 ## 2026-09-09 (`kontor-win-arm`) — git-resynk og gruppeleder-gjennomgang: ingen brudd, ett punkt strøket
 
 **Evaluering av forrige økts punkter:**

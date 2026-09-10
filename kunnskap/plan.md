@@ -554,8 +554,11 @@ til intern bruk i Vestfold fylkeskommune holder.
    Installasjon og alle skills observert 2026-08-17. At `faseflyt` virker alene
    uten de to andre pluginene er ikke målt, men lest: `faseflyt` kaller aldri
    de andre pluginenes skills, bare deklarerer dem i nye prosjekters
-   `settings.json` for typene som trenger dem. Målingen tas i
-   gruppeleder-prepen før samlingen 14. september.
+   `settings.json` for typene som trenger dem. Gruppeleder-gjennomgangen
+   2026-09-09 (Mac/PC, x86+ARM) bekreftet installasjon for kollegaer uten
+   forhåndskjennskap — noen via plugin, noen via skill-kopi der Intune ikke var
+   klart. **Fortsatt utestet:** sjekklistepunkt 3, kloning av et oppsatt
+   prosjekt.
 2. **Tørrkjøring av `nytt-prosjekt` — DEKKET** (2026-09-05, `hjemme-win-x86`,
    mot 0.8.3). Script og webapp var dekket fra før; dokumentasjons- og API-typen
    tørrkjørt i scratch-kataloger, og én kjøring i et eksisterende ikke-tomt

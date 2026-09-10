@@ -2,6 +2,75 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-10 (`hjemme-win-x86`) — sikkerhetsgodkjenning mottatt, Intune-remediation kartlagt, lokal opprydning
+
+**Beslutning (sikkerhet, synlighet):** repoet forblir åpent inntil videre,
+godkjent 2026-09-10. Lukker det åpne punktet fra 2026-09-08 om
+konsoll-marketplace vs. åpent repo.
+
+**Intune-diagnostikk, tre kjøringer av `Diag-ClaudeCode-Marketplace 1.ps1`**
+(les-only, skriver rapport til Skrivebordet):
+- 09-08 11:39: ingen managed settings noe sted på maskinen — uendret fra
+  tidligere målinger.
+- 09-08 16:48: `C:\Program Files\ClaudeCode\managed-settings.json` (Tier 3)
+  dukket opp, skrevet 15:19 av Intune-remediationens versjon 11. Setter
+  `strictKnownMarketplaces` (kun org-repoet, ikke
+  `anthropics/claude-plugins-official`), `extraKnownMarketplaces`,
+  `disableSideloadFlags`, `forceLoginOrgUUID`/`forceLoginMethod`. **Avvik:**
+  `strictKnownMarketplaces` er formet som én kilde-beskrivelse
+  (`{"source":...,"repo":...}`), ikke en navngitt liste slik
+  `extraKnownMarketplaces` i samme fil er — flagget til Are, ikke avklart.
+- 09-10 06:44: identisk med 16:48-kjøringen — ingen ny versjon har landet.
+
+Begge rapportene fra 09-08 kopiert til delingsmappa for Are
+(`OneDrive .../TEMP/Til Are`); 09-10-rapporten kopiert dit på forespørsel,
+uendret innhold.
+
+**Rotårsak til at remediation ikke går videre** (funnet via subagent mot
+Intune Management Extension-loggene,
+`C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\`): remediation
+kjører daglig kl. 09:00 lokalt. Kjøringen 09-09 09:00 gikk tapt fordi maskinen
+lå i ventemodus; køen er ikke tatt opp igjen i de korte våkne vinduene siden
+(~46 min 09-09, ~30 min 09-10). IMEs egen henting av nye skriptversjoner fra
+Intune skjedde sist 09-08 15:13 — ingen nyere versjon lastet ned lokalt ennå.
+Brukerens manuelle «Synkroniser» (MDM-synk, fullført ifølge UI og register
+10-09 kl. 01:27/06:52) er en annen mekanisme enn helseskript-schedulen og
+trakk ikke ned noen ny policy. **Hypotese, ikke verifisert:** neste ordinære
+IME-innsjekk bør hente ny versjon og køe kjøringen — tidspunktet er ikke
+observert.
+
+**Lokal opprydning (`hjemme-win-x86`, ingen repoendring):**
+`installed_plugins.json` hadde tre foreldreløse prosjekt-registreringer
+(mapper slettet: `claude-code-skills-testoppgave-0.6`, `faseflyt-0.7-test`) og
+én levende (`test-faseflyt`, avinstallert via
+`claude plugin uninstall --scope project`). Cache under
+`~/.claude/plugins/cache/claude-code-skills/` ryddet fra 18 til 1
+faseflyt-versjon og fra 4 til 1 web-prototype-versjon — bare det som fortsatt
+er i bruk, er beholdt. Sikkerhetskopi av `installed_plugins.json` tatt før
+redigering.
+
+**Kollisjonstest fullført** (README-reserveløsningen: manuell kopi av
+`fase-start` ved siden av plugin-versjonen): en fersk subagent bekrefter at
+`fase-start` og `faseflyt:fase-start` står som to atskilte oppføringer uten
+feil eller duplikat-varsel. **Ikke avklart:** de to har ordrett identisk
+beskrivelse og samme aktiveringsfraser, så hvilken som slår inn på en vanlig
+tekstfrase (ikke slash-kommando) er udefinert — ikke testet videre, ikke
+deterministisk å teste uten å faktisk påkalle.
+
+**Prosjektets egen sjekk (etter `git add`):** `.github/renhet/sjekk.sh` — 12
+søk kjørt, 0 feil, 0 advarsler, kontrollsøk 44 treff på «faseflyt» i
+`plugins/`. `claude plugin validate .` — bestått. **Rask sikkerhetssjekk:**
+env-filer 0, fødselsnummer-mønster 0, nøkkel-mønster 0, kontrollsøk 44 treff.
+STATUS: 32 linjer (tak 45). Plan.md verifiseringspunkt 1 oppdatert med
+gruppeleder-resultatet (klarsignal BK). fase-slutt: 07:14–07:24, 10 min.
+
+**Retroaktivt notat:** commit `5229d2c` (09-08, bump til 0.9.3 + presisering i
+fase-slutt steg 3) fikk ikke eget logginnslag da den ble committet. Notert her
+for å lukke gapet `fase-start` flagget 09-08.
+
+**Git:** hentet `kontor-win-arm`s fase-slutt-commit (`5229d2c..ff4b61f`),
+fast-forward, ingen konflikt.
+
 ## 2026-09-09 (`kontor-win-arm`) — gruppeleder-gjennomgang kjørt, maskinen synket, pakken fryst til etter samlingen
 
 **Git-historikk resynkronisert.** Økten startet med `git pull` som feilet med

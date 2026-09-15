@@ -2,6 +2,48 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-15 (`kontor-win-arm`, ettermiddag) — issue #18 rettet, faseflyt 1.0.1
+
+**Bakgrunn:** issue #18 (skjellin, 09-14) meldte at `fase-start` steg 2 hoppet
+over hele git-sjekken (ucommittet arbeid, uloggførte commits, remote-diff) fordi
+miljøbeskrivelsens «Is a git repository»-flagg var feil. Skillen sa «I et
+prosjekt med git, spør om tre ting» uten å nevne hvordan «prosjekt med git»
+avgjøres, og modellen brukte flagget.
+
+**Endring:** steg 2 fikk et kontrollkall tidlig i steget: `git status
+--porcelain` er kallet som avgjør om prosjektet er et git-repo, aldri
+miljøbeskrivelsens flagg. Feiler kallet, hoppes resten av steget over i
+stillhet; går det gjennom, er utdataet svaret på første spørsmål og de tre
+spørsmålene kjøres videre. Siste edge-bullet ryddet: klausulen «Ikke et
+git-prosjekt» flyttet til toppen der kontrollkallet avgjør det.
+
+**Utgivelse:** faseflyt 1.0.1 (commit 25df9de). Begge manifester bumpet fra
+1.0.0 til 1.0.1, CHANGELOG oppdatert. Egen commit for permission-godkjenningen
+`~/.local/bin/claude.exe plugin *` fra økten (commit f652b32). Issue #18 lukket
+med referanse til fiksen.
+
+**Observert:** korrigeringspunktet `[kilde-diagnose-før-losning]` (1. runde
+etter 09-15 morgen) ble ikke satt på prøve — ingen Claude-friksjon meldt inn i
+økten, situasjonen oppsto ikke. Planen er 100 % ✅, køen er issues, ingen
+gjenstående fase kan utløse den. Strøket i denne faseslutt per regelen i
+`fase-slutt` steg 2a.
+
+**Utestet:** 1.0.1 er ikke prøvd i en økt der miljøbeskrivelsens flagg faktisk
+er feil. Mekanisk sjekket (renhetssjekk grønn, `claude plugin validate` grønn,
+diff lest, kontrollsøk traff linje 89 i SKILL.md). Adferden slår først inn hos
+brukere etter `/plugin marketplace update claude-code-skills` og omstart av
+Claude Code.
+
+**Ordlekkasje funnet og rettet i egne `kunnskap/`-tekster før commit:** «probe»
+i to setninger i denne logginnslagets utkast og én i `STATUS.md` — byttet mot
+«kontrollkall» per klarspråktabellen i `CLAUDE.md`. Alle andre treff i
+`kunnskap/` var eldre innhold og ble ikke rørt.
+
+**STATUS:** 36 linjer. Fase-slutt: 15:45–15:55, 10 min.
+
+Rask sikkerhetssjekk: env-filer 0, fødselsnummer-mønster 0, nøkkel-mønster 0,
+kontrollsøk 4 treff.
+
 ## 2026-09-15 (`kontor-win-arm`) — samlingsfunn rettet, faseflyt 1.0.0, kontor-win-arm Intune-status målt første gang
 
 **Bakgrunn:** to funn fra gruppeleder-samlingen 14. september tatt opp: (1)

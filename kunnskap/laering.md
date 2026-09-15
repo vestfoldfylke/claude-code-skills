@@ -9,6 +9,24 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-15 (`kontor-win-arm`, ettermiddag) — issue #18 rettet
+
+**Evaluering:**
+- **[kilde-diagnose-før-losning] (1. runde)** — ikke utløst. Situasjonen
+  (rapportert Claude-friksjon) oppsto ikke i økten; issue #18 gjaldt en
+  skill-instruks, ikke friksjon. Planen er 100 % ✅ og køen er issues, så ingen
+  gjenstående fase kan utløse den — strøket per regelen i `fase-slutt` steg 2a.
+  Se logg 2026-09-15 ettermiddag.
+
+**Nye punkter:** ingen. Økten fulgte flyten: issue lest, ordlyd foreslått,
+klarsignal gitt, endring lagt inn, sjekker grønne, to rene commits, push, issue
+lukket. Ingenting gikk galt som trenger et nytt punkt.
+
+Fasesnittet: ikke aktuelt — økten var ikke en fase, men et issue-fiks.
+Konteksten holdt seg godt under alle rammer.
+
+Issue til pakkerepoet: ikke aktuelt — ingen nye punkter.
+
 ## 2026-09-15 (`kontor-win-arm`) — samlingsoppfølging
 
 **Evaluering:** ingen aktive punkter i STATUS fra forrige faseslutt (09-10 ga

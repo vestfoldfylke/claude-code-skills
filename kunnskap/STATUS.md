@@ -2,23 +2,22 @@
 
 *Overskrives ved faseslutt. Historikk: `logg.md`. Selvvurdering: `laering.md`.*
 **Plan:** `kunnskap/plan.md` **TODO:** `kunnskap/TODO.md`
-**Køen bor i GitHub issues** — `gh issue list`. 1 åpen issue (#18) 2026-09-15.
+**Køen bor i GitHub issues** — `gh issue list`. 0 åpne issues 2026-09-15 ettermiddag.
 
 **TO MASKINER SKRIVER TIL DETTE REPOET.** Kjør `git fetch` og sammenlign med `origin/main` før du stoler på denne fila.
 
-**Repoet er PUBLIC, godkjent av sikkerhet 2026-09-10 — forblir åpent inntil videre.** `faseflyt` er nå **1.0.0** (utgitt 2026-09-15, samlingsfunn rettet). Frysen fra 09-09 er opphevet — samlingen er avholdt.
+**Repoet er PUBLIC, godkjent av sikkerhet 2026-09-10 — forblir åpent inntil videre.** `faseflyt` er nå **1.0.1** (utgitt 2026-09-15 ettermiddag, issue #18 rettet). Frysen fra 09-09 er opphevet — samlingen er avholdt.
 
 ## Neste — start her
 
-- **Issue #18 (skjellin, 09-14): `fase-start` bør aldri stole på miljøets git-status-flagg.** Steg 2 sine git-sjekker ble hoppet over fordi miljøbeskrivelsen feilaktig sa «ikke git-repo». Forslag: steg 2 skal alltid kjøre `git status` direkte, uavhengig av miljøbeskrivelsen. Ikke rettet ennå.
-- **1.0.0 sin runtime-oppførsel er ikke testet i praksis.** Mekanisk sjekket (diff lest, JSON validert, renhetssjekk, `claude plugin validate`), men ingen har kjørt `/faseflyt:nytt-prosjekt` i en scratch-katalog for å se de 22 nye allow-oppføringene i bruk, kjørt `/faseflyt:hjelp` med ucommittet arbeid, eller utløst fase-slutts nye tomkontekst-sjekk.
-- **Fortsatt utestet:** sjekklistepunkt 3 — kloning av et oppsatt prosjekt, om `.claude/settings.json` tilbyr plugin-installasjon automatisk.
+- **1.0.1 sin runtime-oppførsel er ikke testet i praksis.** Fiksen for issue #18 (kontrollkall i `fase-start` steg 2) er mekanisk sjekket (renhetssjekk, `claude plugin validate`, diff lest, kontrollsøk traff), men ingen har kjørt `/faseflyt:fase-start` i et prosjekt der miljøbeskrivelsens «Is a git repository»-flagg faktisk er feil.
+- **Fortsatt utestet fra 1.0.0:** sjekklistepunkt 3 — kloning av et oppsatt prosjekt, om `.claude/settings.json` tilbyr plugin-installasjon automatisk.
 - **Parkert, klar for issue:** `nytt-prosjekt` steg 6 lover automatisk skill-tilgang ved kloning — motbevist av plan.md punkt 9. Ordlyd klar (se logg 09-09), samlingen er avholdt, kan opprettes nå.
 - **Intune: to maskiner har nå samme avvik.** `hjemme-win-x86` (siden 09-08) og `kontor-win-arm` (observert 09-15): `managed-settings.json` v11 finnes lokalt, men `claude doctor` rapporterer «none configured». Ekstern oppfølging med sikkerhet/Are, ikke et pakke-steg.
 
 ## Arbeidsmåte neste økt
 
-- **[kilde-diagnose-før-losning] (1. runde):** ved rapportert Claude-friksjon, avklar om kilden er permission-prompts fra Claude Code selv eller Claude sine spørsmål i chat FØR planen designes — løsningene er disjunkte.
+*Ingen aktive punkter — [kilde-diagnose-før-losning] strøket 2026-09-15 ettermiddag, se logg.*
 
 ## Det en ny økt må vite
 

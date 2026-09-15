@@ -17,7 +17,8 @@
       "Bash(echo \"--- exit: $? ---\")",
       "Bash(echo \"--- treff over? exit $? ---\")",
       "Bash(grep -icE '\\\\.\\(docx|xlsx|csv|json\\)$')",
-      "Bash(grep -iE '\\\\.\\(docx|xlsx|csv|json\\)$')"
+      "Bash(grep -iE '\\\\.\\(docx|xlsx|csv|json\\)$')",
+      "Bash(~/.local/bin/claude.exe plugin *)"
     ]
   }
 }

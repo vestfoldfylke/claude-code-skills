@@ -9,6 +9,23 @@ en manglende regel — da hører det i `CLAUDE.md`, ikke her.*
 mapper til Explore — tre runder med Grep i hovedtråden kostet ~15k tokens denne
 fasen» er brukbart. «Kunne vært mer effektiv» er det ikke.*
 
+## 2026-09-15 (`kontor-win-arm`) — samlingsoppfølging
+
+**Evaluering:** ingen aktive punkter i STATUS fra forrige faseslutt (09-10 ga
+0 nye) — ingenting å evaluere.
+
+**Nytt punkt:**
+- **[kilde-diagnose-før-losning] (1. runde)** — ved rapportert
+  Claude-friksjon som kan skyldes enten permission-prompts fra Claude Code
+  selv eller Claude sine spørsmål i chat, avklar hvilken FØR planen designes —
+  løsningene er disjunkte (settings.json vs. CLAUDE.md-mandat). Belegg:
+  planutkastet denne økten designet først et CLAUDE.md-mandat for et problem
+  brukeren siden presiserte var permission-prompts; `ExitPlanMode` ble avvist
+  og hele planen måtte skrives om.
+
+Issue til pakkerepoet: ikke aktuelt — punktet gjelder egen planprosess, ikke
+en feil i en skill-instruks.
+
 ## 2026-09-10 (`hjemme-win-x86`) — driftsstøtte mellom faser: ingen brudd, 0 nye punkter
 
 **Evaluering:** ingen aktive punkter i STATUS fra forrige faseslutt —

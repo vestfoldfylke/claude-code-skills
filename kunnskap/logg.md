@@ -2,6 +2,67 @@
 
 Datert logg over funn, overraskelser og beslutninger. Nyeste øverst.
 
+## 2026-09-15 (`kontor-win-arm`) — samlingsfunn rettet, faseflyt 1.0.0, kontor-win-arm Intune-status målt første gang
+
+**Bakgrunn:** to funn fra gruppeleder-samlingen 14. september tatt opp: (1)
+permission-prompts hopet seg opp under vibe-koding, (2) ingen skill fanget
+`/clear` kjørt før `/faseflyt:fase-slutt`.
+
+**Beslutning (bruker, retning for funn 1):** root-årsaken ble først antatt å
+være at Claude stiller tekniske spørsmål i chat — et CLAUDE.md-mandat ble
+planlagt. Brukeren presiserte at det faktisk er permission-prompts fra
+Claude Code selv (les/kjør-godkjenninger), et helt annet problem. Planen ble skrevet
+om fra bunnen til en bredere `allow`-liste i `settings.json`-malen.
+
+**Gjort, skrevet (verifisering hos bruker):**
+- **`nytt-prosjekt`-malen:** 22 nye `permissions.allow`-oppføringer (utvidet
+  git-familie, scratchpad-lesing, navigasjon, node/npm/python-kjøring).
+  `npm install`/`pip install`/`git push` bevisst utenfor.
+- **Rekkefølge-robusthet:** `fase-slutt`-porten sjekker nå at samtalen bærer
+  arbeidet som skal loggføres (tom kontekst + reell git-diff = trolig `/clear`
+  før faseslutt); fase-slutt-vakten i CLAUDE.md-malen sier rekkefølgen
+  eksplisitt; `hjelp` diagnostiserer uavsluttet fase-arbeid som første steg.
+- **`faseflyt` 0.9.3 → 1.0.0.** Første 1.0-utgivelse — kriteriene i
+  `plan.md:110` («prøvd på samlingen, funnene rettet, portfravær
+  dokumentert») er oppfylt.
+
+Mekanisk sjekket: diff lest ord for ord mot ordlyd-utkast, JSON i malen
+validert, renhetssjekk 0 feil, `claude plugin validate` OK. **Ikke testet i
+praksis:** `/faseflyt:nytt-prosjekt` i en scratch-katalog (ser de nye
+allow-oppføringene faktisk ut i en skrevet `settings.json`?), `/faseflyt:hjelp`
+med ucommittet arbeid, og fase-slutts nye tomkontekst-sjekk i en reelt tømt
+samtale. Føres derfor som skrevet, ikke ✅.
+
+**Funn: kommandonavnet «pwd» i en Bash-allow-oppføring blokkeres av
+organisasjonens PreToolUse credential-scan-hook.** Regexen som fanger passord
+(`password|passwd|pwd` etterfulgt av skilletegn) matcher også et rent
+kommandonavn i en permission-regel — falsk positiv, ingen reell credential.
+`pwd` ble derfor utelatt fra det nye allow-settet. Verdt å huske ved framtidige
+utvidelser av permission-mønstre i dette repoet.
+
+**Observert (`kontor-win-arm`, første gang målt):** `managed-settings.json`
+v11 (samme versjon som landet på `hjemme-win-x86` 09-08) finnes på
+`C:\Program Files\ClaudeCode\managed-settings.json`, men `claude doctor`
+rapporterer «Managed settings (remote): none configured for this
+organization» — samme mismatch mellom fil og egenrapportert status som er
+observert på den andre maskinen. Registeret (`HKLM:\SOFTWARE\Policies\ClaudeCode`)
+er tomt, som forventet for fil-tier.
+
+**Oppdaget ved rutinesjekk:** issue #18 (skjellin, 2026-09-14) — `fase-start`
+steg 2 stolte på miljøets «er dette et git-repo»-metadata i stedet for å alltid
+kjøre `git status` selv, og hoppet derfor over sjekkene da metadataen løy. Ikke
+rettet denne økten.
+
+**Ordlekkasje funnet og rettet** i egne `kunnskap/`-tekster før commit: «harness-en»
+(banned, se klarspråktabellen i `CLAUDE.md`) sto i utkastet til denne logg-teksten,
+`laering.md` og `STATUS.md`, og «trigget»/«trigger» i to setninger i `STATUS.md` —
+alle rettet til «Claude Code selv» og «utløst/utløser» før skriving.
+
+Rask sikkerhetssjekk: env-filer 0, fødselsnummer-mønster 0, nøkkel-mønster 0,
+kontrollsøk 7 treff. `STATUS.md`: 37 linjer.
+
+`fase-slutt`: 12:08–12:23, 15 min.
+
 ## 2026-09-10 (`hjemme-win-x86`) — sikkerhetsgodkjenning mottatt, Intune-remediation kartlagt, lokal opprydning
 
 **Beslutning (sikkerhet, synlighet):** repoet forblir åpent inntil videre,

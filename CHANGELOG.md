@@ -4,6 +4,29 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 1.0.0 — 2026-09-15
+
+Første 1.0-utgivelse. Fravær av automatisk sjekk er dokumentert
+i `CLAUDE.md`; kriteriene fra `kunnskap/plan.md:110` er dermed
+oppfylt (samlingen 14. september prøvd, funn rettet, portfravær
+dokumentert).
+
+- **Bredere allowlist i `nytt-prosjekt` sin `settings.json`-mal.**
+  Prosjekter som settes opp fra nå av får 22 nye allow-oppføringer utover
+  `fase-start` sine egne kall: scratchpad-lesing, utvidet git-familie
+  (diff, branch, add, commit, fetch, pull), grunnleggende navigasjon
+  (ls, mkdir, cat, mv, cp), og prosjekt-lokal kjøring (bash, sh, node,
+  npm run/test/ci, npx, python, python3, pytest). `npm install`/`pip
+  install` og `git push` forblir bevisst utenfor. Samlingsfunn 09-14:
+  permission-prompts hopet seg opp under vibe-koding.
+- **Rekkefølge-robusthet mot `/clear` før `/fase-slutt`.** Tre små
+  tillegg: `fase-slutt`-porten sjekker at samtalen faktisk bærer
+  arbeidet som skal loggføres (blank samtale med git-diff = trolig
+  `/clear` før faseslutt, be brukeren beskrive selv); fase-slutt-vakten
+  i `CLAUDE.md`-malen sier eksplisitt at rekkefølgen er faseslutt
+  først; `hjelp`-skillen ser etter uavsluttet fase-arbeid som første
+  handling.
+
 ## 0.9.3 — 2026-09-08
 
 - **`fase-slutt` steg 3** sier nå eksplisitt at det samlede ordlekkasje-søket

@@ -29,6 +29,14 @@ porten er nådd, foreslå kommandoen og vent. Ikke utfør stegene «for hånd» 
 kjørte helt gjennom og committet uten å spørre), så behandle det som en kjent
 felle: er du i tvil, spør før du gjør noe.
 
+**Sjekk at konteksten bærer arbeidet du skal loggføre.** Kjør
+`git log -1 --format=%H -- kunnskap/logg.md` og deretter `git diff
+<sha>..HEAD`. Er det endringer der som ikke har spor i denne økten —
+filer skrevet, tester kjørt, beslutninger tatt — ble samtalen trolig
+tømt med `/clear` før faseslutt. Skriv IKKE logg fra gjetting; si det
+til brukeren og be brukeren beskrive arbeidet selv, eller avbryt
+faseslutt og hent arbeidet tilbake med en frisk `/faseflyt:fase-start`.
+
 **Ta klokkeslett når porten er passert:** `date +%H:%M`, ett kall. Skillen har
 ingen klokke ellers, og tiden fra kommando til «FERDIG» er en måling av skillen
 selv — den føres i steg 7.

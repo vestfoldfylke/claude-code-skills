@@ -19,6 +19,15 @@ brukeren faktisk spurte om. Resten av denne skillen brukes ikke da.
 
 ## 1. Si hvor brukeren står — men bare hvis du vet det
 
+**Se etter uavsluttet fase-arbeid først.** Er prosjektet i git: kjør
+`git status --porcelain`, og finn sist logg-commit med `git log -1
+--format=%H -- kunnskap/logg.md`. Ucommittet arbeid eller commits etter
+den commiten = fase-arbeid STATUS ikke vet om. Si det først: «det
+ligger ucommittet arbeid — kjørte du `/clear` midt i en fase?
+`/faseflyt:fase-slutt` er neste steg, ikke `hjelp`.» Ellers stille: gir
+sjekkene ingen treff, eller feiler de (ikke git, ingen `kunnskap/`),
+gå rett videre.
+
 Finnes `kunnskap/STATUS.md`: les den, og åpne svaret med tre linjer — hvilken
 fase prosjektet er i, hva som sist ble verifisert, og hva neste steg er. Hent
 alle tre fra STATUS. Står noe av det ikke der, hopp over linjen framfor å gjette.

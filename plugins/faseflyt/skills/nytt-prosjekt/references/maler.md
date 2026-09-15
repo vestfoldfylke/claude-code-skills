@@ -270,6 +270,10 @@ sier fra og venter. Ingen av dem er en fullmakt til å utføre det den foreslår
    som er hele poenget med flyten er omgått. «Verifisert, alt OK» betyr ikke
    «avslutt fasen».
 
+   Rekkefølgen er alltid `/faseflyt:fase-slutt` først, deretter `/clear` —
+   `/clear` tømmer samtalen, og skillen kan da ikke skrive logg eller
+   STATUS fra minnet.
+
    Dette har gått galt to ganger i test, begge under en svakere formulering —
    regn det som en kjent felle, ikke en teoretisk. Blir konteksten lang midt i en
    fase: si fra FØR kvaliteten faller.
@@ -358,8 +362,30 @@ webapp-typen og `"fint-graphql@claude-code-skills": true` når prosjektet bruker
     "allow": [
       "Read(~/.claude/plugins/cache/claude-code-skills/**/.claude-plugin/**)",
       "Read(~/.claude/plugins/marketplaces/claude-code-skills/**/.claude-plugin/**)",
+      "Read(~/AppData/Local/Temp/claude/**)",
       "Bash(git status:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git branch:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(cat:*)",
+      "Bash(mv:*)",
+      "Bash(cp:*)",
+      "Bash(bash:*)",
+      "Bash(sh:*)",
+      "Bash(node:*)",
+      "Bash(npm run:*)",
+      "Bash(npm test:*)",
+      "Bash(npm ci:*)",
+      "Bash(npx:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(pytest:*)"
     ],
     "deny": [
       "Bash(npx playwright:*)",
@@ -371,18 +397,31 @@ webapp-typen og `"fint-graphql@claude-code-skills": true` når prosjektet bruker
 }
 ```
 
-**Hva `allow`-settet er, og hva det ikke er.** De fire oppføringene dekker
-`fase-start` sine egne kall: versjonssjekken (steg 0) leser pakkens to
-manifester, og sjekken av om forrige økt ble avsluttet (steg 2) kjører
-`git status` og `git log` (remote-sjekken `git fetch` i samme steg er ikke tatt
-med, med vilje — målingen i neste setning sier hvorfor). Målt 2026-08-27 på ARM: oppføringer som matcher
-ordrett ga likevel dialog, og kall uten oppføring gikk gjennom — allowlisten er
-ikke alene om å avgjøre. Oppstarten kan derfor koste noen godkjenninger; «allow
-for this project» gjør valget varig. Alle fire er **lesende** — de
-rører ikke prosjektets data og kan ikke skrive noe. Merk likevel at pakken her
-*utvider* hva Claude får gjøre uten å spørre, i motsetning til deny-settet
-lenger ned, og at de to siste er brede: all `git status` og all `git log`, ikke
-bare oppstartens egne.
+**Hva `allow`-settet er, og hva det ikke er.** Settet dekker to formål,
+og skillet betyr noe når du vurderer hva som er greit å utvide videre:
+
+- **`fase-start` sine egne kall.** Versjonssjekken (steg 0) leser pakkens
+  to manifester, og sjekken av om forrige økt ble avsluttet (steg 2)
+  kjører `git status` og `git log` (remote-sjekken `git fetch` i samme
+  steg er ikke tatt med i den *smale* formen `git status:*` — se neste
+  avsnitt for hva som er dekket nå).
+- **Vibe-koding-basissett.** Resten av oppføringene finnes fordi
+  vanlig utviklerflyt ellers gir én dialog per kall — bredere
+  git-familie, scratchpad-lesing, grunnleggende navigasjon, og
+  prosjekt-lokale kjøringer for Node, Python og npm-scripts. Settet er
+  observert som terskelen for at flyten ikke bryter av dialoger under
+  vibe-koding-økter (samlingsfunn 2026-09-14). Alle oppføringer er
+  enten lesende eller kjører kode brukeren selv har skrevet i
+  prosjektet; ingen henter nye eksterne avhengigheter (`npm install`,
+  `pip install` er bevisst utenfor og forblir manuelle godkjenninger).
+
+Målt 2026-08-27 på ARM: oppføringer som matcher ordrett ga likevel
+dialog, og kall uten oppføring gikk gjennom — allowlisten er ikke alene
+om å avgjøre. Oppstarten kan derfor koste noen godkjenninger; «allow for
+this project» gjør valget varig. Merk likevel at pakken her *utvider*
+hva Claude får gjøre uten å spørre, i motsetning til deny-settet lenger
+ned, og at flere av oppføringene er brede (all `git status`, all `npx`,
+osv., ikke bare oppstartens egne).
 
 **Formen er målt, ikke valgt.** Kolon-prefiks (`git status:*`) matcher.
 Oppføringer med en sti i prefikset gjør det ikke, uansett kolon — se grense 10.
@@ -420,11 +459,11 @@ oppsett, si det — ellers møter brukeren dialoger malen nettopp har lovet er
 dekket.
 
 **Finnes `.claude/settings.json` fra før, er dokumentet over IKKE malen —
-flettingen er det.** Pakken eier bare fire ting:
+flettingen er det.** Pakken eier fire sett:
 `extraKnownMarketplaces.claude-code-skills`, `enabledPlugins`-oppføringene som
-slutter på `@claude-code-skills`, de fire `permissions.allow`-oppføringene
-over, og `permissions.deny`-oppføringene mot nettleserinstallasjon. De legges
-til — eksisterende `allow`- og `deny`-lister utvides, aldri erstattes — og
+slutter på `@claude-code-skills`, alle `permissions.allow`-oppføringene i
+blokken over, og `permissions.deny`-oppføringene mot nettleserinstallasjon.
+De legges til — eksisterende `allow`- og `deny`-lister utvides, aldri erstattes — og
 alt annet i fila står urørt, også nøkler du ikke kjenner. Vis endringen
 som før/etter, vent på klarsignal før du skriver, og etterkontroller: hver
 nøkkel som fantes før, skal finnes igjen med samme verdi.

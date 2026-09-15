@@ -4,6 +4,13 @@ Semver per plugin. Endringer som brekker eksisterende `kunnskap/`-struktur i
 scaffoldede prosjekter markeres **BRYTENDE** med migreringsnotat — `fase-start`
 skal ellers alltid tåle eldre struktur.
 
+## 1.0.1 — 2026-09-15
+
+`fase-start` steg 2 kjører `git status --porcelain` som prøve for om
+prosjektet er et git-repo, aldri miljøbeskrivelsens «Is a git repository»-flagg.
+Meldt av skjellin: flagget var feil, og hele git-sjekken (ucommittet arbeid,
+uloggførte commits, remote-diff) ble hoppet over uten varsel. Issue #18.
+
 ## 1.0.0 — 2026-09-15
 
 Første 1.0-utgivelse. Fravær av automatisk sjekk er dokumentert

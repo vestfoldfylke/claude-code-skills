@@ -85,7 +85,12 @@ hva som sjekkes, og at alt var rent.
 2. **Ble forrige økt avsluttet?** STATUS beskriver den økten som sist kjørte
    `fase-slutt`. Ble en økt avbrutt — lukket lokk, møte, glemt — beskriver STATUS
    en eldre tilstand enn den du står i, og stegene under stoler blindt på den.
-   I et prosjekt med git, spør om tre ting:
+
+   **Kjør `git status --porcelain` direkte som første spørsmål under — det er
+   dette kallet som avgjør om prosjektet er et git-repo, aldri miljøbeskrivelsens
+   «Is a git repository»-flagg.** Feiler kommandoen (`fatal: not a git
+   repository`), hopp over resten av steget i stillhet. Går den gjennom, spør om
+   tre ting:
 
    - *Ucommittet arbeid:* `git status --porcelain`. Ikke tomt = det ligger
      endringer her STATUS ikke vet om.
@@ -134,8 +139,7 @@ hva som sjekkes, og at alt var rent.
      tolker en bar dato som er i dag som «nå», ikke som midnatt
      (`--since='2026-08-24 00:00'` ga 6). Blindsonen ligger på dagen sjekken
      oftest kjøres.
-   - Ikke et git-prosjekt, eller ingen `kunnskap/logg.md`: hopp over steget i
-     stillhet.
+   - Ingen `kunnskap/logg.md`: hopp over steget i stillhet.
 
 3. Les `kunnskap/plan.md`. **Er den lang (over ~150 linjer), les ikke hele:**
    finn fasene med `Grep` etter `### Fase`, og les `## Avklarte beslutninger` og
